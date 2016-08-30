@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\bin\Debug\Prime Numbers.exe.config
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\bin\Debug\Prime Numbers.exe
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\bin\Debug\Prime Numbers.pdb
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\obj\Debug\Prime Numbers.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\obj\Debug\Prime Numbers.exe
+E:\Documents\GitHub\CS-Learning\Advanced Loops\Prime Numbers\obj\Debug\Prime Numbers.pdb
