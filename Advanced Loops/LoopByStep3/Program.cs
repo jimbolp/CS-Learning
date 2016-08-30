@@ -16,7 +16,7 @@ namespace LoopByStep3
                 {
                     try
                     {
-                        Console.Write("тест Input a number: ");
+                        Console.Write("Input a number: ");
                         n = int.Parse(Console.ReadLine());
                     }
                     catch (System.IO.IOException)
