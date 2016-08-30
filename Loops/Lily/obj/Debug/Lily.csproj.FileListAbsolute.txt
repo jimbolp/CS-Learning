@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Loops\Lily\bin\Debug\Lily.exe.config
+e:\documents\visual studio 2015\Projects\Loops\Lily\bin\Debug\Lily.exe
+e:\documents\visual studio 2015\Projects\Loops\Lily\bin\Debug\Lily.pdb
+e:\documents\visual studio 2015\Projects\Loops\Lily\obj\Debug\Lily.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Loops\Lily\obj\Debug\Lily.exe
+e:\documents\visual studio 2015\Projects\Loops\Lily\obj\Debug\Lily.pdb

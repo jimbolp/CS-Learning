@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\bin\Debug\Fortres.exe.config
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\bin\Debug\Fortres.exe
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\bin\Debug\Fortres.pdb
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\obj\Debug\Fortres.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\obj\Debug\Fortres.exe
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Fortres\obj\Debug\Fortres.pdb

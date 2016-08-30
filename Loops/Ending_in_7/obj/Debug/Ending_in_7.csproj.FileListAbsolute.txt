@@ -1,0 +1,5 @@
+e:\documents\visual studio 2015\Projects\Loops\Ending_in_7\bin\Debug\Ending_in_7.exe.config
+e:\documents\visual studio 2015\Projects\Loops\Ending_in_7\bin\Debug\Ending_in_7.exe
+e:\documents\visual studio 2015\Projects\Loops\Ending_in_7\bin\Debug\Ending_in_7.pdb
+e:\documents\visual studio 2015\Projects\Loops\Ending_in_7\obj\Debug\Ending_in_7.exe
+e:\documents\visual studio 2015\Projects\Loops\Ending_in_7\obj\Debug\Ending_in_7.pdb

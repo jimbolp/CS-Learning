@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.exe.config
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.exe
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.pdb
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.exe
+e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.pdb

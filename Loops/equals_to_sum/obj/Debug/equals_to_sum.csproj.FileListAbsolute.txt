@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\bin\Debug\equals_to_sum.exe.config
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\bin\Debug\equals_to_sum.exe
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\bin\Debug\equals_to_sum.pdb
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\obj\Debug\equals_to_sum.exe
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\obj\Debug\equals_to_sum.pdb
+e:\documents\visual studio 2015\Projects\Loops\equals_to_sum\obj\Debug\equals_to_sum.csprojResolveAssemblyReference.cache

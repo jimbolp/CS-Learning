@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\bin\Debug\sum of vowels.exe.config
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\bin\Debug\sum of vowels.exe
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\bin\Debug\sum of vowels.pdb
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\obj\Debug\sum of vowels.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\obj\Debug\sum of vowels.exe
+e:\documents\visual studio 2015\Projects\Loops\sum of vowels\obj\Debug\sum of vowels.pdb
