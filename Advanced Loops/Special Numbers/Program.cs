@@ -41,6 +41,23 @@ namespace Special_Numbers
             
 
         }
+        public static T Input<T>()
+        {
+            var num = Console.ReadLine();            
+            try
+            {
+                int number;
+                int.TryParse(num, out number);
+                return (T)number;
+            }
+            catch(FormatException)
+            {
+                double number;
+            }
+            
+
+            return number;
+        }
         public static bool isSpecialNum(int num)
         {            
             for(int i = 0; i < 4; i++)
