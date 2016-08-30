@@ -13,3 +13,6 @@ E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3
 E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.exe
 E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.pdb
 >>>>>>> origin/master
+E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.exe
+E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.pdb
+E:\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.csprojResolveAssemblyReference.cache
