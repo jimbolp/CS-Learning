@@ -33,7 +33,7 @@ namespace Stupid_passwords
                 }
                 catch (ArgumentNullException)
                 {
-                    continue;
+                    Console.Error.Write(err);
                 }
                 catch (FormatException err)
                 {
