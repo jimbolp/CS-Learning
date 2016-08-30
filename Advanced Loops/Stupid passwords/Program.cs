@@ -31,7 +31,7 @@ namespace Stupid_passwords
                 { 
                     Console.Error.WriteLine("Invalid I/O");
                 }
-                catch (ArgumentNullException)
+                catch (ArgumentNullException err)
                 {
                     Console.Error.Write(err);
                 }

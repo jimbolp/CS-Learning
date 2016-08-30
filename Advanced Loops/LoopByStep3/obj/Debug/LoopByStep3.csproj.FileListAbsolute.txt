@@ -4,3 +4,6 @@ e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\bin\Debug\Lo
 e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.csprojResolveAssemblyReference.cache
 e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.exe
 e:\documents\visual studio 2015\Projects\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\bin\Debug\LoopByStep3.exe.config
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\LoopByStep3\obj\Debug\LoopByStep3.pdb

@@ -4,3 +4,6 @@ e:\documents\visual studio 2015\Projects\Advanced Loops\Special Numbers\bin\Debu
 e:\documents\visual studio 2015\Projects\Advanced Loops\Special Numbers\obj\Debug\Special Numbers.exe
 e:\documents\visual studio 2015\Projects\Advanced Loops\Special Numbers\obj\Debug\Special Numbers.pdb
 e:\documents\visual studio 2015\Projects\Advanced Loops\Special Numbers\obj\Debug\Special Numbers.csprojResolveAssemblyReference.cache
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\Special Numbers\bin\Debug\Special Numbers.exe.config
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\Special Numbers\obj\Debug\Special Numbers.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Advanced Loops\Special Numbers\obj\Debug\Special Numbers.pdb
