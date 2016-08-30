@@ -59,14 +59,7 @@ namespace Stupid_passwords
                             {
                                 end++;
                             }
-                            try
-                            {
-                                Console.Write("{0}{1}{2}{3}{4} ", i, j, letters[k], letters[m], end);
-                            }
-                            catch(Exception err)
-                            {
-                                Console.Error.WriteLine(err);
-                            }
+                         
                             
                         }
                     }
