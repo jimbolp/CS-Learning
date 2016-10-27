@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\bin\Debug\Advertisement Message.exe.config
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\bin\Debug\Advertisement Message.exe
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\bin\Debug\Advertisement Message.pdb
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\obj\Debug\Advertisement Message.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\obj\Debug\Advertisement Message.exe
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Advertisement Message\obj\Debug\Advertisement Message.pdb
