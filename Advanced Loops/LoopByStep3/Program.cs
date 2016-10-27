@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LoopByStep3
 {
@@ -52,9 +48,13 @@ namespace LoopByStep3
                         end = char.Parse(Console.ReadLine());
                         if (end != 'y' && end != 'n')
                         {
-                            Console.Error.WriteLine("Invalid choice!");
+                            Console.Error.WriteLine("Invalid choice! Try \'y\' or \'n\'!");
                         }
 
+                    }
+                    catch (FormatException)
+                    {
+                        Console.Error.WriteLineAsync("The String must be exactly one character long!");
                     }
                     catch (Exception err)
                     {
