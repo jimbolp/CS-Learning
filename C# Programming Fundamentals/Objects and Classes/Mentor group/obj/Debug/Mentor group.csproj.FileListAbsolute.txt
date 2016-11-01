@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\bin\Debug\Mentor group.exe.config
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\bin\Debug\Mentor group.exe
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\bin\Debug\Mentor group.pdb
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\obj\Debug\Mentor group.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\obj\Debug\Mentor group.exe
+E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Mentor group\obj\Debug\Mentor group.pdb
