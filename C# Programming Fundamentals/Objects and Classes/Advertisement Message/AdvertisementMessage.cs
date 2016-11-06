@@ -11,16 +11,16 @@ class AdvertisementMessage
         List<string> authors = new List<string>() {"Diana", "Petya", "Stella", "Elena", "Katya", "Iva", "Annie", "Eva"};
         List<string> cities = new List<string>() {"Burgas", "Sofia", "Plovdiv", "Varna", "Ruse"};
         Random rnd = new Random();
-        int phraseIndex, eventIndex, authorIndex, cityIndex;
         int n = int.Parse(Console.ReadLine());
         for(int i = 0; i < n; ++i)
         {
-            phraseIndex = rnd.Next(0, phrases.Count);
-            eventIndex = rnd.Next(0, events.Count);
-            authorIndex = rnd.Next(0, authors.Count);
-            cityIndex = rnd.Next(0, cities.Count);
+            var phraseIndex = rnd.Next(0, phrases.Count);
+            var eventIndex = rnd.Next(0, events.Count);
+            var authorIndex = rnd.Next(0, authors.Count);
+            var cityIndex = rnd.Next(0, cities.Count);
             Console.WriteLine($"{phrases[phraseIndex]} {events[eventIndex]} {authors[authorIndex]} - {cities[cityIndex]}");
         }
+        
     }
 }
 

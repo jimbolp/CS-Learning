@@ -28,6 +28,8 @@ namespace StudentGroups
             groups = groups.OrderBy(x => x.Town.Name).ToList();
             
             Output(groups);
+            Console.WriteLine(towns[0]);
+
         }
 
         private static void Output(List<Group> groups )
@@ -73,7 +75,6 @@ namespace StudentGroups
                 AddStudent(input, ref towns);
             }
             end = unformatedInput;
-            
         }
 
         private static void AddStudent(string[] input, ref List<Town> towns )
@@ -93,15 +94,12 @@ namespace StudentGroups
                 towns.Last().Students.Add(new Student(input[0].Trim(),
                 input[1].Trim(), register));
             }
-            
         }
 
         private static void AddTown(string[] input, ref List<Town> towns)
         {
             towns.Add(new Town(input[0].Trim(), int.Parse(input[1].Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0])));
         }
-      //Add the other classes for Judge Check HERE______________
-        
-        
+        //Add the other classes for Judge Check HERE______________
     }
 }
