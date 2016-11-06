@@ -4,8 +4,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 using Microsoft.Office.Interop.Excel;
 
 namespace ExcelTest
@@ -30,7 +30,7 @@ namespace ExcelTest
                 return null;
             }
         }
-
+        
         public static void ConvertPZN(int rows, Range range)
         {
             ExceptionLabel.Text = "Обработват се полетата....";
