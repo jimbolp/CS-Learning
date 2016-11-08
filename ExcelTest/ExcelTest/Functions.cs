@@ -18,6 +18,8 @@ namespace ConvertPZN
     {
         private void OpenFileAndDoStuff()
         {
+            if (counter != 0)
+                return;
             if (filePathTextBox.Text == BLANK_TEXT_BOX || filePathTextBox.Text.Trim() == "")
             {
                 ExceptionLabel.Text = "Преди да стартирате, заредете файла за обработка.";
@@ -98,6 +100,7 @@ namespace ConvertPZN
                 xlApp.Workbooks.Close();
                 xlApp.Quit();
                 Marshal.ReleaseComObject(xlApp);
+                counter++;
             }
         }
         public static string Formula(string pzn)
