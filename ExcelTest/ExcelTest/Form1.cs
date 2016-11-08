@@ -20,7 +20,7 @@ namespace ConvertPZN
         const string FILE_SAVED = "Файлът е променен успешно";
         const string BLANK_TEXT_BOX = "(Хвани и постави Excel файла тук)";
         const string PROCESSING = "Обработват се полетата....";
-        static uint counter;
+        
         public Form1()
         {
             InitializeComponent();
@@ -28,10 +28,7 @@ namespace ConvertPZN
 
         public void startReplacing_Click(object sender, EventArgs e)
         {
-            if (counter == 0)
-                OpenFileAndDoStuff();
-            else
-                ExceptionLabel.Text = "Файлът вече е обработен.";
+            OpenFileAndDoStuff();
         }
         
         private void ExceptionLabel_Click(object sender, EventArgs e)
@@ -73,7 +70,6 @@ namespace ConvertPZN
         }
         private void filePathTextBox_TextChanged(object sender, EventArgs e)
         {
-            counter = 0;
             if(filePathTextBox.Text.Trim() == "")
                 filePathTextBox.Text = filePathTextBox.Text.Trim();
             if (filePathTextBox.Text != BLANK_TEXT_BOX)
