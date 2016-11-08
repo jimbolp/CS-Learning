@@ -1,0 +1,9 @@
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\Convert PZN in Excel.csproj.ResolveComReference.cache
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\Convert PZN in Excel.csproj.GenerateResource.Cache
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ConvertPZN.Form1.resources
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ConvertPZNinExcel.exe.config
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ConvertPZNinExcel.exe
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ConvertPZNinExcel.pdb
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ConvertPZN.Properties.Resources.resources
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ConvertPZNinExcel.exe
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ConvertPZNinExcel.pdb

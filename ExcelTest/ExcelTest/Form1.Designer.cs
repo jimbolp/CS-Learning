@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
-namespace ExcelTest
+namespace ConvertPZN
 {
     partial class Form1
     {
@@ -34,7 +35,7 @@ namespace ExcelTest
         protected void InitializeComponent()
         {
             this.startReplacing = new System.Windows.Forms.Button();
-            ExceptionLabel = new System.Windows.Forms.Label();
+            this.ExceptionLabel = new System.Windows.Forms.Label();
             this.filePathTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.killExcelButton = new System.Windows.Forms.Button();
@@ -47,7 +48,7 @@ namespace ExcelTest
             // 
             // startReplacing
             // 
-            this.startReplacing.BackgroundImage = global::ExcelTest.Properties.Resources.Run;
+            this.startReplacing.BackgroundImage = global::ConvertPZN.Properties.Resources.Run;
             this.startReplacing.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.startReplacing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.startReplacing.Location = new System.Drawing.Point(23, 86);
@@ -59,16 +60,16 @@ namespace ExcelTest
             // 
             // ExceptionLabel
             // 
-            ExceptionLabel.AutoEllipsis = true;
-            ExceptionLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            ExceptionLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            ExceptionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            ExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            ExceptionLabel.Location = new System.Drawing.Point(0, 193);
-            ExceptionLabel.Name = "ExceptionLabel";
-            ExceptionLabel.Size = new System.Drawing.Size(440, 145);
-            ExceptionLabel.TabIndex = 1;
-            ExceptionLabel.Click += new System.EventHandler(ExceptionLabel_Click);
+            this.ExceptionLabel.AutoEllipsis = true;
+            this.ExceptionLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.ExceptionLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ExceptionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ExceptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ExceptionLabel.Location = new System.Drawing.Point(0, 193);
+            this.ExceptionLabel.Name = "ExceptionLabel";
+            this.ExceptionLabel.Size = new System.Drawing.Size(440, 145);
+            this.ExceptionLabel.TabIndex = 1;
+            this.ExceptionLabel.Click += new System.EventHandler(this.ExceptionLabel_Click);
             // 
             // filePathTextBox
             // 
@@ -103,7 +104,7 @@ namespace ExcelTest
             // killExcelButton
             // 
             this.killExcelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.killExcelButton.BackgroundImage = global::ExcelTest.Properties.Resources.Disclaimer;
+            this.killExcelButton.BackgroundImage = global::ConvertPZN.Properties.Resources.Disclaimer;
             this.killExcelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.killExcelButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.killExcelButton.Enabled = false;
@@ -119,7 +120,7 @@ namespace ExcelTest
             // 
             this.loadExcelFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadExcelFile.BackgroundImage = global::ExcelTest.Properties.Resources.DocumentsFolder;
+            this.loadExcelFile.BackgroundImage = global::ConvertPZN.Properties.Resources.DocumentsFolder;
             this.loadExcelFile.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.loadExcelFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.loadExcelFile.Location = new System.Drawing.Point(182, 86);
@@ -179,12 +180,13 @@ namespace ExcelTest
             this.Controls.Add(this.killExcelButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.filePathTextBox);
-            this.Controls.Add(ExceptionLabel);
+            this.Controls.Add(this.ExceptionLabel);
             this.Controls.Add(this.startReplacing);
             this.MinimumSize = new System.Drawing.Size(456, 377);
             this.Name = "Form1";
             this.Text = "PZN - Добавяне на контролна цифра";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,7 +203,7 @@ namespace ExcelTest
         private Label label2;
         private Label label3;
         private Label label4;
-        protected static Label ExceptionLabel;
+        public Label ExceptionLabel;
     }
 }
 
