@@ -195,7 +195,6 @@ namespace ConvertPZN
         #endregion
 
         private Button startReplacing;
-        private TextBox filePathTextBox;
         private Label label1;
         private Button killExcelButton;
         private Button loadExcelFile;
@@ -204,6 +203,7 @@ namespace ConvertPZN
         private Label label3;
         private Label label4;
         public Label ExceptionLabel;
+        public TextBox filePathTextBox;
     }
 }
 

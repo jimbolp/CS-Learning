@@ -58,13 +58,13 @@ namespace ConvertPZN
 
         private void killExcelButton_Click(object sender, EventArgs e)
         {
-            Process[] process = Process.GetProcessesByName("Excel");
+            Process[] processes = Process.GetProcessesByName("Excel");
             if (MessageBox.Show("Сигурни ли сте, че искате да затворите всички Excel процеси?" +
                 Environment.NewLine +
                 "Ако имате отворени документи, промените няма да бъдат запазени!",
                 "Опасна операция!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                foreach (var p in process)
+                foreach (var p in processes)
                     p.Kill();
             }
         }
