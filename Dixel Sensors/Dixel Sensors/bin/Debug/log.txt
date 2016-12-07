@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------
+04.12.2016 8:54:19
+Sorry, we couldn't find mnj.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at Dixel_Sensors.Form1.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 40--------------------------------------------------------------------------------
+05.12.2016 14:30:08
+Insufficient memory to continue the execution of the program.
+   at Microsoft.Office.Interop.Excel._Chart.set_Name(String RHS)
+   at Dixel_Sensors.Form1.createChartObject(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 46
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 185--------------------------------------------------------------------------------
+05.12.2016 14:31:49
+Insufficient memory to continue the execution of the program.
+   at Microsoft.Office.Interop.Excel._Chart.set_Name(String RHS)
+   at Dixel_Sensors.Form1.createChartObject(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 48
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 187--------------------------------------------------------------------------------
+06.12.2016 12:24:07
+Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at CallSite.Target(Closure , CallSite , Type , Object )
+   at Dixel_Sensors.Form1.loadTemps(Range xlRange, Int32 rows) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 223
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 275--------------------------------------------------------------------------------
+06.12.2016 19:36:01
+Sorry, we couldn't find adfadf.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at Dixel_Sensors.Form1.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 125--------------------------------------------------------------------------------
+06.12.2016 19:36:17
+Невалиден файл!
+   at Dixel_Sensors.Form1.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 141
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 271

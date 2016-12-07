@@ -16,12 +16,12 @@ namespace ConvertPZN
 {
     partial class Form1
     {
-        public Workbook LoadXlFile(Application xlApp)
+        public Workbook LoadXlFile(Application xlApp, string fileName)
         {
             Workbook xlWorkbook;
             try
             {
-                xlWorkbook = xlApp.Workbooks.Open(filePathTextBox.Text, ReadOnly: false, Format: 5,
+                xlWorkbook = xlApp.Workbooks.Open(fileName, ReadOnly: false, Format: 5,
                     IgnoreReadOnlyRecommended: true,
                     Origin: XlPlatform.xlWindows, Delimiter: "\t", Editable: true, Notify: true, AddToMru: false,
                     Local: 1, CorruptLoad: 0);
@@ -53,10 +53,11 @@ namespace ConvertPZN
             Cursor = Cursors.WaitCursor;
             ExceptionLabel.Text = "Файлът се отваря....";
             var xlApp = new Application();
-
+            string fileName = filePathTextBox.Text;
+            filePathTextBox.Text = "";
             try
             {
-                var xlWorkBook = LoadXlFile(xlApp);
+                var xlWorkBook = LoadXlFile(xlApp, fileName);
                 
                 Worksheet xlWorkSheet = (Worksheet) xlWorkBook.ActiveSheet;
                 xlWorkSheet.UsedRange.AutoFormat(Border:false);
@@ -140,7 +141,7 @@ namespace ConvertPZN
             /*
              * Still have no idea how to do that shit differently (to make the button unavailable for pressing even while
              * it's not enabled). After the button is enabled again apparently a buffer of some sort
-             * is released and if someone press the button while not enabled, the button catch that action after
+             * is released and if someone press the button while not enabled, the button catch that event after
              * it gets enabled again. So apparently "DoEvents()", releases that "buffer" before the button is
              * enabled again.. ?!?... Again.. "probably"
              */
