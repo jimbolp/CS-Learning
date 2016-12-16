@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\bin\Debug\Double Palindromes.exe.config
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\bin\Debug\Double Palindromes.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\bin\Debug\Double Palindromes.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\obj\Debug\Double Palindromes.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\obj\Debug\Double Palindromes.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Double Palindromes\obj\Debug\Double Palindromes.pdb

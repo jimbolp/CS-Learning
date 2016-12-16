@@ -26,4 +26,189 @@ Sorry, we couldn't find adfadf.xlsx. Is it possible it was moved, renamed or del
 06.12.2016 19:36:17
 Невалиден файл!
    at Dixel_Sensors.Form1.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 141
-   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 271
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 271--------------------------------------------------------------------------------
+07.12.2016 12:00:45
+The object invoked has disconnected from its clients. (Exception from HRESULT: 0x80010108 (RPC_E_DISCONNECTED))
+   at Microsoft.Office.Interop.Excel._Workbook.get_Saved()
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 301--------------------------------------------------------------------------------
+07.12.2016 12:23:26
+Exception from HRESULT: 0x800A03EC
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Range.get__Default(Object RowIndex, Object ColumnIndex)
+   at Dixel_Sensors.Form1.CustomXlBook.GetListOfDistinctDates(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 382
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 294--------------------------------------------------------------------------------
+07.12.2016 12:25:44
+Exception from HRESULT: 0x800A03EC
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Range.get__Default(Object RowIndex, Object ColumnIndex)
+   at Dixel_Sensors.Form1.CustomXlBook.GetListOfDistinctDates(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 382
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 294--------------------------------------------------------------------------------
+07.12.2016 18:59:00
+Invalid index. (Exception from HRESULT: 0x8002000B (DISP_E_BADINDEX))
+   at Microsoft.Office.Interop.Excel.Sheets.get__Default(Object Index)
+   at Dixel_Sensors.Form1.tests(Application xlApp) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 503
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 312--------------------------------------------------------------------------------
+07.12.2016 19:01:28
+Insert method of Range class failed
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Range.Insert(Object Shift, Object CopyOrigin)
+   at Dixel_Sensors.Form1.tests(Application xlApp) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 509
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 312--------------------------------------------------------------------------------
+07.12.2016 19:27:41
+Insert method of Range class failed
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Range.Insert(Object Shift, Object CopyOrigin)
+   at Dixel_Sensors.Form1.tests(Application xlApp) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 509
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 312--------------------------------------------------------------------------------
+08.12.2016 11:27:32
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CustomXlBook.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 423
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 291--------------------------------------------------------------------------------
+08.12.2016 11:35:04
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CustomXlBook.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 427
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 291--------------------------------------------------------------------------------
+08.12.2016 12:02:48
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CustomXlBook.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 423
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 291--------------------------------------------------------------------------------
+08.12.2016 12:05:58
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CustomXlBook.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 427
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 291--------------------------------------------------------------------------------
+08.12.2016 12:07:42
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CustomXlBook.loadExcelFile(Application xlApp, String filePath) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 427
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 291--------------------------------------------------------------------------------
+08.12.2016 12:10:03
+Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at Dixel_Sensors.Form1.tests(CustomXlBook Sensor) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 513
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 315--------------------------------------------------------------------------------
+08.12.2016 12:11:18
+Invalid index. (Exception from HRESULT: 0x8002000B (DISP_E_BADINDEX))
+   at Microsoft.Office.Interop.Excel.Sheets.get__Default(Object Index)
+   at Dixel_Sensors.Form1.tests(CustomXlBook Sensor) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 514
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 315--------------------------------------------------------------------------------
+08.12.2016 12:12:06
+COM object that has been separated from its underlying RCW cannot be used.
+   at System.StubHelpers.StubHelpers.StubRegisterRCW(Object pThis)
+   at Microsoft.Office.Interop.Excel.ApplicationClass.Quit()
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 330--------------------------------------------------------------------------------
+08.12.2016 12:14:16
+COM object that has been separated from its underlying RCW cannot be used.
+   at System.StubHelpers.StubHelpers.StubRegisterRCW(Object pThis)
+   at Microsoft.Office.Interop.Excel.ApplicationClass.Quit()
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 330--------------------------------------------------------------------------------
+08.12.2016 12:21:13
+Exception from HRESULT: 0x800A03EC
+   at Microsoft.Office.Interop.Excel._Worksheet.Copy(Object Before, Object After)
+   at Dixel_Sensors.Form1.tests(CustomXlBook Sensor) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 523
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 315--------------------------------------------------------------------------------
+08.12.2016 12:23:14
+COM object that has been separated from its underlying RCW cannot be used.
+   at System.StubHelpers.StubHelpers.StubRegisterRCW(Object pThis)
+   at Microsoft.Office.Interop.Excel.ApplicationClass.Quit()
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 330--------------------------------------------------------------------------------
+08.12.2016 14:55:39
+Microsoft Excel cannot access the file 'C:\Users\Jimbo\Desktop\Saved Excel Files\'. There are several possible reasons:
+
+• The file name or path does not exist.
+• The file is being used by another program.
+• The workbook you are trying to save has the same name as a currently open workbook.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 416--------------------------------------------------------------------------------
+08.12.2016 17:26:19
+Microsoft Excel cannot access the file 'C:\Users\Jimbo\Desktop\Saved Excel Files\'. There are several possible reasons:
+
+• The file name or path does not exist.
+• The file is being used by another program.
+• The workbook you are trying to save has the same name as a currently open workbook.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 426--------------------------------------------------------------------------------
+08.12.2016 17:40:42
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 429--------------------------------------------------------------------------------
+08.12.2016 17:55:31
+Filter string you provided is not valid. The filter string must contain a description of the filter, followed by the vertical bar (|) and the filter pattern. The strings for different filtering options must also be separated by the vertical bar. Example: "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+   at System.Windows.Forms.FileDialog.set_Filter(String value)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 418
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 339--------------------------------------------------------------------------------
+08.12.2016 18:04:34
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 430--------------------------------------------------------------------------------
+08.12.2016 18:09:03
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 430--------------------------------------------------------------------------------
+08.12.2016 18:23:24
+Object reference not set to an instance of an object.
+   at Dixel_Sensors.Form1.CreateChart(ChartObject xlChartObject, Range xlChartRange, String worksheetName) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 61
+   at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 129
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 331--------------------------------------------------------------------------------
+08.12.2016 18:59:40
+Show method of Dialog class failed
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Dialog.Show(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7, Object Arg8, Object Arg9, Object Arg10, Object Arg11, Object Arg12, Object Arg13, Object Arg14, Object Arg15, Object Arg16, Object Arg17, Object Arg18, Object Arg19, Object Arg20, Object Arg21, Object Arg22, Object Arg23, Object Arg24, Object Arg25, Object Arg26, Object Arg27, Object Arg28, Object Arg29, Object Arg30)
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 343--------------------------------------------------------------------------------
+08.12.2016 19:02:48
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 445--------------------------------------------------------------------------------
+08.12.2016 19:20:00
+Show method of Dialog class failed
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Dialog.Show(Object Arg1, Object Arg2, Object Arg3, Object Arg4, Object Arg5, Object Arg6, Object Arg7, Object Arg8, Object Arg9, Object Arg10, Object Arg11, Object Arg12, Object Arg13, Object Arg14, Object Arg15, Object Arg16, Object Arg17, Object Arg18, Object Arg19, Object Arg20, Object Arg21, Object Arg22, Object Arg23, Object Arg24, Object Arg25, Object Arg26, Object Arg27, Object Arg28, Object Arg29, Object Arg30)
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 345--------------------------------------------------------------------------------
+08.12.2016 19:20:07
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 445--------------------------------------------------------------------------------
+08.12.2016 19:34:05
+The file could not be accessed. Try one of the following:
+
+• Make sure the specified folder exists. 
+• Make sure the folder that contains the file is not read-only.
+• Make sure the file name does not contain any of the following characters:  <  >  ?  [  ]  :  | or  *
+• Make sure the file/path name doesn't contain more than 218 characters.
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 446--------------------------------------------------------------------------------
+08.12.2016 19:50:09
+Exception from HRESULT: 0x800A03EC
+   at Microsoft.Office.Interop.Excel._Chart.set_Visible(XlSheetVisibility RHS)
+   at Dixel_Sensors.Form1.CreateChart(ChartObject xlChartObject, Range xlChartRange, String worksheetName) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 63
+   at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 148
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 333--------------------------------------------------------------------------------
+14.12.2016 15:42:46
+Exception from HRESULT: 0x800A03EC
+   at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 485

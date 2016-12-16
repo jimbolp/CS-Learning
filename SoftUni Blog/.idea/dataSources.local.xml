@@ -4,7 +4,7 @@
     <data-source name="MySQL - @localhost" uuid="26b067c9-e339-4bea-ae5d-a0aa56c0bb8c">
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>phpmyadmin.*</schema-pattern>
+      <schema-pattern>blog.*</schema-pattern>
       <default-schemas>phpmyadmin.*</default-schemas>
     </data-source>
   </component>

@@ -1,6 +1,0 @@
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\bin\Debug\TeamworkProjects.exe.config
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\bin\Debug\TeamworkProjects.exe
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\bin\Debug\TeamworkProjects.pdb
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\obj\Debug\TeamworkProjects.csprojResolveAssemblyReference.cache
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\obj\Debug\TeamworkProjects.exe
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\TeamworkProjects\obj\Debug\TeamworkProjects.pdb

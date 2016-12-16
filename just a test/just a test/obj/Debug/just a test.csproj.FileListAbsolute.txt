@@ -1,0 +1,7 @@
+E:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\just a test.exe.config
+E:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\just a test.exe
+E:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\just a test.pdb
+E:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.csproj.ResolveComReference.cache
+E:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.exe
+E:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.pdb
