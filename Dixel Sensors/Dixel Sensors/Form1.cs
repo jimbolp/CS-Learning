@@ -20,6 +20,7 @@ namespace Dixel_Sensors
 {
     public partial class Form1 : Form
     {
+        
         const double COLD_MIN = 2.5;
         const double COLD_MAX = 7.5;
         const double TEMP_MIN = 16.0;
@@ -38,7 +39,6 @@ namespace Dixel_Sensors
             "006 HwhDF-XJP60D",
             "017 Hcwh-XJP60D", "046 HwhMF-XJP60D", "075 HwhUFrP-XJP60D", "077 HwhUF-XJP60D"
         };
-        
         
         public string SavedFilePath { get; set; }
         public List<Chart> ListOfCharts { get; set; } = new List<Chart>();
@@ -64,12 +64,18 @@ namespace Dixel_Sensors
             xlChartObject.Chart.HasTitle = true;
             Chart xlChartPage = xlChartObject.Chart;
             xlChartPage.ChartTitle.Text = worksheetName;
-            xlChartPage.SetSourceData(xlChartRange);
             xlChartPage.ChartType = XlChartType.xlLine;
+            xlChartPage.SetSourceData(xlChartRange);
+            /*Axis a = (xlChartPage.Axes(Microsoft.Office.Interop.Excel.XlAxisType.xlValue,
+                XlAxisGroup.xlPrimary) as Microsoft.Office.Interop.Excel.Axis);
+            a.MinimumScale = 16.5;//*/
+
+            //xlChartPage.ApplyChartTemplate(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\For Tests\\ChartTemplate.crtx");
             xlChartPage.Legend.Delete();
             //ListOfCharts.Add(xlChartPage);
             //xlApp.Visible = true;
-            //xlChartPage.PrintOut();
+            if(printCheckBox.Checked)
+                xlChartPage.PrintOut();
             //xlApp.Visible = false;//*/
         }
 
@@ -332,29 +338,32 @@ namespace Dixel_Sensors
                     resultLabel.Text = "";
                     sheetNameLabel.Text = "Страница " + sheetCount++ + " от "
                                           + sheetsNumber + " (" + sheet.Name + "):";
-                    
+
                     //Start changing temps.................
-                    //loadTemps(sheet);
-                    
-                    if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
-                        createChartTemps(sheet);
-                    else if(HUMID_FOR_CHARTS.Contains(sheet.Name))
-                        createChartHumid(sheet);
-                    
+                    if(tempsCheckBox.Checked)
+                        loadTemps(sheet);
+                    if (graphicsCheckBox.Checked)
+                    {
+                        if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
+                            createChartTemps(sheet);
+                        else if (HUMID_FOR_CHARTS.Contains(sheet.Name))
+                            createChartHumid(sheet);
+                    }
+
                 }//*/
                 //tests(Sensors);
                 
                 sheetNameLabel.Text = "";
 
-                try
+                /*try
                 {
-                    //xlApp.Dialogs[XlBuiltInDialog.xlDialogPrint].Show(ListOfCharts[0]);
+                    xlApp.Dialogs[XlBuiltInDialog.xlDialogPrint].Show(ListOfCharts[0]);
 
                 }
                 catch(COMException ce)
                 {
                     SaveExceptionToFile(ce);
-                }
+                }//*/
                 
                 if (SaveAndClose(xlWorkbook))
                     resultLabel.Text = "Файлът е запазен:" + Environment.NewLine + SavedFilePath;
@@ -612,6 +621,19 @@ namespace Dixel_Sensors
             if (Marshal.AreComObjectsAvailableForCleanup())
             {
                 Marshal.CleanupUnusedObjectsInCurrentContext();
+            }
+        }
+
+        private void graphicsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (graphicsCheckBox.Checked)
+            {
+                printCheckBox.Enabled = true;
+            }
+            else
+            {
+                printCheckBox.Checked = false;
+                printCheckBox.Enabled = false;
             }
         }
         //------------

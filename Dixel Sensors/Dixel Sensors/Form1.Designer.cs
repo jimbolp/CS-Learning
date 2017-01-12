@@ -33,6 +33,9 @@
             this.resultLabel = new System.Windows.Forms.Label();
             this.sheetNameLabel = new System.Windows.Forms.Label();
             this.combineFiles = new System.Windows.Forms.Button();
+            this.printCheckBox = new System.Windows.Forms.CheckBox();
+            this.graphicsCheckBox = new System.Windows.Forms.CheckBox();
+            this.tempsCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -47,7 +50,7 @@
             // 
             // startWorking
             // 
-            this.startWorking.Location = new System.Drawing.Point(45, 94);
+            this.startWorking.Location = new System.Drawing.Point(45, 149);
             this.startWorking.Name = "startWorking";
             this.startWorking.Size = new System.Drawing.Size(75, 23);
             this.startWorking.TabIndex = 1;
@@ -60,9 +63,9 @@
             this.resultLabel.AutoEllipsis = true;
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.resultLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.resultLabel.Location = new System.Drawing.Point(0, 172);
+            this.resultLabel.Location = new System.Drawing.Point(0, 196);
             this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(376, 121);
+            this.resultLabel.Size = new System.Drawing.Size(348, 132);
             this.resultLabel.TabIndex = 2;
             // 
             // sheetNameLabel
@@ -75,19 +78,56 @@
             // 
             // combineFiles
             // 
-            this.combineFiles.Location = new System.Drawing.Point(215, 99);
+            this.combineFiles.Enabled = false;
+            this.combineFiles.Location = new System.Drawing.Point(180, 149);
             this.combineFiles.Name = "combineFiles";
             this.combineFiles.Size = new System.Drawing.Size(75, 23);
             this.combineFiles.TabIndex = 4;
             this.combineFiles.Text = "button1";
             this.combineFiles.UseVisualStyleBackColor = true;
+            this.combineFiles.Visible = false;
             this.combineFiles.Click += new System.EventHandler(this.combineFiles_Click);
+            // 
+            // printCheckBox
+            // 
+            this.printCheckBox.AutoSize = true;
+            this.printCheckBox.Enabled = false;
+            this.printCheckBox.Location = new System.Drawing.Point(45, 107);
+            this.printCheckBox.Name = "printCheckBox";
+            this.printCheckBox.Size = new System.Drawing.Size(138, 17);
+            this.printCheckBox.TabIndex = 5;
+            this.printCheckBox.Text = "Принтирай графиките";
+            this.printCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // graphicsCheckBox
+            // 
+            this.graphicsCheckBox.AutoSize = true;
+            this.graphicsCheckBox.Location = new System.Drawing.Point(45, 84);
+            this.graphicsCheckBox.Name = "graphicsCheckBox";
+            this.graphicsCheckBox.Size = new System.Drawing.Size(143, 17);
+            this.graphicsCheckBox.TabIndex = 6;
+            this.graphicsCheckBox.Text = "Създаване на графики";
+            this.graphicsCheckBox.UseVisualStyleBackColor = true;
+            this.graphicsCheckBox.CheckedChanged += new System.EventHandler(this.graphicsCheckBox_CheckedChanged);
+            // 
+            // tempsCheckBox
+            // 
+            this.tempsCheckBox.AutoSize = true;
+            this.tempsCheckBox.Location = new System.Drawing.Point(45, 61);
+            this.tempsCheckBox.Name = "tempsCheckBox";
+            this.tempsCheckBox.Size = new System.Drawing.Size(180, 17);
+            this.tempsCheckBox.TabIndex = 7;
+            this.tempsCheckBox.Text = "Преработване на стойностите";
+            this.tempsCheckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(376, 293);
+            this.ClientSize = new System.Drawing.Size(348, 328);
+            this.Controls.Add(this.tempsCheckBox);
+            this.Controls.Add(this.graphicsCheckBox);
+            this.Controls.Add(this.printCheckBox);
             this.Controls.Add(this.combineFiles);
             this.Controls.Add(this.sheetNameLabel);
             this.Controls.Add(this.resultLabel);
@@ -108,6 +148,9 @@
         private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.Label sheetNameLabel;
         private System.Windows.Forms.Button combineFiles;
+        private System.Windows.Forms.CheckBox printCheckBox;
+        private System.Windows.Forms.CheckBox graphicsCheckBox;
+        private System.Windows.Forms.CheckBox tempsCheckBox;
     }
 }
 

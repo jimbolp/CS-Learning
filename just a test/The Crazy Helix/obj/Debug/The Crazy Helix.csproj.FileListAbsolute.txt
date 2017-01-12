@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.exe.config
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.exe
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.pdb
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.exe
+E:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.pdb

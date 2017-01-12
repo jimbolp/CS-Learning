@@ -211,4 +211,17 @@ Exception from HRESULT: 0x800A03EC
 14.12.2016 15:42:46
 Exception from HRESULT: 0x800A03EC
    at Microsoft.Office.Interop.Excel._Workbook.SaveAs(Object Filename, Object FileFormat, Object Password, Object WriteResPassword, Object ReadOnlyRecommended, Object CreateBackup, XlSaveAsAccessMode AccessMode, Object ConflictResolution, Object AddToMru, Object TextCodepage, Object TextVisualLayout, Object Local)
-   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 485
+   at Dixel_Sensors.Form1.SaveAndClose(Workbook xlWorkbook) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 485--------------------------------------------------------------------------------
+21.12.2016 9:00:26
+This object doesn't have a legend.
+   at Microsoft.Office.Interop.Excel._Chart.get_Legend()
+   at Dixel_Sensors.Form1.CreateChart(ChartObject xlChartObject, Range xlChartRange, String worksheetName) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 69
+   at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 140
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 340--------------------------------------------------------------------------------
+21.12.2016 10:53:08
+Unspecified error (Exception from HRESULT: 0x80004005 (E_FAIL))
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Axis.set_MinimumScale(Double )
+   at Dixel_Sensors.Form1.CreateChart(ChartObject xlChartObject, Range xlChartRange, String worksheetName) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 68
+   at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 143
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 343

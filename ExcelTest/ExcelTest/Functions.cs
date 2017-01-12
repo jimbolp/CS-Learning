@@ -149,13 +149,13 @@ namespace ConvertPZN
             startReplacing.Enabled = true;
         }
 
-        //The very essence of my program is to push some cells through that formula :D
+        //The very essence of that application is to push some cells through that formula :D:D
         public static string Formula(string pzn)
         {
             try
             {
                 var num = int.Parse(pzn);
-                int a = (7*((num/1)%10) + 6*((num/10)%10) + 5*((num/100)%10) + 4*((num/1000)%10) + 3*((num/10000)%10) +
+                int a = (7*(num%10) + 6*((num/10)%10) + 5*((num/100)%10) + 4*((num/1000)%10) + 3*((num/10000)%10) +
                          2*((num/100000)%10));
                 if ((a%11) == 10)
                     num = num*10;
