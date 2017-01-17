@@ -1,0 +1,5 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Max Sequence of Equal Elements\bin\Debug\Max Sequence of Equal Elements.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Max Sequence of Equal Elements\bin\Debug\Max Sequence of Equal Elements.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Max Sequence of Equal Elements\obj\Debug\Max Sequence of Equal Elements.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Max Sequence of Equal Elements\obj\Debug\Max Sequence of Equal Elements.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Max Sequence of Equal Elements\obj\Debug\Max Sequence of Equal Elements.pdb

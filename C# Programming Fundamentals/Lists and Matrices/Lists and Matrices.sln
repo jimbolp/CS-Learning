@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Split by Word Casing", "Split by Word Casing\Split by Word Casing.csproj", "{9322EADA-E7D2-433C-A815-0516E101EBA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix Generator", "Matrix Generator\Matrix Generator.csproj", "{511D8C3F-C111-4A73-8C05-4F7A19C97058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Control Digit", "Control Digit\Control Digit.csproj", "{4893461E-1FC8-4AA8-ACFD-5AC25664E743}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9322EADA-E7D2-433C-A815-0516E101EBA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9322EADA-E7D2-433C-A815-0516E101EBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9322EADA-E7D2-433C-A815-0516E101EBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9322EADA-E7D2-433C-A815-0516E101EBA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{511D8C3F-C111-4A73-8C05-4F7A19C97058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{511D8C3F-C111-4A73-8C05-4F7A19C97058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{511D8C3F-C111-4A73-8C05-4F7A19C97058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{511D8C3F-C111-4A73-8C05-4F7A19C97058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4893461E-1FC8-4AA8-ACFD-5AC25664E743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4893461E-1FC8-4AA8-ACFD-5AC25664E743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4893461E-1FC8-4AA8-ACFD-5AC25664E743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4893461E-1FC8-4AA8-ACFD-5AC25664E743}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

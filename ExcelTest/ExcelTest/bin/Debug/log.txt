@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------------
+23.11.2016 11:31:07
+Cannot perform runtime binding on a null reference
+   at CallSite.Target(Closure , CallSite , Object )
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at ConvertPZN.Form1.AddBorders(Int32 rows, Int32 cols, Range tableRange) in E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\Functions.cs:line 200
+   at ConvertPZN.Form1.OpenFileAndDoStuff() in E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\Functions.cs:line 72

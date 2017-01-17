@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\bin\Debug\Sum, Min, Max, First, Last, Average.exe.config
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\bin\Debug\Sum, Min, Max, First, Last, Average.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\bin\Debug\Sum, Min, Max, First, Last, Average.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\obj\Debug\Sum, Min, Max, First, Last, Average.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\obj\Debug\Sum, Min, Max, First, Last, Average.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Sum, Min, Max, First, Last, Average\obj\Debug\Sum, Min, Max, First, Last, Average.pdb

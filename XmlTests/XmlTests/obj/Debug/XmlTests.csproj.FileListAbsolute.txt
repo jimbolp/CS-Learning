@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\bin\Debug\XmlTests.exe.config
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\bin\Debug\XmlTests.exe
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\bin\Debug\XmlTests.pdb
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\obj\Debug\XmlTests.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\obj\Debug\XmlTests.exe
+E:\Documents\GitHub\CS-Learning\XmlTests\XmlTests\obj\Debug\XmlTests.pdb

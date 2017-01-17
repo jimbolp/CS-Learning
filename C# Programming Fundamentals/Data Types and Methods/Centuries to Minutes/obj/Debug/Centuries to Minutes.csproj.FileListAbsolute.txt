@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\bin\Debug\Centuries to Minutes.exe.config
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\bin\Debug\Centuries to Minutes.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\bin\Debug\Centuries to Minutes.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\obj\Debug\Centuries to Minutes.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\obj\Debug\Centuries to Minutes.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Data Types and Methods\Centuries to Minutes\obj\Debug\Centuries to Minutes.pdb
