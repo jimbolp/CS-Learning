@@ -123,7 +123,6 @@
             this.labelPosition.Size = new System.Drawing.Size(60, 13);
             this.labelPosition.TabIndex = 9;
             this.labelPosition.Text = "Длъжност";
-            this.labelPosition.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -142,7 +141,6 @@
             this.listBranches.Name = "listBranches";
             this.listBranches.Size = new System.Drawing.Size(121, 21);
             this.listBranches.TabIndex = 11;
-            this.listBranches.SelectedIndexChanged += new System.EventHandler(this.listBranches_SelectedIndexChanged);
             // 
             // labelUadmName
             // 
@@ -225,9 +223,11 @@
             this.labelResult.BackColor = System.Drawing.SystemColors.Control;
             this.labelResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelResult.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelResult.Location = new System.Drawing.Point(0, 379);
+            this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelResult.ForeColor = System.Drawing.Color.Red;
+            this.labelResult.Location = new System.Drawing.Point(0, 324);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(784, 182);
+            this.labelResult.Size = new System.Drawing.Size(784, 237);
             this.labelResult.TabIndex = 20;
             // 
             // Form1

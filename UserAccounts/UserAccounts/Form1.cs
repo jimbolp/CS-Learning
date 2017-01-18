@@ -15,17 +15,8 @@ namespace UserAccounts
         public Form1()
         {
             InitializeComponent();            
-        }
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBranches_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        }        
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             var db = new UsersDBContext();
@@ -49,16 +40,19 @@ namespace UserAccounts
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxUserName.Text) 
-                || string.IsNullOrEmpty(listPositions.Text) 
-                || string.IsNullOrEmpty(listBranches.Text))
+            labelResult.Text = "Loading .....";
+            if (string.IsNullOrEmpty(textBoxUserName.Text))
+            {
+                labelResult.Text = "Полето \"Име Фамилия\" не трябва да е празно!";
                 return;
+            }
+                
             bool isPositionSelected = false;
             bool isBranchSelected = false;
             var db = new UsersDBContext();
             foreach(var p in db.Positions)
             {
-                if (p.Position1 == listPositions.SelectedText)
+                if (p.Position1 == Convert.ToString(listPositions.SelectedItem))
                 {
                     isPositionSelected = true;
                     break;
@@ -66,14 +60,17 @@ namespace UserAccounts
             }
             foreach(var b in db.Branches)
             {
-                if(b.BranchName == listBranches.SelectedText)
+                if(b.BranchName == Convert.ToString(listBranches.SelectedItem))
                 {
                     isBranchSelected = true;
                     break;
                 }
             }
             if (!(isBranchSelected && isPositionSelected))
+            {
+                labelResult.Text = "Моля изберете Филиал и Длъжност!";
                 return;
+            }
             var newUser = new UserMasterData
             {
                 UserName = textBoxUserName.Text,
@@ -90,9 +87,13 @@ namespace UserAccounts
             };
             db.UserMasterDatas.Add(newUser);
             db.SaveChanges();
+            labelResult.Text = "Заявката е изпълнена.";
             clearFields();
         }
-
+        private bool checkFields()
+        {
+            return false;
+        }
         private void clearFields()
         {
             textBoxUserName.Text = "";
