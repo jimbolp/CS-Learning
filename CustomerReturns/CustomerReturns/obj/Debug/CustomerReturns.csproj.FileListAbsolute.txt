@@ -1,0 +1,9 @@
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.exe.config
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.pdb
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.csprojResolveAssemblyReference.cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.CustomerReturns.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.Properties.Resources.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.csproj.GenerateResource.Cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.pdb

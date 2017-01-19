@@ -1,0 +1,29 @@
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe.config
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\EntityFramework.dll
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csprojResolveAssemblyReference.cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe.config
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.dll
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csprojResolveAssemblyReference.cache
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Collector.dll
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
