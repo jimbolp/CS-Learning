@@ -14,3 +14,16 @@ c:\users\fina.meranzova\documents\visual studio 2015\Projects\UserAccounts\UserA
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe.config
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe.config
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.dll
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csprojResolveAssemblyReference.cache
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache

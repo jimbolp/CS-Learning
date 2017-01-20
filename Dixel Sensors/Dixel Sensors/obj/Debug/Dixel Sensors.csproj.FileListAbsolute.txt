@@ -8,3 +8,13 @@ E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel_Sens
 E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.csproj.GenerateResource.Cache
 E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.exe
 E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\bin\Debug\Dixel Sensors.exe.config
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.csproj.ResolveComReference.cache
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.exe
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\bin\Debug\Dixel Sensors.exe
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\bin\Debug\Dixel Sensors.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.csprojResolveAssemblyReference.cache
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel_Sensors.Form1.resources
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel_Sensors.Properties.Resources.resources
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.csproj.GenerateResource.Cache

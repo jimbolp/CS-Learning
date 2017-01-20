@@ -48,6 +48,12 @@
             this.checkBoxIsActive = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listUsers = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxUserName
@@ -128,12 +134,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label6.Location = new System.Drawing.Point(73, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(319, 39);
+            this.label6.Size = new System.Drawing.Size(97, 29);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Фифи не ме слуша";
+            this.label6.Text = "UserDB";
             // 
             // listBranches
             // 
@@ -225,16 +231,68 @@
             this.labelResult.BackColor = System.Drawing.SystemColors.Control;
             this.labelResult.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelResult.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.labelResult.Location = new System.Drawing.Point(0, 379);
+            this.labelResult.ForeColor = System.Drawing.Color.Red;
+            this.labelResult.Location = new System.Drawing.Point(0, 415);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(784, 182);
+            this.labelResult.Size = new System.Drawing.Size(784, 147);
             this.labelResult.TabIndex = 20;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.Location = new System.Drawing.Point(0, 41);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(336, 273);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Създаване на нов потребител";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox2.Location = new System.Drawing.Point(448, 41);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(336, 273);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Изтриване на потребител";
+            // 
+            // listUsers
+            // 
+            this.listUsers.FormattingEnabled = true;
+            this.listUsers.Location = new System.Drawing.Point(10, 20);
+            this.listUsers.Name = "listUsers";
+            this.listUsers.Size = new System.Drawing.Size(169, 21);
+            this.listUsers.TabIndex = 23;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(204, 18);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 23);
+            this.button2.TabIndex = 24;
+            this.button2.Text = "Деактивирай";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.listUsers);
+            this.groupBox3.Location = new System.Drawing.Point(0, 320);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(336, 60);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Изтриване на потребител";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 562);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.labelResult);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.checkBoxIsActive);
@@ -255,11 +313,12 @@
             this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.textBoxUserName);
+            this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Form1";
             this.Text = "Import Users";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +346,11 @@
         private System.Windows.Forms.CheckBox checkBoxIsActive;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox listUsers;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }
 

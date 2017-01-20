@@ -229,13 +229,13 @@ namespace Dixel_Sensors
                 var rand = new Random(Environment.TickCount);
                 if (temp < HUMID_MIN)
                 {
-                    var r = (double) rand.Next(1, 8)/11;
-                    temp = temp + (HUMID_MIN - temp) + r;
+                    var r = (double) rand.Next(1, 4)/10;
+                    temp += (HUMID_MIN - temp) + r;
                 }
                 else
                 {
-                    var r = (double) rand.Next(1, 8)/10;
-                    temp = temp - (temp - HUMID_MAX) - r;
+                    var r = (double) rand.Next(1, 4)/10;
+                    temp -= (temp - HUMID_MAX) - r;
                 }
                 return temp;
             }
