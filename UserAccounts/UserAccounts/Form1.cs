@@ -58,10 +58,13 @@ namespace UserAccounts
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxUserName.Text) 
-                || string.IsNullOrEmpty(listPositions.Text) 
+            if (string.IsNullOrEmpty(textBoxUserName.Text)
+                || string.IsNullOrEmpty(listPositions.Text)
                 || string.IsNullOrEmpty(listBranches.Text))
+            {
+                labelResult.Text = "Някое от задължителните полета е празно..";
                 return;
+            }
             bool isPositionSelected = false;
             bool isBranchSelected = false;
             var db = new UsersDBContext();
@@ -81,8 +84,23 @@ namespace UserAccounts
                     break;
                 }
             }
-            if (!(isBranchSelected && isPositionSelected))
+            if (!isBranchSelected && !isPositionSelected)
+            {
+                labelResult.Text = "Изберете Склад и Длъжност.";
                 return;
+            }
+
+            else if (!isPositionSelected)
+            {
+                labelResult.Text = "Изберете Длъжност.";
+                return;
+            }
+
+            else
+            {
+                labelResult.Text = "Изберете Склад.";
+                return;
+            }
 
             /*DialogResult confirmDeleteUser = MessageBox.Show($"Do you really want to delete user \"{listUsers.SelectedText}\"", "Confirm", MessageBoxButtons.YesNo);
            
@@ -164,6 +182,7 @@ namespace UserAccounts
                         u.Active = false;
                     }
                 }
+                db.SaveChanges();
                 labelResult.Text = $"Потребител \"{tempName}\" беше деактивиран.";
             }
         }

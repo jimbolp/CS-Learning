@@ -155,9 +155,9 @@
             this.labelUadmName.AutoSize = true;
             this.labelUadmName.Location = new System.Drawing.Point(12, 221);
             this.labelUadmName.Name = "labelUadmName";
-            this.labelUadmName.Size = new System.Drawing.Size(93, 13);
+            this.labelUadmName.Size = new System.Drawing.Size(90, 13);
             this.labelUadmName.TabIndex = 13;
-            this.labelUadmName.Text = "UADM User name";
+            this.labelUadmName.Text = "UADM Username";
             // 
             // textBoxUadmName
             // 
@@ -255,10 +255,11 @@
             this.groupBox2.Size = new System.Drawing.Size(336, 273);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Изтриване на потребител";
+            this.groupBox2.Text = "Добавяне KSC на потребител";
             // 
             // listUsers
             // 
+            this.listUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listUsers.FormattingEnabled = true;
             this.listUsers.Location = new System.Drawing.Point(10, 20);
             this.listUsers.Name = "listUsers";
@@ -267,6 +268,7 @@
             // 
             // button2
             // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.Location = new System.Drawing.Point(204, 18);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 23);
@@ -279,12 +281,13 @@
             // 
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.listUsers);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(0, 320);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(336, 60);
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Изтриване на потребител";
+            this.groupBox3.Text = "Деактивиране на потребител";
             // 
             // Form1
             // 
