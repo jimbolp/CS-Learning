@@ -339,7 +339,7 @@ namespace Dixel_Sensors
                     sheetNameLabel.Text = "Страница " + sheetCount++ + " от "
                                           + sheetsNumber + " (" + sheet.Name + "):";
 
-                    //Start changing temps.................
+                    //Changing temps.................
                     if(tempsCheckBox.Checked)
                         loadTemps(sheet);
                     if (graphicsCheckBox.Checked)
