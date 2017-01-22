@@ -39,23 +39,32 @@ namespace UserAccounts
             listBranches.SelectedIndex = 0;
             int i = 1;
             //Fill comboBox with Users from the database
-            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", "0", Color.Black));            
+            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", "0", Color.Black, false));            
             foreach(var u in db.UserMasterDatas)
             {
-                if (u.Active.Value)
-                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Black));
+                if (u.Active)
+                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Black, false));
                 else
-                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Red));
+                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Red, true));
             }
             listUsers.SelectedIndex = 0;
 
             //Fill comboBox with Active Users from the database
             listActiveUsers.Items.Insert(0, "(Изберете Потребител)");
-            foreach (var u in db.UserMasterDatas.Where(u => u.Active.Value))
+            foreach (var u in db.UserMasterDatas.Where(u => u.Active))
             {
-                   listActiveUsers.Items.Add(u.UserName);
+                listActiveUsers.Items.Add(u.UserName);
             }
             listActiveUsers.SelectedIndex = 0;
+
+            i = 1;
+            //Fill comboBox with Users from the database
+            listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", "0", Color.Black, false));
+            foreach (var b in db.Branches)
+            {
+                listKSCBranches.Items.Add(new ComboBoxItem(b.BranchName, Convert.ToString(i++), Color.Black, false));
+            }
+            listKSCBranches.SelectedIndex = 0;
         }
         
         private void btn_newUser_Click(object sender, EventArgs e)
@@ -104,10 +113,10 @@ namespace UserAccounts
                 return;
             }
             
-            /*DialogResult confirmDeleteUser = MessageBox.Show($"Do you really want to delete user \"{listUsers.SelectedText}\"", "Confirm", MessageBoxButtons.YesNo);
+            DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{listUsers.SelectedItem}\"", "Confirm", MessageBoxButtons.YesNo);
            
-            if (confirmDeleteUser == DialogResult.No)
-                return;*/
+            if (confirmCreateUser == DialogResult.No)
+                return;//*/
 
             var userName = new SqlParameter("@name", textBoxUserName.Text);
             var email = new SqlParameter("@email", textBoxEmail.Text);
@@ -140,19 +149,34 @@ namespace UserAccounts
             };
             db.ADUsers.Add(adUser);
             db.SaveChanges();
-            listUsers.Items.Clear();
-            listUsers.Items.Insert(0, "(Изберете Потребител)");
-            int i = 1;
-            foreach (var u in db.UserMasterDatas)
-            {
-                if (u.Active.Value)
-                    listUsers.Items.Insert(i++, u.UserName);
-            }
-            listUsers.SelectedIndex = 0;
-            clearFields();
+            RefreshListUsers();
+            ResetUsersGroupBoxItems();
+
+            var lastUser = db.UserMasterDatas.OrderByDescending(u => u.ID).First();
+            labelResult.Text = ("Потребителят е добавен успешно!") +
+                               Environment.NewLine +
+                               "№ --> " + lastUser.ID +
+                               Environment.NewLine +
+                               "Име --> " + lastUser.UserName +
+                               Environment.NewLine +
+                               "Username в Активната Директория --> " +
+                               (!string.IsNullOrEmpty(
+                                   lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).First())
+                                   ? lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).First()
+                                   : "липсва") +
+                                     Environment.NewLine +
+                                     "Длъжност --> " +
+                                     db.Positions.Where(p => p.ID == lastUser.PositionID)
+                                         .Select(p => p.Position1)
+                                         .First() +
+                                     Environment.NewLine +
+                                     "Pharmos Username --> " +
+                                     (!string.IsNullOrEmpty(lastUser.PharmosUserName)
+                                         ? lastUser.PharmosUserName
+                                         : "липсва");
         }
 
-        private void clearFields()
+        private void ResetUsersGroupBoxItems()
         {
             textBoxUserName.Text = "";
             textBoxEmail.Text = "";
@@ -199,7 +223,7 @@ namespace UserAccounts
                 return;
             }
             if (db.UserMasterDatas.Where(u => u.ID == selectedUserID)
-                    .Select(u => u.Active.Value)
+                    .Select(u => u.Active)
                     .First())
             {
                 DialogResult confirmDeleteUser =
@@ -214,7 +238,6 @@ namespace UserAccounts
                 }
                 if (confirmDeleteUser == DialogResult.Yes)
                 {
-                    
                     string tempName = "";
                     foreach (var u in db.UserMasterDatas)
                     {
@@ -242,7 +265,6 @@ namespace UserAccounts
                 }
                 if (confirmDeleteUser == DialogResult.Yes)
                 {
-                    
                     string tempName = "";
                     foreach (var u in db.UserMasterDatas)
                     {
@@ -265,21 +287,21 @@ namespace UserAccounts
 
             //List with all users....
             listUsers.Items.Clear();
-            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", "0", Color.Black));
+            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", "0", Color.Black, false));
             int i = 1;
             foreach (var u in db.UserMasterDatas)
             {
-                if (u.Active.Value)
-                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Black));
+                if (u.Active)
+                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Black, false));
                 else
-                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Red));
+                    listUsers.Items.Add(new ComboBoxItem(u.UserName, Convert.ToString(i++), Color.Red, true));
             }
             listUsers.SelectedIndex = 0;
 
             //List only with Active Users...
             listActiveUsers.Items.Clear();
             listActiveUsers.Items.Insert(0, "(Изберете Потребител)");
-            foreach (var u in db.UserMasterDatas.Where(u => u.Active.Value))
+            foreach (var u in db.UserMasterDatas.Where(u => u.Active))
             {
                 listActiveUsers.Items.Add(u.UserName);
             }
@@ -304,13 +326,97 @@ namespace UserAccounts
                 return;
             }
             var isUserActive =
-                db.UserMasterDatas.Where(u => u.ID == selectedUserID).Select(u => u.Active.Value).First();
+                db.UserMasterDatas.Where(u => u.ID == selectedUserID).Select(u => u.Active).First();
             if (isUserActive)
                 btn_deactivateUser.Text = "Деактивирай";
             else
             {
                 btn_deactivateUser.Text = "Активирай";
             }
+        }
+
+        private void listActiveUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ResetKSCGroupBoxItems();
+            if (listActiveUsers.SelectedIndex == 0)
+                return;
+            var db = new UsersDBContext();
+            int selectedUserID =
+                db.UserMasterDatas.Where(u => u.UserName == listActiveUsers.SelectedItem.ToString())
+                    .Select(u => u.ID)
+                    .First();
+            var kscEntriesForSelectedUser = db.KSCs.Where(k => k.UserID == selectedUserID);
+
+            if (!kscEntriesForSelectedUser.Any())
+            {
+                listKSCBranches.Items.Clear();
+                int i = 1;
+                //Fill comboBox with Users from the database
+                listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", "0", Color.Black, false));
+                foreach (var b in db.Branches)
+                {
+                    listKSCBranches.Items.Add(new ComboBoxItem(b.BranchName, Convert.ToString(i++), Color.Red, true));
+                }
+                listKSCBranches.SelectedIndex = 0;
+                return;
+            }
+            else
+            {
+                listKSCBranches.Items.Clear();
+                int i = 1;
+                //Fill comboBox with Users from the database
+                listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", "0", Color.Black, false));
+                foreach (var b in db.Branches)
+                {
+                    if(kscEntriesForSelectedUser.Any(k => k.BranchID == b.ID))
+                        listKSCBranches.Items.Add(new ComboBoxItem(b.BranchName, Convert.ToString(i++), Color.Black, false));
+                    else
+                        listKSCBranches.Items.Add(new ComboBoxItem(b.BranchName, Convert.ToString(i++), Color.Red, true));
+                }
+                listKSCBranches.SelectedIndex = 0;
+            }
+        }
+
+        private void listKSCBranches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(listActiveUsers.SelectedIndex == 0 || listKSCBranches.SelectedIndex == 0)
+                return;
+            var db = new UsersDBContext();
+            string selectedBranch = listKSCBranches.SelectedItem.ToString();
+            int selectedBranchID =
+                db.Branches.Where(b => b.BranchName == selectedBranch)
+                    .Select(b => b.ID)
+                    .First();
+            string selectedUserName = listActiveUsers.SelectedItem.ToString();
+            int selectedUserID = db.UserMasterDatas.Where(u => u.UserName == selectedUserName).Select(u => u.ID).First();
+
+            var kscEntriesForSelectedUser = db.KSCs.Where(k => k.UserID == selectedUserID);
+            if (!kscEntriesForSelectedUser.Any())
+            {
+                ResetKSCGroupBoxItems();
+                return;
+            }
+            KSC selectedUserKSC = db.KSCs.First(k => k.BranchID == selectedBranchID && k.UserID == selectedUserID);
+            textBoxKSCUserName.Text = selectedUserKSC.UserName;
+            textBoxKSCUserName.Enabled = false;
+            textBoxThermID.Text = selectedUserKSC.TermID;
+            textBoxThermID.Enabled = false;
+            textBoxUID.Text = selectedUserKSC.UID.ToString();
+            textBoxUID.Enabled = false;
+            checkBoxFC.Checked = selectedUserKSC.AllowFC;
+            checkBoxFC.Enabled = false;
+        }
+
+        private void ResetKSCGroupBoxItems()
+        {
+            textBoxKSCUserName.Text = "";
+            textBoxKSCUserName.Enabled = true;
+            textBoxThermID.Text = "";
+            textBoxThermID.Enabled = true;
+            textBoxUID.Text = "";
+            textBoxUID.Enabled = true;
+            checkBoxFC.Checked = false;
+            checkBoxFC.Enabled = true;
         }
     }
 }

@@ -12,17 +12,22 @@ namespace UserAccounts
     {
         public ComboBoxCustom()
         {
-            this.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.DrawMode = DrawMode.OwnerDrawFixed;
         }
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
             base.OnDrawItem(e);
             e.DrawBackground();
             ComboBoxItem item = (ComboBoxItem)this.Items[e.Index];
+            Font font = e.Font;
+            if (item.BoldFont)
+            {
+                font = new Font(font, FontStyle.Bold);
+            }
             Brush brush = new SolidBrush(item.ForeColor);
             if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
             { brush = Brushes.Yellow; }
-            e.Graphics.DrawString(item.Text, this.Font, brush, e.Bounds.X, e.Bounds.Y);
+            e.Graphics.DrawString(item.Text, font, brush, e.Bounds.X, e.Bounds.Y);
         }
         object selectedValue = null;
         public new Object SelectedValue
@@ -48,10 +53,13 @@ namespace UserAccounts
             text = pText; val = pValue;
         }
 
-        public ComboBoxItem(string pText, object pValue, Color pColor)
+        public ComboBoxItem(string pText, object pValue, Color pColor, bool bold)
         {
             text = pText; val = pValue; foreColor = pColor;
+             BoldFont = bold;
         }
+
+        public bool BoldFont { get; set; }
 
         string text = "";
         public string Text
