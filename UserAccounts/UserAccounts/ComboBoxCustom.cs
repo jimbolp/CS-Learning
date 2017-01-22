@@ -50,13 +50,18 @@ namespace UserAccounts
 
         public ComboBoxItem(string pText, object pValue)
         {
-            text = pText; val = pValue;
+            text = pText; Value = pValue;
         }
 
         public ComboBoxItem(string pText, object pValue, Color pColor, bool bold)
         {
-            text = pText; val = pValue; foreColor = pColor;
+            text = pText; Value = pValue; ForeColor = pColor;
              BoldFont = bold;
+        }
+        public ComboBoxItem(string pText,  Color pColor, bool bold)
+        {
+            text = pText; ForeColor = pColor;
+            BoldFont = bold;
         }
 
         public bool BoldFont { get; set; }
@@ -68,19 +73,9 @@ namespace UserAccounts
             set { text = value; }
         }
 
-        object val;
-        public object Value
-        {
-            get { return val; }
-            set { val = value; }
-        }
+        public object Value { get; set; }
 
-        Color foreColor = Color.Black;
-        public Color ForeColor
-        {
-            get { return foreColor; }
-            set { foreColor = value; }
-        }
+        public Color ForeColor { get; set; } = Color.Black;
 
         public override string ToString()
         {

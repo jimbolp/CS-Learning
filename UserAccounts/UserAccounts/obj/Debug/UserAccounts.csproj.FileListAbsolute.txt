@@ -46,3 +46,5 @@ E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
+E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.SearchUserForm.resources
+E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCUserForm.resources
