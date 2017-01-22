@@ -14,6 +14,7 @@ namespace CustomersCollectedOrder
         {
             InitializeComponent();
         }
+        
         private void customerNoTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!isValid(customerNoTextBox.Text))
@@ -22,6 +23,7 @@ namespace CustomersCollectedOrder
                 
             }
         }
+        
         private void routeTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!isValid(routeTextBox.Text))
@@ -174,7 +176,7 @@ namespace CustomersCollectedOrder
         }
         bool isSafeToClick()
         {
-            if (customerNoTextBox.Text == "" || routeTextBox.Text == "" || timeTextBox.Text == "")
+            if (routeTextBox.Text == "" || timeTextBox.Text == "")
                 return false;
             else
                 return true;
@@ -190,8 +192,7 @@ namespace CustomersCollectedOrder
         {
             int route = Convert.ToInt32(routeTextBox.Text);
             int time = Convert.ToInt32(timeTextBox.Text);
-            var result = Convert.ToString((((route % 10000) / 100) % 24) * 60 + (route % 100)
-                + (((2400 - time) / 100) % 24) * 60 + (time % 100));
+            var result = Convert.ToString(((((route % 10000) / 100) % 24) * 60) + (route % 100) + ((24 * 60) - (((time / 100) * 60) + (time % 100))));
             return result;
         }
 
