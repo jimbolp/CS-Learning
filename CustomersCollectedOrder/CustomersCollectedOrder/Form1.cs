@@ -188,12 +188,21 @@ namespace CustomersCollectedOrder
             timeTextBox.Text = "";
             labelResult.Text = "";
         }
-        string calculateRouteTime()
+        int calculateRouteTime()
         {
             int route = Convert.ToInt32(routeTextBox.Text);
             int time = Convert.ToInt32(timeTextBox.Text);
-            var result = Convert.ToString(((((route % 10000) / 100) % 24) * 60) + (route % 100) + ((24 * 60) - (((time / 100) * 60) + (time % 100))));
-            return result;
+            int takeTimeFromRoute = route % 10000;
+            int takeHours = takeTimeFromRoute / 100;
+            int hoursInMinutes = takeHours * 60;
+            int takeMinutes = route % 100;
+            int totalMinutesFromRoute = hoursInMinutes + takeMinutes;
+            int minutesFromGivenTime = time % 100;
+            int hoursFromGivenTime = time / 100;
+            int totalMinutes = minutesFromGivenTime + (hoursFromGivenTime * 60);
+
+            //var result = Convert.ToString(((((route % 10000) / 100) % 24) * 60) + (route % 100) + ((24 * 60) - (((time / 100) * 60) + (time % 100))));
+            return totalMinutesFromRoute - totalMinutes;
         }
 
         private void clear_Click(object sender, EventArgs e)
