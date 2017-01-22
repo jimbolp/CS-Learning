@@ -70,13 +70,28 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="KSC.cs" />
+    <Compile Include="KSCUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KSCUserForm.Designer.cs">
+      <DependentUpon>KSCUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchUserForm.Designer.cs">
+      <DependentUpon>SearchUserForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserMasterData.cs" />
     <Compile Include="UsersDBContext.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KSCUserForm.resx">
+      <DependentUpon>KSCUserForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +102,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SearchUserForm.resx">
+      <DependentUpon>SearchUserForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
