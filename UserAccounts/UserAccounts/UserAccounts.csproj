@@ -60,6 +60,9 @@
   <ItemGroup>
     <Compile Include="ADUser.cs" />
     <Compile Include="Branch.cs" />
+    <Compile Include="ComboBoxCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
