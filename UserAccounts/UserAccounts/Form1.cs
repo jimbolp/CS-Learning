@@ -398,6 +398,10 @@ namespace UserAccounts
         {
             if(listActiveUsers.SelectedIndex == 0 || listKSCBranches.SelectedIndex == 0)
                 return;
+            //TODO..
+            //Make btn_ksc Active
+            btn_createKSCAccount.Enabled = true;
+
             var db = new UsersDBContext();
             string selectedBranch = listKSCBranches.SelectedItem.ToString();
             int selectedBranchID =
@@ -505,6 +509,11 @@ namespace UserAccounts
             listUsersToEdit.SelectedIndex = 0;
             Application.DoEvents();
             btn_newUser.Enabled = true;
+        }
+
+        private void btn_createKSCAccount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -62,17 +62,17 @@ namespace UserAccounts
             this.textBoxKSCUserName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.labelKSCBranches = new System.Windows.Forms.Label();
+            this.listKSCBranches = new UserAccounts.ComboBoxCustom();
             this.labelActiveUsers = new System.Windows.Forms.Label();
             this.listActiveUsers = new System.Windows.Forms.ComboBox();
             this.btn_deactivateUser = new System.Windows.Forms.Button();
             this.groupBoxDeactivateUser = new System.Windows.Forms.GroupBox();
+            this.listUsers = new UserAccounts.ComboBoxCustom();
             this.btn_searchUser = new System.Windows.Forms.Button();
             this.btn_SearchKSC = new System.Windows.Forms.Button();
             this.groupBoxEditUser = new System.Windows.Forms.GroupBox();
             this.btn_EditUser = new System.Windows.Forms.Button();
             this.listUsersToEdit = new UserAccounts.ComboBoxCustom();
-            this.listUsers = new UserAccounts.ComboBoxCustom();
-            this.listKSCBranches = new UserAccounts.ComboBoxCustom();
             this.clearAllFields = new System.Windows.Forms.Button();
             this.groupBoxNewUser.SuspendLayout();
             this.groupBoxKSC.SuspendLayout();
@@ -360,6 +360,7 @@ namespace UserAccounts
             this.btn_createKSCAccount.TabIndex = 21;
             this.btn_createKSCAccount.Text = "Добави KSC акаунт";
             this.btn_createKSCAccount.UseVisualStyleBackColor = true;
+            this.btn_createKSCAccount.Click += new System.EventHandler(this.btn_createKSCAccount_Click);
             // 
             // checkBoxFC
             // 
@@ -438,6 +439,17 @@ namespace UserAccounts
             this.labelKSCBranches.TabIndex = 12;
             this.labelKSCBranches.Text = "Склад";
             // 
+            // listKSCBranches
+            // 
+            this.listKSCBranches.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listKSCBranches.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listKSCBranches.FormattingEnabled = true;
+            this.listKSCBranches.Location = new System.Drawing.Point(279, 39);
+            this.listKSCBranches.Name = "listKSCBranches";
+            this.listKSCBranches.Size = new System.Drawing.Size(121, 21);
+            this.listKSCBranches.TabIndex = 11;
+            this.listKSCBranches.SelectedIndexChanged += new System.EventHandler(this.listKSCBranches_SelectedIndexChanged);
+            // 
             // labelActiveUsers
             // 
             this.labelActiveUsers.AutoSize = true;
@@ -480,6 +492,17 @@ namespace UserAccounts
             this.groupBoxDeactivateUser.TabIndex = 1;
             this.groupBoxDeactivateUser.TabStop = false;
             this.groupBoxDeactivateUser.Text = "Деактивиране на потребител";
+            // 
+            // listUsers
+            // 
+            this.listUsers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listUsers.FormattingEnabled = true;
+            this.listUsers.Location = new System.Drawing.Point(10, 20);
+            this.listUsers.Name = "listUsers";
+            this.listUsers.Size = new System.Drawing.Size(208, 21);
+            this.listUsers.TabIndex = 0;
+            this.listUsers.SelectedIndexChanged += new System.EventHandler(this.listUsers_SelectedIndexChanged);
             // 
             // btn_searchUser
             // 
@@ -533,28 +556,6 @@ namespace UserAccounts
             this.listUsersToEdit.Size = new System.Drawing.Size(208, 21);
             this.listUsersToEdit.TabIndex = 0;
             this.listUsersToEdit.SelectedIndexChanged += new System.EventHandler(this.listUserToEdit_SelectedIndexChanged);
-            // 
-            // listUsers
-            // 
-            this.listUsers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listUsers.FormattingEnabled = true;
-            this.listUsers.Location = new System.Drawing.Point(10, 20);
-            this.listUsers.Name = "listUsers";
-            this.listUsers.Size = new System.Drawing.Size(208, 21);
-            this.listUsers.TabIndex = 0;
-            this.listUsers.SelectedIndexChanged += new System.EventHandler(this.listUsers_SelectedIndexChanged);
-            // 
-            // listKSCBranches
-            // 
-            this.listKSCBranches.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listKSCBranches.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listKSCBranches.FormattingEnabled = true;
-            this.listKSCBranches.Location = new System.Drawing.Point(279, 39);
-            this.listKSCBranches.Name = "listKSCBranches";
-            this.listKSCBranches.Size = new System.Drawing.Size(121, 21);
-            this.listKSCBranches.TabIndex = 11;
-            this.listKSCBranches.SelectedIndexChanged += new System.EventHandler(this.listKSCBranches_SelectedIndexChanged);
             // 
             // clearAllFields
             // 
