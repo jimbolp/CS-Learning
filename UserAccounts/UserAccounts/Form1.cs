@@ -174,12 +174,12 @@ namespace UserAccounts
                                Environment.NewLine +
                                "Име --> " + lastUser.UserName +
                                Environment.NewLine +
-                               "Username в Активната Директория --> " +
-                               (!string.IsNullOrEmpty(
-                                   lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).First())
+                               "Username в Активната Директория --> ";
+            labelResult.Text += (!string.IsNullOrEmpty(
+                                   lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).FirstOrDefault())
                                    ? lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).First()
-                                   : "липсва") +
-                                     Environment.NewLine +
+                                   : "липсва");
+            labelResult.Text += Environment.NewLine +
                                      "Длъжност --> " +
                                      db.Positions.Where(p => p.ID == lastUser.PositionID)
                                          .Select(p => p.Position1)
@@ -190,7 +190,6 @@ namespace UserAccounts
                                          ? lastUser.PharmosUserName
                                          : "липсва");
         }
-
         private void ResetUsersGroupBoxItems()
         {
             textBoxUserName.Text = "";

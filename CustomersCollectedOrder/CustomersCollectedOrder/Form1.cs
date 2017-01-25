@@ -19,11 +19,9 @@ namespace CustomersCollectedOrder
         {
             if (!isValid(customerNoTextBox.Text))
             {
-                customerNoTextBox.Text = "";
-                
+                customerNoTextBox.Text = "";                
             }
-        }
-        
+        }        
         private void routeTextBox_TextChanged(object sender, EventArgs e)
         {
             if (!isValid(routeTextBox.Text))
@@ -52,6 +50,7 @@ namespace CustomersCollectedOrder
             }
             return true;
         }
+        
         private string PharmacyName(Range range)
         {
             for(int i = 1; i < range.Rows.Count; ++i)
@@ -80,6 +79,7 @@ namespace CustomersCollectedOrder
             }
             return "Няма такъв клиент във файла!";
         }
+        
         private void buttonResult_Click(object sender, EventArgs e)
         {
             buttonResult.Enabled = false;
@@ -117,7 +117,6 @@ namespace CustomersCollectedOrder
                     System.Windows.Forms.Application.DoEvents();
                     buttonResult.Enabled = true;
                     clear.Enabled = true;
-
                 }
                 else
                 {
@@ -158,7 +157,6 @@ namespace CustomersCollectedOrder
                     System.Windows.Forms.Application.DoEvents();
                     buttonResult.Enabled = true;
                     clear.Enabled = true;
-
                 }
                 else
                 {
@@ -204,17 +202,14 @@ namespace CustomersCollectedOrder
             //var result = Convert.ToString(((((route % 10000) / 100) % 24) * 60) + (route % 100) + ((24 * 60) - (((time / 100) * 60) + (time % 100))));
             return totalMinutesFromRoute - totalMinutes;
         }
-
         private void clear_Click(object sender, EventArgs e)
         {
             clearTextBoxes();
         }
-
         private void CustomersCollectedOrders_Load(object sender, EventArgs e)
         {
             //loadExcelFile();
         }
-
         private void timeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
