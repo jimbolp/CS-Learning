@@ -58,7 +58,7 @@ namespace UserAccounts
             listActiveUsers.SelectedIndex = 0;
 
             //i = 1;
-            //Fill comboBox with Users from the database
+            //Fill comboBox with Depots from the database
             listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", Color.Black, false));
             foreach (var b in db.Branches)
             {
@@ -310,6 +310,17 @@ namespace UserAccounts
                 listActiveUsers.Items.Add(u.UserName);
             }
             listActiveUsers.SelectedIndex = 0;
+
+            //List Users to Edit..
+            listUsersToEdit.Items.Clear();
+            listUsersToEdit.Items.Add(new ComboBoxItem("(Изберете Потребител)", Color.Black, false));
+            foreach (var u in db.UserMasterDatas)
+            {
+                listUsersToEdit.Items.Add(u.Active
+                    ? new ComboBoxItem(u.UserName, Color.Black, false)
+                    : new ComboBoxItem(u.UserName, Color.Red, true));
+            }
+            listUsersToEdit.SelectedIndex = 0;
         }
         private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -458,7 +469,7 @@ namespace UserAccounts
         {
             if (listUsersToEdit.SelectedIndex == 0)
             {
-                UserIDToEdit = null;
+                UserIDToEdit = UserIDToEdit ?? null;
                 Application.DoEvents();
                 btn_EditUser.Enabled = false;
                 return;
@@ -488,10 +499,10 @@ namespace UserAccounts
             listBranches.SelectedIndex = branchIndex;
             textBoxPharmosName.Text = user.Select(u => u.PharmosUserName).FirstOrDefault();
             textBoxUadmName.Text = user.Select(u => u.UADMUserName).FirstOrDefault();
-            checkBoxGI.Checked = user.Select(u => u.GI.Value).FirstOrDefault();
-            checkBoxPurchase.Checked = user.Select(u => u.Purchase.Value).FirstOrDefault();
-            checkBoxTender.Checked = user.Select(u => u.Tender.Value).FirstOrDefault();
-            checkBoxPhibra.Checked = user.Select(u => u.Phibra.Value).FirstOrDefault();
+            checkBoxGI.Checked = user.Select(u => u.GI??false).FirstOrDefault();
+            checkBoxPurchase.Checked = user.Select(u => u.Purchase??false).FirstOrDefault();
+            checkBoxTender.Checked = user.Select(u => u.Tender??false).FirstOrDefault();
+            checkBoxPhibra.Checked = user.Select(u => u.Phibra??false).FirstOrDefault();
             checkBoxIsActive.Checked = user.Select(u => u.Active).FirstOrDefault();
         }
 
@@ -511,7 +522,7 @@ namespace UserAccounts
         }
 
         private void btn_EditUser_Click(object sender, EventArgs e)
-        {
+        {            
             if (UserIDToEdit == null)
                 return;
             if(!string.IsNullOrEmpty(labelResult.Text))
@@ -546,9 +557,10 @@ namespace UserAccounts
                     labelResult.Text += Environment.NewLine + "\t\" --> Длъжност\"";
                 return;
             }
+            
             var db = new UsersDBContext();
             var user = db.UserMasterDatas.FirstOrDefault(u => u.ID == UserIDToEdit.Value);
-
+            string tempOldName = user.UserName;
             if (user.UserName != textBoxUserName.Text)
                 user.UserName = textBoxUserName.Text;
 
@@ -623,6 +635,11 @@ namespace UserAccounts
                 user.Active = checkBoxIsActive.Checked;
 
             db.SaveChanges();
+            int selectedUserIdx = listUsersToEdit.SelectedIndex;
+            RefreshListUsers();
+            Application.DoEvents();
+            listUsersToEdit.SelectedIndex = selectedUserIdx;
+            labelResult.Text = $"Потребител {tempOldName} беше променен!";
         }
     }
 }
