@@ -18,6 +18,7 @@ namespace UserAccounts
             InitializeComponent();            
         }
 
+        private int? UserIDToEdit { get; set; }
         private void Form1_Load(object sender, EventArgs e)
         {
             var db = new UsersDBContext();
@@ -90,23 +91,6 @@ namespace UserAccounts
             bool isPositionSelected = db.Positions.Any(p => p.Position1 == listPositions.SelectedItem.ToString());
             bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
             
-            /*foreach(var p in db.Positions)
-            {
-                if (p.Position1 == listPositions.SelectedItem.ToString())
-                {
-                    isPositionSelected = true;
-                    break;
-                }
-            }
-            foreach(var b in db.Branches)
-            {
-                if(b.BranchName == listBranches.SelectedItem.ToString())
-                {
-                    isBranchSelected = true;
-                    break;
-                }
-            }//*/
-
             if (!isBranchSelected && !isPositionSelected)
             {
                 labelResult.Text = "Изберете Склад и Длъжност.";
@@ -125,10 +109,13 @@ namespace UserAccounts
                 return;
             }
             
-            DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{listUsers.SelectedItem}\"", "Confirm", MessageBoxButtons.YesNo);
-           
+            DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{textBoxUserName.Text}\"", "Confirm", MessageBoxButtons.YesNo);
+
             if (confirmCreateUser == DialogResult.No)
-                return;//*/
+            {
+                labelResult.Text = "Не бяха направени промени.";
+                return; //*/
+            }
 
             var userName = new SqlParameter("@name", textBoxUserName.Text);
             var email = new SqlParameter("@email", textBoxEmail.Text);
@@ -189,10 +176,6 @@ namespace UserAccounts
                                      (!string.IsNullOrEmpty(lastUser.PharmosUserName)
                                          ? lastUser.PharmosUserName
                                          : "липсва");
-        }
-        private string bla(int a)
-        {
-            return a.UserID == lastUser.ID ? a : continue;
         }
         private void ResetUsersGroupBoxItems()
         {
@@ -474,12 +457,20 @@ namespace UserAccounts
         private void listUserToEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listUsersToEdit.SelectedIndex == 0)
+            {
+                UserIDToEdit = null;
+                Application.DoEvents();
+                btn_EditUser.Enabled = false;
                 return;
+            }
+            Application.DoEvents();
+            btn_EditUser.Enabled = true;
             btn_newUser.Enabled = false;
             var db = new UsersDBContext();
             string UserName = listUsersToEdit.SelectedItem.ToString();
             
             var user = db.UserMasterDatas.Where(u => u.UserName == UserName);
+            UserIDToEdit = user.Select(u => u.ID).FirstOrDefault();
             int positionIndex =
                 listPositions.FindStringExact(
                     db.Positions.Where(p => p.ID == user.Select(u => u.PositionID).FirstOrDefault())
@@ -517,6 +508,121 @@ namespace UserAccounts
         private void btn_createKSCAccount_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_EditUser_Click(object sender, EventArgs e)
+        {
+            if (UserIDToEdit == null)
+                return;
+            if(!string.IsNullOrEmpty(labelResult.Text))
+                labelResult.Text.Remove(0);
+            bool userNameEmpty = false;
+            bool listPositionsEmpty = false;
+            bool listBranchesEmpty = false;
+            bool reqFieldEmpty = false;
+            if (string.IsNullOrEmpty(textBoxUserName.Text))
+            {
+                reqFieldEmpty = true;
+                userNameEmpty = true;
+            }
+            if (listPositions.SelectedIndex == 0)
+            {
+                reqFieldEmpty = true;
+                listPositionsEmpty = true;
+            }
+            if (listBranches.SelectedIndex == 0)
+            {
+                reqFieldEmpty = true;
+                listBranchesEmpty = true;
+            }
+            if(reqFieldEmpty)
+            {
+                labelResult.Text = "Не може да има празни задължителни полета:";
+                if(userNameEmpty)
+                    labelResult.Text += Environment.NewLine + "\t\" --> Име на потребител\"";
+                if(listBranchesEmpty)
+                    labelResult.Text += Environment.NewLine + "\t\" --> Склад\"";
+                if (listPositionsEmpty)
+                    labelResult.Text += Environment.NewLine + "\t\" --> Длъжност\"";
+                return;
+            }
+            var db = new UsersDBContext();
+            var user = db.UserMasterDatas.FirstOrDefault(u => u.ID == UserIDToEdit.Value);
+
+            if (user.UserName != textBoxUserName.Text)
+                user.UserName = textBoxUserName.Text;
+
+            if (user.Email != textBoxEmail.Text)
+                user.Email = textBoxEmail.Text;
+
+            if (db.ADUsers.Any(a => a.UserID == UserIDToEdit.Value))
+            {
+                if (string.IsNullOrEmpty(textBoxADUser.Text))
+                {
+                    var adUserToRemove = db.ADUsers.FirstOrDefault(a => a.UserID == UserIDToEdit.Value);
+                    db.ADUsers.Remove(adUserToRemove);
+                    db.SaveChanges();
+                }
+                else if (db.ADUsers.Where(a => a.UserID == UserIDToEdit.Value).Select(a => a.ADName).FirstOrDefault() !=
+                    textBoxADUser.Text)
+                {
+                    ADUser adUser = db.ADUsers.FirstOrDefault(a => a.UserID == UserIDToEdit.Value);
+                    adUser.ADName = textBoxADUser.Text;
+                }
+            }
+            else if (!string.IsNullOrEmpty(textBoxADUser.Text) && textBoxADUser.Text.Length > 2)
+            {
+                var newADUser = new ADUser()
+                {
+                    UserID = UserIDToEdit.Value,
+                    ADName = textBoxADUser.Text
+                };
+                db.ADUsers.Add(newADUser);
+                db.SaveChanges();
+            }
+            if (listPositions.SelectedItem.ToString() !=
+                db.Positions.Where(p => p.ID == UserIDToEdit.Value).Select(p => p.Position1).FirstOrDefault())
+            {
+                int positionID =
+                    db.Positions.Where(p => p.Position1 == listPositions.SelectedItem.ToString())
+                        .Select(p => p.ID)
+                        .FirstOrDefault();
+                user.PositionID = positionID;
+            }
+            if (listBranches.SelectedItem.ToString() !=
+                db.Branches.Where(b => b.ID == user.BranchID).Select(b => b.BranchName).FirstOrDefault())
+            {
+                int branchID =
+                    db.Branches.Where(b => b.BranchName == listBranches.SelectedItem.ToString())
+                        .Select(b => b.ID)
+                        .FirstOrDefault();
+                user.BranchID = branchID;
+            }
+            if (user.PharmosUserName != textBoxPharmosName.Text)
+                user.PharmosUserName = textBoxPharmosName.Text;
+
+            if (user.UADMUserName != textBoxUadmName.Text)
+                user.UADMUserName = textBoxUadmName.Text;
+
+            if (user.GI.Value != checkBoxGI.Checked)
+                user.GI = checkBoxGI.Checked;
+
+            if (user.Purchase.Value != checkBoxPurchase.Checked)
+                user.Purchase = checkBoxPurchase.Checked;
+
+            if (user.Purchase.Value != checkBoxPurchase.Checked)
+                user.Purchase = checkBoxPurchase.Checked;
+
+            if (user.Tender.Value != checkBoxTender.Checked)
+                user.Tender = checkBoxTender.Checked;
+
+            if (user.Phibra.Value != checkBoxPhibra.Checked)
+                user.Phibra = checkBoxPhibra.Checked;
+
+            if (user.Active != checkBoxIsActive.Checked)
+                user.Active = checkBoxIsActive.Checked;
+
+            db.SaveChanges();
         }
     }
 }

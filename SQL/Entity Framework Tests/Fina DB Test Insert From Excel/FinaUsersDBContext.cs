@@ -15,6 +15,7 @@ namespace Fina_DB_Test_Insert_From_Excel
         public virtual DbSet<ADUser> ADUsers { get; set; }
         public virtual DbSet<Branch> Branches { get; set; }
         public virtual DbSet<KSC> KSCs { get; set; }
+        public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<UserMasterData> UserMasterDatas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,6 +32,14 @@ namespace Fina_DB_Test_Insert_From_Excel
 
             modelBuilder.Entity<KSC>()
                 .Property(e => e.TermID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserMasterData>()
+                .Property(e => e.PharmosUserName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<UserMasterData>()
+                .Property(e => e.UADMUserName)
                 .IsUnicode(false);
 
             modelBuilder.Entity<UserMasterData>()

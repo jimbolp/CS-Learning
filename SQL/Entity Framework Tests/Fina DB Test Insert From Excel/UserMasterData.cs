@@ -27,6 +27,24 @@ namespace Fina_DB_Test_Insert_From_Excel
 
         public int BranchID { get; set; }
 
+        public int? PositionID { get; set; }
+
+        [StringLength(50)]
+        public string PharmosUserName { get; set; }
+
+        [StringLength(50)]
+        public string UADMUserName { get; set; }
+
+        public bool? GI { get; set; }
+
+        public bool? Purchase { get; set; }
+
+        public bool? Tender { get; set; }
+
+        public bool? Phibra { get; set; }
+
+        public bool Active { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ADUser> ADUsers { get; set; }
 
@@ -34,5 +52,7 @@ namespace Fina_DB_Test_Insert_From_Excel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KSC> KSCs { get; set; }
+
+        public virtual Position Position { get; set; }
     }
 }

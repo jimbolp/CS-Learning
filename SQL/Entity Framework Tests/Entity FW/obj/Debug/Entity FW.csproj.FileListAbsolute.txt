@@ -5,6 +5,5 @@ E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\bin\Debug\E
 E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\bin\Debug\EntityFramework.SqlServer.dll
 E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\bin\Debug\EntityFramework.xml
 E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\bin\Debug\EntityFramework.SqlServer.xml
-E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\obj\Debug\Entity FW.csprojResolveAssemblyReference.cache
 E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\obj\Debug\Entity FW.exe
 E:\Documents\GitHub\CS-Learning\SQL\Entity Framework Tests\Entity FW\obj\Debug\Entity FW.pdb
