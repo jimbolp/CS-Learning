@@ -190,10 +190,6 @@ namespace UserAccounts
                                          ? lastUser.PharmosUserName
                                          : "липсва");
         }
-        private string bla(int a)
-        {
-            return a.UserID == lastUser.ID ? a : continue;
-        }
         private void ResetUsersGroupBoxItems()
         {
             textBoxUserName.Text = "";
