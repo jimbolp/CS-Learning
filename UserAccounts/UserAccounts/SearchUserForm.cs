@@ -39,7 +39,7 @@ namespace UserAccounts
         {
             var db = new UsersDBContext();
             
-            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select db.Branches.Where(b => b.BranchName == Convert.ToString(item)).Select(b => b.ID).First()).ToList();
+            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).First()).ToList();
             
             /*var Users = db.UserMasterDatas.Where(u => test.Any(b => b == u.BranchID)).Select(o => new
             {

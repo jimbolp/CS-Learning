@@ -19,7 +19,8 @@ namespace UserAccounts
         }
 
         /// <summary>
-        /// Property I use to keep the currently chosen user's ID for editing... 
+        /// Property I use to keep the currently chosen user's ID for editing...
+        /// Probably not the best idea!? :D
         /// </summary>
         private int? UserIDToEdit { get; set; }
 
@@ -28,6 +29,9 @@ namespace UserAccounts
             initializeDropDownLists();
         }
 
+        /// <summary>
+        /// Gets data from the database to fill the DropDown lists with adequate information
+        /// </summary>
         private void initializeDropDownLists()
         {
             var db = new UsersDBContext();
@@ -160,6 +164,7 @@ namespace UserAccounts
                                          ? lastUser.PharmosUserName
                                          : "липсва");
         }
+
         /// <summary>
         /// Returns false if any of the required fields for the new user is empty..
         /// TODO: Need to add some additional checks!
@@ -226,6 +231,12 @@ namespace UserAccounts
             return db.Branches.Where(b => b.BranchName == branchName).Select(br => br.ID).First();
         }
 
+        /// <summary>
+        /// Checks if a user is selected and if it's active, deactivates it.
+        /// If not... hmmm... Let me guess...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_deactivateUser_Click(object sender, EventArgs e)
         {
             var db = new UsersDBContext();
@@ -251,6 +262,7 @@ namespace UserAccounts
             }
             RefreshListUsers();
         }
+
         /// <summary>
         /// Sets field "Active" to true.
         /// </summary>
