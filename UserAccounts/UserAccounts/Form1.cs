@@ -18,11 +18,20 @@ namespace UserAccounts
             InitializeComponent();            
         }
 
+        /// <summary>
+        /// Property I use to keep the currently chosen user's ID for editing... 
+        /// </summary>
         private int? UserIDToEdit { get; set; }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            var db = new UsersDBContext();
+            initializeDropDownLists();
+        }
 
+        private void initializeDropDownLists()
+        {
+            var db = new UsersDBContext();
+            var sortedUsers = db.UserMasterDatas.OrderBy(u => u.UserName);
             //Fill comboBox with Positions from the database
             listPositions.Items.Insert(0, "(Изберете Длъжност)");
             foreach (var p in db.Positions)
@@ -38,10 +47,10 @@ namespace UserAccounts
                 listBranches.Items.Add(b.BranchName);
             }
             listBranches.SelectedIndex = 0;
-            
+
             //Fill comboBox with Users from the database
-            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", Color.Black, false));            
-            foreach(var u in db.UserMasterDatas)
+            listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", Color.Black, false));
+            foreach (var u in sortedUsers)
             {
                 listUsers.Items.Add(u.Active
                     ? new ComboBoxItem(u.UserName, Color.Black, false)
@@ -51,7 +60,7 @@ namespace UserAccounts
 
             //Fill comboBox with Active Users from the database
             listActiveUsers.Items.Insert(0, "(Изберете Потребител)");
-            foreach (var u in db.UserMasterDatas.Where(u => u.Active))
+            foreach (var u in sortedUsers.Where(u => u.Active))
             {
                 listActiveUsers.Items.Add(u.UserName);
             }
@@ -68,7 +77,7 @@ namespace UserAccounts
 
             //Fill comboBox with Users to edit from the database
             listUsersToEdit.Items.Add(new ComboBoxItem("(Изберете Потребител)", Color.Black, false));
-            foreach (var u in db.UserMasterDatas)
+            foreach (var u in sortedUsers)
             {
                 listUsersToEdit.Items.Add(u.Active
                     ? new ComboBoxItem(u.UserName, Color.Black, false)
@@ -76,39 +85,13 @@ namespace UserAccounts
             }
             listUsersToEdit.SelectedIndex = 0;
         }
-        
         private void btn_newUser_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxUserName.Text)
-                || string.IsNullOrEmpty(listPositions.Text)
-                || string.IsNullOrEmpty(listBranches.Text))
-            {
-                labelResult.Text = "Някое от задължителните полета е празно..";
+            if(!isAllowedToAddUser())
                 return;
-            }
+
             var db = new UsersDBContext();
 
-            bool isPositionSelected = db.Positions.Any(p => p.Position1 == listPositions.SelectedItem.ToString());
-            bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
-            
-            if (!isBranchSelected && !isPositionSelected)
-            {
-                labelResult.Text = "Изберете Склад и Длъжност.";
-                return;
-            }
-
-            if (!isPositionSelected)
-            {
-                labelResult.Text = "Изберете Длъжност.";
-                return;
-            }
-
-            if(!isBranchSelected)
-            {
-                labelResult.Text = "Изберете Склад.";
-                return;
-            }
-            
             DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{textBoxUserName.Text}\"", "Confirm", MessageBoxButtons.YesNo);
 
             if (confirmCreateUser == DialogResult.No)
@@ -177,6 +160,45 @@ namespace UserAccounts
                                          ? lastUser.PharmosUserName
                                          : "липсва");
         }
+        /// <summary>
+        /// Returns false if any of the required fields for the new user is empty..
+        /// TODO: Need to add some additional checks!
+        /// </summary>
+        /// <returns></returns>
+        private bool isAllowedToAddUser()
+        {
+            if (string.IsNullOrEmpty(textBoxUserName.Text)
+                || string.IsNullOrEmpty(listPositions.Text)
+                || string.IsNullOrEmpty(listBranches.Text))
+            {
+                labelResult.Text = "Някое от задължителните полета е празно..";
+                return false;
+            }
+            var db = new UsersDBContext();
+
+            bool isPositionSelected = db.Positions.Any(p => p.Position1 == listPositions.SelectedItem.ToString());
+            bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
+
+            if (!isBranchSelected && !isPositionSelected)
+            {
+                labelResult.Text = "Изберете Склад и Длъжност.";
+                return false;
+            }
+
+            if (!isPositionSelected)
+            {
+                labelResult.Text = "Изберете Длъжност.";
+                return false;
+            }
+
+            if (!isBranchSelected)
+            {
+                labelResult.Text = "Изберете Склад.";
+                return false;
+            }
+            return true;
+        }
+
         private void ResetUsersGroupBoxItems()
         {
             textBoxUserName.Text = "";
@@ -209,83 +231,95 @@ namespace UserAccounts
             var db = new UsersDBContext();
             string selectedUserName = listUsers.SelectedItem.ToString();
             bool isUserSelected = db.UserMasterDatas.Any(u => u.UserName == selectedUserName);
-            int selectedUserID =
-                db.UserMasterDatas.Where(u => u.UserName == selectedUserName).Select(u => u.ID).First();
             
-            /*foreach (var u in db.UserMasterDatas)
-            {
-                if (u.UserName == listUsers.SelectedItem.ToString())
-                {
-                    selectedUserID = u.ID;
-                    isUserSelected = true;
-                    break;
-                }
-            }//*/
-
             if (!isUserSelected)
             {
                 labelResult.Text = "Изберете потребител!";
                 return;
             }
+            int selectedUserID =
+                db.UserMasterDatas.Where(u => u.UserName == selectedUserName).Select(u => u.ID).First();
             if (db.UserMasterDatas.Where(u => u.ID == selectedUserID)
                     .Select(u => u.Active)
                     .First())
             {
-                DialogResult confirmDeleteUser =
-                    MessageBox.Show(
-                        $"Сигурни ли сте, че искате да деактивирате потребител \"{listUsers.SelectedItem}\"", "Потвърди",
-                        MessageBoxButtons.YesNo);
-
-                if (confirmDeleteUser == DialogResult.No)
-                {
-                    labelResult.Text = "Не бяха направени промени.";
-                    return;
-                }
-                if (confirmDeleteUser == DialogResult.Yes)
-                {
-                    string tempName = "";
-                    foreach (var u in db.UserMasterDatas)
-                    {
-                        if (u.ID == selectedUserID)
-                        {
-                            tempName = u.UserName;
-                            u.Active = false;
-                        }
-                    }
-                    db.SaveChanges();
-                    labelResult.Text = $"Потребител \"{tempName}\" беше деактивиран.";
-                }
+                DeactivateUser(selectedUserID);
             }
             else
             {
-                DialogResult confirmDeleteUser =
+                ActivateUser(selectedUserID);
+            }
+            RefreshListUsers();
+        }
+        /// <summary>
+        /// Sets field "Active" to true.
+        /// </summary>
+        /// <param name="id"></param>
+        private void ActivateUser(int id)
+        {
+            var db = new UsersDBContext();
+            DialogResult confirmDeleteUser =
                     MessageBox.Show(
                         $"Сигурни ли сте, че искате да активирате потребител \"{listUsers.SelectedItem}\"", "Потвърди",
                         MessageBoxButtons.YesNo);
 
-                if (confirmDeleteUser == DialogResult.No)
-                {
-                    labelResult.Text = "Не бяха направени промени.";
-                    return;
-                }
-                if (confirmDeleteUser == DialogResult.Yes)
-                {
-                    string tempName = "";
-                    foreach (var u in db.UserMasterDatas)
-                    {
-                        if (u.ID == selectedUserID)
-                        {
-                            tempName = u.UserName;
-                            u.Active = true;
-                        }
-                    }
-                    db.SaveChanges();
-                    labelResult.Text = $"Потребител \"{tempName}\" беше активиран.";
-                }
+            if (confirmDeleteUser == DialogResult.No)
+            {
+                labelResult.Text = "Не бяха направени промени.";
+                return;
             }
-            RefreshListUsers();
+            if (confirmDeleteUser == DialogResult.Yes)
+            {
+                string userName = "";
+                foreach (var u in db.UserMasterDatas)
+                {
+                    if (u.ID == id)
+                    {
+                        userName = u.UserName;
+                        u.Active = true;
+                    }
+                }
+                db.SaveChanges();
+                labelResult.Text = $"Потребител \"{userName}\" беше активиран.";
+            }
         }
 
+        /// <summary>
+        /// Sets field "Active" to false.
+        /// </summary>
+        /// <param name="id"></param>
+        private void DeactivateUser(int id)
+        {
+            var db = new UsersDBContext();
+            DialogResult confirmDeleteUser =
+                    MessageBox.Show(
+                        $"Сигурни ли сте, че искате да деактивирате потребител \"{listUsers.SelectedItem}\"", "Потвърди",
+                        MessageBoxButtons.YesNo);
+
+            if (confirmDeleteUser == DialogResult.No)
+            {
+                labelResult.Text = "Не бяха направени промени.";
+                return;
+            }
+            if (confirmDeleteUser == DialogResult.Yes)
+            {
+                string userName = "";
+                foreach (var u in db.UserMasterDatas)
+                {
+                    if (u.ID == id)
+                    {
+                        userName = u.UserName;
+                        u.Active = false;
+                    }
+                }
+                db.SaveChanges();
+                labelResult.Text = $"Потребител \"{userName}\" беше деактивиран.";
+            }
+        }
+
+        /// <summary>
+        /// Clears and refills the lists with users if changes were made
+        /// </summary>
         private void RefreshListUsers()
         {
             var db = new UsersDBContext();
@@ -293,8 +327,8 @@ namespace UserAccounts
             //List with all users....
             listUsers.Items.Clear();
             listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", 0, Color.Black, false));
-            
-            foreach (var u in db.UserMasterDatas)
+            var sortedUsers = db.UserMasterDatas.OrderBy(u => u.UserName);
+            foreach (var u in sortedUsers)
             {
                 listUsers.Items.Add(u.Active
                     ? new ComboBoxItem(u.UserName, Color.Black, false)
@@ -305,7 +339,7 @@ namespace UserAccounts
             //List only with Active Users...
             listActiveUsers.Items.Clear();
             listActiveUsers.Items.Insert(0, "(Изберете Потребител)");
-            foreach (var u in db.UserMasterDatas.Where(u => u.Active))
+            foreach (var u in sortedUsers.Where(u => u.Active))
             {
                 listActiveUsers.Items.Add(u.UserName);
             }
@@ -314,7 +348,7 @@ namespace UserAccounts
             //List Users to Edit..
             listUsersToEdit.Items.Clear();
             listUsersToEdit.Items.Add(new ComboBoxItem("(Изберете Потребител)", Color.Black, false));
-            foreach (var u in db.UserMasterDatas)
+            foreach (var u in sortedUsers)
             {
                 listUsersToEdit.Items.Add(u.Active
                     ? new ComboBoxItem(u.UserName, Color.Black, false)
@@ -322,6 +356,12 @@ namespace UserAccounts
             }
             listUsersToEdit.SelectedIndex = 0;
         }
+
+        /// <summary>
+        /// Changes the text on the button. (Visual information only)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             var db = new UsersDBContext();
@@ -335,15 +375,6 @@ namespace UserAccounts
                         .First();
             else
                 return;
-            /*foreach (var u in db.UserMasterDatas)
-            {
-                if (u.UserName == listUsers.SelectedItem.ToString())
-                {
-                    selectedUserID = u.ID;
-                    isUserSelected = true;
-                    break;
-                }
-            }//*/
             
             var isUserActive = db.UserMasterDatas.Where(u => u.ID == selectedUserID)
                 .Select(u => u.Active).First();
@@ -359,36 +390,19 @@ namespace UserAccounts
             int selectedUserID =
                 db.UserMasterDatas.Where(u => u.UserName == listActiveUsers.SelectedItem.ToString())
                     .Select(u => u.ID)
-                    .First();
+                    .FirstOrDefault();
             //var kscEntriesForSelectedUser = db.KSCs.Where(k => k.UserID == selectedUserID);
-
-            if (!db.KSCs.Any(k => k.UserID == selectedUserID))
+            
+            listKSCBranches.Items.Clear();
+            //Fills comboBox with Users from the database
+            listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", Color.Black, false));
+            foreach (var b in db.Branches)
             {
-                listKSCBranches.Items.Clear();
-                
-                //Fill comboBox with Users from the database
-                listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", Color.Black, false));
-                foreach (var b in db.Branches)
-                {
-                    listKSCBranches.Items.Add(new ComboBoxItem(b.BranchName, Color.Red, true));
-                }
-                listKSCBranches.SelectedIndex = 0;
-                return;
+                listKSCBranches.Items.Add(db.KSCs.Any(k => k.BranchID == b.ID && k.UserID == selectedUserID)
+                    ? new ComboBoxItem(b.BranchName, Color.Black, false)
+                    : new ComboBoxItem(b.BranchName, Color.Red, true));
             }
-            else
-            {
-                listKSCBranches.Items.Clear();
-                
-                //Fill comboBox with Users from the database
-                listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", Color.Black, false));
-                foreach (var b in db.Branches)
-                {
-                    listKSCBranches.Items.Add(db.KSCs.Any(k => k.BranchID == b.ID && k.UserID == selectedUserID)
-                        ? new ComboBoxItem(b.BranchName, Color.Black, false)
-                        : new ComboBoxItem(b.BranchName, Color.Red, true));
-                }
-                listKSCBranches.SelectedIndex = 0;
-            }
+            listKSCBranches.SelectedIndex = 0;
         }
 
         private void listKSCBranches_SelectedIndexChanged(object sender, EventArgs e)
@@ -616,19 +630,19 @@ namespace UserAccounts
             if (user.UADMUserName != textBoxUadmName.Text)
                 user.UADMUserName = textBoxUadmName.Text;
 
-            if (user.GI.Value != checkBoxGI.Checked)
+            if ((user.GI??false) != checkBoxGI.Checked)
                 user.GI = checkBoxGI.Checked;
 
-            if (user.Purchase.Value != checkBoxPurchase.Checked)
+            if ((user.Purchase??false) != checkBoxPurchase.Checked)
                 user.Purchase = checkBoxPurchase.Checked;
 
-            if (user.Purchase.Value != checkBoxPurchase.Checked)
+            if ((user.Purchase??false) != checkBoxPurchase.Checked)
                 user.Purchase = checkBoxPurchase.Checked;
 
-            if (user.Tender.Value != checkBoxTender.Checked)
+            if ((user.Tender??false) != checkBoxTender.Checked)
                 user.Tender = checkBoxTender.Checked;
 
-            if (user.Phibra.Value != checkBoxPhibra.Checked)
+            if ((user.Phibra??false) != checkBoxPhibra.Checked)
                 user.Phibra = checkBoxPhibra.Checked;
 
             if (user.Active != checkBoxIsActive.Checked)

@@ -1,0 +1,7 @@
+
+02.02.2017
+Please load the following invoice:
+
+Invoice no. [1001624078] from [08.09.2015] for customer [2058038] in branch [22]
+
+The invoice is not available in the invoice history (DKHIS) and has to be reloaded!

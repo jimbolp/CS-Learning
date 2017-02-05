@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
@@ -26,13 +25,23 @@ namespace UserAccounts
             {
                 chckBoxBranches.Items.Add(b.BranchName, CheckState.Checked);
             }
-            List<int> test = new List<int>();
-            foreach (var item in chckBoxBranches.CheckedItems)
-            {
-                string temp = Convert.ToString(item);
-                test.Add(db.Branches.Where(b => b.BranchName == temp).Select(b => b.ID).First());
-            }
-            var Users = db.UserMasterDatas.Where(u => test.Any(b => b == u.BranchID)).Select(o => new
+
+            loadUserDBTable();
+        }
+        
+
+        private void chckBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadUserDBTable();
+        }
+
+        private void loadUserDBTable()
+        {
+            var db = new UsersDBContext();
+            
+            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select db.Branches.Where(b => b.BranchName == Convert.ToString(item)).Select(b => b.ID).First()).ToList();
+            
+            /*var Users = db.UserMasterDatas.Where(u => test.Any(b => b == u.BranchID)).Select(o => new
             {
                 o.ID,
                 o.UserName,
@@ -47,68 +56,33 @@ namespace UserAccounts
                 Tender = (o.Tender.Value)? "Да" : "Не",
                 Phibra = (o.Phibra.Value)? "Да" : "Не",
                 State = (o.Active)? "Активен" : "Неактивен"
-            });
-            BindingSource bs = new BindingSource()
+            });//*/
+
+            SortableBindingList<CustomUser> sbList = new SortableBindingList<CustomUser>();
+            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID));
+            foreach (var o in orderdUsers)
             {
-                DataSource = Users.ToList()
-            };
-
-            userDBTable.DataSource = bs;
-            userDBTable.Refresh();
-
-            
-            
-            /*textBoxShowUsers.Text = stringAsColumnName("ID", 10) + stringAsColumnName("Име на потребител", 30) + Environment.NewLine;
-            foreach (var u in db.UserMasterDatas)
-            {
-                textBoxShowUsers.Text += stringAsColumnName(Convert.ToString(u.ID), 10);
-                textBoxShowUsers.Text += stringAsColumnName(u.UserName, 30);
-                textBoxShowUsers.Text += Environment.NewLine;
-            }//*/
-        }
-
-        /*private string stringAsColumnName(string s, int offset)
-        {
-            int remainingSpace = 0;
-            if (offset <= s.Length)
-                return "|  " + s + "|";
-            
-                remainingSpace = offset - s.Length;
-            return ("|" + new string(' ', 2) + s + new string(' ', remainingSpace) + "|");
-
-        }//*/
-
-        private void chckBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var db = new UsersDBContext();
-
-            List<int> test = new List<int>();
-            foreach (var item in chckBoxBranches.CheckedItems)
-            {
-                string temp = Convert.ToString(item);
-                test.Add(db.Branches.Where(b => b.BranchName == temp).Select(b => b.ID).First());
+                sbList.Add(new CustomUser
+                {
+                    ID = o.ID,
+                    UserName = o.UserName,
+                    Email = o.Email,
+                    ActiveDirectory = db.ADUsers.Where(a => a.UserID == o.ID).Select(a => a.ADName).FirstOrDefault(),
+                    Position = db.Positions.Where(p => p.ID == o.PositionID).Select(p => p.Position1).FirstOrDefault(),
+                    Depo = db.Branches.Where(b => b.ID == o.BranchID).Select(b => b.BranchName).FirstOrDefault(),
+                    PharmosUserName = o.PharmosUserName,
+                    UADMUserName = o.UADMUserName,
+                    GoodsIn = (o.GI == null) ? "Не" : (o.GI.Value) ? "Да" : "Не",
+                    PurchaseAccount = (o.Purchase == null) ? "Не" : (o.Purchase.Value) ? "Да" : "Не",
+                    TenderAccount = (o.Tender == null) ? "Не" : (o.Tender.Value) ? "Да" : "Не",
+                    PhibraAccount = (o.Phibra == null) ? "Не" : (o.Phibra.Value) ? "Да" : "Не",
+                    State = (o.Active) ? "Активен" : "Неактивен"
+                });
             }
-            var Users = db.UserMasterDatas.Where(u => test.Any(b => b == u.BranchID)).Select(o => new
+            userDBTable.DataSource = new BindingSource()
             {
-                o.ID,
-                o.UserName,
-                o.Email,
-                ActiveDirectory = db.ADUsers.Where(a => a.UserID == o.ID).Select(a => a.ADName).FirstOrDefault(),
-                Position = db.Positions.Where(p => p.ID == o.PositionID).Select(p => p.Position1).FirstOrDefault(),
-                Branch = db.Branches.Where(b => b.ID == o.BranchID).Select(b => b.BranchName).FirstOrDefault(),
-                o.PharmosUserName,
-                o.UADMUserName,
-                GI = (o.GI.Value) ? "Да" : "Не",
-                Purchase = (o.Purchase.Value) ? "Да" : "Не",
-                Tender = (o.Tender.Value) ? "Да" : "Не",
-                Phibra = (o.Phibra.Value) ? "Да" : "Не",
-                State = (o.Active) ? "Активен" : "Неактивен"
-            });
-            BindingSource bs = new BindingSource()
-            {
-                DataSource = Users.ToList()
+                DataSource = sbList
             };
-            userDBTable.DataSource = bs;
             userDBTable.Refresh();
         }
     }
