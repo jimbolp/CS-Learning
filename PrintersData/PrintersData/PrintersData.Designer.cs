@@ -31,32 +31,38 @@
             this.printerNameLabel = new System.Windows.Forms.Label();
             this.printerNameTextBox = new System.Windows.Forms.TextBox();
             this.IPAddressLabel = new System.Windows.Forms.Label();
-            this.IPAddresstextBox = new System.Windows.Forms.TextBox();
+            this.IPAddressTextBox = new System.Windows.Forms.TextBox();
             this.printerModelLabel = new System.Windows.Forms.Label();
             this.listPrinterModels = new System.Windows.Forms.ComboBox();
             this.branchLabel = new System.Windows.Forms.Label();
             this.listBranches = new System.Windows.Forms.ComboBox();
             this.printIDLabel = new System.Windows.Forms.Label();
-            this.printIDTextBox2 = new System.Windows.Forms.TextBox();
+            this.printIDTextBox = new System.Windows.Forms.TextBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.addPrinterButton = new System.Windows.Forms.Button();
             this.activeCheckBox = new System.Windows.Forms.CheckBox();
             this.labelResult = new System.Windows.Forms.Label();
+            this.dnsNameLabel = new System.Windows.Forms.Label();
+            this.dnsNameTextBox = new System.Windows.Forms.TextBox();
+            this.addPrinterGroupBox = new System.Windows.Forms.GroupBox();
+            this.listAllPrintersButton = new System.Windows.Forms.Button();
+            this.addPrinterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // printerNameLabel
             // 
             this.printerNameLabel.AutoSize = true;
-            this.printerNameLabel.Location = new System.Drawing.Point(13, 31);
+            this.printerNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.printerNameLabel.Location = new System.Drawing.Point(7, 27);
             this.printerNameLabel.Name = "printerNameLabel";
-            this.printerNameLabel.Size = new System.Drawing.Size(65, 13);
+            this.printerNameLabel.Size = new System.Drawing.Size(75, 13);
             this.printerNameLabel.TabIndex = 0;
-            this.printerNameLabel.Text = "Priner Name";
+            this.printerNameLabel.Text = "Принтер Име";
             // 
             // printerNameTextBox
             // 
-            this.printerNameTextBox.Location = new System.Drawing.Point(13, 48);
+            this.printerNameTextBox.Location = new System.Drawing.Point(7, 44);
             this.printerNameTextBox.Name = "printerNameTextBox";
             this.printerNameTextBox.Size = new System.Drawing.Size(150, 20);
             this.printerNameTextBox.TabIndex = 1;
@@ -64,32 +70,34 @@
             // IPAddressLabel
             // 
             this.IPAddressLabel.AutoSize = true;
-            this.IPAddressLabel.Location = new System.Drawing.Point(13, 75);
+            this.IPAddressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.IPAddressLabel.Location = new System.Drawing.Point(9, 112);
             this.IPAddressLabel.Name = "IPAddressLabel";
-            this.IPAddressLabel.Size = new System.Drawing.Size(58, 13);
+            this.IPAddressLabel.Size = new System.Drawing.Size(51, 13);
             this.IPAddressLabel.TabIndex = 2;
-            this.IPAddressLabel.Text = "IP Address";
+            this.IPAddressLabel.Text = "IP Адрес";
             // 
-            // IPAddresstextBox
+            // IPAddressTextBox
             // 
-            this.IPAddresstextBox.Location = new System.Drawing.Point(13, 92);
-            this.IPAddresstextBox.Name = "IPAddresstextBox";
-            this.IPAddresstextBox.Size = new System.Drawing.Size(150, 20);
-            this.IPAddresstextBox.TabIndex = 3;
+            this.IPAddressTextBox.Location = new System.Drawing.Point(9, 129);
+            this.IPAddressTextBox.Name = "IPAddressTextBox";
+            this.IPAddressTextBox.Size = new System.Drawing.Size(150, 20);
+            this.IPAddressTextBox.TabIndex = 3;
             // 
             // printerModelLabel
             // 
             this.printerModelLabel.AutoSize = true;
-            this.printerModelLabel.Location = new System.Drawing.Point(10, 115);
+            this.printerModelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.printerModelLabel.Location = new System.Drawing.Point(6, 72);
             this.printerModelLabel.Name = "printerModelLabel";
-            this.printerModelLabel.Size = new System.Drawing.Size(69, 13);
+            this.printerModelLabel.Size = new System.Drawing.Size(86, 13);
             this.printerModelLabel.TabIndex = 4;
-            this.printerModelLabel.Text = "Printer Model";
+            this.printerModelLabel.Text = "Принтер Модел";
             // 
             // listPrinterModels
             // 
             this.listPrinterModels.FormattingEnabled = true;
-            this.listPrinterModels.Location = new System.Drawing.Point(12, 131);
+            this.listPrinterModels.Location = new System.Drawing.Point(8, 88);
             this.listPrinterModels.Name = "listPrinterModels";
             this.listPrinterModels.Size = new System.Drawing.Size(181, 21);
             this.listPrinterModels.TabIndex = 5;
@@ -97,16 +105,17 @@
             // branchLabel
             // 
             this.branchLabel.AutoSize = true;
-            this.branchLabel.Location = new System.Drawing.Point(241, 30);
+            this.branchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.branchLabel.Location = new System.Drawing.Point(6, 154);
             this.branchLabel.Name = "branchLabel";
-            this.branchLabel.Size = new System.Drawing.Size(41, 13);
+            this.branchLabel.Size = new System.Drawing.Size(38, 13);
             this.branchLabel.TabIndex = 6;
-            this.branchLabel.Text = "Branch";
+            this.branchLabel.Text = "Склад";
             // 
             // listBranches
             // 
             this.listBranches.FormattingEnabled = true;
-            this.listBranches.Location = new System.Drawing.Point(244, 48);
+            this.listBranches.Location = new System.Drawing.Point(9, 170);
             this.listBranches.Name = "listBranches";
             this.listBranches.Size = new System.Drawing.Size(151, 21);
             this.listBranches.TabIndex = 7;
@@ -114,53 +123,57 @@
             // printIDLabel
             // 
             this.printIDLabel.AutoSize = true;
-            this.printIDLabel.Location = new System.Drawing.Point(12, 158);
+            this.printIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.printIDLabel.Location = new System.Drawing.Point(217, 27);
             this.printIDLabel.Name = "printIDLabel";
-            this.printIDLabel.Size = new System.Drawing.Size(42, 13);
+            this.printIDLabel.Size = new System.Drawing.Size(86, 13);
             this.printIDLabel.TabIndex = 8;
-            this.printIDLabel.Text = "Print ID";
+            this.printIDLabel.Text = "Pharmos Print ID";
             // 
-            // printIDTextBox2
+            // printIDTextBox
             // 
-            this.printIDTextBox2.Location = new System.Drawing.Point(12, 175);
-            this.printIDTextBox2.Name = "printIDTextBox2";
-            this.printIDTextBox2.Size = new System.Drawing.Size(151, 20);
-            this.printIDTextBox2.TabIndex = 9;
+            this.printIDTextBox.Location = new System.Drawing.Point(217, 44);
+            this.printIDTextBox.Name = "printIDTextBox";
+            this.printIDTextBox.Size = new System.Drawing.Size(151, 20);
+            this.printIDTextBox.TabIndex = 9;
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(244, 76);
+            this.descriptionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.descriptionLabel.Location = new System.Drawing.Point(214, 112);
             this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(63, 13);
+            this.descriptionLabel.Size = new System.Drawing.Size(57, 13);
             this.descriptionLabel.TabIndex = 10;
-            this.descriptionLabel.Text = "Descritption";
+            this.descriptionLabel.Text = "Описание";
             // 
             // descriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(244, 92);
+            this.descriptionTextBox.Location = new System.Drawing.Point(217, 129);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(151, 20);
             this.descriptionTextBox.TabIndex = 11;
             // 
             // addPrinterButton
             // 
-            this.addPrinterButton.Location = new System.Drawing.Point(12, 229);
+            this.addPrinterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addPrinterButton.Location = new System.Drawing.Point(8, 211);
             this.addPrinterButton.Name = "addPrinterButton";
-            this.addPrinterButton.Size = new System.Drawing.Size(383, 23);
+            this.addPrinterButton.Size = new System.Drawing.Size(360, 23);
             this.addPrinterButton.TabIndex = 12;
-            this.addPrinterButton.Text = "Add Printer";
+            this.addPrinterButton.Text = "Добавяне на принтер";
             this.addPrinterButton.UseVisualStyleBackColor = true;
             this.addPrinterButton.Click += new System.EventHandler(this.addPrinterButton_Click);
             // 
             // activeCheckBox
             // 
             this.activeCheckBox.AutoSize = true;
-            this.activeCheckBox.Location = new System.Drawing.Point(244, 131);
+            this.activeCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.activeCheckBox.Location = new System.Drawing.Point(217, 174);
             this.activeCheckBox.Name = "activeCheckBox";
-            this.activeCheckBox.Size = new System.Drawing.Size(56, 17);
+            this.activeCheckBox.Size = new System.Drawing.Size(68, 17);
             this.activeCheckBox.TabIndex = 13;
-            this.activeCheckBox.Text = "Active";
+            this.activeCheckBox.Text = "Активен";
             this.activeCheckBox.UseVisualStyleBackColor = true;
             // 
             // labelResult
@@ -168,36 +181,78 @@
             this.labelResult.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelResult.ForeColor = System.Drawing.Color.Red;
-            this.labelResult.Location = new System.Drawing.Point(0, 322);
+            this.labelResult.Location = new System.Drawing.Point(0, 424);
             this.labelResult.Name = "labelResult";
-            this.labelResult.Size = new System.Drawing.Size(623, 102);
+            this.labelResult.Size = new System.Drawing.Size(538, 102);
             this.labelResult.TabIndex = 14;
+            // 
+            // dnsNameLabel
+            // 
+            this.dnsNameLabel.AutoSize = true;
+            this.dnsNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dnsNameLabel.Location = new System.Drawing.Point(217, 72);
+            this.dnsNameLabel.Name = "dnsNameLabel";
+            this.dnsNameLabel.Size = new System.Drawing.Size(55, 13);
+            this.dnsNameLabel.TabIndex = 15;
+            this.dnsNameLabel.Text = "DNS Име";
+            // 
+            // dnsNameTextBox
+            // 
+            this.dnsNameTextBox.Location = new System.Drawing.Point(217, 89);
+            this.dnsNameTextBox.Name = "dnsNameTextBox";
+            this.dnsNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.dnsNameTextBox.TabIndex = 16;
+            // 
+            // addPrinterGroupBox
+            // 
+            this.addPrinterGroupBox.Controls.Add(this.addPrinterButton);
+            this.addPrinterGroupBox.Controls.Add(this.dnsNameTextBox);
+            this.addPrinterGroupBox.Controls.Add(this.printerNameLabel);
+            this.addPrinterGroupBox.Controls.Add(this.dnsNameLabel);
+            this.addPrinterGroupBox.Controls.Add(this.printerNameTextBox);
+            this.addPrinterGroupBox.Controls.Add(this.IPAddressLabel);
+            this.addPrinterGroupBox.Controls.Add(this.activeCheckBox);
+            this.addPrinterGroupBox.Controls.Add(this.IPAddressTextBox);
+            this.addPrinterGroupBox.Controls.Add(this.printerModelLabel);
+            this.addPrinterGroupBox.Controls.Add(this.descriptionTextBox);
+            this.addPrinterGroupBox.Controls.Add(this.listPrinterModels);
+            this.addPrinterGroupBox.Controls.Add(this.descriptionLabel);
+            this.addPrinterGroupBox.Controls.Add(this.branchLabel);
+            this.addPrinterGroupBox.Controls.Add(this.printIDTextBox);
+            this.addPrinterGroupBox.Controls.Add(this.listBranches);
+            this.addPrinterGroupBox.Controls.Add(this.printIDLabel);
+            this.addPrinterGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.addPrinterGroupBox.Location = new System.Drawing.Point(3, 12);
+            this.addPrinterGroupBox.Name = "addPrinterGroupBox";
+            this.addPrinterGroupBox.Size = new System.Drawing.Size(407, 267);
+            this.addPrinterGroupBox.TabIndex = 17;
+            this.addPrinterGroupBox.TabStop = false;
+            this.addPrinterGroupBox.Text = "Добавяне на принтер";
+            // 
+            // listAllPrintersButton
+            // 
+            this.listAllPrintersButton.Location = new System.Drawing.Point(11, 285);
+            this.listAllPrintersButton.Name = "listAllPrintersButton";
+            this.listAllPrintersButton.Size = new System.Drawing.Size(360, 23);
+            this.listAllPrintersButton.TabIndex = 18;
+            this.listAllPrintersButton.Text = "Покажи всички принтери";
+            this.listAllPrintersButton.UseVisualStyleBackColor = true;
+            this.listAllPrintersButton.Click += new System.EventHandler(this.listAllPrintersButton_Click);
             // 
             // PrintersData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 424);
+            this.ClientSize = new System.Drawing.Size(538, 526);
+            this.Controls.Add(this.listAllPrintersButton);
+            this.Controls.Add(this.addPrinterGroupBox);
             this.Controls.Add(this.labelResult);
-            this.Controls.Add(this.activeCheckBox);
-            this.Controls.Add(this.addPrinterButton);
-            this.Controls.Add(this.descriptionTextBox);
-            this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.printIDTextBox2);
-            this.Controls.Add(this.printIDLabel);
-            this.Controls.Add(this.listBranches);
-            this.Controls.Add(this.branchLabel);
-            this.Controls.Add(this.listPrinterModels);
-            this.Controls.Add(this.printerModelLabel);
-            this.Controls.Add(this.IPAddresstextBox);
-            this.Controls.Add(this.IPAddressLabel);
-            this.Controls.Add(this.printerNameTextBox);
-            this.Controls.Add(this.printerNameLabel);
             this.Name = "PrintersData";
             this.Text = "PrintersData";
             this.Load += new System.EventHandler(this.PrintersData_Load);
+            this.addPrinterGroupBox.ResumeLayout(false);
+            this.addPrinterGroupBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -206,18 +261,22 @@
         private System.Windows.Forms.Label printerNameLabel;
         private System.Windows.Forms.TextBox printerNameTextBox;
         private System.Windows.Forms.Label IPAddressLabel;
-        private System.Windows.Forms.TextBox IPAddresstextBox;
+        private System.Windows.Forms.TextBox IPAddressTextBox;
         private System.Windows.Forms.Label printerModelLabel;
         private System.Windows.Forms.ComboBox listPrinterModels;
         private System.Windows.Forms.Label branchLabel;
         private System.Windows.Forms.ComboBox listBranches;
         private System.Windows.Forms.Label printIDLabel;
-        private System.Windows.Forms.TextBox printIDTextBox2;
+        private System.Windows.Forms.TextBox printIDTextBox;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button addPrinterButton;
         private System.Windows.Forms.CheckBox activeCheckBox;
         private System.Windows.Forms.Label labelResult;
+        private System.Windows.Forms.Label dnsNameLabel;
+        private System.Windows.Forms.TextBox dnsNameTextBox;
+        private System.Windows.Forms.GroupBox addPrinterGroupBox;
+        private System.Windows.Forms.Button listAllPrintersButton;
     }
 }
 

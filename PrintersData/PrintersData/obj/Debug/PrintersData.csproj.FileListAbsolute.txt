@@ -11,3 +11,4 @@ C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\o
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.csproj.GenerateResource.Cache
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.exe
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.ShowPrinters.resources
