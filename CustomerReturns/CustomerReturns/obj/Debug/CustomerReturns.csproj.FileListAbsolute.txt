@@ -7,3 +7,12 @@ c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\Cu
 c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.csproj.GenerateResource.Cache
 c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.exe
 c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.pdb
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.exe.config
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.exe
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.pdb
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.exe
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\bin\Debug\CustomerReturns.pdb
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.CustomerReturns.resources
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.Properties.Resources.resources
+E:\Documents\GitHub\CS-Learning\CustomerReturns\CustomerReturns\obj\Debug\CustomerReturns.csproj.GenerateResource.Cache

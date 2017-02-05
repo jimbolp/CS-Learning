@@ -303,7 +303,7 @@ namespace UserAccounts
             this.groupBoxNewUser.Controls.Add(this.checkBoxIsActive);
             this.groupBoxNewUser.Controls.Add(this.btn_newUser);
             this.groupBoxNewUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxNewUser.Location = new System.Drawing.Point(0, 41);
+            this.groupBoxNewUser.Location = new System.Drawing.Point(0, 54);
             this.groupBoxNewUser.Name = "groupBoxNewUser";
             this.groupBoxNewUser.Size = new System.Drawing.Size(390, 333);
             this.groupBoxNewUser.TabIndex = 0;
@@ -343,7 +343,7 @@ namespace UserAccounts
             this.groupBoxKSC.Controls.Add(this.labelActiveUsers);
             this.groupBoxKSC.Controls.Add(this.listActiveUsers);
             this.groupBoxKSC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxKSC.Location = new System.Drawing.Point(596, 41);
+            this.groupBoxKSC.Location = new System.Drawing.Point(596, 54);
             this.groupBoxKSC.Name = "groupBoxKSC";
             this.groupBoxKSC.Size = new System.Drawing.Size(412, 333);
             this.groupBoxKSC.TabIndex = 2;
@@ -475,7 +475,7 @@ namespace UserAccounts
             this.groupBoxDeactivateUser.Controls.Add(this.btn_deactivateUser);
             this.groupBoxDeactivateUser.Controls.Add(this.listUsers);
             this.groupBoxDeactivateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxDeactivateUser.Location = new System.Drawing.Point(0, 446);
+            this.groupBoxDeactivateUser.Location = new System.Drawing.Point(0, 459);
             this.groupBoxDeactivateUser.Name = "groupBoxDeactivateUser";
             this.groupBoxDeactivateUser.Size = new System.Drawing.Size(390, 60);
             this.groupBoxDeactivateUser.TabIndex = 1;
@@ -484,7 +484,7 @@ namespace UserAccounts
             // 
             // btn_searchUser
             // 
-            this.btn_searchUser.Location = new System.Drawing.Point(396, 345);
+            this.btn_searchUser.Location = new System.Drawing.Point(396, 358);
             this.btn_searchUser.Name = "btn_searchUser";
             this.btn_searchUser.Size = new System.Drawing.Size(194, 23);
             this.btn_searchUser.TabIndex = 58;
@@ -494,7 +494,7 @@ namespace UserAccounts
             // 
             // btn_SearchKSC
             // 
-            this.btn_SearchKSC.Location = new System.Drawing.Point(396, 316);
+            this.btn_SearchKSC.Location = new System.Drawing.Point(396, 329);
             this.btn_SearchKSC.Name = "btn_SearchKSC";
             this.btn_SearchKSC.Size = new System.Drawing.Size(194, 23);
             this.btn_SearchKSC.TabIndex = 59;
@@ -507,7 +507,7 @@ namespace UserAccounts
             this.groupBoxEditUser.Controls.Add(this.btn_EditUser);
             this.groupBoxEditUser.Controls.Add(this.listUsersToEdit);
             this.groupBoxEditUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxEditUser.Location = new System.Drawing.Point(0, 380);
+            this.groupBoxEditUser.Location = new System.Drawing.Point(0, 393);
             this.groupBoxEditUser.Name = "groupBoxEditUser";
             this.groupBoxEditUser.Size = new System.Drawing.Size(390, 60);
             this.groupBoxEditUser.TabIndex = 2;
@@ -528,7 +528,7 @@ namespace UserAccounts
             // 
             // clearAllFields
             // 
-            this.clearAllFields.Location = new System.Drawing.Point(396, 60);
+            this.clearAllFields.Location = new System.Drawing.Point(396, 73);
             this.clearAllFields.Name = "clearAllFields";
             this.clearAllFields.Size = new System.Drawing.Size(194, 23);
             this.clearAllFields.TabIndex = 60;
