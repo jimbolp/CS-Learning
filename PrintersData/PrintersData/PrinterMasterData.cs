@@ -28,7 +28,7 @@ namespace PrintersData
         [StringLength(200)]
         public string Description { get; set; }
 
-        public bool? Deleted { get; set; }
+        public bool? Active { get; set; }
 
         [StringLength(100)]
         public string DNSName { get; set; }
