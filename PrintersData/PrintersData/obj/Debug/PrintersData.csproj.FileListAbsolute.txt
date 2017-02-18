@@ -6,10 +6,10 @@ C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\b
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\bin\Debug\EntityFramework.xml
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.csprojResolveAssemblyReference.cache
-C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.PrintersData.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.Properties.Resources.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.csproj.GenerateResource.Cache
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.exe
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.pdb
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.AddPrinter.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.AddPrinterModel.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Debug\PrintersData.PrinterData.resources

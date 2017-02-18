@@ -53,6 +53,8 @@
             // labelResult
             // 
             this.labelResult.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.labelResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelResult.ForeColor = System.Drawing.Color.Red;
             this.labelResult.Location = new System.Drawing.Point(0, 169);
             this.labelResult.Name = "labelResult";
             this.labelResult.Size = new System.Drawing.Size(284, 92);
@@ -66,6 +68,7 @@
             this.addPrinterModelBtn.TabIndex = 3;
             this.addPrinterModelBtn.Text = "Добави";
             this.addPrinterModelBtn.UseVisualStyleBackColor = true;
+            this.addPrinterModelBtn.Click += new System.EventHandler(this.addPrinterModelBtn_Click);
             // 
             // AddPrinterModel
             // 

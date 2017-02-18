@@ -9,6 +9,8 @@ namespace PrintersData
 {
     class CustomPrintersTable
     {
+        [DisplayName("№")]
+        public int ID { get; set; }
         [DisplayName("Име на принтер")]
         public string Name { get; set; }
         [DisplayName("IP адрес")]
@@ -23,6 +25,8 @@ namespace PrintersData
         public string PrinterModel { get; set; }
         [DisplayName("Описание")]
         public string Description { get; set; }
-        
+        [DisplayName("Активен")]
+        public string Active { get; set; }
+
     }
 }

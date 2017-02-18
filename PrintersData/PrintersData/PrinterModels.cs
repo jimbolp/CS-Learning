@@ -14,6 +14,7 @@ namespace PrintersData
             PrinterMasterData = new HashSet<PrinterMasterData>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
 
         [Required]

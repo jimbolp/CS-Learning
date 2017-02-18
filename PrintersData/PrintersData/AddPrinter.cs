@@ -17,15 +17,27 @@ namespace PrintersData
         {
             InitializeComponent();
         }
+        public AddPrinter(PrinterMasterData printerToEdit, bool isEdit)
+        {
+            InitializeComponent();
 
-        private void PrintersData_Load(object sender, EventArgs e)
+            if (isEdit)
+                return;
+             
+        }
+        private void InitializeFields(PrinterMasterData p)
+        {
+            printerNameTextBox.Text = p.PrinterName;
+
+        }
+        private void AddPrinter_Load(object sender, EventArgs e)
         {
             fillDropDownLists();           
         }
 
         private void fillDropDownLists()
         {
-            var db = new PrintersDB();
+            var db = new PrintersDBContext();
 
             //Fill comboBox with printer models from the db
             var sortedPrinterModels = db.PrinterModels.OrderBy(p => p.PrinterModel);
@@ -55,7 +67,7 @@ namespace PrintersData
                 labelResult.Text = "Някое от задължителните полета е празно";
                 return;
             }
-            var db = new PrintersDB();
+            var db = new PrintersDBContext();
 
             bool isPrinterModelSelected = db.PrinterModels.Any(p => p.PrinterModel == listPrinterModels.SelectedItem.ToString());
             bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
@@ -87,7 +99,7 @@ namespace PrintersData
             var description = new SqlParameter("@description", descriptionTextBox.Text);
             var dnsName = new SqlParameter("@dnsName", dnsNameTextBox.Text);
 
-            var newprinter = new PrinterMasterData
+            var newPrinter = new PrinterMasterData
             {
                 PrinterName = printerName.SqlValue.ToString(),
                 IPAddress = IPAddress.SqlValue.ToString(),
@@ -99,30 +111,30 @@ namespace PrintersData
                 Active = activeCheckBox.Checked
             };
 
-            db.PrinterMasterData.Add(newprinter);
+            db.PrinterMasterData.Add(newPrinter);
             db.SaveChanges();
             ResetPrintersGroupBoxItems();
 
-            var lastPrinter = db.PrinterMasterData.OrderByDescending(p => p.ID).First();
-            labelResult.Text = "Принтер: " + lastPrinter.PrinterName + " беше добавен успешно!";
-            labelResult.Text += Environment.NewLine + "Модел: " + db.PrinterModels.Where(p => p.ID == lastPrinter.PrinterModeID).Select(p => p.PrinterModel).First() +
-                Environment.NewLine + "IP Адрес: " + lastPrinter.IPAddress;
-            labelResult.Text += Environment.NewLine + "Склад: " + db.Branches.Where(b => b.ID == lastPrinter.BranchID).Select(b => b.BranchName).First() +
-                Environment.NewLine + "Pharmos PrintID: " + lastPrinter.PrintID;
-            labelResult.Text += Environment.NewLine + "DNS: " + lastPrinter.DNSName;
-            labelResult.Text += Environment.NewLine + "Описание: " + lastPrinter.Description;
+            //var lastPrinter = db.PrinterMasterData.OrderByDescending(p => p.ID).First();
+            labelResult.Text = "Принтер: " + newPrinter.PrinterName + " беше добавен успешно!";
+            labelResult.Text += Environment.NewLine + "Модел: " + db.PrinterModels.Where(p => p.ID == newPrinter.PrinterModeID).Select(p => p.PrinterModel).FirstOrDefault();
+            labelResult.Text += Environment.NewLine + "IP Адрес: " + newPrinter.IPAddress;
+            labelResult.Text += Environment.NewLine + "Склад: " + db.Branches.Where(b => b.ID == newPrinter.BranchID).Select(b => b.BranchName).FirstOrDefault();
+            labelResult.Text += Environment.NewLine + "Pharmos PrintID: " + newPrinter.PrintID;
+            labelResult.Text += Environment.NewLine + "DNS: " + newPrinter.PrintID;
+            labelResult.Text += Environment.NewLine + "Описание: " + newPrinter.Description;
         }
 
         public int printerModelFromName(string printerModel)
         {
-            var db = new PrintersDB();
-            return db.PrinterModels.Where(p => p.PrinterModel == printerModel).Select(i => i.ID).First();
+            var db = new PrintersDBContext();
+            return db.PrinterModels.Where(p => p.PrinterModel == printerModel).Select(i => i.ID).FirstOrDefault();
         }
 
         public int branchIDFromName(string branchName)
         {
-            var db = new PrintersDB();
-            return db.Branches.Where(b => b.BranchName == branchName).Select(i => i.ID).First();
+            var db = new PrintersDBContext();
+            return db.Branches.Where(b => b.BranchName == branchName).Select(i => i.ID).FirstOrDefault();
         }
 
         private void ResetPrintersGroupBoxItems()
@@ -136,19 +148,10 @@ namespace PrintersData
             descriptionTextBox.Text = "";
             activeCheckBox.Checked = true;
         }
-        /*
-        private void listAllPrintersButton_Click(object sender, EventArgs e)
-        {
-            ShowPrinters frm = new ShowPrinters();
-            frm.FormClosed += Frm_FormClosed;
-            this.Hide();
-            frm.Show();            
-        }
 
-        private void Frm_FormClosed(object sender, FormClosedEventArgs e)
+        public void EditPrinter()
         {
-            this.Show();
+
         }
-        */
     }
 }

@@ -46,6 +46,7 @@
             this.dnsNameLabel = new System.Windows.Forms.Label();
             this.dnsNameTextBox = new System.Windows.Forms.TextBox();
             this.addPrinterGroupBox = new System.Windows.Forms.GroupBox();
+            this.editPrinterButton = new System.Windows.Forms.Button();
             this.addPrinterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -211,6 +212,7 @@
             // 
             // addPrinterGroupBox
             // 
+            this.addPrinterGroupBox.Controls.Add(this.editPrinterButton);
             this.addPrinterGroupBox.Controls.Add(this.addPrinterButton);
             this.addPrinterGroupBox.Controls.Add(this.dnsNameTextBox);
             this.addPrinterGroupBox.Controls.Add(this.printerNameLabel);
@@ -233,7 +235,17 @@
             this.addPrinterGroupBox.Size = new System.Drawing.Size(407, 267);
             this.addPrinterGroupBox.TabIndex = 17;
             this.addPrinterGroupBox.TabStop = false;
-            this.addPrinterGroupBox.Text = "Добавяне на принтер";
+            this.addPrinterGroupBox.Text = "Данни за принтер";
+            // 
+            // editPrinterButton
+            // 
+            this.editPrinterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.editPrinterButton.Location = new System.Drawing.Point(9, 238);
+            this.editPrinterButton.Name = "editPrinterButton";
+            this.editPrinterButton.Size = new System.Drawing.Size(359, 23);
+            this.editPrinterButton.TabIndex = 17;
+            this.editPrinterButton.Text = "Запазване на промените";
+            this.editPrinterButton.UseVisualStyleBackColor = true;
             // 
             // AddPrinter
             // 
@@ -244,7 +256,7 @@
             this.Controls.Add(this.labelResult);
             this.Name = "AddPrinter";
             this.Text = "AddPrinter";
-            this.Load += new System.EventHandler(this.PrintersData_Load);
+            this.Load += new System.EventHandler(this.AddPrinter_Load);
             this.addPrinterGroupBox.ResumeLayout(false);
             this.addPrinterGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -265,12 +277,13 @@
         private System.Windows.Forms.TextBox printIDTextBox;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.Button addPrinterButton;
         private System.Windows.Forms.CheckBox activeCheckBox;
         private System.Windows.Forms.Label labelResult;
         private System.Windows.Forms.Label dnsNameLabel;
         private System.Windows.Forms.TextBox dnsNameTextBox;
         private System.Windows.Forms.GroupBox addPrinterGroupBox;
+        public System.Windows.Forms.Button addPrinterButton;
+        public System.Windows.Forms.Button editPrinterButton;
     }
 }
 

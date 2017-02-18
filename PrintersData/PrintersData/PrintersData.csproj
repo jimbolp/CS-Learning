@@ -83,13 +83,16 @@
       <DependentUpon>AddPrinterModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Branches.cs" />
+    <Compile Include="CustomDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomPrintersTable.cs" />
     <Compile Include="PropertyComparer.cs" />
-    <Compile Include="PrintersData.cs">
+    <Compile Include="PrinterData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrintersData.Designer.cs">
-      <DependentUpon>PrintersData.cs</DependentUpon>
+    <Compile Include="PrinterData.Designer.cs">
+      <DependentUpon>PrinterData.cs</DependentUpon>
     </Compile>
     <Compile Include="PrinterMasterData.cs" />
     <Compile Include="PrinterModels.cs" />
@@ -99,7 +102,7 @@
     <Compile Include="AddPrinter.Designer.cs">
       <DependentUpon>AddPrinter.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintersDB.cs" />
+    <Compile Include="PrintersDBContext.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortableBindingList.cs" />
@@ -120,8 +123,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="PrintersData.resx">
-      <DependentUpon>PrintersData.cs</DependentUpon>
+    <EmbeddedResource Include="PrinterData.resx">
+      <DependentUpon>PrinterData.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -5,9 +5,9 @@ namespace PrintersData
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class PrintersDB : DbContext
+    public partial class PrintersDBContext : DbContext
     {
-        public PrintersDB()
+        public PrintersDBContext()
             : base("name=PrintersDB")
         {
         }
