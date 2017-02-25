@@ -169,6 +169,8 @@
             this.addPrinterButton.TabIndex = 12;
             this.addPrinterButton.Text = "Добавяне на принтер";
             this.addPrinterButton.UseVisualStyleBackColor = true;
+            this.addPrinterButton.Visible = false;
+            this.addPrinterButton.Enabled = false;
             this.addPrinterButton.Click += new System.EventHandler(this.addPrinterButton_Click);
             // 
             // activeCheckBox
@@ -246,6 +248,9 @@
             this.editPrinterButton.TabIndex = 17;
             this.editPrinterButton.Text = "Запазване на промените";
             this.editPrinterButton.UseVisualStyleBackColor = true;
+            this.editPrinterButton.Visible = false;
+            this.editPrinterButton.Enabled = false;
+            this.editPrinterButton.Click += new System.EventHandler(this.editPrinterButton_Click);
             // 
             // AddPrinter
             // 
@@ -256,7 +261,6 @@
             this.Controls.Add(this.labelResult);
             this.Name = "AddPrinter";
             this.Text = "AddPrinter";
-            this.Load += new System.EventHandler(this.AddPrinter_Load);
             this.addPrinterGroupBox.ResumeLayout(false);
             this.addPrinterGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -264,26 +268,25 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label printerNameLabel;
-        private System.Windows.Forms.TextBox printerNameTextBox;
-        private System.Windows.Forms.Label IPAddressLabel;
-        private System.Windows.Forms.TextBox IPAddressTextBox;
-        private System.Windows.Forms.Label printerModelLabel;
-        private System.Windows.Forms.ComboBox listPrinterModels;
-        private System.Windows.Forms.Label branchLabel;
-        private System.Windows.Forms.ComboBox listBranches;
-        private System.Windows.Forms.Label printIDLabel;
-        private System.Windows.Forms.TextBox printIDTextBox;
-        private System.Windows.Forms.Label descriptionLabel;
-        private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.CheckBox activeCheckBox;
-        private System.Windows.Forms.Label labelResult;
-        private System.Windows.Forms.Label dnsNameLabel;
-        private System.Windows.Forms.TextBox dnsNameTextBox;
-        private System.Windows.Forms.GroupBox addPrinterGroupBox;
         public System.Windows.Forms.Button addPrinterButton;
         public System.Windows.Forms.Button editPrinterButton;
+        public System.Windows.Forms.TextBox printerNameTextBox;
+        public System.Windows.Forms.Label labelResult;
+        public System.Windows.Forms.GroupBox addPrinterGroupBox;
+        public System.Windows.Forms.Label printerNameLabel;
+        public System.Windows.Forms.Label IPAddressLabel;
+        public System.Windows.Forms.TextBox IPAddressTextBox;
+        public System.Windows.Forms.Label printerModelLabel;
+        public System.Windows.Forms.ComboBox listPrinterModels;
+        public System.Windows.Forms.Label branchLabel;
+        public System.Windows.Forms.ComboBox listBranches;
+        public System.Windows.Forms.Label printIDLabel;
+        public System.Windows.Forms.TextBox printIDTextBox;
+        public System.Windows.Forms.Label descriptionLabel;
+        public System.Windows.Forms.TextBox descriptionTextBox;
+        public System.Windows.Forms.CheckBox activeCheckBox;
+        public System.Windows.Forms.Label dnsNameLabel;
+        public System.Windows.Forms.TextBox dnsNameTextBox;
     }
 }
 

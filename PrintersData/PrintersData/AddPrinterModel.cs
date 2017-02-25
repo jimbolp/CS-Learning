@@ -43,7 +43,7 @@ namespace PrintersData
 
             //var lastInserted = db.PrinterModels.AsNoTracking().FirstOrDefault(p => p.ID == newPrinterModel.ID);
             //int newId = newPrinterModel.ID;
-            labelResult.Text = "Принтер модел " + newPrinterModel.PrinterModel + "беше добавен успешно";
+            labelResult.Text = "Принтер модел " + newPrinterModel.PrinterModel + " беше добавен успешно";
             
         }
     }

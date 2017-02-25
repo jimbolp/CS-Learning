@@ -17,29 +17,30 @@ namespace PrintersData
         {
             InitializeComponent();
         }
-        public AddPrinter(PrinterMasterData printerToEdit, bool isEdit)
+        public AddPrinter(PrinterMasterData printerToEdit)
         {
+            printerIDToEdit = printerToEdit.ID;
             InitializeComponent();
-
-            if (isEdit)
-                return;
-             
+            InitializeFields(printerToEdit);
+            editPrinterButton.Visible = true;
+            editPrinterButton.Enabled = true;
         }
+        public int printerIDToEdit { get; set; }
         private void InitializeFields(PrinterMasterData p)
         {
-            printerNameTextBox.Text = p.PrinterName;
-
+            printerNameTextBox.Text = p.PrinterName.ToString();
+            IPAddressTextBox.Text = p.IPAddress.ToString();
+            printIDTextBox.Text = p.PrintID.ToString();
+            descriptionTextBox.Text = p.Description.ToString();
+            dnsNameTextBox.Text = Convert.ToString(p.DNSName);
+            activeCheckBox.Checked = p.Active.Value;
+            fillDropDownLists();
+            listBranches.SelectedItem = p.Branches.BranchName.ToString();            
+            listPrinterModels.SelectedItem = p.PrinterModels.PrinterModel.ToString();
         }
-        private void AddPrinter_Load(object sender, EventArgs e)
-        {
-            fillDropDownLists();           
-        }
-
-        private void fillDropDownLists()
+        public void fillDropDownLists()
         {
             var db = new PrintersDBContext();
-
-            //Fill comboBox with printer models from the db
             var sortedPrinterModels = db.PrinterModels.OrderBy(p => p.PrinterModel);
             listPrinterModels.Items.Insert(0, "(Изберете модел принтер)");
             foreach (var p in sortedPrinterModels)
@@ -48,14 +49,13 @@ namespace PrintersData
             }
             listPrinterModels.SelectedIndex = 0;
 
-            //Fill comboBox with branches from the db
             listBranches.Items.Insert(0, "(Изберете склад)");
             foreach (var b in db.Branches)
             {
                 listBranches.Items.Add(b.BranchName);
             }
             listBranches.SelectedIndex = 0;
-        } 
+        }
 
         private void addPrinterButton_Click(object sender, EventArgs e)
         {
@@ -77,7 +77,7 @@ namespace PrintersData
                 labelResult.Text = "Изберете склад и модел принтер";
                 return;
             }
-            if(!isBranchSelected)
+            if (!isBranchSelected)
             {
                 labelResult.Text = "Изберете склад";
             }
@@ -113,16 +113,23 @@ namespace PrintersData
 
             db.PrinterMasterData.Add(newPrinter);
             db.SaveChanges();
-            ResetPrintersGroupBoxItems();
+           
 
             //var lastPrinter = db.PrinterMasterData.OrderByDescending(p => p.ID).First();
             labelResult.Text = "Принтер: " + newPrinter.PrinterName + " беше добавен успешно!";
+            /*
             labelResult.Text += Environment.NewLine + "Модел: " + db.PrinterModels.Where(p => p.ID == newPrinter.PrinterModeID).Select(p => p.PrinterModel).FirstOrDefault();
             labelResult.Text += Environment.NewLine + "IP Адрес: " + newPrinter.IPAddress;
             labelResult.Text += Environment.NewLine + "Склад: " + db.Branches.Where(b => b.ID == newPrinter.BranchID).Select(b => b.BranchName).FirstOrDefault();
             labelResult.Text += Environment.NewLine + "Pharmos PrintID: " + newPrinter.PrintID;
             labelResult.Text += Environment.NewLine + "DNS: " + newPrinter.PrintID;
             labelResult.Text += Environment.NewLine + "Описание: " + newPrinter.Description;
+            /*///
+            DialogResult addNewPrinter = MessageBox.Show("Желаете ли да добавите нов принтер?", "Confirm", MessageBoxButtons.YesNo);
+            if (addNewPrinter == DialogResult.No)
+                this.Close();
+            else
+                ResetPrintersGroupBoxItems();
         }
 
         public int printerModelFromName(string printerModel)
@@ -149,9 +156,48 @@ namespace PrintersData
             activeCheckBox.Checked = true;
         }
 
-        public void EditPrinter()
-        {
-
+        private void editPrinterButton_Click(object sender, EventArgs e)
+        {         
+            UpdateDB();
+            this.Close();       
         }
+     
+        void UpdateDB()
+        {          
+            var db = new PrintersDBContext();
+            var printer = db.PrinterMasterData.FirstOrDefault(p => p.ID == printerIDToEdit);
+            if (printer.PrinterName != printerNameTextBox.Text)
+                printer.PrinterName = printerNameTextBox.Text;
+            if (printer.Description != descriptionTextBox.Text)
+                printer.Description = descriptionTextBox.Text;
+            if (printer.DNSName != dnsNameTextBox.Text)
+                printer.DNSName = dnsNameTextBox.Text;
+            if (printer.IPAddress != IPAddressTextBox.Text)
+                printer.IPAddress = IPAddressTextBox.Text;
+            if (printer.PrintID != printIDTextBox.Text)
+                printer.PrintID = printIDTextBox.Text;
+            if (printer.Active != activeCheckBox.Checked)
+                printer.Active = activeCheckBox.Checked;
+
+            PrinterModels pm = db.PrinterModels.FirstOrDefault(p => p.ID == printer.PrinterModeID);
+
+            if(listPrinterModels.SelectedItem.ToString() != pm.PrinterModel.ToString())
+            {
+                pm = db.PrinterModels.FirstOrDefault(p => p.PrinterModel == listPrinterModels.SelectedItem.ToString());
+                printer.PrinterModeID = pm.ID;
+            }
+
+            Branches br = db.Branches.FirstOrDefault(b => b.ID == printer.BranchID);
+
+            if(listBranches.SelectedItem.ToString() != br.BranchName.ToString())
+            {
+                br = db.Branches.FirstOrDefault(b => b.BranchName == 
+                listBranches.SelectedItem.ToString());
+                printer.BranchID = br.ID;
+            }
+
+            db.SaveChanges();
+            
+        }     
     }
 }
