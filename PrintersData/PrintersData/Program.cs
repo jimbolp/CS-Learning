@@ -16,7 +16,7 @@ namespace PrintersData
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PrintersData());
+            Application.Run(new PrinterData());
         }
     }
 }

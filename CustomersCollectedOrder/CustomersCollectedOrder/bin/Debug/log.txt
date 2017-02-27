@@ -100,4 +100,12 @@ Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Cus
 Време: 615
 Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
    at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91--------------------------------------------------------------------------------
+07.02.2017 12:16:27
+Клиент номер: 
+Маршрут: 131300
+Час: 1400
+Време: -60
+Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
    at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91
