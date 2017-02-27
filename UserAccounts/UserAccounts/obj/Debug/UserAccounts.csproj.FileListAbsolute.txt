@@ -37,16 +37,12 @@ E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.dll
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.dll
-E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Collector.dll
-E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
-E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csprojResolveAssemblyReference.cache
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
-E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.SearchUserForm.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCUserForm.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
@@ -63,3 +59,5 @@ C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\o
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.SearchUserForm.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
+E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.AddUserForm.resources
+E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.ShowUsersForm.resources

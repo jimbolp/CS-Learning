@@ -129,7 +129,7 @@ namespace UserAccounts
 
             if (!string.IsNullOrEmpty(textBoxADUser.Text))
             {
-                int lastUserID = db.UserMasterDatas.OrderByDescending(u => u.ID).Select(u => u.ID).First();
+                int lastUserID = db.UserMasterDatas.OrderByDescending(u => u.ID).Select(u => u.ID).FirstOrDefault();
                 var adUser = new ADUser()
                 {
                     UserID = lastUserID,
@@ -141,7 +141,7 @@ namespace UserAccounts
             RefreshListUsers();
             ResetUsersGroupBoxItems();
 
-            var lastUser = db.UserMasterDatas.OrderByDescending(u => u.ID).First();
+            var lastUser = db.UserMasterDatas.OrderByDescending(u => u.ID).FirstOrDefault();
             labelResult.Text = ("Потребителят е добавен успешно!") +
                                Environment.NewLine +
                                "№ --> " + lastUser.ID +
@@ -151,7 +151,7 @@ namespace UserAccounts
                                "Username в Активната Директория --> ";
             labelResult.Text += (!string.IsNullOrEmpty(
                                    lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).FirstOrDefault())
-                                   ? lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).First()
+                                   ? lastUser.ADUsers.Where(a => a.UserID == lastUser.ID).Select(ad => ad.ADName).FirstOrDefault()
                                    : "липсва");
             labelResult.Text += Environment.NewLine +
                                      "Длъжност --> " +
@@ -467,7 +467,7 @@ namespace UserAccounts
 
         private void btn_searchUser_Click(object sender, EventArgs e)
         {
-            SearchUserForm srchUserForm = new SearchUserForm();
+            ShowUsersForm srchUserForm = new ShowUsersForm();
             srchUserForm.FormClosed += new FormClosedEventHandler(srchUserForm_Closed);
             Hide();
             srchUserForm.Show();

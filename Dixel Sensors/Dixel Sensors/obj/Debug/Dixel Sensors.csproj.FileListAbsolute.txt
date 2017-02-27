@@ -18,3 +18,5 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel_Sensors.Form1.resources
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel_Sensors.Properties.Resources.resources
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\obj\Debug\Dixel Sensors.csproj.GenerateResource.Cache
+E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\bin\Debug\System.Net.Http.dll
+E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\bin\Debug\System.Net.Http.xml
