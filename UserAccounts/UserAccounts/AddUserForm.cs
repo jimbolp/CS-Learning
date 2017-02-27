@@ -17,6 +17,72 @@ namespace UserAccounts
         {
             InitializeComponent();
             initializeDropDownLists();
+            btn_EditUser.Enabled = false;
+            btn_EditUser.Visible = false;
+            btn_newUser.Visible = true;
+            btn_newUser.Enabled = true;
+            
+        }
+        public AddUserForm(UserMasterData user)
+        {
+            InitializeComponent();
+            initializeDropDownLists();
+            InitializeFields(user);
+            btn_newUser.Visible = false;
+            btn_newUser.Enabled = false;
+            btn_EditUser.Enabled = true;
+            btn_EditUser.Visible = true;            
+        }
+
+        private void InitializeFields(UserMasterData user)
+        {
+            var db = new UsersDBContext();
+            textBoxUserName.Text = user.UserName;
+            textBoxEmail.Text = user.Email;
+            textBoxADUser.Text =
+                user.ADUsers.Where(a => a.UserID == user.ID).Select(a => a.ADName).FirstOrDefault();
+            int selectedBranch = 0;
+            foreach (string item in listBranches.Items)
+            {
+                if (item == user.Branch.BranchName)
+                {
+                    selectedBranch = listBranches.Items.IndexOf(item);
+                    break;
+                }
+            }
+            listBranches.SelectedIndex = selectedBranch;
+            int selectedPosition = 0;
+            foreach (string item in listPositions.Items)
+            {
+                if (item == null || (db.Positions.Where(p => p.ID == user.PositionID.Value)
+                        .Select(p => p.Position1)
+                        .FirstOrDefault() == null))
+                    continue;
+                
+                if(item == db.Positions.Where(p => p.ID == user.PositionID.Value)
+                    .Select(p => p.Position1)
+                    .FirstOrDefault())
+                try
+                {
+                    selectedPosition = listPositions.Items.IndexOf(item);
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message +
+                        Environment.NewLine + ex.StackTrace,"Exception!");
+                }
+                
+            }
+            listPositions.SelectedIndex = selectedPosition;
+            
+            textBoxPharmosName.Text = user.PharmosUserName;
+            textBoxUadmName.Text = user.UADMUserName;
+            checkBoxGI.Checked = user.GI ?? false;
+            checkBoxPhibra.Checked = user.Phibra ?? false;
+            checkBoxPurchase.Checked = user.Purchase ?? false;
+            checkBoxTender.Checked = user.Tender ?? false;
+            checkBoxIsActive.Checked = user.Active;
         }
 
         public void btn_newUser_Click(object sender, EventArgs e)
