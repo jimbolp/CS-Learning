@@ -31,9 +31,10 @@ namespace UserAccounts
             btn_newUser.Visible = false;
             btn_newUser.Enabled = false;
             btn_EditUser.Enabled = true;
-            btn_EditUser.Visible = true;            
+            btn_EditUser.Visible = true;
+            UserToEdit = user;            
         }
-
+        private UserMasterData UserToEdit { get; set; }
         private void InitializeFields(UserMasterData user)
         {
             var db = new UsersDBContext();
@@ -211,6 +212,19 @@ namespace UserAccounts
 
         private void btn_EditUser_Click(object sender, EventArgs e)
         {
+            if (!isAllowedToAddUser())
+                return;
+            string selectedBranch = listBranches.SelectedItem.ToString();
+            string selectedPosition = listPositions.SelectedItem.ToString();
+            if (UserToEdit.UserName != textBoxUserName.Text)
+                UserToEdit.UserName = textBoxUserName.Text;
+            if (UserToEdit.Email != textBoxEmail.Text)
+                UserToEdit.Email = textBoxEmail.Text;
+            if (UserToEdit.PharmosUserName != textBoxPharmosName.Text)
+                UserToEdit.PharmosUserName = textBoxPharmosName.Text;
+            if (UserToEdit.UADMUserName != textBoxUadmName.Text)
+                UserToEdit.UADMUserName = textBoxUadmName.Text;
+            //TODO... 
 
         }
     }
