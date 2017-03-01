@@ -212,19 +212,56 @@ namespace UserAccounts
 
         private void btn_EditUser_Click(object sender, EventArgs e)
         {
+            var db = new UsersDBContext();
+            var userToEdit = db.UserMasterDatas.Where(u => u.ID == UserToEdit.ID).FirstOrDefault();
+            var adUser = db.ADUsers.Where(a => a.ADName == textBoxADUser.Text).FirstOrDefault();
             if (!isAllowedToAddUser())
                 return;
             string selectedBranch = listBranches.SelectedItem.ToString();
             string selectedPosition = listPositions.SelectedItem.ToString();
-            if (UserToEdit.UserName != textBoxUserName.Text)
-                UserToEdit.UserName = textBoxUserName.Text;
-            if (UserToEdit.Email != textBoxEmail.Text)
-                UserToEdit.Email = textBoxEmail.Text;
-            if (UserToEdit.PharmosUserName != textBoxPharmosName.Text)
-                UserToEdit.PharmosUserName = textBoxPharmosName.Text;
-            if (UserToEdit.UADMUserName != textBoxUadmName.Text)
-                UserToEdit.UADMUserName = textBoxUadmName.Text;
-            //TODO... 
+            int selectedPositionID = db.Positions
+                .Where(p => p.Position1 == selectedPosition)
+                .Select(p => p.ID).FirstOrDefault();
+            if (userToEdit.UserName != textBoxUserName.Text)
+                userToEdit.UserName = textBoxUserName.Text;
+            if (userToEdit.Email != textBoxEmail.Text)
+                userToEdit.Email = textBoxEmail.Text;
+            if (userToEdit.PharmosUserName != textBoxPharmosName.Text)
+                userToEdit.PharmosUserName = textBoxPharmosName.Text;
+            if (userToEdit.UADMUserName != textBoxUadmName.Text)
+                userToEdit.UADMUserName = textBoxUadmName.Text;
+            if(userToEdit.PositionID != selectedPositionID)
+            {
+                userToEdit.PositionID = db.Positions.Where(p => p.Position1 == selectedPosition)
+                    .Select(p => p.ID).FirstOrDefault();
+            }
+            if(userToEdit.Branch.BranchName != selectedBranch)
+            {
+                userToEdit.BranchID = db.Branches
+                    .Where(b => b.BranchName == selectedBranch)
+                    .Select(b => b.ID).FirstOrDefault();
+            }
+            if ((userToEdit.GI ?? false) != checkBoxGI.Checked)
+                userToEdit.GI = checkBoxGI.Checked;
+            if((userToEdit.Purchase ?? false) != checkBoxPurchase.Checked)
+            {
+                userToEdit.Purchase = checkBoxPurchase.Checked;
+            }
+            if((userToEdit.Tender ?? false) != checkBoxTender.Checked)
+            {
+                userToEdit.Tender = checkBoxTender.Checked;
+            }
+            if((userToEdit.Phibra ?? false) != checkBoxPhibra.Checked)
+            {
+                userToEdit.Phibra = checkBoxPhibra.Checked;
+            }
+            if (userToEdit.Active != checkBoxIsActive.Checked)
+                userToEdit.Active = checkBoxIsActive.Checked;
+            if(db.ADUsers.Where(a => a.UserID == userToEdit.ID).Select(a => a.ADName).FirstOrDefault() != textBoxADUser.Text)
+            {
+                adUser.UserID = userToEdit.ID;
+            }
+            db.SaveChanges();
 
         }
     }
