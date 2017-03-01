@@ -38,8 +38,7 @@ namespace UserAccounts
         {
             var db = new UsersDBContext();
             
-            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
-            
+            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();      
 
             SortableBindingList<CustomUser> sbList = new SortableBindingList<CustomUser>();
             var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser {
@@ -153,56 +152,10 @@ namespace UserAccounts
             int selectedUserID = ((CustomUser) userDBTable.SelectedRows[0].DataBoundItem).ID;
             var db = new UsersDBContext();
             UserMasterData userToEdit = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID);
-            AddUserForm addUserForm = new AddUserForm();
-            addUserForm.btn_EditUser.Enabled = true;
-            addUserForm.btn_EditUser.Visible = true;
-            addUserForm.btn_newUser.Visible = false;
-            addUserForm.btn_newUser.Enabled = false;
+            AddUserForm addUserForm = new AddUserForm(userToEdit);
+            
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
-
-            addUserForm.textBoxUserName.Text = userToEdit.UserName;
-            addUserForm.textBoxEmail.Text = userToEdit.Email;
-            addUserForm.textBoxADUser.Text =
-                userToEdit.ADUsers.Where(a => a.UserID == selectedUserID).Select(a => a.ADName).FirstOrDefault();
-            int selectedBranch = 0;
-            foreach (string item in addUserForm.listBranches.Items)
-            {
-                if (item == userToEdit.Branch.BranchName)
-                {
-                    selectedBranch = addUserForm.listBranches.Items.IndexOf(item);
-                    break;
-                }
-            }
-            addUserForm.listBranches.SelectedIndex = selectedBranch;
-            int selectedPosition = 0;
-            foreach (var item in addUserForm.listPositions.Items)
-            {
-                if(item == null)
-                    continue;
-                string position =
-                    db.Positions.Where(p => p.ID == userToEdit.PositionID.Value)
-                        .Select(p => p.Position1)
-                        .FirstOrDefault();
-                if(position == null)
-                    continue;
-                if ((string)item == position)
-                {
-                    selectedPosition = addUserForm.listPositions.Items.IndexOf(item);
-                    break;
-                }
-            }
-            addUserForm.listPositions.SelectedIndex = selectedPosition;
-
-            //if (userToEdit.PositionID != null)
-                //addUserForm.listPositions.SelectedItem = db.Positions.Where(p => p.ID == selectedUserID).Select(p => p.Position1).FirstOrDefault();
-            addUserForm.textBoxPharmosName.Text = userToEdit.PharmosUserName;
-            addUserForm.textBoxUadmName.Text = userToEdit.UADMUserName;
-            addUserForm.checkBoxGI.Checked = userToEdit.GI ?? false;
-            addUserForm.checkBoxPhibra.Checked = userToEdit.Phibra ?? false;
-            addUserForm.checkBoxPurchase.Checked = userToEdit.Purchase ?? false;
-            addUserForm.checkBoxTender.Checked = userToEdit.Tender ?? false;
-            addUserForm.checkBoxIsActive.Checked = userToEdit.Active;
-            //Visible = false;
+            
             addUserForm.Show();
         }
 
