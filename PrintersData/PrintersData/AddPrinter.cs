@@ -176,7 +176,7 @@ namespace PrintersData
                 printer.IPAddress = IPAddressTextBox.Text;
             if (printer.PrintID != printIDTextBox.Text)
                 printer.PrintID = printIDTextBox.Text;
-            if (printer.Active != activeCheckBox.Checked)
+            if ((printer.Active ?? false) != activeCheckBox.Checked)
                 printer.Active = activeCheckBox.Checked;
 
             PrinterModels pm = db.PrinterModels.FirstOrDefault(p => p.ID == printer.PrinterModeID);
