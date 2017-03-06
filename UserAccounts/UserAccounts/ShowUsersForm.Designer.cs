@@ -117,7 +117,7 @@
             this.userDBTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userDBTable.Size = new System.Drawing.Size(821, 730);
             this.userDBTable.TabIndex = 1;
-            this.userDBTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDBTable_CellClick);
+            this.userDBTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDBTable_CellDoubleClick);
             this.userDBTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDBTable_ColumnHeaderMouseClick);
             // 
             // ShowUsersForm
