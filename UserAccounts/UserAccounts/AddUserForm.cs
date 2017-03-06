@@ -214,7 +214,7 @@ namespace UserAccounts
         {
             var db = new UsersDBContext();
             var userToEdit = db.UserMasterDatas.Where(u => u.ID == UserToEdit.ID).FirstOrDefault();
-            var adUser = db.ADUsers.Where(a => a.ADName == textBoxADUser.Text).FirstOrDefault();
+            
             if (!isAllowedToAddUser())
                 return;
             string selectedBranch = listBranches.SelectedItem.ToString();
@@ -257,11 +257,42 @@ namespace UserAccounts
             }
             if (userToEdit.Active != checkBoxIsActive.Checked)
                 userToEdit.Active = checkBoxIsActive.Checked;
-            if(db.ADUsers.Where(a => a.UserID == userToEdit.ID).Select(a => a.ADName).FirstOrDefault() != textBoxADUser.Text)
+            if (string.IsNullOrEmpty(textBoxADUser.Text))
             {
-                adUser.UserID = userToEdit.ID;
+                if(db.ADUsers.FirstOrDefault(a => a.UserID == userToEdit.ID) != null)
+                {                    
+                    db.ADUsers.Remove(db.ADUsers.Where(a => a.UserID == userToEdit.ID).FirstOrDefault());
+                }
             }
-            db.SaveChanges();
+            else
+            {
+                ADUser adUser = db.ADUsers.FirstOrDefault(a => a.UserID == userToEdit.ID);
+                if (adUser != null
+                    && adUser.ADName != textBoxADUser.Text)
+                {
+                    adUser.ADName = textBoxADUser.Text;
+                }
+                else if(adUser == null)
+                {
+                    ADUser newADUser = new ADUser()
+                    {
+                        UserID = userToEdit.ID,
+                        ADName = textBoxADUser.Text
+                    };
+                    db.ADUsers.Add(newADUser);
+                }
+            }
+            try
+            {
+                db.SaveChanges();
+                MessageBox.Show("Промените бяха запазени успешно.", "Запазване");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message +
+                    Environment.NewLine +
+                    ex.StackTrace, "Exception!!!");
+            }//*/
 
         }
     }
