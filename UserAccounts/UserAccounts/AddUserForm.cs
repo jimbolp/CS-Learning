@@ -162,6 +162,27 @@ namespace UserAccounts
                 db.ADUsers.Add(adUser);
                 db.SaveChanges();
             }
+            
+            
+            if (MessageBox.Show("Желаете ли да добавите нов потребител?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.No)
+                this.Close();
+            else
+                ResetUsersGroupBoxItems();
+        }
+        private void ResetUsersGroupBoxItems()
+        {
+            textBoxUserName.Text = "";
+            textBoxEmail.Text = "";
+            textBoxADUser.Text = "";
+            listPositions.SelectedIndex = 0;
+            listBranches.SelectedIndex = 0;
+            textBoxPharmosName.Text = "";
+            textBoxUadmName.Text = "";
+            checkBoxGI.Checked = false;
+            checkBoxPurchase.Checked = false;
+            checkBoxTender.Checked = false;
+            checkBoxPhibra.Checked = false;
+            checkBoxIsActive.Checked = true;
         }
         private bool isAllowedToAddUser()
         {
