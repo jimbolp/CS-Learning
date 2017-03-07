@@ -21,7 +21,7 @@ namespace UserAccounts
             btn_EditUser.Visible = false;
             btn_newUser.Visible = true;
             btn_newUser.Enabled = true;
-            groupBoxNewUser.Text = "Създаване на нов потребител";
+            
         }
         public AddUserForm(UserMasterData user)
         {
@@ -32,8 +32,7 @@ namespace UserAccounts
             btn_newUser.Enabled = false;
             btn_EditUser.Enabled = true;
             btn_EditUser.Visible = true;
-            UserToEdit = user;
-            groupBoxNewUser.Text = "Редактиране на потребител";           
+            UserToEdit = user;            
         }
         private UserMasterData UserToEdit { get; set; }
         private void InitializeFields(UserMasterData user)
@@ -102,10 +101,10 @@ namespace UserAccounts
             var db = new UsersDBContext();
             //Fill comboBox with Positions from the database
             listPositions.Items.Insert(0, "(Изберете Длъжност)");
-            foreach (var p in db.Positions.OrderBy(p => p.Position1))
+            foreach (var p in db.Positions)
             {
                 listPositions.Items.Add(p.Position1);
-            }            
+            }
             listPositions.SelectedIndex = 0;
 
             //Fill comboBox with Branches from the database

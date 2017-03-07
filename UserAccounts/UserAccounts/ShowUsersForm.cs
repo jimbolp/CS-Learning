@@ -114,7 +114,18 @@ namespace UserAccounts
             Visible = false;
             editUser.Show();
         }
-                
+
+        private void userDBTable_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selectedRowIndex = userDBTable.CurrentCellAddress.Y;
+            userDBTable.Rows[selectedRowIndex].Selected = true;
+            /*var selectedRowIndex = userDBTable.CurrentCellAddress.Y;
+            CustomUser selectedRow = (CustomUser)userDBTable.Rows[selectedRowIndex].DataBoundItem;
+            var db = new UsersDBContext();
+            var selectedUser = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedRow.ID);
+            //*/
+        }
+
         private void SearchUserForm_VisibleChanged(object sender, EventArgs e)
         {
             if(Visible)
@@ -136,30 +147,21 @@ namespace UserAccounts
 
         private void btn_EditUser_Click(object sender, EventArgs e)
         {
-            ShowFormToEdit();
-        }
-        private void ShowFormToEdit()
-        {
             if (userDBTable.SelectedRows.Count != 1)
                 return;
-            int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
+            int selectedUserID = ((CustomUser) userDBTable.SelectedRows[0].DataBoundItem).ID;
             var db = new UsersDBContext();
             UserMasterData userToEdit = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID);
             AddUserForm addUserForm = new AddUserForm(userToEdit);
-
+            
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
-
+            
             addUserForm.Show();
         }
 
         private void userDBTable_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             ColorizeInactiveUsers(new UsersDBContext());
-        }
-
-        private void userDBTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {            
-            ShowFormToEdit();
         }
     }
 }
