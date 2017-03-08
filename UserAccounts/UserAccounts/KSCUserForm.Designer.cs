@@ -29,9 +29,7 @@
         private void InitializeComponent()
         {
             this.kscUserTable = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.kscUserTable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // kscUserTable
@@ -39,33 +37,25 @@
             this.kscUserTable.AllowUserToAddRows = false;
             this.kscUserTable.AllowUserToDeleteRows = false;
             this.kscUserTable.AllowUserToOrderColumns = true;
-            this.kscUserTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.kscUserTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.kscUserTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kscUserTable.Location = new System.Drawing.Point(12, 327);
+            this.kscUserTable.Location = new System.Drawing.Point(12, 12);
             this.kscUserTable.Name = "kscUserTable";
-            this.kscUserTable.Size = new System.Drawing.Size(851, 390);
+            this.kscUserTable.Size = new System.Drawing.Size(851, 705);
             this.kscUserTable.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(531, 176);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 1;
             // 
             // KSCUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.kscUserTable);
             this.Name = "KSCUserForm";
             this.Text = "KSCUserForm";
             this.Load += new System.EventHandler(this.KSCUserForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.kscUserTable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -73,6 +63,5 @@
         #endregion
 
         private System.Windows.Forms.DataGridView kscUserTable;
-        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

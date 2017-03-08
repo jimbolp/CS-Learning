@@ -41,7 +41,7 @@ namespace UserAccounts
             List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();      
 
             SortableBindingList<CustomUser> sbList = new SortableBindingList<CustomUser>();
-            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser {
+            var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser {
                 ID = u.ID,
                 UserName = u.UserName,
                 Email = u.Email,
@@ -55,7 +55,7 @@ namespace UserAccounts
                 TenderAccount = (u.Tender == null) ? "Не" : (u.Tender.Value) ? "Да" : "Не",
                 PhibraAccount = (u.Phibra == null) ? "Не" : (u.Phibra.Value) ? "Да" : "Не",
                 State = (u.Active) ? "Активен" : "Неактивен"
-            }).ToList();//*/
+            }).OrderBy(u => u.UserName).ToList();//*/
 
             foreach (var o in orderdUsers)
             {
@@ -82,7 +82,7 @@ namespace UserAccounts
             }//*/
             userDBTable.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
             //userDBTable.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
-            userDBTable.RowHeadersVisible = false;
+            //userDBTable.RowHeadersVisible = false;
             userDBTable.DataSource = new BindingSource()
             {
                 DataSource = sbList
@@ -90,7 +90,7 @@ namespace UserAccounts
             userDBTable.Columns[0].Visible = false;
 
             ColorizeInactiveUsers(db);
-            userDBTable.RowHeadersVisible = true;
+            //userDBTable.RowHeadersVisible = true;
             userDBTable.Refresh();
         }
 

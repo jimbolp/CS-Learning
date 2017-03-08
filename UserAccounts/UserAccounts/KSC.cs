@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace UserAccounts
 {
     using System;
@@ -10,13 +12,14 @@ namespace UserAccounts
     public partial class KSC
     {
         public int ID { get; set; }
-
+        [DisplayName("Склад №")]
         public int BranchID { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Име Фамилия")]
         public string UserName { get; set; }
-
+        [DisplayName("Потребител №")]
         public int UserID { get; set; }
 
         [Required]
@@ -24,7 +27,7 @@ namespace UserAccounts
         public string TermID { get; set; }
 
         public int UID { get; set; }
-
+        [DisplayName("FC права")]
         public bool AllowFC { get; set; }
 
         public virtual Branch Branch { get; set; }

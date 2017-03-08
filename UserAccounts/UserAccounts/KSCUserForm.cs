@@ -20,19 +20,29 @@ namespace UserAccounts
 
         private void KSCUserForm_Load(object sender, EventArgs e)
         {
+            InitializeKSCDataGrid();
+        }
+
+        private void InitializeKSCDataGrid()
+        {
             var db = new UsersDBContext();
-            var kscUsers = db.KSCs.Select(k => new
+            SortableBindingList<CustomKSCUser> sbList = new SortableBindingList<CustomKSCUser>();
+            var kscUsers = db.KSCs.Select(k => new CustomKSCUser 
             {
                 UserName = db.UserMasterDatas.Where(u => u.ID == k.UserID).Select(u => u.UserName).FirstOrDefault(),
-                KscUserName = k.UserName,
-                k.TermID,
-                k.UID,
+                KSCUserName = k.UserName,
+                TermID = k.TermID,
+                UID = k.UID,
                 AllowFC = (k.AllowFC) ? "Да" : "Не",
                 Branch = db.Branches.Where(b => b.ID == k.BranchID).Select(b => b.BranchName).FirstOrDefault()
             });
+            foreach (var k in kscUsers)
+            {
+                sbList.Add(k);
+            }
             BindingSource bs = new BindingSource()
             {
-                DataSource = kscUsers.ToList()
+                DataSource = sbList
             };
             kscUserTable.DataSource = bs;
             kscUserTable.Refresh();
