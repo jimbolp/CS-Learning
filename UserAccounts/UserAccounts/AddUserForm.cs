@@ -118,12 +118,19 @@ namespace UserAccounts
         private void CreateNewUser()
         {
             var db = new UsersDBContext();
-
-            DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{textBoxUserName.Text}\"", "Confirm", MessageBoxButtons.YesNo);
-
-            if (confirmCreateUser == DialogResult.No)
+            
+            DialogResult confirmCreateUser;
+            if (UserNameExists(db))
             {
-                MessageBox.Show("Не бяха направени промени.");
+                confirmCreateUser = MessageBox.Show("Потребител с такова име вече съществува! Сигурни ли сте че искате да продължите?", "Внимание!", MessageBoxButtons.YesNo);
+            }
+            else
+            {
+                confirmCreateUser = MessageBox.Show($"Потребител \"{textBoxUserName.Text}\" ще бъде добавен в базата данни!", "Внимание!", MessageBoxButtons.OKCancel);
+            }
+            if (confirmCreateUser == DialogResult.No || confirmCreateUser == DialogResult.Cancel || confirmCreateUser == DialogResult.Abort)
+            {
+                MessageBox.Show("Промените са отказани!");
                 return; //*/
             }
 
@@ -183,15 +190,23 @@ namespace UserAccounts
             checkBoxPhibra.Checked = false;
             checkBoxIsActive.Checked = true;
         }
-        private bool isAllowedToAddUser()
+        private bool UserNameExists(UsersDBContext db)
         {
+            if (db.UserMasterDatas.Any(u => u.UserName.Trim().ToLower() == textBoxUserName.Text.Trim().ToLower()))
+            {                
+                    return true;
+            }
+            return false;
+        }
+        private bool isAllowedToAddUser()
+        {            
             if (string.IsNullOrEmpty(textBoxUserName.Text))
             {
                 MessageBox.Show("Моля въведете Име! Полето не може да бъде празно.", "Празно поле!");
                 return false;
             }
             var db = new UsersDBContext();
-
+            
             bool isPositionSelected = db.Positions.Any(p => p.Position1 == listPositions.SelectedItem.ToString());
             bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
 
