@@ -102,11 +102,11 @@ namespace CustomerReturns
         }
         class Invoice
         {
-            public int InvoiceNo { get; set; }
+            public Int64 InvoiceNo { get; set; }
             public DateTime InvoiceDate { get; set; }
             public int CustomerNo { get; set; }
             public int BranchNo { get; set; }
-            public Invoice(int invoiceNum, DateTime date, int customerNo, int branchNo, string labelText)
+            public Invoice(Int64 invoiceNum, DateTime date, int customerNo, int branchNo, string labelText)
             {
                 InvoiceNo = invoiceNum;
                 InvoiceDate = date;
@@ -144,7 +144,7 @@ namespace CustomerReturns
                     if (DateTime.TryParseExact(invoiceDateTextBox.Text, "dd.MM.yyyy",
                         CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                     {
-                        invoices.Add(new Invoice(int.Parse(invoiceNoTextBox.Text),
+                        invoices.Add(new Invoice(Int64.Parse(invoiceNoTextBox.Text),
                             date, int.Parse(customerTextBox.Text), int.Parse(branchTextBox.Text), labelResult.Text));
                         clearFields();
                         labelResult.Text = "";

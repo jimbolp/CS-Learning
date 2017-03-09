@@ -37,11 +37,12 @@ namespace UserAccounts
         public void loadUserDBTable()
         {
             var db = new UsersDBContext();
-            
-            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();      
+
+            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
 
             SortableBindingList<CustomUser> sbList = new SortableBindingList<CustomUser>();
-            var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser {
+            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser
+            {
                 ID = u.ID,
                 UserName = u.UserName,
                 Email = u.Email,
@@ -55,7 +56,7 @@ namespace UserAccounts
                 TenderAccount = (u.Tender == null) ? "Не" : (u.Tender.Value) ? "Да" : "Не",
                 PhibraAccount = (u.Phibra == null) ? "Не" : (u.Phibra.Value) ? "Да" : "Не",
                 State = (u.Active) ? "Активен" : "Неактивен"
-            }).OrderBy(u => u.UserName).ToList();//*/
+            }).ToList();//*/
 
             foreach (var o in orderdUsers)
             {
@@ -82,7 +83,7 @@ namespace UserAccounts
             }//*/
             userDBTable.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
             //userDBTable.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
-            //userDBTable.RowHeadersVisible = false;
+            userDBTable.RowHeadersVisible = false;
             userDBTable.DataSource = new BindingSource()
             {
                 DataSource = sbList
@@ -90,13 +91,13 @@ namespace UserAccounts
             userDBTable.Columns[0].Visible = false;
 
             ColorizeInactiveUsers(db);
-            //userDBTable.RowHeadersVisible = true;
+            userDBTable.RowHeadersVisible = true;
             userDBTable.Refresh();
         }
 
         private void ColorizeInactiveUsers(UsersDBContext db)
         {
-            
+
             for (int i = 0; i < userDBTable.Rows.Count; i++)
             {
                 CustomUser cu = (CustomUser)userDBTable.Rows[i].DataBoundItem;
@@ -115,20 +116,9 @@ namespace UserAccounts
             editUser.Show();
         }
 
-        private void userDBTable_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var selectedRowIndex = userDBTable.CurrentCellAddress.Y;
-            userDBTable.Rows[selectedRowIndex].Selected = true;
-            /*var selectedRowIndex = userDBTable.CurrentCellAddress.Y;
-            CustomUser selectedRow = (CustomUser)userDBTable.Rows[selectedRowIndex].DataBoundItem;
-            var db = new UsersDBContext();
-            var selectedUser = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedRow.ID);
-            //*/
-        }
-
         private void SearchUserForm_VisibleChanged(object sender, EventArgs e)
         {
-            if(Visible)
+            if (Visible)
                 loadUserDBTable();
         }
 
@@ -140,28 +130,37 @@ namespace UserAccounts
             addUserForm.btn_newUser.Visible = true;
             addUserForm.btn_newUser.Enabled = true;
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
-            
+
             //Visible = false;
             addUserForm.Show();
         }
 
         private void btn_EditUser_Click(object sender, EventArgs e)
         {
+            ShowFormToEdit();
+        }
+        private void ShowFormToEdit()
+        {
             if (userDBTable.SelectedRows.Count != 1)
                 return;
-            int selectedUserID = ((CustomUser) userDBTable.SelectedRows[0].DataBoundItem).ID;
+            int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
             var db = new UsersDBContext();
             UserMasterData userToEdit = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID);
             AddUserForm addUserForm = new AddUserForm(userToEdit);
-            
+
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
-            
+
             addUserForm.Show();
         }
 
         private void userDBTable_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             ColorizeInactiveUsers(new UsersDBContext());
+        }
+
+        private void userDBTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowFormToEdit();
         }
     }
 }

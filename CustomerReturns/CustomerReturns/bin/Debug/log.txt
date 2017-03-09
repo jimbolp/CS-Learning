@@ -5,3 +5,10 @@ Please load the following invoice:
 Invoice no. [1001624078] from [08.09.2015] for customer [2058038] in branch [22]
 
 The invoice is not available in the invoice history (DKHIS) and has to be reloaded!
+
+8.3.2017 г.
+Please load the following invoice:
+
+Invoice no. [3001530169] from [11.1.2016 г.] for customer [7012265] in branch [26]
+
+The invoice is not available in the invoice history (DKHIS) and has to be reloaded!

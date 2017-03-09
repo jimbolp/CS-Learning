@@ -22,7 +22,6 @@ namespace UserAccounts
         {
             InitializeKSCDataGrid();
         }
-
         private void InitializeKSCDataGrid()
         {
             var db = new UsersDBContext();

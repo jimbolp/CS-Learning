@@ -61,7 +61,7 @@
             this.groupFilters.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupFilters.Location = new System.Drawing.Point(827, 0);
             this.groupFilters.Name = "groupFilters";
-            this.groupFilters.Size = new System.Drawing.Size(181, 729);
+            this.groupFilters.Size = new System.Drawing.Size(181, 730);
             this.groupFilters.TabIndex = 3;
             this.groupFilters.TabStop = false;
             this.groupFilters.Text = "Filter";
@@ -117,14 +117,14 @@
             this.userDBTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userDBTable.Size = new System.Drawing.Size(821, 730);
             this.userDBTable.TabIndex = 1;
-            this.userDBTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDBTable_CellClick);
+            this.userDBTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDBTable_CellDoubleClick);
             this.userDBTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDBTable_ColumnHeaderMouseClick);
             // 
             // ShowUsersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.groupFilters);
             this.Controls.Add(this.userDBTable);
             this.DoubleBuffered = true;
