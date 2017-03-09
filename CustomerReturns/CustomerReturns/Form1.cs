@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -46,47 +47,22 @@ namespace CustomerReturns
                 if (invoices.Count == 0)
                 {
                     labelResult.Text = "Полетата не трябва да бъдат празни";
+                    return;
                 }
                 else
                 {
                     if (invoices.Count == 1)
                     {
-                        labelResult.Text = "Please load the following invoice:";
-                        File.AppendAllText("log.txt", Environment.NewLine +
-                            DateTime.Now.ToShortDateString() +
-                            Environment.NewLine +
-                            "Please load the following invoice:" +
-                            Environment.NewLine);
-                        foreach (var l in invoices)
-                        {
-                            labelResult.Text += l;
-                            File.AppendAllText("log.txt", l.ToString());
-                        }
-                        labelResult.Text += "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!";
-                        File.AppendAllText("log.txt", Environment.NewLine +
-                            "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!" +
-                            Environment.NewLine);
-
+                        WriteDateAndSubject();
+                        WriteBody(false);
                     }
                     else
                     {
-                        labelResult.Text = "Please load the following invoices:";
-                        File.AppendAllText("log.txt", Environment.NewLine +
-                            DateTime.Now.ToShortDateString() +
-                            Environment.NewLine +
-                            "Please load the following invoices:" +
-                            Environment.NewLine);
-                        foreach (var l in invoices)
-                        {
-                            labelResult.Text += l;
-                            File.AppendAllText("log.txt", l.ToString());
-                        }
-                        labelResult.Text += "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!";
-                        File.AppendAllText("log.txt", Environment.NewLine +
-                            "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!" +
-                            Environment.NewLine);
+                        WriteDateAndSubject();
+                        WriteBody(true);
                     }
                 }
+                Process.Start("log.txt");           
             }
             else
             {
@@ -99,6 +75,51 @@ namespace CustomerReturns
                     clearFields();
                 }
             }
+        }
+        private void WriteBody(bool mult)
+        {
+            if (mult)
+            {
+                labelResult.Text = "Please load the following invoices:";
+                File.AppendAllText("log.txt", Environment.NewLine +
+                "Please load the following invoices:" +
+                    Environment.NewLine);
+                foreach (var l in invoices)
+                {
+                    labelResult.Text += l;
+                    File.AppendAllText("log.txt", l.ToString());
+                }
+                labelResult.Text += "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!";
+                File.AppendAllText("log.txt", Environment.NewLine +
+                    "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!" +
+                    Environment.NewLine);
+            }
+            else
+            {
+                labelResult.Text += "Please load the following invoice:";
+                File.AppendAllText("log.txt", Environment.NewLine +
+                "Please load the following invoice:" +
+                    Environment.NewLine);
+                foreach (var l in invoices)
+                {
+                    labelResult.Text += l;
+                    File.AppendAllText("log.txt", l.ToString());
+                }
+                labelResult.Text += "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!";
+                File.AppendAllText("log.txt", Environment.NewLine +
+                    "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!" +
+                    Environment.NewLine);
+            }
+        }
+        private void WriteDateAndSubject()
+        {
+            labelResult.Text += "Subject: Customer Returns - load old invoice into invoice history"
+                            + Environment.NewLine;
+            File.AppendAllText("log.txt", Environment.NewLine +
+                            DateTime.Now.ToShortDateString() + 
+                            Environment.NewLine +
+                            "Subject: Customer Returns - load old invoice into invoice history" +
+                            Environment.NewLine);
         }
         class Invoice
         {
