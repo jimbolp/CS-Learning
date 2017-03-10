@@ -21,7 +21,7 @@ namespace UserAccounts
             btn_EditUser.Visible = false;
             btn_newUser.Visible = true;
             btn_newUser.Enabled = true;
-            
+            groupBoxNewUser.Text = "Създаване на нов потребител";
         }
         public AddUserForm(UserMasterData user)
         {
@@ -32,6 +32,7 @@ namespace UserAccounts
             btn_newUser.Enabled = false;
             btn_EditUser.Enabled = true;
             btn_EditUser.Visible = true;
+            groupBoxNewUser.Text = "Редактиране на потребител";
             UserToEdit = user;            
         }
         private UserMasterData UserToEdit { get; set; }
@@ -101,7 +102,7 @@ namespace UserAccounts
             var db = new UsersDBContext();
             //Fill comboBox with Positions from the database
             listPositions.Items.Insert(0, "(Изберете Длъжност)");
-            foreach (var p in db.Positions)
+            foreach (var p in db.Positions.OrderBy(p => p.Position1))
             {
                 listPositions.Items.Add(p.Position1);
             }
@@ -138,7 +139,7 @@ namespace UserAccounts
             var email = new SqlParameter("@email", textBoxEmail.Text);
             var uadmName = new SqlParameter("@uadm", textBoxUadmName.Text);
             var pharmosName = new SqlParameter("@pharmos", textBoxPharmosName.Text);
-            //var adName = new SqlParameter("@adName", textBoxADUser.Text);
+            var adName = new SqlParameter("@adName", textBoxADUser.Text);
 
             var newUser = new UserMasterData
             {
@@ -158,17 +159,15 @@ namespace UserAccounts
             db.SaveChanges();
 
             if (!string.IsNullOrEmpty(textBoxADUser.Text))
-            {
-                
+            {                
                 var adUser = new ADUser()
                 {
                     UserID = newUser.ID,
-                    ADName = Convert.ToString((new SqlParameter("@adName", textBoxADUser.Text)).SqlValue)
+                    ADName = Convert.ToString(adName.SqlValue)
                 };
                 db.ADUsers.Add(adUser);
                 db.SaveChanges();
             }
-            
             
             if (MessageBox.Show("Желаете ли да добавите нов потребител?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.No)
                 this.Close();

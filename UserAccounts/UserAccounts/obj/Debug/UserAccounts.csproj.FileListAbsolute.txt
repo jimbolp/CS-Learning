@@ -65,3 +65,4 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\o
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.ShowUsersForm.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.AddUserForm.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.ShowUsersForm.resources
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCAccount.resources

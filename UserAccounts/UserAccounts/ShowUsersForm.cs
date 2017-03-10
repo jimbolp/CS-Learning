@@ -20,16 +20,28 @@ namespace UserAccounts
         private void SearchUserForm_Load(object sender, EventArgs e)
         {
             var db = new UsersDBContext();
-
+            int i = 0;
             foreach (var b in db.Branches)
             {
-                chckBoxBranches.Items.Add(b.BranchName, CheckState.Checked);
+                listBoxBranches.Items.Add(b.BranchName);
+                listBoxBranches.SetSelected(i++, true);
             }
 
             loadUserDBTable();
+            loadListBoxPositions();
         }
-
-        private void chckBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
+        private void loadListBoxPositions()
+        {
+            var db = new UsersDBContext();
+            int i = 0;
+            listBoxPositions.Items.Clear();
+            foreach(var p in db.Positions.OrderBy(p => p.Position1))
+            {
+                listBoxPositions.Items.Add(p.Position1);
+                listBoxPositions.SetSelected(i++, true);
+            }
+        }
+        private void listBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadUserDBTable();
         }
@@ -38,10 +50,12 @@ namespace UserAccounts
         {
             var db = new UsersDBContext();
 
-            List<int> checkedBranches = (from object item in chckBoxBranches.CheckedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
+            List<int> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
 
-            SortableBindingList<CustomUser> sbList = new SortableBindingList<CustomUser>();
-            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID)).Select(u => new CustomUser
+            List<int> checkedPositions = (from object item in listBoxPositions.SelectedItems select Convert.ToString(item) into itemName select db.Positions.Where(p => p.Position1 == itemName).Select(p => p.ID).FirstOrDefault()).ToList();
+
+            SortableBindingList < CustomUser > sbList = new SortableBindingList<CustomUser>();
+            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).Select(u => new CustomUser
             {
                 ID = u.ID,
                 UserName = u.UserName,
@@ -161,6 +175,56 @@ namespace UserAccounts
         private void userDBTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ShowFormToEdit();
+        }
+                
+        private void OpenKSCAccount()
+        {
+            var db = new UsersDBContext();
+            int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
+            KSCUserForm kscForm = new KSCUserForm(db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID));
+            //kscForm.FormClosed += (o, args) => loadUserDBTable();
+            kscForm.Show();
+        }
+        private void NewKSCAccount(int userID)
+        {
+            KSCAccount kscAccount = new KSCAccount(userID);
+            kscAccount.Show();
+        }
+
+        private void btn_KSCAccount_Click(object sender, EventArgs e)
+        {
+            if (userDBTable.SelectedRows.Count != 1)
+                return;
+            int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
+            var db = new UsersDBContext();
+            if (db.KSCs.Any(k => k.UserID == selectedUserID))
+                OpenKSCAccount();
+            else
+                NewKSCAccount(selectedUserID);
+        }
+
+        private void btn_FilterPos_Click(object sender, EventArgs e)
+        {
+            loadUserDBTable();
+        }
+
+        private void chckBoxSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chckBoxSelectAll.Checked)
+                for (int i = 0; i < listBoxPositions.Items.Count; ++i)
+                    listBoxPositions.SetSelected(i, true);                
+            
+            else
+                for (int i = 0; i < listBoxPositions.Items.Count; ++i)
+                    listBoxPositions.SetSelected(i, false);
+        }
+
+        private void listBoxPositions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxPositions.SelectedItems.Count == listBoxPositions.Items.Count)
+                chckBoxSelectAll.Checked = true;
+            else
+                chckBoxSelectAll.Checked = false;
         }
     }
 }

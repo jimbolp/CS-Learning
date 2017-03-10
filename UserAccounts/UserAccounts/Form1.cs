@@ -441,7 +441,7 @@ namespace UserAccounts
                 return;
             }
             
-            KSC selectedUserKSC = db.KSCs.First(k => k.BranchID == selectedBranchID && k.UserID == selectedUserID);
+            KSC selectedUserKSC = db.KSCs.FirstOrDefault(k => k.BranchID == selectedBranchID && k.UserID == selectedUserID);
             textBoxKSCUserName.Text = selectedUserKSC.UserName;
             textBoxKSCUserName.Enabled = false;
             textBoxThermID.Text = selectedUserKSC.TermID;
