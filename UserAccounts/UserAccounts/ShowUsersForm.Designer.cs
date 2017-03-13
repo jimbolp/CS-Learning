@@ -31,19 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowUsersForm));
             this.listBoxBranches = new System.Windows.Forms.ListBox();
             this.groupFilters = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chckBoxSelectAll = new System.Windows.Forms.CheckBox();
-            this.btn_FilterPos = new System.Windows.Forms.Button();
             this.listBoxPositions = new System.Windows.Forms.ListBox();
+            this.btn_FilterPos = new System.Windows.Forms.Button();
             this.btn_KSCAccount = new System.Windows.Forms.Button();
             this.btn_EditUser = new System.Windows.Forms.Button();
             this.btn_AddUser = new System.Windows.Forms.Button();
             this.btn_Customize = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.userDBTable = new UserAccounts.CustomDataGridView();
             this.groupFilters.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userDBTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +76,28 @@
             this.groupFilters.TabStop = false;
             this.groupFilters.Text = "Filter";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.listBoxBranches);
+            this.groupBox2.Location = new System.Drawing.Point(7, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(169, 120);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Складове";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chckBoxSelectAll);
+            this.groupBox1.Controls.Add(this.listBoxPositions);
+            this.groupBox1.Controls.Add(this.btn_FilterPos);
+            this.groupBox1.Location = new System.Drawing.Point(7, 145);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(169, 177);
+            this.groupBox1.TabIndex = 11;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Длъжности";
+            // 
             // chckBoxSelectAll
             // 
             this.chckBoxSelectAll.AutoSize = true;
@@ -90,17 +112,6 @@
             this.chckBoxSelectAll.UseVisualStyleBackColor = true;
             this.chckBoxSelectAll.CheckedChanged += new System.EventHandler(this.chckBoxSelectAll_CheckedChanged);
             // 
-            // btn_FilterPos
-            // 
-            this.btn_FilterPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btn_FilterPos.Location = new System.Drawing.Point(1, 143);
-            this.btn_FilterPos.Name = "btn_FilterPos";
-            this.btn_FilterPos.Size = new System.Drawing.Size(169, 23);
-            this.btn_FilterPos.TabIndex = 8;
-            this.btn_FilterPos.Text = "Филтрирай";
-            this.btn_FilterPos.UseVisualStyleBackColor = true;
-            this.btn_FilterPos.Click += new System.EventHandler(this.btn_FilterPos_Click);
-            // 
             // listBoxPositions
             // 
             this.listBoxPositions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -111,6 +122,17 @@
             this.listBoxPositions.Size = new System.Drawing.Size(155, 95);
             this.listBoxPositions.TabIndex = 7;
             this.listBoxPositions.SelectedIndexChanged += new System.EventHandler(this.listBoxPositions_SelectedIndexChanged);
+            // 
+            // btn_FilterPos
+            // 
+            this.btn_FilterPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btn_FilterPos.Location = new System.Drawing.Point(1, 143);
+            this.btn_FilterPos.Name = "btn_FilterPos";
+            this.btn_FilterPos.Size = new System.Drawing.Size(169, 23);
+            this.btn_FilterPos.TabIndex = 8;
+            this.btn_FilterPos.Text = "Филтрирай";
+            this.btn_FilterPos.UseVisualStyleBackColor = true;
+            this.btn_FilterPos.Click += new System.EventHandler(this.btn_FilterPos_Click);
             // 
             // btn_KSCAccount
             // 
@@ -156,28 +178,6 @@
             this.btn_Customize.UseVisualStyleBackColor = true;
             this.btn_Customize.Click += new System.EventHandler(this.btn_Customize_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chckBoxSelectAll);
-            this.groupBox1.Controls.Add(this.listBoxPositions);
-            this.groupBox1.Controls.Add(this.btn_FilterPos);
-            this.groupBox1.Location = new System.Drawing.Point(7, 145);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(169, 177);
-            this.groupBox1.TabIndex = 11;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Длъжности";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listBoxBranches);
-            this.groupBox2.Location = new System.Drawing.Point(7, 19);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(169, 120);
-            this.groupBox2.TabIndex = 12;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Складове";
-            // 
             // userDBTable
             // 
             this.userDBTable.AllowUserToAddRows = false;
@@ -193,6 +193,7 @@
             this.userDBTable.Location = new System.Drawing.Point(0, 0);
             this.userDBTable.Name = "userDBTable";
             this.userDBTable.ReadOnly = true;
+            this.userDBTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.userDBTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userDBTable.Size = new System.Drawing.Size(804, 730);
             this.userDBTable.TabIndex = 1;
@@ -214,9 +215,9 @@
             this.Load += new System.EventHandler(this.SearchUserForm_Load);
             this.VisibleChanged += new System.EventHandler(this.SearchUserForm_VisibleChanged);
             this.groupFilters.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.userDBTable)).EndInit();
             this.ResumeLayout(false);
 

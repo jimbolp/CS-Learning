@@ -199,8 +199,6 @@ namespace UserAccounts
             var db = new UsersDBContext();
             if (db.KSCs.Any(k => k.UserID == selectedUserID))
                 OpenKSCAccount();
-            else
-                NewKSCAccount(selectedUserID);
         }
 
         private void btn_FilterPos_Click(object sender, EventArgs e)
