@@ -25,6 +25,8 @@ namespace UserAccounts
 
         [StringLength(100)]
         public string Email { get; set; }
+        [StringLength(200)]
+        public string Description { get; set; }
 
         public int BranchID { get; set; }
 

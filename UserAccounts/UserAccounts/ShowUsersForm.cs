@@ -30,6 +30,7 @@ namespace UserAccounts
             loadUserDBTable();
             loadListBoxPositions();
         }
+        public int SelectedDataGridIdx { get; set; }
         private void loadListBoxPositions()
         {
             var db = new UsersDBContext();
@@ -69,7 +70,8 @@ namespace UserAccounts
                 PurchaseAccount = (u.Purchase == null) ? "Не" : (u.Purchase.Value) ? "Да" : "Не",
                 TenderAccount = (u.Tender == null) ? "Не" : (u.Tender.Value) ? "Да" : "Не",
                 PhibraAccount = (u.Phibra == null) ? "Не" : (u.Phibra.Value) ? "Да" : "Не",
-                State = (u.Active) ? "Активен" : "Неактивен"
+                State = (u.Active) ? "Активен" : "Неактивен",
+                Description = u.Description
             }).ToList();//*/
 
             foreach (var o in orderdUsers)
@@ -195,10 +197,7 @@ namespace UserAccounts
         {
             if (userDBTable.SelectedRows.Count != 1)
                 return;
-            int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
-            var db = new UsersDBContext();
-            if (db.KSCs.Any(k => k.UserID == selectedUserID))
-                OpenKSCAccount();
+            OpenKSCAccount();
         }
 
         private void btn_FilterPos_Click(object sender, EventArgs e)

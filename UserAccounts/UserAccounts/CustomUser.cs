@@ -29,6 +29,8 @@ namespace UserAccounts
         public string PhibraAccount { get; set; }
         [DisplayName("Статус")]
         public string State { get; set; }
-        
+        [DisplayName("Доп. Информация")]
+        public string Description { get; set; }
+
     }
 }

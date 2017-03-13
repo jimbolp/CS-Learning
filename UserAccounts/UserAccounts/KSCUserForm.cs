@@ -25,8 +25,15 @@ namespace UserAccounts
         public UserMasterData User { get; set; }
         private void KSCUserForm_Load(object sender, EventArgs e)
         {
-            if (User == null)
+            var db = new UsersDBContext();
+            if (!db.KSCs.Any(k => k.UserID == User.ID))
+            {
                 InitializeKSCDataGrid(true);
+                if(MessageBox.Show("Потребител \"" + User.UserName + "\" няма KSC акаунт. Искате ли да създадете нов?", "Несъществуващ акаунт", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    /*               //*/
+                }
+            }
             else
                 InitializeKSCDataGrid(false);
         }
