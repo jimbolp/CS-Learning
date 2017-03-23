@@ -1,0 +1,4 @@
+E:\Documents\C# Projects\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ExcelTest.exe.config
+E:\Documents\C# Projects\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\Convert PZN in Excel.csproj.ResolveComReference.cache
+E:\Documents\C# Projects\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.exe
+E:\Documents\C# Projects\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.pdb
