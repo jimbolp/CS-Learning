@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\bin\Debug\Fix Bugs.exe.config
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\bin\Debug\Fix Bugs.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\bin\Debug\Fix Bugs.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\obj\Debug\Fix Bugs.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\obj\Debug\Fix Bugs.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Debugging and Troubleshooting Code\Fix Bugs\obj\Debug\Fix Bugs.pdb

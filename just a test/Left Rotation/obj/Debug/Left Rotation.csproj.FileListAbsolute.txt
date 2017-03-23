@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\bin\Debug\Left Rotation.exe.config
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\bin\Debug\Left Rotation.exe
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\bin\Debug\Left Rotation.pdb
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\obj\Debug\Left Rotation.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\obj\Debug\Left Rotation.exe
+E:\Documents\GitHub\CS-Learning\just a test\Left Rotation\obj\Debug\Left Rotation.pdb

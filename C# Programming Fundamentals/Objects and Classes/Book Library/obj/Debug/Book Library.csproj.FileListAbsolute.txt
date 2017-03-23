@@ -1,8 +1,0 @@
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\bin\Debug\Book Library.exe.config
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\bin\Debug\Book Library.exe
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\bin\Debug\Book Library.pdb
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\obj\Debug\Book Library.csprojResolveAssemblyReference.cache
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\obj\Debug\Book Library.exe
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\obj\Debug\Book Library.pdb
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\bin\Debug\Newtonsoft.Json.dll
-E:\Documents\GitHub\CS-Learning\C# Programming Fundamentals\Objects and Classes\Book Library\bin\Debug\Newtonsoft.Json.xml

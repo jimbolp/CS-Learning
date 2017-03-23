@@ -1,0 +1,20 @@
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.exe.config
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csproj.ResolveComReference.cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.pdb
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csprojResolveAssemblyReference.cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.CustomersCollectedOrders.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.Properties.Resources.resources
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csproj.GenerateResource.Cache
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.exe
+c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.exe.config
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csproj.ResolveComReference.cache
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.exe
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Release\CustomersCollectedOrder.pdb
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csprojResolveAssemblyReference.cache
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.CustomersCollectedOrders.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.Properties.Resources.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Release\CustomersCollectedOrder.csproj.GenerateResource.Cache

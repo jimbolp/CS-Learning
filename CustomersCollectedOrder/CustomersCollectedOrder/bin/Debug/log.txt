@@ -1,0 +1,111 @@
+--------------------------------------------------------------------------------
+13.12.2016 г. 17:47:48
+Клиент номер: 7022714
+Маршрут: 062810
+Час: 1530
+Време: 760
+--------------------------------------------------------------------------------
+13.12.2016 г. 17:47:54
+Клиент номер: 7022714
+Маршрут: 062810
+Час: 1600
+Време: 730
+--------------------------------------------------------------------------------
+13.12.2016 г. 17:48:12
+Клиент номер: 7022720
+Маршрут: 062811
+Час: 1530
+Време: 761
+--------------------------------------------------------------------------------
+13.12.2016 г. 18:16:56
+Клиент номер: 2074215
+Маршрут: 123000
+Час: 2100
+Време: 540
+--------------------------------------------------------------------------------
+13.12.2016 г. 18:18:13
+Клиент номер: 2074215
+Маршрут: 123000
+Час: 1500
+Време: 900
+--------------------------------------------------------------------------------
+13.12.2016 г. 18:19:31
+Клиент номер: 2074215
+Маршрут: 132525
+Час: 1515
+Време: 580
+--------------------------------------------------------------------------------
+14.12.2016 г. 14:35:47
+Клиент номер: 7026340
+Маршрут: 123000
+Час: 2100
+Време: 540
+--------------------------------------------------------------------------------
+14.12.2016 г. 14:43:18
+Клиент номер: 7015298
+Маршрут: 123000
+Час: 1500
+Време: 900
+--------------------------------------------------------------------------------
+14.12.2016 г. 14:43:34
+Клиент номер: 7015298
+Маршрут: 123000
+Час: 2200
+Време: 480
+--------------------------------------------------------------------------------
+14.12.2016 г. 14:50:08
+Клиент номер: 7027960
+Маршрут: 123200
+Час: 2600
+Време: 360
+--------------------------------------------------------------------------------
+14.12.2016 г. 18:00:32
+Клиент номер: 7022714
+Маршрут: 062800
+Час: 2100
+Време: 420
+--------------------------------------------------------------------------------
+15.12.2016 г. 11:33:05
+Клиент номер: 2075210
+Маршрут: 123242
+Час: 1235
+Време: 1217
+--------------------------------------------------------------------------------
+15.12.2016 г. 11:33:31
+Клиент номер: 2075210
+Маршрут: 123244
+Час: 1232
+Време: 1216
+--------------------------------------------------------------------------------
+15.12.2016 г. 11:34:53
+Клиент номер: 2075210
+Маршрут: 213425
+Час: 1232
+Време: 1317
+Sorry, we couldn't find c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in c:\users\fina.meranzova\documents\visual studio 2015\Projects\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 89--------------------------------------------------------------------------------
+22.01.2017 9:55:28
+Клиент номер: 
+Маршрут: 142901
+Час: 2123
+Време: 458
+Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91--------------------------------------------------------------------------------
+22.01.2017 12:22:35
+Клиент номер: 
+Маршрут: 013130
+Час: 2115
+Време: 615
+Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91--------------------------------------------------------------------------------
+07.02.2017 12:16:27
+Клиент номер: 
+Маршрут: 131300
+Час: 1400
+Време: -60
+Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91

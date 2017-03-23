@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\bin\Debug\Split by Word Casing.exe.config
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\bin\Debug\Split by Word Casing.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\bin\Debug\Split by Word Casing.pdb
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\obj\Debug\Split by Word Casing.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\obj\Debug\Split by Word Casing.exe
+e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Split by Word Casing\obj\Debug\Split by Word Casing.pdb
