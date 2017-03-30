@@ -56,3 +56,55 @@ Invoice no. [1001902989] from [15.1.2016 г.] for customer [2072950] in branch [
 Invoice no. [1001903054] from [15.1.2016 г.] for customer [2076059] in branch [22]
 
 The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+20.3.2017 г.
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoices:
+
+Invoice no. [4001412955] from [17.11.2015 г.] for customer [5018810] in branch [25]
+
+Invoice no. [4001426663] from [30.11.2015 г.] for customer [5004379] in branch [25]
+
+Invoice no. [4001494222] from [1.2.2016 г.] for customer [5021082] in branch [25]
+
+The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+24.3.2017 г.
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoices:
+
+Invoice no. [1001815013] from [4.12.2015 г.] for customer [2048206] in branch [22]
+
+Invoice no. [1001816552] from [4.12.2015 г.] for customer [2055940] in branch [22]
+
+The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+29.3.2017 г.
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoice:
+
+Invoice no. [1001795737] from [25.11.2015 г.] for customer [2066500] in branch [22]
+
+The invoice is not available in the invoice history (DKHIS) and has to be reloaded!
+
+30.3.2017 г.
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoices:
+
+Invoice no. [3001485224] from [2.12.2015 г.] for customer [4026440] in branch [26]
+
+Invoice no. [3001485195] from [2.12.2015 г.] for customer [4024115] in branch [26]
+
+Invoice no. [3001485225] from [2.12.2015 г.] for customer [4028366] in branch [26]
+
+Invoice no. [3001485236] from [2.12.2015 г.] for customer [4026083] in branch [26]
+
+Invoice no. [3001485519] from [2.12.2015 г.] for customer [7922470] in branch [26]
+
+Invoice no. [3001478243] from [26.11.2015 г.] for customer [7026474] in branch [26]
+
+The invoices are not available in the invoice history (DKHIS) and have to be reloaded!

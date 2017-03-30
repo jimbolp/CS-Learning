@@ -4,8 +4,9 @@ using System.Security;
 
 namespace UserAccounts
 {
-    class CustomKSCUser
+    public class CustomKSCUser
     {
+        public int UserID { get; set; }
         [DisplayName("Име Фамилия")]
         public string UserName { get; set; }
         [DisplayName("KSC Потребител")]
