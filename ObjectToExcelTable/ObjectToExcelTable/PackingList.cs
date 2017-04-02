@@ -1,0 +1,104 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+//using System.Web;
+
+namespace ObjectToExcelTable
+{
+    public class PackingList
+    {
+        private class _sale
+        {
+            public int CustomerID { get; set; }
+            public string CustomerName { get; set; }
+            public string DeliveryAddress { get; set; }
+            public string DocName { get; set; }
+            public int DocNo { get; set; }
+            public DateTime DocDate { get; set; }
+        }
+
+        private const string sqlSale = "select s.CustomerID, c.Name as CustomerName, c.ShipmentAddress as DeliveryAddress, " +
+                                       "d.ShortName as DocName, s.DocNo, s.DocDate from {0}.dbo.Sale s with(nolock) " +
+                                       "left join {0}.Dbo.Customer c with(nolock) on s.CustomerID = c.ID " +
+                                       "left join {0}.dbo.DocType d with (nolock) on d.ID = s.DocTypeID " +
+                                       "where s.ID= {1}";
+
+        private const string sqlSaleItem = "";
+
+        public int AppID { get; set; }
+        public string AppName { get; set; }
+        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string DocName { get; set; }
+        public int DocNo { get; set; }
+        public DateTime DocDate { get; set; }
+
+        public List<PackingListItem> items { get; set; }
+
+
+        public PackingList()
+        {
+            items = new List<PackingListItem>();
+        }
+
+        /*public PackingList(int appID, int saleID)
+        {
+            PositioningEntities2 db = new PositioningEntities2();
+            App app = db.Apps.Find(appID);
+            if (db != null && app != null)
+            {
+                AppID = appID;
+                AppName = app.Name;
+
+                string sql = string.Format(sqlSale, app.DBName, saleID);
+                _sale sale = db.Database.SqlQuery<_sale>(sql).FirstOrDefault();
+
+                if (sale != null)
+                {
+                    CustomerID = sale.CustomerID;
+                    CustomerName = sale.CustomerName;
+                    DeliveryAddress = sale.DeliveryAddress;
+                    DocName = sale.DocName;
+                    DocNo = sale.DocNo;
+                    DocDate = sale.DocDate;
+
+                    items = new List<PackingListItem>();
+
+
+
+                }
+                else
+                {
+                    throw new Exception("Търсения документ за продажба не беше открит!");
+                }
+
+            }
+            else
+            {
+                throw new Exception("Грешка в инициализацията на базата данни");
+            }
+
+
+        }//*/
+    }
+
+    public class PackingListItem
+    {
+        //private PackingListItem() { }
+
+        public int ArticleID { get; set; }
+        public string ArticleName { get; set; }
+        public string ParcelNo { get; set; }
+        public DateTime ExpiryDate { get; set; }
+        public int Qty { get; set; }
+        public int PalletID { get; set; }
+        public int PalletBarcode { get; set; }
+        public int PosCodeID { get; set; }
+        public string PosCodeName { get; set; }
+        public int StoreID { get; set; }
+        public string StoreName { get; set; }
+        
+    }
+
+}
