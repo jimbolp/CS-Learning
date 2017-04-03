@@ -108,3 +108,16 @@ Invoice no. [3001485519] from [2.12.2015 г.] for customer [7922470] in branch [
 Invoice no. [3001478243] from [26.11.2015 г.] for customer [7026474] in branch [26]
 
 The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+31.3.2017 г.
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoices:
+
+Invoice no. [2001214078] from [25.11.2015 г.] for customer [3020641] in branch [23]
+
+Invoice no. [2001214074] from [25.11.2015 г.] for customer [3022835] in branch [23]
+
+Invoice no. [2001214076] from [25.11.2015 г.] for customer [3020233] in branch [23]
+
+The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
