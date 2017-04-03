@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace ObjectToExcelTable
 {
@@ -29,9 +31,39 @@ namespace ObjectToExcelTable
                 StoreID = 22,
                 StoreName = "София"                
             };
-           
+            PackingListItem pli2 = new PackingListItem()
+            {
+                ArticleID = 63644,
+                ArticleName = "Зопиклон",
+                ParcelNo = "3221855",
+                ExpiryDate = DateTime.Now,
+                Qty = 50000,
+                PalletID = 1254444,
+                PalletBarcode = 235656456,
+                PosCodeID = 50,
+                PosCodeName = "Каса",
+                StoreID = 23,
+                StoreName = "Бургас"
+            };
+            PackingListItem pli3 = new PackingListItem()
+            {
+                ArticleID = 12546,
+                ArticleName = "Парацетмол",
+                ParcelNo = "133532",
+                ExpiryDate = DateTime.Now,
+                Qty = 3546,
+                PalletID = 123,
+                PalletBarcode = 4321,
+                PosCodeID = 50,
+                PosCodeName = "Каса",
+                StoreID = 25,
+                StoreName = "Пловдив"
+            };
+
             List<PackingListItem> lPli = new List<PackingListItem>();
             lPli.Add(pli);
+            lPli.Add(pli2);
+            lPli.Add(pli3);
             PackingList pl = new PackingList()
             {
                 AppID = 1,
@@ -44,9 +76,11 @@ namespace ObjectToExcelTable
                 DocDate = DateTime.Now,
                 items = lPli
             };
+            
             GetPropertiesOneByOne(pl);
             Print();
-            Console.ReadLine();
+            ExcelTable();
+            //Console.ReadLine();
         }
         public static void GetPropertiesOneByOne(object o)
         {            
@@ -57,13 +91,25 @@ namespace ObjectToExcelTable
             foreach (PropertyInfo pi in p)
             {
                 //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
-                if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && !(pi.GetValue(o) is String))
+                if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && !(pi.GetValue(o) is String) && pi.CanRead)
                     foreach (var enumPi in (IEnumerable)pi.GetValue(o))
-                        GetPropertiesOneByOne(enumPi);
-                else
+                    {
+                        Type propertyType = enumPi.GetType();
+                        PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                        foreach(PropertyInfo propInfo in propInfos)
+                        {
+                            if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
+                            {
+                                ProcessSimpleTypeProperty(propInfo, enumPi);
+                            }
+                        }
+                        //GetPropertiesOneByOne(enumPi);
+                    }
+                else if (pi.CanRead)
                     ProcessSimpleTypeProperty(pi, o);
             }            
         }
+
 
         private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o)
         {
@@ -73,8 +119,7 @@ namespace ObjectToExcelTable
             }
             else
                 LinkedHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
-            
-            //Console.WriteLine(" -> " + pi.GetValue(o, null));
+                        
         }
         private static void Print()
         {
@@ -87,9 +132,117 @@ namespace ObjectToExcelTable
         }
         private static void ExcelTable()
         {
-            var xlApp = new Application();
-            Workbook xlWorkbook = new Workbook();
-            Range xlSheet = xlWorkbook.Sheets[0];
+            Application xlApp = new Application();
+            Workbook xlWorkbook = xlApp.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            Worksheet xlSheet = xlWorkbook.Sheets[1];
+            
+            int r = 1;
+            int c = 1;
+            foreach(string key in LinkedHeaderAndContent.Keys)
+            {
+                try
+                {                    
+                    (xlSheet.Cells[r, c++] as Range).Value = separateWords(key);
+                    foreach (string value in LinkedHeaderAndContent[key])
+                        (xlSheet.Cells[r, c++] as Range).Value = value;
+                    c = 1;
+                    r++;
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
+                    xlWorkbook.Close(false);
+                    xlApp.Quit();
+                    releaseObject(xlSheet);
+                    releaseObject(xlWorkbook);
+                    releaseObject(xlApp);
+                    return;
+                }
+            }
+            try
+            {
+                FormatTable(xlSheet);
+            }
+            catch (Exception)
+            {
+                //..
+            }
+            xlWorkbook.SaveAs("C:\\Users\\yavor.georgiev\\Documents\\test.xlsx");
+            xlWorkbook.Close(false);
+            xlApp.Quit();
+            releaseObject(xlSheet);
+            releaseObject(xlWorkbook);
+            releaseObject(xlApp);
+        }
+        private static void FormatTable(Worksheet xlWorksheet)
+        {
+            int startRow = 1;
+            int startCol = 1;
+
+            int endRow = LinkedHeaderAndContent.Keys.Count;
+            int endCol = 0;
+
+            foreach (var key in LinkedHeaderAndContent.Keys)
+                if (LinkedHeaderAndContent[key].Count > endRow)
+                    endCol = LinkedHeaderAndContent[key].Count;
+
+            Range xlRange = xlWorksheet.UsedRange;
+            xlRange.HorizontalAlignment = XlHAlign.xlHAlignCenterAcrossSelection;
+            xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            xlRange.Columns.AutoFit();
+            Range startCell = xlWorksheet.Cells[startRow, startCol];
+            Range endCell = xlWorksheet.Cells[endRow, startCol];
+            Range titleRow = null;
+            try
+            {
+                titleRow = xlWorksheet.Range[startCell, endCell];
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
+            titleRow.Font.Bold = true;
+            foreach (Range c in xlRange.Cells)
+            {
+                c.BorderAround(XlLineStyle.xlContinuous,
+                                        XlBorderWeight.xlThin,
+                                        XlColorIndex.xlColorIndexAutomatic,
+                                        XlColorIndex.xlColorIndexAutomatic);
+            }
+        }
+        private static string separateWords(string str)
+        {
+            str = str.Trim();
+            for(int i = 0; i < str.Length; ++i)
+            {
+                if (i != 0 && i < str.Length - 1
+                    && (str[i + 1].ToString() == (str[i + 1]).ToString().ToUpper())
+                    && str[i].ToString() != str[i].ToString().ToUpper())
+                {
+                    str = str.Insert(++i, " ");
+                }
+            }
+            return str;
+        }
+        private static void releaseObject(object obj)
+        {
+                try
+                {
+                    Marshal.ReleaseComObject(obj);
+                    obj = null;
+                }
+                catch (Exception ex)
+                {
+                    obj = null;
+                    Console.Write("Exception Occured while releasing object " + ex.ToString());
+                }
+                finally
+                {
+                    GC.Collect();
+                }
             
         }
     }

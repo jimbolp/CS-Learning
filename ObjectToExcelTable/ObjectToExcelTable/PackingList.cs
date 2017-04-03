@@ -5,6 +5,35 @@ using System.Linq;
 
 namespace ObjectToExcelTable
 {
+    public class PropDisplay
+    {
+        public string PropName { get; set; }
+        public string PropDisplayName { get; set; }
+        public bool isVisible { get; set; }
+    }
+
+
+    public class PropsDisplay
+    {
+        List<PropDisplay> props { get; set; }
+
+        public PropsDisplay()
+        {
+            props = new List<PropDisplay>();
+        }
+
+        public void export(Object obj, PropsDisplay props = null)
+        {
+            if(props != null)
+            {
+                // imash imena na poleta
+            }
+
+        }
+    }
+
+    
+
     public class PackingList
     {
         private class _sale
