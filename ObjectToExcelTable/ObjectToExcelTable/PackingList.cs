@@ -10,6 +10,17 @@ namespace ObjectToExcelTable
         public string PropName { get; set; }
         public string PropDisplayName { get; set; }
         public bool isVisible { get; set; }
+        public string PropFormat { get; set; } // "0.00 %"
+        public bool isFormated
+        { get
+            {
+                if (string.IsNullOrEmpty(this.PropFormat))
+                    return false;
+                else
+                    return true;
+            }
+                
+        }
     }
 
 

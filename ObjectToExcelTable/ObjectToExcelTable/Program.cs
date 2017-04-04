@@ -14,7 +14,8 @@ namespace ObjectToExcelTable
 {
     class Program
     {
-        public static Dictionary<string, List<string> > LinkedHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
+        public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
+        public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string>>();
         public static void Main(string[] args)
         {
             PackingListItem pli = new PackingListItem()
@@ -100,33 +101,49 @@ namespace ObjectToExcelTable
                         {
                             if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
                             {
-                                ProcessSimpleTypeProperty(propInfo, enumPi);
+                                ProcessSimpleTypeProperty(propInfo, enumPi, true);
                             }
                         }
                         //GetPropertiesOneByOne(enumPi);
                     }
                 else if (pi.CanRead)
-                    ProcessSimpleTypeProperty(pi, o);
+                    ProcessSimpleTypeProperty(pi, o, false);
             }            
         }
-
-
-        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o)
+        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp)
         {
-            if (!LinkedHeaderAndContent.ContainsKey(pi.Name))
+            if (isCollectionProp)
             {
-                LinkedHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                if (!LinkedListHeaderAndContent.ContainsKey(pi.Name))
+                {
+                    LinkedListHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                }
+                else
+                    LinkedListHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
             }
             else
-                LinkedHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
-                        
+            {
+                if (!LinkedObjHeaderAndContent.ContainsKey(pi.Name))
+                {
+                    LinkedObjHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                }
+                else
+                    LinkedObjHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
+            }                        
         }
         private static void Print()
         {
-            foreach (var key in LinkedHeaderAndContent.Keys)
+            foreach (var key in LinkedObjHeaderAndContent.Keys)
             {
                 Console.WriteLine(key);
-                foreach (var value in LinkedHeaderAndContent[key])
+                foreach (var value in LinkedObjHeaderAndContent[key])
+                    Console.WriteLine(" -> " + value);
+            }
+            Console.WriteLine(new string('=', 10));
+            foreach (var key in LinkedListHeaderAndContent.Keys)
+            {
+                Console.WriteLine(key);
+                foreach (var value in LinkedListHeaderAndContent[key])
                     Console.WriteLine(" -> " + value);
             }
         }
@@ -138,17 +155,42 @@ namespace ObjectToExcelTable
             
             int r = 1;
             int c = 1;
-            foreach(string key in LinkedHeaderAndContent.Keys)
+            int listRow = 0;
+            foreach(string key in LinkedObjHeaderAndContent.Keys)
             {
                 try
                 {                    
                     (xlSheet.Cells[r, c++] as Range).Value = separateWords(key);
-                    foreach (string value in LinkedHeaderAndContent[key])
+                    foreach (string value in LinkedObjHeaderAndContent[key])
                         (xlSheet.Cells[r, c++] as Range).Value = value;
                     c = 1;
-                    r++;
+                    listRow = ++r;
                 }
                 catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.StackTrace);
+                    xlWorkbook.Close(false);
+                    xlApp.Quit();
+                    releaseObject(xlSheet);
+                    releaseObject(xlWorkbook);
+                    releaseObject(xlApp);
+                    return;
+                }
+            }
+            c = 1;
+            r = listRow;
+            foreach(var key in LinkedListHeaderAndContent.Keys)
+            {
+                try
+                {
+                    (xlSheet.Cells[r++, c] as Range).Value = separateWords(key);
+                    foreach (string value in LinkedListHeaderAndContent[key])
+                        (xlSheet.Cells[r++, c] as Range).Value = value;
+                    c++;
+                    r = listRow;
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                     Console.WriteLine(e.StackTrace);
@@ -167,7 +209,7 @@ namespace ObjectToExcelTable
             catch (Exception)
             {
                 //..
-            }
+            }//*/
             xlWorkbook.SaveAs("C:\\Users\\yavor.georgiev\\Documents\\test.xlsx");
             xlWorkbook.Close(false);
             xlApp.Quit();
@@ -177,17 +219,17 @@ namespace ObjectToExcelTable
         }
         private static void FormatTable(Worksheet xlWorksheet)
         {
+            Range xlRange = xlWorksheet.UsedRange;
             int startRow = 1;
             int startCol = 1;
 
-            int endRow = LinkedHeaderAndContent.Keys.Count;
+            int endRow = LinkedObjHeaderAndContent.Keys.Count;
             int endCol = 0;
 
-            foreach (var key in LinkedHeaderAndContent.Keys)
-                if (LinkedHeaderAndContent[key].Count > endRow)
-                    endCol = LinkedHeaderAndContent[key].Count;
-
-            Range xlRange = xlWorksheet.UsedRange;
+            foreach (var key in LinkedObjHeaderAndContent.Keys)
+                if (LinkedObjHeaderAndContent[key].Count > endCol)
+                    endCol = LinkedObjHeaderAndContent[key].Count;
+            
             xlRange.HorizontalAlignment = XlHAlign.xlHAlignCenterAcrossSelection;
             xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             xlRange.Columns.AutoFit();

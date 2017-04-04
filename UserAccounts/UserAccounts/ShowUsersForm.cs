@@ -97,6 +97,7 @@ namespace UserAccounts
                 PurchaseAccount = (u.Purchase == null) ? "Не" : (u.Purchase.Value) ? "Да" : "Не",
                 TenderAccount = (u.Tender == null) ? "Не" : (u.Tender.Value) ? "Да" : "Не",
                 PhibraAccount = (u.Phibra == null) ? "Не" : (u.Phibra.Value) ? "Да" : "Не",
+                KSCAccount = (db.KSCs.Any(k => k.UserID == u.ID)) ? "Да" : "Не",
                 State = (u.Active) ? "Активен" : "Неактивен",
                 Description = u.Description
             }).ToList();//*/
