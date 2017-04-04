@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 //using System.Web;
 
@@ -66,6 +67,7 @@ namespace ObjectToExcelTable
         private const string sqlSaleItem = "";
 
         public int AppID { get; set; }
+        [DisplayName("Име на приложение")]
         public string AppName { get; set; }
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }

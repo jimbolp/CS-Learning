@@ -15,7 +15,7 @@ namespace ObjectToExcelTable
     class Program
     {
         public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
-        public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string>>();
+        public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
         {
             PackingListItem pli = new PackingListItem()
@@ -60,7 +60,6 @@ namespace ObjectToExcelTable
                 StoreID = 25,
                 StoreName = "Пловдив"
             };
-
             List<PackingListItem> lPli = new List<PackingListItem>();
             lPli.Add(pli);
             lPli.Add(pli2);
@@ -83,6 +82,13 @@ namespace ObjectToExcelTable
             ExcelTable();
             //Console.ReadLine();
         }
+        public static void GetAttributes(IEnumerable<object> o)
+        {
+            foreach(var objs in o)
+            {
+                object temp = objs.GetType();
+            }
+        }
         public static void GetPropertiesOneByOne(object o)
         {            
             Type t = o.GetType();
@@ -91,6 +97,7 @@ namespace ObjectToExcelTable
             //За всяко пропърти правим проверка дали си нямаме работа с колекция
             foreach (PropertyInfo pi in p)
             {
+                GetAttributes(pi.GetCustomAttributes());
                 //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
                 if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && !(pi.GetValue(o) is String) && pi.CanRead)
                     foreach (var enumPi in (IEnumerable)pi.GetValue(o))
@@ -110,25 +117,41 @@ namespace ObjectToExcelTable
                     ProcessSimpleTypeProperty(pi, o, false);
             }            
         }
-        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp)
+        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName = null)
         {
             if (isCollectionProp)
             {
                 if (!LinkedListHeaderAndContent.ContainsKey(pi.Name))
                 {
-                    LinkedListHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    if (string.IsNullOrEmpty(propDispName))
+                        LinkedListHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    else
+                        LinkedListHeaderAndContent[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
                 }
                 else
-                    LinkedListHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
+                {
+                    if (string.IsNullOrEmpty(propDispName))
+                        LinkedListHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
+                    else
+                        LinkedListHeaderAndContent[propDispName].Add(pi.GetValue(o, null).ToString());
+                }
             }
             else
             {
                 if (!LinkedObjHeaderAndContent.ContainsKey(pi.Name))
                 {
-                    LinkedObjHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    if (string.IsNullOrEmpty(propDispName))
+                        LinkedObjHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    else
+                        LinkedObjHeaderAndContent[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
                 }
                 else
-                    LinkedObjHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
+                {
+                    if (string.IsNullOrEmpty(propDispName))
+                        LinkedObjHeaderAndContent[pi.Name].Add(pi.GetValue(o, null).ToString());
+                    else
+                        LinkedObjHeaderAndContent[propDispName].Add(pi.GetValue(o, null).ToString());
+                }
             }                        
         }
         private static void Print()
@@ -210,29 +233,52 @@ namespace ObjectToExcelTable
             {
                 //..
             }//*/
-            xlWorkbook.SaveAs("C:\\Users\\yavor.georgiev\\Documents\\test.xlsx");
-            xlWorkbook.Close(false);
-            xlApp.Quit();
-            releaseObject(xlSheet);
-            releaseObject(xlWorkbook);
-            releaseObject(xlApp);
+            try
+            {
+                string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                Console.WriteLine(str);
+                xlWorkbook.SaveAs(str + "\\test.xlsx");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                xlWorkbook.Close(false);
+                xlApp.Quit();
+                releaseObject(xlSheet);
+                releaseObject(xlWorkbook);
+                releaseObject(xlApp);
+            }
         }
         private static void FormatTable(Worksheet xlWorksheet)
         {
+            //Align and autofit the whole table
             Range xlRange = xlWorksheet.UsedRange;
-            int startRow = 1;
-            int startCol = 1;
-
-            int endRow = LinkedObjHeaderAndContent.Keys.Count;
-            int endCol = 0;
-
-            foreach (var key in LinkedObjHeaderAndContent.Keys)
-                if (LinkedObjHeaderAndContent[key].Count > endCol)
-                    endCol = LinkedObjHeaderAndContent[key].Count;
-            
             xlRange.HorizontalAlignment = XlHAlign.xlHAlignCenterAcrossSelection;
             xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             xlRange.Columns.AutoFit();
+
+
+            int startRow = 1;
+            int startCol = 1;
+            int endRow = LinkedObjHeaderAndContent.Keys.Count;
+            int endCol = 0;
+            foreach (var key in LinkedObjHeaderAndContent.Keys)
+                if (LinkedObjHeaderAndContent[key].Count > endCol)
+                    endCol = LinkedObjHeaderAndContent[key].Count;
+
+            int startListRow = endRow + 1;
+            int endListCol = LinkedListHeaderAndContent.Keys.Count;
+            Range startListHeader = xlWorksheet.Cells[startListRow, startCol];
+            Range endListHeader = xlWorksheet.Cells[startListRow, endListCol];
+            
+            Range ListHeaderRange = xlWorksheet.Range[startListHeader, endListHeader];
+            ListHeaderRange.Font.Bold = true;
+            //*/
+
+            
             Range startCell = xlWorksheet.Cells[startRow, startCol];
             Range endCell = xlWorksheet.Cells[endRow, startCol];
             Range titleRow = null;
@@ -269,6 +315,7 @@ namespace ObjectToExcelTable
             }
             return str;
         }
+
         private static void releaseObject(object obj)
         {
                 try
