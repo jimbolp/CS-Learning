@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace ObjectToExcelTable
 {
     class Program
     {
-        public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
-        public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
+        //public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
+        //public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
         {
             PackingListItem pli = new PackingListItem()
@@ -64,6 +65,10 @@ namespace ObjectToExcelTable
             lPli.Add(pli);
             lPli.Add(pli2);
             lPli.Add(pli3);
+            List<PackingListItem> lPli2 = new List<PackingListItem>();
+            lPli2.Add(pli);
+            lPli2.Add(pli2);
+            lPli2.Add(pli3);
             PackingList pl = new PackingList()
             {
                 AppID = 1,
@@ -74,20 +79,25 @@ namespace ObjectToExcelTable
                 DocNo = 201,
                 DocName = "Test Doc",
                 DocDate = DateTime.Now,
-                items = lPli
+                items = lPli,
+                items2 = lPli2
             };
-            
+            ReportFromObj rfo = new ReportFromObj(pl);
+            rfo.ExportToExcel();
+            /*
             GetPropertiesOneByOne(pl);
             Print();
             ExcelTable();
-            //Console.ReadLine();
-        }
-        public static void GetAttributes(IEnumerable<object> o)
+            Console.ReadLine();//*/
+        }/*
+        public static bool GetAttributes(IEnumerable<object> o)
         {
-            foreach(var objs in o)
+            foreach (var objs in o)
             {
-                object temp = objs.GetType();
+                if (objs is DisplayNameAttribute)
+                    return true;
             }
+            return false;
         }
         public static void GetPropertiesOneByOne(object o)
         {            
@@ -97,31 +107,42 @@ namespace ObjectToExcelTable
             //За всяко пропърти правим проверка дали си нямаме работа с колекция
             foreach (PropertyInfo pi in p)
             {
-                GetAttributes(pi.GetCustomAttributes());
+
                 //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
                 if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && !(pi.GetValue(o) is String) && pi.CanRead)
                     foreach (var enumPi in (IEnumerable)pi.GetValue(o))
                     {
                         Type propertyType = enumPi.GetType();
                         PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                        foreach(PropertyInfo propInfo in propInfos)
+                        foreach (PropertyInfo propInfo in propInfos)
                         {
                             if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
                             {
-                                ProcessSimpleTypeProperty(propInfo, enumPi, true);
+                                if (GetAttributes(propInfo.GetCustomAttributes()))
+                                {
+                                    string AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                                    ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
+                                }
                             }
                         }
                         //GetPropertiesOneByOne(enumPi);
                     }
                 else if (pi.CanRead)
-                    ProcessSimpleTypeProperty(pi, o, false);
+                {
+                    if (GetAttributes(pi.GetCustomAttributes()))
+                    {
+                        string AttrName = pi.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        ProcessSimpleTypeProperty(pi, o, false, AttrName);
+                    }
+                    //ProcessSimpleTypeProperty(pi, o, false);
+                }
             }            
         }
-        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName = null)
+        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
             if (isCollectionProp)
             {
-                if (!LinkedListHeaderAndContent.ContainsKey(pi.Name))
+                if (!LinkedListHeaderAndContent.ContainsKey(propDispName))
                 {
                     if (string.IsNullOrEmpty(propDispName))
                         LinkedListHeaderAndContent[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
@@ -232,7 +253,7 @@ namespace ObjectToExcelTable
             catch (Exception)
             {
                 //..
-            }//*/
+            }
             try
             {
                 string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -260,7 +281,7 @@ namespace ObjectToExcelTable
             xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             xlRange.Columns.AutoFit();
 
-
+            //Table Range without the List properties
             int startRow = 1;
             int startCol = 1;
             int endRow = LinkedObjHeaderAndContent.Keys.Count;
@@ -268,31 +289,32 @@ namespace ObjectToExcelTable
             foreach (var key in LinkedObjHeaderAndContent.Keys)
                 if (LinkedObjHeaderAndContent[key].Count > endCol)
                     endCol = LinkedObjHeaderAndContent[key].Count;
+            Range startCell = xlWorksheet.Cells[startRow, startCol];
+            Range endCell = xlWorksheet.Cells[endRow, startCol];
+            Range titleRow = null;
 
+            //Table Range only for the List properties
             int startListRow = endRow + 1;
             int endListCol = LinkedListHeaderAndContent.Keys.Count;
             Range startListHeader = xlWorksheet.Cells[startListRow, startCol];
             Range endListHeader = xlWorksheet.Cells[startListRow, endListCol];
+            Range ListHeaderRange = null;//
+                        
             
-            Range ListHeaderRange = xlWorksheet.Range[startListHeader, endListHeader];
-            ListHeaderRange.Font.Bold = true;
-            //*/
-
-            
-            Range startCell = xlWorksheet.Cells[startRow, startCol];
-            Range endCell = xlWorksheet.Cells[endRow, startCol];
-            Range titleRow = null;
             try
             {
+                ListHeaderRange = xlWorksheet.Range[startListHeader, endListHeader];
                 titleRow = xlWorksheet.Range[startCell, endCell];
             }
             catch (Exception e)
             {
                 throw e;
             }
+
             titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
             titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
             titleRow.Font.Bold = true;
+            ListHeaderRange.Font.Bold = true;
             foreach (Range c in xlRange.Cells)
             {
                 c.BorderAround(XlLineStyle.xlContinuous,
@@ -333,6 +355,6 @@ namespace ObjectToExcelTable
                     GC.Collect();
                 }
             
-        }
+        }//*/
     }
 }
