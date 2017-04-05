@@ -1,10 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 //using System.Web;
 
 namespace ObjectToExcelTable
 {
+    public class PropDisplay
+    {
+        public string PropName { get; set; }
+        public string PropDisplayName { get; set; }
+        public bool isVisible { get; set; }
+        public string PropFormat { get; set; } // "0.00 %"
+        public bool isFormated
+        { get
+            {
+                if (string.IsNullOrEmpty(this.PropFormat))
+                    return false;
+                else
+                    return true;
+            }
+                
+        }
+    }
+
+
+    public class PropsDisplay
+    {
+        List<PropDisplay> props { get; set; }
+
+        public PropsDisplay()
+        {
+            props = new List<PropDisplay>();
+        }
+
+        public void export(Object obj, PropsDisplay props = null)
+        {
+            if(props != null)
+            {
+                // imash imena na poleta
+            }
+
+        }
+    }
+
+    
+
     public class PackingList
     {
         private class _sale
@@ -26,20 +67,29 @@ namespace ObjectToExcelTable
         private const string sqlSaleItem = "";
 
         public int AppID { get; set; }
+        [DisplayName("")]
         public string AppName { get; set; }
+        [DisplayName("Клиент Номер")]
         public int CustomerID { get; set; }
+        [DisplayName("Име на Клиент")]
         public string CustomerName { get; set; }
+        [DisplayName("Адрес на доставка")]
         public string DeliveryAddress { get; set; }
+        [DisplayName("Име на Документ")]
         public string DocName { get; set; }
+        [DisplayName("Номер на Документ")]
         public int DocNo { get; set; }
+        [DisplayName("Дата на Документ")]
         public DateTime DocDate { get; set; }
 
         public List<PackingListItem> items { get; set; }
+        public List<PackingListItem> items2 { get; set; }
 
 
         public PackingList()
         {
             items = new List<PackingListItem>();
+            items2 = new List<PackingListItem>();
         }
 
         /*public PackingList(int appID, int saleID)
@@ -86,17 +136,25 @@ namespace ObjectToExcelTable
     public class PackingListItem
     {
         //private PackingListItem() { }
-
+        [DisplayName("Артикул №")]
         public int ArticleID { get; set; }
+        [DisplayName("Име на Артикул")]
         public string ArticleName { get; set; }
+        [DisplayName("Партида")]
         public string ParcelNo { get; set; }
+        [DisplayName("Годен до")]
         public DateTime ExpiryDate { get; set; }
+        [DisplayName("Наличност")]
         public int Qty { get; set; }
         public int PalletID { get; set; }
+        [DisplayName("Баркод на Пале")]
         public int PalletBarcode { get; set; }
+        [DisplayName("Поз. Код №")]
         public int PosCodeID { get; set; }
+        [DisplayName("Поз Код Име")]
         public string PosCodeName { get; set; }
         public int StoreID { get; set; }
+        [DisplayName("Склад")]
         public string StoreName { get; set; }
         
     }

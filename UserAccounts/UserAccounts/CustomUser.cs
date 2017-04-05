@@ -27,6 +27,8 @@ namespace UserAccounts
         public string TenderAccount { get; set; }
         [DisplayName("Достъп до Фибра")]
         public string PhibraAccount { get; set; }
+        [DisplayName("KSC акаунт")]
+        public string KSCAccount { get; set; }
         [DisplayName("Статус")]
         public string State { get; set; }
         [DisplayName("Доп. Информация")]

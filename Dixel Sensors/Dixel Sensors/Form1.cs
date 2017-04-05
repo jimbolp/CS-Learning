@@ -435,8 +435,7 @@ namespace Dixel_Sensors
                 SaveExceptionToFile(exception);
                 //catch me if you can... 
                 throw exception;
-            }
-            
+            }            
         }
 
         public bool SaveAndClose(Workbook xlWorkbook)
