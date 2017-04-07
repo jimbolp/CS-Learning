@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowUsersForm));
             this.listBoxBranches = new System.Windows.Forms.ListBox();
             this.groupFilters = new System.Windows.Forms.GroupBox();
@@ -74,7 +76,7 @@
             this.groupFilters.Size = new System.Drawing.Size(198, 730);
             this.groupFilters.TabIndex = 3;
             this.groupFilters.TabStop = false;
-            this.groupFilters.Text = "Filter";
+            this.groupFilters.Text = "Опции";
             // 
             // groupBox2
             // 
@@ -186,13 +188,22 @@
             this.userDBTable.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.userDBTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.userDBTable.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.userDBTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MediumSeaGreen;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userDBTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.userDBTable.GridColor = System.Drawing.SystemColors.Control;
             this.userDBTable.Location = new System.Drawing.Point(0, 0);
             this.userDBTable.Name = "userDBTable";
             this.userDBTable.ReadOnly = true;
+            this.userDBTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            this.userDBTable.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.userDBTable.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.userDBTable.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.userDBTable.Size = new System.Drawing.Size(804, 730);

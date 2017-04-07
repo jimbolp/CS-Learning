@@ -392,12 +392,12 @@ namespace UserAccounts
             this.labelUID.TabIndex = 18;
             this.labelUID.Text = "UID";
             // 
-            // textBoxThermID
+            // textBoxTermID
             // 
             this.textBoxThermID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxThermID.Location = new System.Drawing.Point(6, 116);
             this.textBoxThermID.MaxLength = 4;
-            this.textBoxThermID.Name = "textBoxThermID";
+            this.textBoxThermID.Name = "textBoxTermID";
             this.textBoxThermID.Size = new System.Drawing.Size(108, 20);
             this.textBoxThermID.TabIndex = 17;
             // 

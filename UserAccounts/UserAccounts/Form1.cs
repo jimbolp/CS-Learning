@@ -479,7 +479,7 @@ namespace UserAccounts
         }
 
         private void btn_SearchKSC_Click(object sender, EventArgs e)
-        {
+        {            
             var srchKSCForm = new KSCUserForm();
             srchKSCForm.FormClosed += srchKSCForm_Closed;
             Hide();
@@ -495,7 +495,7 @@ namespace UserAccounts
         {
             if (listUsersToEdit.SelectedIndex == 0)
             {
-                UserIDToEdit = UserIDToEdit ?? null;
+                UserIDToEdit = UserIDToEdit;
                 Application.DoEvents();
                 btn_EditUser.Enabled = false;
                 return;

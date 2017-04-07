@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/CustomerReturns/CustomerReturns/obj
+/ObjectToExcelTable/ObjectToExcelTable/bin/Debug
+/ObjectToExcelTable/.vs/ObjectToExcelTable/v14

@@ -19,7 +19,16 @@ namespace UserAccounts
 
         private void SearchUserForm_Load(object sender, EventArgs e)
         {
-            var db = new UsersDBContext();
+            UsersDBContext db = null;
+            try
+            {
+                db = new UsersDBContext();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             int i = 0;
             foreach (var b in db.Branches)
             {
@@ -33,7 +42,16 @@ namespace UserAccounts
         public int SelectedDataGridIdx { get; set; }
         private void loadListBoxPositions()
         {
-            var db = new UsersDBContext();
+            UsersDBContext db = null;
+            try
+            {
+                db = new UsersDBContext();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             int i = 0;
             listBoxPositions.Items.Clear();
             foreach(var p in db.Positions.OrderBy(p => p.Position1))
@@ -49,7 +67,16 @@ namespace UserAccounts
 
         public void loadUserDBTable()
         {
-            var db = new UsersDBContext();
+            UsersDBContext db = null;
+            try
+            {
+                db = new UsersDBContext();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
 
             List<int> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
 
@@ -70,6 +97,7 @@ namespace UserAccounts
                 PurchaseAccount = (u.Purchase == null) ? "Не" : (u.Purchase.Value) ? "Да" : "Не",
                 TenderAccount = (u.Tender == null) ? "Не" : (u.Tender.Value) ? "Да" : "Не",
                 PhibraAccount = (u.Phibra == null) ? "Не" : (u.Phibra.Value) ? "Да" : "Не",
+                KSCAccount = (db.KSCs.Any(k => k.UserID == u.ID)) ? "Да" : "Не",
                 State = (u.Active) ? "Активен" : "Неактивен",
                 Description = u.Description
             }).ToList();//*/
@@ -78,27 +106,8 @@ namespace UserAccounts
             {
                 sbList.Add(o);
             }
-            /*foreach (var o in orderdUsers)
-            {
-                sbList.Add(new CustomUser
-                {
-                    ID = o.ID,
-                    UserName = o.UserName,
-                    Email = o.Email,
-                    ActiveDirectory = db.ADUsers.Where(a => a.UserID == o.ID).Select(a => a.ADName).FirstOrDefault(),
-                    Position = db.Positions.Where(p => p.ID == o.PositionID).Select(p => p.Position1).FirstOrDefault(),
-                    Depo = db.Branches.Where(b => b.ID == o.BranchID).Select(b => b.BranchName).FirstOrDefault(),
-                    PharmosUserName = o.PharmosUserName,
-                    UADMUserName = o.UADMUserName,
-                    GoodsIn = (o.GI == null) ? "Не" : (o.GI.Value) ? "Да" : "Не",
-                    PurchaseAccount = (o.Purchase == null) ? "Не" : (o.Purchase.Value) ? "Да" : "Не",
-                    TenderAccount = (o.Tender == null) ? "Не" : (o.Tender.Value) ? "Да" : "Не",
-                    PhibraAccount = (o.Phibra == null) ? "Не" : (o.Phibra.Value) ? "Да" : "Не",
-                    State = (o.Active) ? "Активен" : "Неактивен"
-                });
-            }//*/
-            userDBTable.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;
-            //userDBTable.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.EnableResizing;
+            
+            userDBTable.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableWithAutoHeaderText;            
             userDBTable.RowHeadersVisible = false;
             userDBTable.DataSource = new BindingSource()
             {
@@ -107,8 +116,9 @@ namespace UserAccounts
             userDBTable.Columns[0].Visible = false;
 
             ColorizeInactiveUsers(db);
-            userDBTable.RowHeadersVisible = true;
-            userDBTable.Refresh();
+            userDBTable.RowHeadersVisible = true;            
+            userDBTable.Update();
+            userDBTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void ColorizeInactiveUsers(UsersDBContext db)
@@ -120,7 +130,7 @@ namespace UserAccounts
                 UserMasterData umd = db.UserMasterDatas.FirstOrDefault(u => u.ID == cu.ID);
                 if (!umd.Active)
                 {
-                    userDBTable.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                    userDBTable.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255,25,25);
                 }
             }
         }
@@ -160,7 +170,16 @@ namespace UserAccounts
             if (userDBTable.SelectedRows.Count != 1)
                 return;
             int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
-            var db = new UsersDBContext();
+            UsersDBContext db = null;
+            try
+            {
+                db = new UsersDBContext();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             UserMasterData userToEdit = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID);
             AddUserForm addUserForm = new AddUserForm(userToEdit);
 
@@ -181,11 +200,23 @@ namespace UserAccounts
                 
         private void OpenKSCAccount()
         {
-            var db = new UsersDBContext();
+            UsersDBContext db = null;
+            try
+            {
+                db = new UsersDBContext();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
             KSCUserForm kscForm = new KSCUserForm(db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID));
             //kscForm.FormClosed += (o, args) => loadUserDBTable();
-            kscForm.Show();
+            if (!kscForm.Visible)
+                kscForm.Show();
+            else
+                kscForm.Select();
         }
         private void NewKSCAccount(int userID)
         {
