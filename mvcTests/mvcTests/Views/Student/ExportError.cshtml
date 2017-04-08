@@ -1,0 +1,19 @@
+﻿@model Exception
+
+@{
+    ViewBag.Title = "ExportError";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ExportError</h2>
+
+<div>
+    <h4>ReportFromObj</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<p>
+    <div>@Model.Message</div>
+    @Html.ActionLink("Back to List", "Index")    
+</p>

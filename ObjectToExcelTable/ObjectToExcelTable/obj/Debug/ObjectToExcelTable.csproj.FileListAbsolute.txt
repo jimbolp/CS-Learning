@@ -12,3 +12,4 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectTo
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ObjectToExcelTable.exe
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ObjectToExcelTable.pdb
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\obj\Debug\ObjectToExcelTable.csprojResolveAssemblyReference.cache
+E:\Documents\C# Projects\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\DocumentFormat.OpenXml.dll

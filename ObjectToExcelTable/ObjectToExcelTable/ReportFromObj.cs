@@ -15,6 +15,10 @@ using System.IO;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using XmlWorkbook = DocumentFormat.OpenXml.Spreadsheet.Workbook;
+using XmlWorksheet = DocumentFormat.OpenXml.Spreadsheet.Worksheet;
+using XmlSheet = DocumentFormat.OpenXml.Spreadsheet.Sheet;
+using XmlSheets = DocumentFormat.OpenXml.Spreadsheet.Sheets;
 
 namespace ObjectToExcelTable
 {
@@ -124,12 +128,12 @@ namespace ObjectToExcelTable
             {
                 // Add a WorkbookPart to the document.
                 WorkbookPart workbookPart = document.AddWorkbookPart();
-                workbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook();
+                workbookPart.Workbook = new XmlWorkbook();
                 // Add a WorksheetPart to the WorkbookPart.
                 WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
-                worksheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(new SheetData());
-                DocumentFormat.OpenXml.Spreadsheet.Sheets sheets = workbookPart.Workbook.AppendChild(new DocumentFormat.OpenXml.Spreadsheet.Sheets());
-                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Test Sheet" };
+                worksheetPart.Worksheet = new XmlWorksheet(new SheetData());
+                XmlSheets sheets = workbookPart.Workbook.AppendChild(new XmlSheets());
+                XmlSheet sheet = new XmlSheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Test Sheet" };
                 sheets.Append(sheet);
 
                 workbookPart.Workbook.Save();
