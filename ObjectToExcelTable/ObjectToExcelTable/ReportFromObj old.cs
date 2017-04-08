@@ -19,121 +19,93 @@ using XmlWorkbook = DocumentFormat.OpenXml.Spreadsheet.Workbook;
 using XmlWorksheet = DocumentFormat.OpenXml.Spreadsheet.Worksheet;
 using XmlSheet = DocumentFormat.OpenXml.Spreadsheet.Sheet;
 using XmlSheets = DocumentFormat.OpenXml.Spreadsheet.Sheets;
-//using mvcTests.Models;
-using OfficeOpenXml;
-using mvcTests.Models;
 
 namespace ObjectToExcelTable
 {
-    public class ReportFromObj
+    class ReportFromObj
     {
         private static Dictionary<string, List<string>> _ObjItems { get; set; } = new Dictionary<string, List<string>>();
         private static List<Dictionary<string, List<string>>> _ListItems { get; set; } = new List<Dictionary<string, List<string>>>();
         public ReportFromObj(object o)
         {
-            try
-            {
-                GetPropertiesOneByOne(o);
-            }
-            catch (ParameterNotValidException e)
-            {
-                throw e;
-            }
+            GetPropertiesOneByOne(o);
         }
 
         private void GetPropertiesOneByOne(object o)
         {
             Type t = o.GetType();
-            
-            if (typeof(IEnumerable).IsAssignableFrom(o.GetType()) && !(o is String))
+            PropertyInfo[] p = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+            //За всяко пропърти правим проверка дали си нямаме работа с колекция
+            foreach (PropertyInfo pi in p)
             {
-                throw new ParameterNotValidException("The given parameter cannot be of type" + o.GetType());
-                /*foreach (var item in (IEnumerable)o)
+
+                //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
+                if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && !(pi.GetValue(o) is String) && pi.CanRead)
                 {
-                    Type itemT = item.GetType();
-                    PropertyInfo[] p = itemT.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                    //За всяко пропърти правим проверка дали си нямаме работа с колекция
-                    foreach (PropertyInfo pi in p)
+                    _ListItems.Add(new Dictionary<string, List<string>>());
+                    foreach (var enumPi in (IEnumerable)pi.GetValue(o))
                     {
-                        ProcessEachProp(pi, item);
-                    }
-                }//*/
-            }
-            else
-            {
-                PropertyInfo[] p = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                foreach (PropertyInfo pi in p)
-                {
-                    ProcessEachProp(pi, o);
-                }
-            }
-        }
-        private void ProcessEachProp(PropertyInfo pi, object o)
-        {
-            //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
-            if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType)&& pi.GetValue(o)!= null && !(pi.GetValue(o) is String) && pi.CanRead)
-            {
-                _ListItems.Add(new Dictionary<string, List<string>>());
-                foreach (var enumPi in (IEnumerable)pi.GetValue(o))
-                {
-                    Type propertyType = enumPi.GetType();
-                    PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                    foreach (PropertyInfo propInfo in propInfos)
-                    {
-                        if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
+                        Type propertyType = enumPi.GetType();
+                        PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                        foreach (PropertyInfo propInfo in propInfos)
                         {
-                            if (GetDispAttribute(propInfo.GetCustomAttributes()))
+                            if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
                             {
-                                string AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                                ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
+                                if (GetDispAttribute(propInfo.GetCustomAttributes()))
+                                {
+                                    string AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                                    ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
+                                }
                             }
                         }
+                        //GetPropertiesOneByOne(enumPi);
                     }
-                    //GetPropertiesOneByOne(enumPi);
                 }
-            }
-            else if (pi.CanRead)
-            {
-                if (GetDispAttribute(pi.GetCustomAttributes()))
+                else if (pi.CanRead)
                 {
-                    string AttrName = pi.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                    ProcessSimpleTypeProperty(pi, o, false, AttrName);
+                    if (GetDispAttribute(pi.GetCustomAttributes()))
+                    {
+                        string AttrName = pi.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+                        ProcessSimpleTypeProperty(pi, o, false, AttrName);
+                    }
+                    //ProcessSimpleTypeProperty(pi, o, false);
                 }
-                //ProcessSimpleTypeProperty(pi, o, false);
             }
         }
+
         private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
             if (isCollectionProp)
             {
-                if (string.IsNullOrEmpty(propDispName))
+                if (!_ListItems.Last().ContainsKey(propDispName))
                 {
-                    if (!_ListItems.Last().ContainsKey(pi.Name))
+                    if (string.IsNullOrEmpty(propDispName))
                         _ListItems.Last()[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
                     else
-                        _ListItems.Last()[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ListItems.Last()[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
                 }
                 else
                 {
-                    if (!_ListItems.Last().ContainsKey(propDispName))
-                        _ListItems.Last()[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    if (string.IsNullOrEmpty(propDispName))
+                        _ListItems.Last()[pi.Name].Add(pi.GetValue(o, null).ToString());
                     else
                         _ListItems.Last()[propDispName].Add(pi.GetValue(o, null).ToString());
                 }
             }
             else
             {
-                if (string.IsNullOrEmpty(propDispName))
+                if (!_ObjItems.ContainsKey(pi.Name))
                 {
-                    if (!_ObjItems.ContainsKey(pi.Name))
+                    if (string.IsNullOrEmpty(propDispName))
                         _ObjItems[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
                     else
-                        _ObjItems[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ObjItems[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
                 }
                 else
                 {
-                    if (!_ObjItems.ContainsKey(propDispName))
-                        _ObjItems[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                    if (string.IsNullOrEmpty(propDispName))
+                        _ObjItems[pi.Name].Add(pi.GetValue(o, null).ToString());
                     else
                         _ObjItems[propDispName].Add(pi.GetValue(o, null).ToString());
                 }
@@ -149,140 +121,23 @@ namespace ObjectToExcelTable
             return false;
         }
 
-        public void ExportByXml()
+        public void ExportToHtml()
         {
-            ExcelPackage ep = new ExcelPackage();
-            ExcelWorkbook xlWBook = ep.Workbook;
-            xlWBook.Worksheets.Add("Test Sheet");
-            ExcelWorksheet xlWsheet = xlWBook.Worksheets.FirstOrDefault();
-
-            //File path... I have to do that with a Method.....
-            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\testXML.xlsx";
-            FileInfo fi = new FileInfo(str);
-
-            //Initial row and column index
-            int r = 1;
-            int c = 1;
-
-            //This will follow the last row and column that has been used..
-            int lastRow = 1;
-            int lastCol = 1;
-
-            int objStartRow = 1;
-            int objStartCol = 1;
-            
-            //Simple type properties...
-            foreach (string key in _ObjItems.Keys)
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "testXML.xlsx";
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(str, SpreadsheetDocumentType.Workbook))
             {
-                try
-                {
-                    //Value of header cells
-                    xlWsheet.SetValue(r, c++, separateWords(key));
+                // Add a WorkbookPart to the document.
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new XmlWorkbook();
+                // Add a WorksheetPart to the WorkbookPart.
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new XmlWorksheet(new SheetData());
+                XmlSheets sheets = workbookPart.Workbook.AppendChild(new XmlSheets());
+                XmlSheet sheet = new XmlSheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Test Sheet" };
+                sheets.Append(sheet);
 
-                    foreach (string value in _ObjItems[key])
-                        xlWsheet.SetValue(r, c++, value);
-                }
-                catch (Exception)
-                {
-                    ep.SaveAs(fi);
-                    return;
-                }
-                finally
-                {
-                    ep.Save();
-                }
-                
-                if (lastCol < c)
-                    lastCol = c;
-                
-                lastRow = ++r;
-                c = 1;
+                workbookPart.Workbook.Save();
             }
-            r = 1;
-            ExcelRange er = xlWsheet.Cells[r, c, lastRow, lastCol-1];
-            er.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-            
-            foreach (var cell in er)
-            {                
-                cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-            }
-            
-            xlWsheet.Cells.AutoFitColumns();
-            ep.SaveAs(fi);
-            er[lastRow, c, lastRow, lastCol - 1].Merge = true;
-            ep.SaveAs(fi);
-            
-            //Lets Try to export the List of Items......
-
-            int objEndRow = lastRow;
-            int objEndCol = lastCol - 1;
-
-            int listEndCol = 1;
-            List<ExcelRange> EmptyRows = new List<ExcelRange>();
-            List<ExcelRange> listRanges = new List<ExcelRange>();
-            int listStartRow = lastRow;
-            int listStartCol = 1;
-            foreach (var item in _ListItems)
-            {
-                //lastRow++;
-                listStartCol = 1;
-                r = ++listStartRow;
-                int numberOfRows = 0;
-                //Range tempListStartCell = xlSheet.Cells[r, listStartCol];
-                foreach (var key in item.Keys)
-                {
-                    try
-                    {
-                        xlWsheet.SetValue(r++, listStartCol, separateWords(key));
-
-                        foreach (string value in item[key])
-                        {
-                            xlWsheet.SetValue(r++, listStartCol, value);
-                        }
-                        if (objEndCol < listStartCol)
-                            objEndCol = listStartCol;
-                        if (listEndCol < listStartCol)
-                            listEndCol = listStartCol;
-                        listStartCol++;
-                        r = listStartRow;
-                        if (numberOfRows < item[key].Count)
-                        {
-                            numberOfRows = item[key].Count;
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        
-                        return;
-                    }
-                }
-
-                listStartRow += (numberOfRows + 1);
-                //Range tempListEndCell = xlSheet.Cells[listStartRow, listEndCol];
-                //Range tempListRange = xlSheet.Range[tempListStartCell, tempListEndCell];
-                ExcelRange tempListRange = xlWsheet.Cells[r, listStartCol, listStartRow, listEndCol];
-                listRanges.Add(tempListRange);
-            }
-            ep.SaveAs(fi);
-        }
-        private void InputValuesToXml(SheetData xmlSheetData)
-        {
-            foreach(var key in _ObjItems.Keys)
-            {
-                Row row = new Row();
-                row.Append(ConstructCell(key, CellValues.String));
-                xmlSheetData.AppendChild(row);
-            }
-            
-        }
-
-        private Cell ConstructCell(string value, CellValues dataType)
-        {
-            return new Cell()
-            {
-                CellValue = new CellValue(value),
-                DataType = new EnumValue<CellValues>(dataType)
-            };
         }
         public void ExportToExcel()
         {
@@ -323,7 +178,7 @@ namespace ObjectToExcelTable
                 lastRow = ++r;
             }
             int objEndRow = lastRow;
-            int objEndCol = lastCol - 1;
+            int objEndCol = lastCol;
 
             int listEndCol = 1;
             List<Range> EmptyRows = new List<Range>();
