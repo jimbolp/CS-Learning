@@ -85,7 +85,8 @@ namespace ObjectToExcelTable
                 items2 = lPli2
             };
             ReportFromObj rfo = new ReportFromObj(pl);
-            rfo.ExportToExcel();
+            //rfo.ExportToExcel();
+            rfo.ExportByXml();
             /*
             GetPropertiesOneByOne(pl);
             Print();
