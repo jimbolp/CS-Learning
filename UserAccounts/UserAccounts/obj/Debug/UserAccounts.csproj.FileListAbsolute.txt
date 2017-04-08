@@ -67,3 +67,4 @@ C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\o
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.ShowUsersForm.resources
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCAccount.resources
 E:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCAccount.resources
+C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCAccount.resources
