@@ -7,8 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using Application = Microsoft.Office.Interop.Excel.Application;
+using Workbook = Microsoft.Office.Interop.Excel.Workbook;
+using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
+using System.IO;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace ObjectToExcelTable
 {
@@ -21,7 +27,7 @@ namespace ObjectToExcelTable
             GetPropertiesOneByOne(o);
         }
 
-        public static void GetPropertiesOneByOne(object o)
+        private void GetPropertiesOneByOne(object o)
         {
             Type t = o.GetType();
             PropertyInfo[] p = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
@@ -64,7 +70,7 @@ namespace ObjectToExcelTable
             }
         }
 
-        private static void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
+        private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
             if (isCollectionProp)
             {
@@ -101,7 +107,7 @@ namespace ObjectToExcelTable
                 }
             }
         }
-        private static bool GetDispAttribute(IEnumerable<object> o)
+        private bool GetDispAttribute(IEnumerable<object> o)
         {
             foreach (var objs in o)
             {
@@ -109,6 +115,25 @@ namespace ObjectToExcelTable
                     return true;
             }
             return false;
+        }
+
+        public void ExportToHtml()
+        {
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "testXML.xlsx";
+            using (SpreadsheetDocument document = SpreadsheetDocument.Create(str, SpreadsheetDocumentType.Workbook))
+            {
+                // Add a WorkbookPart to the document.
+                WorkbookPart workbookPart = document.AddWorkbookPart();
+                workbookPart.Workbook = new DocumentFormat.OpenXml.Spreadsheet.Workbook();
+                // Add a WorksheetPart to the WorkbookPart.
+                WorksheetPart worksheetPart = workbookPart.AddNewPart<WorksheetPart>();
+                worksheetPart.Worksheet = new DocumentFormat.OpenXml.Spreadsheet.Worksheet(new SheetData());
+                DocumentFormat.OpenXml.Spreadsheet.Sheets sheets = workbookPart.Workbook.AppendChild(new DocumentFormat.OpenXml.Spreadsheet.Sheets());
+                Sheet sheet = new Sheet() { Id = workbookPart.GetIdOfPart(worksheetPart), SheetId = 1, Name = "Test Sheet" };
+                sheets.Append(sheet);
+
+                workbookPart.Workbook.Save();
+            }
         }
         public void ExportToExcel()
         {
@@ -153,7 +178,6 @@ namespace ObjectToExcelTable
 
             int listEndCol = 1;
             List<Range> EmptyRows = new List<Range>();
-            //EmptyRows.Add(FormatObjRange(ObjRange));
             List<Range> listRanges = new List<Range>();
             int listStartRow = lastRow;
             int listStartCol = 1;
@@ -255,7 +279,7 @@ namespace ObjectToExcelTable
         private Range FormatListRange(Range listRange, Worksheet xlSheet)
         {
             var r1 = listRange.Cells[1, 1];
-            var r2 = listRange.Cells[1,listRange.Columns.Count];
+            var r2 = listRange.Cells[1, listRange.Columns.Count];
 
             Range titleRow = xlSheet.Range[r1, r2];
 
@@ -269,7 +293,7 @@ namespace ObjectToExcelTable
             return EmptyRow;
         }
 
-        private static Range FormatObjRange(Range objRange, Worksheet xlSheet)
+        private Range FormatObjRange(Range objRange, Worksheet xlSheet)
         {            
             Range titleRow = objRange.Range[objRange.Cells[1, 1], objRange.Cells[objRange.Rows.Count, 1]];
             titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
@@ -280,66 +304,17 @@ namespace ObjectToExcelTable
             int lastCol = objRange.Columns.Count;
             Range EmptyRow = xlSheet.Range[objRange.Cells[lastRow, 1], objRange.Cells[lastRow, lastCol]];
             return EmptyRow;
-            //EmptyRow.Merge(true);
         }
 
-        private static void FormatTable(Worksheet xlWorksheet)
+        private void FormatTable(Worksheet xlWorksheet)
         {
             //Align and autofit the whole table
             Range xlRange = xlWorksheet.UsedRange;
             xlRange.HorizontalAlignment = XlHAlign.xlHAlignCenterAcrossSelection;
             xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             xlRange.Columns.AutoFit();
-
-            //Table Range without the List properties
-            /*int startRow = 1;
-            int startCol = 1;
-            int endRow = _ObjItems.Keys.Count;
-            int endCol = 0;
-            foreach (var key in _ObjItems.Keys)
-                if (_ObjItems[key].Count > endCol)
-                    endCol = _ObjItems[key].Count;
-            Range startCell = xlWorksheet.Cells[startRow, startCol];
-            Range endCell = xlWorksheet.Cells[endRow, startCol];
-            Range titleRow = null;
-
-            //EmptyRow
-            int startListRow = endRow + 1;
-            int endListCol = _ListItems[0].Keys.Count;
-            Range startListHeader = xlWorksheet.Cells[startListRow, startCol];
-            Range endListHeader = xlWorksheet.Cells[startListRow, endListCol];
-            Range emptyRow = null;
-            try
-            {
-                emptyRow = xlWorksheet.Range[startListHeader, endListHeader];
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            emptyRow.Merge(true);
-            //Table Range only for the List properties
-            startListRow = endRow + 2;
-            //endListCol = ListItems[0].Keys.Count;
-            startListHeader = xlWorksheet.Cells[startListRow, startCol];
-            endListHeader = xlWorksheet.Cells[startListRow, endListCol];
-            Range ListHeaderRange = null;//
-
-
-            try
-            {
-                ListHeaderRange = xlWorksheet.Range[startListHeader, endListHeader];
-                titleRow = xlWorksheet.Range[startCell, endCell];
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
-            titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
-            titleRow.Font.Bold = true;
-            ListHeaderRange.Font.Bold = true;//*/
+            
+            //Places border on each cell            
             foreach (Range c in xlRange.Cells)
             {
                 c.BorderAround(XlLineStyle.xlContinuous,
@@ -348,16 +323,16 @@ namespace ObjectToExcelTable
                                         XlColorIndex.xlColorIndexAutomatic);
             }
         }
-        private static string separateWords(string str)
+        private string separateWords(string str)
         {
             str = str.Trim();
             for (int i = 0; i < str.Length; ++i)
             {
                 if (i != 0 && i < str.Length - 1
-                    && !string.IsNullOrEmpty(str[i + 1].ToString())
+                    && str[i + 1].ToString() != " "
                     && (str[i + 1].ToString() == (str[i + 1]).ToString().ToUpper())
                     && str[i].ToString() != str[i].ToString().ToUpper()
-                    && !string.IsNullOrEmpty(str[i].ToString()))
+                    && str[i].ToString() != " ")
                 {
                     str = str.Insert(++i, " ");
                 }
@@ -365,7 +340,7 @@ namespace ObjectToExcelTable
             return str;
         }
 
-        private static void releaseObject(object obj)
+        private void releaseObject(object obj)
         {
             try
             {
