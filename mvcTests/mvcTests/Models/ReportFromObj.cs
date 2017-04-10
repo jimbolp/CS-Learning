@@ -11,6 +11,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
 using OfficeOpenXml;
+using System.ComponentModel.DataAnnotations;
 
 namespace ObjectToExcelTable
 {
@@ -25,10 +26,6 @@ namespace ObjectToExcelTable
                 GetPropertiesOneByOne(o);
             }
             catch (Exception e)
-            {
-                throw e;
-            }
-            catch(Exception e)
             {
                 throw e;
             }
@@ -51,24 +48,31 @@ namespace ObjectToExcelTable
                 }
             }
         }
+        /// <summary>
+        /// Ако пропъртито е от тип IEnumerable, извъртаме елементите 
+        /// и вкарваме техните пропъртита в отделен лист (изключваме String от сметките)
+        /// Всяко пропърти с атрибут "DisplayName" се подава на метод "ProcessSimpleTypeProperty".
+        /// </summary>
+        /// <param name="pi"></param>
+        /// <param name="o"></param>
         private void ProcessEachProp(PropertyInfo pi, object o)
         {
-            //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
+            
             if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType)&& pi.GetValue(o)!= null && !(pi.GetValue(o) is String) && pi.CanRead)
             {
                 _ListItems.Add(new Dictionary<string, List<string>>());
-                foreach (var enumPi in (IEnumerable)pi.GetValue(o))
+                foreach (var prop in (IEnumerable)pi.GetValue(o))
                 {
-                    Type propertyType = enumPi.GetType();
+                    Type propertyType = prop.GetType();
                     PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                     foreach (PropertyInfo propInfo in propInfos)
                     {
-                        if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
+                        if (propInfo.GetValue(prop) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
                         {
                             if (GetDispAttribute(propInfo.GetCustomAttributes()))
                             {
                                 string AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                                ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
+                                ProcessSimpleTypeProperty(propInfo, prop, true, AttrName);
                             }
                         }
                     }
@@ -83,43 +87,80 @@ namespace ObjectToExcelTable
                 }                
             }
         }
+        /// <summary>
+        /// "Заглавните" пропъртита се вкарват в лист "_ObjItems"
+        /// Колекциите като например позициите от документа се вкарват в "_ListItems"
+        /// Датите се проверяват за атрибут "DataFormat" връщащ валиден DateTime формат
+        /// </summary>
+        /// <param name="pi"></param>
+        /// <param name="o"></param>
+        /// <param name="isCollectionProp"></param>
+        /// <param name="propDispName"></param>
         private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
+            String propValue = GetValueFromAttr(pi, o);
             if (isCollectionProp)
             {
-                if (string.IsNullOrEmpty(propDispName))
+                if (string.IsNullOrEmpty(propDispName.Trim()))
                 {
                     if (!_ListItems.Last().ContainsKey(pi.Name))
-                        _ListItems.Last()[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ListItems.Last()[pi.Name] = new List<string>() { propValue ?? pi.GetValue(o, null).ToString() };
                     else
-                        _ListItems.Last()[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ListItems.Last()[pi.Name].Add(propValue ?? pi.GetValue(o, null).ToString());
                 }
                 else
                 {
                     if (!_ListItems.Last().ContainsKey(propDispName))
-                        _ListItems.Last()[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ListItems.Last()[propDispName] = new List<string>() { propValue ?? pi.GetValue(o, null).ToString() };
                     else
-                        _ListItems.Last()[propDispName].Add(pi.GetValue(o, null).ToString());
+                        _ListItems.Last()[propDispName].Add(propValue ?? pi.GetValue(o, null).ToString());
                 }
             }
             else
             {
-                if (string.IsNullOrEmpty(propDispName))
+                if (string.IsNullOrEmpty(propDispName.Trim()))
                 {
                     if (!_ObjItems.ContainsKey(pi.Name))
-                        _ObjItems[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ObjItems[pi.Name] = new List<string>() { propValue ?? pi.GetValue(o, null).ToString() };
                     else
-                        _ObjItems[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ObjItems[pi.Name].Add(propValue ?? pi.GetValue(o, null).ToString());
                 }
                 else
                 {
                     if (!_ObjItems.ContainsKey(propDispName))
-                        _ObjItems[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ObjItems[propDispName] = new List<string>() { propValue ?? pi.GetValue(o, null).ToString() };
                     else
-                        _ObjItems[propDispName].Add(pi.GetValue(o, null).ToString());
+                        _ObjItems[propDispName].Add(propValue ?? pi.GetValue(o, null).ToString());
                 }
             }
         }
+        /// <summary>
+        /// Взима се валиден формат от DataFormat атрибут, ако има такъв.
+        /// </summary>
+        /// <param name="pi"></param>
+        /// <param name="o"></param>
+        /// <returns></returns>
+        private String GetValueFromAttr(PropertyInfo pi, object o)
+        {
+            IEnumerable<Attribute> attr = pi.GetCustomAttributes();
+            foreach(Attribute obj in attr)
+            {
+                if((obj is DisplayFormatAttribute) && pi.GetValue(o) is DateTime)
+                {
+                    //DateTime t = (DateTime);                    
+                    try
+                    {
+                        return String.Format("{0:" + ((DisplayFormatAttribute)obj).DataFormatString + "}", (DateTime)pi.GetValue(o));
+                    }
+                    catch (Exception)
+                    {
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+
         private bool GetDispAttribute(IEnumerable<object> o)
         {
             foreach (var objs in o)
@@ -129,14 +170,17 @@ namespace ObjectToExcelTable
             }
             return false;
         }
-
+        /// <summary>
+        /// Създава таблица в Excel формат, вика методите за форматиране на таблицата и връща всичко като поток от данни
+        /// </summary>
+        /// <returns></returns>
         public MemoryStream ExportByXml()
         {
             
             MemoryStream ms = new MemoryStream();
             ExcelPackage ep = new ExcelPackage(ms);
             ExcelWorkbook xlWBook = ep.Workbook;
-            xlWBook.Worksheets.Add("Sheet");
+            xlWBook.Worksheets.Add("Report");
             ExcelWorksheet xlWsheet = xlWBook.Worksheets.FirstOrDefault();
                         
             //Initial row and column index
@@ -144,8 +188,8 @@ namespace ObjectToExcelTable
             int c = 1;
 
             //This will follow the last row and column that has been used..
-            int lastRow = 1;
-            int lastCol = 1;
+            int objLastRow = 1;
+            int objLastCol = 1;
 
             int objStartRow = 1;
             int objStartCol = 1;
@@ -159,7 +203,9 @@ namespace ObjectToExcelTable
                     xlWsheet.SetValue(r, c++, separateWords(key));
 
                     foreach (string value in _ObjItems[key])
+                    {
                         xlWsheet.SetValue(r, c++, value);
+                    }
                 }
                 catch (Exception)
                 {
@@ -168,26 +214,25 @@ namespace ObjectToExcelTable
                     return ms;
                 }                
                 
-                if (lastCol < c)
-                    lastCol = c;
+                if (objLastCol < c)
+                    objLastCol = c;
                 
-                lastRow = ++r;
+                objLastRow = ++r;
                 c = 1;
             }
-                        
+            objLastCol--;
+            //int objLastRow = lastRow;
+            //int objLastCol = lastCol - 1;            
+
             //Lets Try to export the List of Items......
 
-            int objEndRow = lastRow;
-            int objEndCol = lastCol - 1;
-
-            int listEndCol = 1;
-            List<ExcelRangeBase> EmptyRows = new List<ExcelRangeBase>();
+            int listLastCol = 1;
+            
             List<ExcelRange> listRanges = new List<ExcelRange>();
-            int listStartRow = lastRow;
+            int listStartRow = objLastRow;
             int listStartCol = 1;
             foreach (var item in _ListItems)
             {
-                //lastRow++;
                 listStartCol = 1;
                 r = ++listStartRow;
                 int numberOfRows = 0;
@@ -202,12 +247,16 @@ namespace ObjectToExcelTable
                         {
                             xlWsheet.SetValue(r++, listStartCol, value);
                         }
-                        if (objEndCol < listStartCol)
-                            objEndCol = listStartCol;
-                        if (listEndCol < listStartCol)
-                            listEndCol = listStartCol;
+
+                        if (objLastCol < listStartCol)
+                            objLastCol = listStartCol;
+
+                        if (listLastCol < listStartCol)
+                            listLastCol = listStartCol;
+
                         listStartCol++;
                         r = listStartRow;
+
                         if (numberOfRows < item[key].Count)
                         {
                             numberOfRows = item[key].Count;
@@ -222,23 +271,24 @@ namespace ObjectToExcelTable
                 }
 
                 listStartRow += (numberOfRows + 1);
-                ExcelRange tempListRange = xlWsheet.Cells[tempListStartRow, 1, listStartRow, listEndCol];
+                ExcelRange tempListRange = xlWsheet.Cells[tempListStartRow, 1, listStartRow, listLastCol];
                 listRanges.Add(tempListRange);
             }
 
+            List<ExcelRange> RowsToMerge = new List<ExcelRange>();
             try
             {
                 FormatTable(xlWsheet);
                 
-                ExcelRange ObjRange = xlWsheet.Cells[objStartRow, objStartCol, objEndRow, objEndCol];
+                ExcelRange ObjRange = xlWsheet.Cells[objStartRow, objStartCol, objLastRow, objLastCol];
                 var tempStr = ObjRange.Address;
-                EmptyRows.Add(FormatObjRange(ObjRange, xlWsheet));
+                RowsToMerge.Add(FormatObjRange(ObjRange, xlWsheet));
 
                 foreach (ExcelRange row in listRanges)
                 {
                     if (row != listRanges.Last())
                     {
-                        EmptyRows.Add(FormatListRange(row, xlWsheet));
+                        RowsToMerge.Add(FormatListRange(row, xlWsheet));
                     }
                     else
                     {
@@ -246,7 +296,7 @@ namespace ObjectToExcelTable
                     }
                 }
 
-                foreach (ExcelRange row in EmptyRows)
+                foreach (ExcelRange row in RowsToMerge)
                 {
                     row.Merge = true;
                 }
@@ -261,14 +311,13 @@ namespace ObjectToExcelTable
             ms.SetLength(0);
             
             ms = new MemoryStream(ep.GetAsByteArray());
-            //ep.SaveAs(ms);
+
             foreach(var sheet in ep.Workbook.Worksheets)
             {
                 sheet.Dispose();
             }
             ep.Workbook.Worksheets.Dispose();
-            //ep.Workbook.Dispose();
-            //ep.Dispose();
+
             return ms;
         }
                 

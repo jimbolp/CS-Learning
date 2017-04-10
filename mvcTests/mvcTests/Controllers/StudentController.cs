@@ -63,7 +63,7 @@ namespace mvcTests.Controllers
             pli3 = new PackingListItem()
             {
                 ArticleID = 12546,
-                ArticleName = "Парацетмол",
+                ArticleName = "Парацетамол",
                 ParcelNo = "133532",
                 ExpiryDate = DateTime.Now,
                 Qty = 3546,

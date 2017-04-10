@@ -66,9 +66,7 @@ namespace ObjectToExcelTable
                                        "where s.ID= {1}";
 
         private const string sqlSaleItem = "";
-
         public int AppID { get; set; }
-        //[DisplayName("")]
         public string AppName { get; set; }
         [DisplayName("Клиент Номер")]
         public int CustomerID { get; set; }
@@ -81,7 +79,6 @@ namespace ObjectToExcelTable
         [DisplayName("Номер на Документ")]
         public int DocNo { get; set; }
         [DisplayName("Дата на Документ")]
-        [DisplayFormat(DataFormatString = "MM.yyyy")]
         public DateTime DocDate { get; set; }
 
         public List<PackingListItem> items { get; set; }
@@ -145,6 +142,7 @@ namespace ObjectToExcelTable
         [DisplayName("Партида")]
         public string ParcelNo { get; set; }
         [DisplayName("Годен до")]
+        [DisplayFormat(DataFormatString = "MM.yyyy")]
         public DateTime ExpiryDate { get; set; }
         [DisplayName("Наличност")]
         public int Qty { get; set; }
