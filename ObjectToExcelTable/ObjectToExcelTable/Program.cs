@@ -86,7 +86,16 @@ namespace ObjectToExcelTable
             };
             ReportFromObj rfo = new ReportFromObj(pl);
             //rfo.ExportToExcel();
-            rfo.ExportByXml();
+            try
+            {
+                rfo.ExportByXml();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                Console.ReadLine();
+            }
             /*
             GetPropertiesOneByOne(pl);
             Print();
