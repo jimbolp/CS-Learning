@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 //using System.Web;
 
@@ -80,6 +81,7 @@ namespace ObjectToExcelTable
         [DisplayName("Номер на Документ")]
         public int DocNo { get; set; }
         [DisplayName("Дата на Документ")]
+        [DisplayFormat(DataFormatString = "MM.yyyy")]
         public DateTime DocDate { get; set; }
 
         public List<PackingListItem> items { get; set; }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.ComponentModel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Workbook = Microsoft.Office.Interop.Excel.Workbook;
@@ -10,25 +12,30 @@ using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using XmlWorkbook = DocumentFormat.OpenXml.Spreadsheet.Workbook;
+using XmlWorksheet = DocumentFormat.OpenXml.Spreadsheet.Worksheet;
+using XmlSheet = DocumentFormat.OpenXml.Spreadsheet.Sheet;
+using XmlSheets = DocumentFormat.OpenXml.Spreadsheet.Sheets;
+//using mvcTests.Models;
 using OfficeOpenXml;
+using mvcTests.Models;
 
 namespace ObjectToExcelTable
 {
     public class ReportFromObj
     {
-        private Dictionary<string, List<string>> _ObjItems { get; set; } = new Dictionary<string, List<string>>();
-        private List<Dictionary<string, List<string>>> _ListItems { get; set; } = new List<Dictionary<string, List<string>>>();
+        private static Dictionary<string, List<string>> _ObjItems { get; set; } = new Dictionary<string, List<string>>();
+        private static List<Dictionary<string, List<string>>> _ListItems { get; set; } = new List<Dictionary<string, List<string>>>();
         public ReportFromObj(object o)
         {
             try
             {
                 GetPropertiesOneByOne(o);
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            catch(Exception e)
+            catch (ParameterNotValidException e)
             {
                 throw e;
             }
@@ -40,7 +47,17 @@ namespace ObjectToExcelTable
             
             if (typeof(IEnumerable).IsAssignableFrom(o.GetType()) && !(o is String))
             {
-                throw new Exception("The given parameter cannot be of type" + o.GetType());                
+                throw new ParameterNotValidException("The given parameter cannot be of type" + o.GetType());
+                /*foreach (var item in (IEnumerable)o)
+                {
+                    Type itemT = item.GetType();
+                    PropertyInfo[] p = itemT.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                    //За всяко пропърти правим проверка дали си нямаме работа с колекция
+                    foreach (PropertyInfo pi in p)
+                    {
+                        ProcessEachProp(pi, item);
+                    }
+                }//*/
             }
             else
             {
@@ -72,6 +89,7 @@ namespace ObjectToExcelTable
                             }
                         }
                     }
+                    //GetPropertiesOneByOne(enumPi);
                 }
             }
             else if (pi.CanRead)
@@ -80,7 +98,8 @@ namespace ObjectToExcelTable
                 {
                     string AttrName = pi.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
                     ProcessSimpleTypeProperty(pi, o, false, AttrName);
-                }                
+                }
+                //ProcessSimpleTypeProperty(pi, o, false);
             }
         }
         private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
@@ -130,15 +149,17 @@ namespace ObjectToExcelTable
             return false;
         }
 
-        public MemoryStream ExportByXml()
+        public void ExportByXml()
         {
-            
-            MemoryStream ms = new MemoryStream();
-            ExcelPackage ep = new ExcelPackage(ms);
+            ExcelPackage ep = new ExcelPackage();
             ExcelWorkbook xlWBook = ep.Workbook;
-            xlWBook.Worksheets.Add("Sheet");
+            xlWBook.Worksheets.Add("Test Sheet");
             ExcelWorksheet xlWsheet = xlWBook.Worksheets.FirstOrDefault();
-                        
+
+            //File path... I have to do that with a Method.....
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\testXML.xlsx";
+            FileInfo fi = new FileInfo(str);
+
             //Initial row and column index
             int r = 1;
             int c = 1;
@@ -150,7 +171,7 @@ namespace ObjectToExcelTable
             int objStartRow = 1;
             int objStartCol = 1;
             
-            //Simple type properties...(Header)
+            //Simple type properties...
             foreach (string key in _ObjItems.Keys)
             {
                 try
@@ -163,10 +184,14 @@ namespace ObjectToExcelTable
                 }
                 catch (Exception)
                 {
-                    ms.SetLength(0);
-                    ep.SaveAs(ms);                    
-                    return ms;
-                }                
+                    ep.SaveAs(fi);
+                    return;
+                }
+                finally
+                {
+                    ep.SaveAs(fi);
+                    Console.WriteLine("File Saved at: " + fi.DirectoryName);
+                }
                 
                 if (lastCol < c)
                     lastCol = c;
@@ -174,14 +199,27 @@ namespace ObjectToExcelTable
                 lastRow = ++r;
                 c = 1;
             }
-                        
+            r = 1;
+            ExcelRange er = xlWsheet.Cells[r, c, lastRow, lastCol-1];
+            er.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
+            
+            foreach (var cell in er)
+            {                
+                cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+            }
+            
+            xlWsheet.Cells.AutoFitColumns();
+            ep.SaveAs(fi);
+            er[lastRow, c, lastRow, lastCol - 1].Merge = true;
+            ep.SaveAs(fi);
+            
             //Lets Try to export the List of Items......
 
             int objEndRow = lastRow;
             int objEndCol = lastCol - 1;
 
             int listEndCol = 1;
-            List<ExcelRangeBase> EmptyRows = new List<ExcelRangeBase>();
+            List<ExcelRange> EmptyRows = new List<ExcelRange>();
             List<ExcelRange> listRanges = new List<ExcelRange>();
             int listStartRow = lastRow;
             int listStartCol = 1;
@@ -191,7 +229,7 @@ namespace ObjectToExcelTable
                 listStartCol = 1;
                 r = ++listStartRow;
                 int numberOfRows = 0;
-                int tempListStartRow = r;
+                //Range tempListStartCell = xlSheet.Cells[r, listStartCol];
                 foreach (var key in item.Keys)
                 {
                     try
@@ -213,65 +251,40 @@ namespace ObjectToExcelTable
                             numberOfRows = item[key].Count;
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
-                        ms.SetLength(0);
-                        ep.SaveAs(ms);
-                        return ms;
+                        
+                        return;
                     }
                 }
 
                 listStartRow += (numberOfRows + 1);
-                ExcelRange tempListRange = xlWsheet.Cells[tempListStartRow, 1, listStartRow, listEndCol];
+                //Range tempListEndCell = xlSheet.Cells[listStartRow, listEndCol];
+                //Range tempListRange = xlSheet.Range[tempListStartCell, tempListEndCell];
+                ExcelRange tempListRange = xlWsheet.Cells[r, listStartCol, listStartRow, listEndCol];
                 listRanges.Add(tempListRange);
             }
-
-            try
-            {
-                FormatTable(xlWsheet);
-                
-                ExcelRange ObjRange = xlWsheet.Cells[objStartRow, objStartCol, objEndRow, objEndCol];
-                var tempStr = ObjRange.Address;
-                EmptyRows.Add(FormatObjRange(ObjRange, xlWsheet));
-
-                foreach (ExcelRange row in listRanges)
-                {
-                    if (row != listRanges.Last())
-                    {
-                        EmptyRows.Add(FormatListRange(row, xlWsheet));
-                    }
-                    else
-                    {
-                        FormatListRange(row, xlWsheet);
-                    }
-                }
-
-                foreach (ExcelRange row in EmptyRows)
-                {
-                    row.Merge = true;
-                }
-                
-            }
-            catch (Exception)
-            {
-                ms.SetLength(0);
-                ep.SaveAs(ms);
-                return ms;
-            }//*/
-            ms.SetLength(0);
-            
-            ms = new MemoryStream(ep.GetAsByteArray());
-            //ep.SaveAs(ms);
-            foreach(var sheet in ep.Workbook.Worksheets)
-            {
-                sheet.Dispose();
-            }
-            ep.Workbook.Worksheets.Dispose();
-            //ep.Workbook.Dispose();
-            //ep.Dispose();
-            return ms;
+            ep.SaveAs(fi);
         }
-                
+        private void InputValuesToXml(SheetData xmlSheetData)
+        {
+            foreach(var key in _ObjItems.Keys)
+            {
+                Row row = new Row();
+                row.Append(ConstructCell(key, CellValues.String));
+                xmlSheetData.AppendChild(row);
+            }
+            
+        }
+
+        private Cell ConstructCell(string value, CellValues dataType)
+        {
+            return new Cell()
+            {
+                CellValue = new CellValue(value),
+                DataType = new EnumValue<CellValues>(dataType)
+            };
+        }
         public void ExportToExcel()
         {
             Application xlApp = new Application();
@@ -412,24 +425,11 @@ namespace ObjectToExcelTable
                 releaseObject(xlApp);
             }
         }
-        private ExcelRange FormatListRange(ExcelRange listRange, ExcelWorksheet xlSheet)
-        {
-            string keepInitialAddress = listRange.Address;
-            int firstRow = listRange.Start.Row;
-            int firstCol = listRange.Start.Column;
-            ExcelRange title = listRange[firstRow, firstCol, firstRow, listRange.Columns];
-            title.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-            title.Style.Font.Bold = true;
 
-            listRange.Address = keepInitialAddress;
-            int lastRow = listRange.End.Row;
-            int lastCol = listRange.End.Column;
-            return listRange[lastRow, firstCol, lastRow, lastCol];
-        }
         private Range FormatListRange(Range listRange, Worksheet xlSheet)
         {
-            Range r1 = listRange.Cells[1, 1];
-            Range r2 = listRange.Cells[1, listRange.Columns.Count];
+            var r1 = listRange.Cells[1, 1];
+            var r2 = listRange.Cells[1, listRange.Columns.Count];
 
             Range titleRow = xlSheet.Range[r1, r2];
 
@@ -442,51 +442,20 @@ namespace ObjectToExcelTable
             Range EmptyRow = xlSheet.Range[listRange.Cells[lastRow, 1], listRange.Cells[lastRow, lastCol]];
             return EmptyRow;
         }
-        private ExcelRange FormatObjRange(ExcelRange xlRange, ExcelWorksheet xlWsheet)
-        {
-            string keepInitialAddress = xlRange.Address;
-            int firstRow = xlRange.Start.Row;
-            int firstCol = xlRange.Start.Column;
-            ExcelRange title = xlRange[firstRow, firstCol, xlRange.Rows, firstCol];
-            title.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
-            title.Style.Font.Bold = true;
 
-            xlRange.Address = keepInitialAddress;
-            int lastRow = xlRange.End.Row;
-            int lastCol = xlRange.End.Column;
-            
-            return xlRange[lastRow, firstCol, lastRow, lastCol];
-        }
         private Range FormatObjRange(Range objRange, Worksheet xlSheet)
-        {
-            Range r1 = objRange.Cells[1, 1];
-            Range r2 = objRange.Cells[objRange.Rows.Count, 1];
-            Range titleRow = objRange.Range[r1, r2];
+        {            
+            Range titleRow = objRange.Range[objRange.Cells[1, 1], objRange.Cells[objRange.Rows.Count, 1]];
             titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
             titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
             titleRow.Font.Bold = true;
             
             int lastRow = objRange.Rows.Count;
             int lastCol = objRange.Columns.Count;
-            r1 = objRange.Cells[lastRow, 1];
-            r2 = objRange.Cells[lastRow, lastCol];
-            Range EmptyRow = xlSheet.Range[r1, r2];
+            Range EmptyRow = xlSheet.Range[objRange.Cells[lastRow, 1], objRange.Cells[lastRow, lastCol]];
             return EmptyRow;
         }
 
-        //Uses EPPlus lib
-        private void FormatTable(ExcelWorksheet xlWsheet)
-        {
-            ExcelRange xlRange = xlWsheet.SelectedRange[xlWsheet.Dimension.Address];
-            xlRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-            xlRange.AutoFitColumns();
-            foreach(var cell in xlRange)
-            {
-                cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-            }
-        }
-
-        //Uses COM Object Excel
         private void FormatTable(Worksheet xlWorksheet)
         {
             //Align and autofit the whole table

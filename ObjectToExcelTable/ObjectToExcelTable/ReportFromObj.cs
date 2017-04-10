@@ -19,9 +19,8 @@ using XmlWorkbook = DocumentFormat.OpenXml.Spreadsheet.Workbook;
 using XmlWorksheet = DocumentFormat.OpenXml.Spreadsheet.Worksheet;
 using XmlSheet = DocumentFormat.OpenXml.Spreadsheet.Sheet;
 using XmlSheets = DocumentFormat.OpenXml.Spreadsheet.Sheets;
-//using mvcTests.Models;
-using OfficeOpenXml;
 using mvcTests.Models;
+using OfficeOpenXml;
 
 namespace ObjectToExcelTable
 {
@@ -198,27 +197,14 @@ namespace ObjectToExcelTable
                 lastRow = ++r;
                 c = 1;
             }
-            r = 1;
-            ExcelRange er = xlWsheet.Cells[r, c, lastRow, lastCol-1];
-            er.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
-            
-            foreach (var cell in er)
-            {                
-                cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-            }
-            
-            xlWsheet.Cells.AutoFitColumns();
-            ep.SaveAs(fi);
-            er[lastRow, c, lastRow, lastCol - 1].Merge = true;
-            ep.SaveAs(fi);
-            
+                        
             //Lets Try to export the List of Items......
 
             int objEndRow = lastRow;
             int objEndCol = lastCol - 1;
 
             int listEndCol = 1;
-            List<ExcelRange> EmptyRows = new List<ExcelRange>();
+            List<ExcelRangeBase> EmptyRows = new List<ExcelRangeBase>();
             List<ExcelRange> listRanges = new List<ExcelRange>();
             int listStartRow = lastRow;
             int listStartCol = 1;
@@ -228,7 +214,7 @@ namespace ObjectToExcelTable
                 listStartCol = 1;
                 r = ++listStartRow;
                 int numberOfRows = 0;
-                //Range tempListStartCell = xlSheet.Cells[r, listStartCol];
+                int tempListStartRow = r;
                 foreach (var key in item.Keys)
                 {
                     try
@@ -260,30 +246,50 @@ namespace ObjectToExcelTable
                 listStartRow += (numberOfRows + 1);
                 //Range tempListEndCell = xlSheet.Cells[listStartRow, listEndCol];
                 //Range tempListRange = xlSheet.Range[tempListStartCell, tempListEndCell];
-                ExcelRange tempListRange = xlWsheet.Cells[r, listStartCol, listStartRow, listEndCol];
+                ExcelRange tempListRange = xlWsheet.Cells[tempListStartRow, 1, listStartRow, listEndCol];
                 listRanges.Add(tempListRange);
             }
             ep.SaveAs(fi);
-        }
-        private void InputValuesToXml(SheetData xmlSheetData)
-        {
-            foreach(var key in _ObjItems.Keys)
-            {
-                Row row = new Row();
-                row.Append(ConstructCell(key, CellValues.String));
-                xmlSheetData.AppendChild(row);
-            }
-            
-        }
 
-        private Cell ConstructCell(string value, CellValues dataType)
-        {
-            return new Cell()
+            try
             {
-                CellValue = new CellValue(value),
-                DataType = new EnumValue<CellValues>(dataType)
-            };
+                FormatTable(xlWsheet);
+
+                //Range startObjRangeCell = xlSheet.Cells[objStartRow, objStartCol];
+                //Range endObjRangeCell = xlSheet.Cells[objEndRow, objEndCol];
+                //Range ObjRange = xlSheet.Range[startObjRangeCell, endObjRangeCell];
+                ExcelRange ObjRange = xlWsheet.Cells[objStartRow, objStartCol, objEndRow, objEndCol];
+                var tempStr = ObjRange.Address;
+                EmptyRows.Add(FormatObjRange(ObjRange, xlWsheet));
+
+                foreach (ExcelRange row in listRanges)
+                {
+                    if (row != listRanges.Last())
+                    {
+                        EmptyRows.Add(FormatListRange(row, xlWsheet));
+                    }
+                    else
+                    {
+                        FormatListRange(row, xlWsheet);
+                    }
+                }
+
+                foreach (ExcelRange row in EmptyRows)
+                {
+                    row.Merge = true;
+                }
+                ep.SaveAs(fi);
+            }
+            catch (Exception e)
+            {
+                //Console.WriteLine(e);
+            }//*/
+            finally
+            {
+                ep.SaveAs(fi);
+            }
         }
+                
         public void ExportToExcel()
         {
             Application xlApp = new Application();
@@ -424,11 +430,24 @@ namespace ObjectToExcelTable
                 releaseObject(xlApp);
             }
         }
+        private ExcelRange FormatListRange(ExcelRange listRange, ExcelWorksheet xlSheet)
+        {
+            string keepInitialAddress = listRange.Address;
+            int firstRow = listRange.Start.Row;
+            int firstCol = listRange.Start.Column;
+            ExcelRange title = listRange[firstRow, firstCol, firstRow, listRange.Columns];
+            title.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            title.Style.Font.Bold = true;
 
+            listRange.Address = keepInitialAddress;
+            int lastRow = listRange.End.Row;
+            int lastCol = listRange.End.Column;
+            return listRange[lastRow, firstCol, lastRow, lastCol];
+        }
         private Range FormatListRange(Range listRange, Worksheet xlSheet)
         {
-            var r1 = listRange.Cells[1, 1];
-            var r2 = listRange.Cells[1, listRange.Columns.Count];
+            Range r1 = listRange.Cells[1, 1];
+            Range r2 = listRange.Cells[1, listRange.Columns.Count];
 
             Range titleRow = xlSheet.Range[r1, r2];
 
@@ -441,20 +460,51 @@ namespace ObjectToExcelTable
             Range EmptyRow = xlSheet.Range[listRange.Cells[lastRow, 1], listRange.Cells[lastRow, lastCol]];
             return EmptyRow;
         }
+        private ExcelRange FormatObjRange(ExcelRange xlRange, ExcelWorksheet xlWsheet)
+        {
+            string keepInitialAddress = xlRange.Address;
+            int firstRow = xlRange.Start.Row;
+            int firstCol = xlRange.Start.Column;
+            ExcelRange title = xlRange[firstRow, firstCol, xlRange.Rows, firstCol];
+            title.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+            title.Style.Font.Bold = true;
 
+            xlRange.Address = keepInitialAddress;
+            int lastRow = xlRange.End.Row;
+            int lastCol = xlRange.End.Column;
+            
+            return xlRange[lastRow, firstCol, lastRow, lastCol];
+        }
         private Range FormatObjRange(Range objRange, Worksheet xlSheet)
-        {            
-            Range titleRow = objRange.Range[objRange.Cells[1, 1], objRange.Cells[objRange.Rows.Count, 1]];
+        {
+            Range r1 = objRange.Cells[1, 1];
+            Range r2 = objRange.Cells[objRange.Rows.Count, 1];
+            Range titleRow = objRange.Range[r1, r2];
             titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
             titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
             titleRow.Font.Bold = true;
             
             int lastRow = objRange.Rows.Count;
             int lastCol = objRange.Columns.Count;
-            Range EmptyRow = xlSheet.Range[objRange.Cells[lastRow, 1], objRange.Cells[lastRow, lastCol]];
+            r1 = objRange.Cells[lastRow, 1];
+            r2 = objRange.Cells[lastRow, lastCol];
+            Range EmptyRow = xlSheet.Range[r1, r2];
             return EmptyRow;
         }
 
+        //Uses EPPlus lib
+        private void FormatTable(ExcelWorksheet xlWsheet)
+        {
+            ExcelRange xlRange = xlWsheet.SelectedRange[xlWsheet.Dimension.Address];
+            xlRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
+            xlRange.AutoFitColumns();
+            foreach(var cell in xlRange)
+            {
+                cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+            }
+        }
+
+        //Uses COM Object Excel
         private void FormatTable(Worksheet xlWorksheet)
         {
             //Align and autofit the whole table

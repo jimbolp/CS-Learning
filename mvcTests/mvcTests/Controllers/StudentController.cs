@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -104,22 +105,29 @@ namespace mvcTests.Controllers
             initializePackingList();
             try
             {
-                var list = new List<int>();
+                
                 //r = new ReportFromObj(StudentList);
-                r = new ReportFromObj(list);
+                r = new ReportFromObj(pl);
             }
             catch (ParameterNotValidException e)
             {
                 return RedirectToAction("ExportError", e);
             }
-            catch(Exception e)
-            {
-                return RedirectToAction("ExportError", e);
-            }
+            MemoryStream ms = new MemoryStream();
+            ms.SetLength(0);
+            ms = r.ExportByXml();
+            Response.Clear();
+            Response.Buffer = false;
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment;filename=SqlExport.xlsx");
+            ms.WriteTo(Response.OutputStream);
+            Response.Flush();
+            Response.End();
             
-            r.ExportByXml();
+            ms.SetLength(0);
             //r.ExportToExcel();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
         public ActionResult ExportError(Exception message)
         {

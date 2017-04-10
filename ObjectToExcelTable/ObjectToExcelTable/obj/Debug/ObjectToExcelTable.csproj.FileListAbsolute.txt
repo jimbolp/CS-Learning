@@ -15,3 +15,6 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectTo
 E:\Documents\C# Projects\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\DocumentFormat.OpenXml.dll
 E:\Documents\C# Projects\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\EPPlus.dll
 E:\Documents\C# Projects\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\EPPlus.xml
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\EPPlus.dll
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\EPPlus.xml
