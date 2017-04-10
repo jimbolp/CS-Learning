@@ -104,10 +104,15 @@ namespace mvcTests.Controllers
             initializePackingList();
             try
             {
+                var list = new List<int>();
                 //r = new ReportFromObj(StudentList);
-                r = new ReportFromObj(pl);
+                r = new ReportFromObj(list);
             }
             catch (ParameterNotValidException e)
+            {
+                return RedirectToAction("ExportError", e);
+            }
+            catch(Exception e)
             {
                 return RedirectToAction("ExportError", e);
             }

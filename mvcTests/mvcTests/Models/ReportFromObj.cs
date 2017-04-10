@@ -38,6 +38,10 @@ namespace ObjectToExcelTable
             {
                 throw e;
             }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         private void GetPropertiesOneByOne(object o)
