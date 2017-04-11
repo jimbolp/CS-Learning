@@ -171,7 +171,8 @@ namespace ObjectToExcelTable
             return false;
         }
         /// <summary>
-        /// Създава таблица в Excel формат, вика методите за форматиране на таблицата и връща всичко като поток от данни
+        /// Създава таблица в Excel формат, вика методите за форматиране на таблицата и връща всичко като поток от данни.
+        /// EPPlus library.
         /// </summary>
         /// <returns></returns>
         public MemoryStream ExportByXml()
@@ -221,8 +222,6 @@ namespace ObjectToExcelTable
                 c = 1;
             }
             objLastCol--;
-            //int objLastRow = lastRow;
-            //int objLastCol = lastCol - 1;            
 
             //Lets Try to export the List of Items......
 
@@ -320,7 +319,8 @@ namespace ObjectToExcelTable
 
             return ms;
         }
-                
+
+        //Export using Interop Excel
         public void ExportToExcel()
         {
             Application xlApp = new Application();
@@ -349,9 +349,9 @@ namespace ObjectToExcelTable
                     Console.WriteLine(e.StackTrace);
                     xlWorkbook.Close(false);
                     xlApp.Quit();
-                    releaseObject(xlSheet);
-                    releaseObject(xlWorkbook);
-                    releaseObject(xlApp);
+                    releaseComObject(xlSheet);
+                    releaseComObject(xlWorkbook);
+                    releaseComObject(xlApp);
                     return;
                 }
                 if (lastCol < c)
@@ -401,9 +401,9 @@ namespace ObjectToExcelTable
                         Console.WriteLine(e.StackTrace);
                         xlWorkbook.Close(false);
                         xlApp.Quit();
-                        releaseObject(xlSheet);
-                        releaseObject(xlWorkbook);
-                        releaseObject(xlApp);
+                        releaseComObject(xlSheet);
+                        releaseComObject(xlWorkbook);
+                        releaseComObject(xlApp);
                         return;
                     }                    
                 }
@@ -456,11 +456,13 @@ namespace ObjectToExcelTable
             {
                 xlWorkbook.Close(false);
                 xlApp.Quit();
-                releaseObject(xlSheet);
-                releaseObject(xlWorkbook);
-                releaseObject(xlApp);
+                releaseComObject(xlSheet);
+                releaseComObject(xlWorkbook);
+                releaseComObject(xlApp);
             }
         }
+
+        //EPPlus lib.
         private ExcelRange FormatListRange(ExcelRange listRange, ExcelWorksheet xlSheet)
         {
             string keepInitialAddress = listRange.Address;
@@ -475,6 +477,8 @@ namespace ObjectToExcelTable
             int lastCol = listRange.End.Column;
             return listRange[lastRow, firstCol, lastRow, lastCol];
         }
+
+        //Interop lib.
         private Range FormatListRange(Range listRange, Worksheet xlSheet)
         {
             Range r1 = listRange.Cells[1, 1];
@@ -491,6 +495,8 @@ namespace ObjectToExcelTable
             Range EmptyRow = xlSheet.Range[listRange.Cells[lastRow, 1], listRange.Cells[lastRow, lastCol]];
             return EmptyRow;
         }
+
+        //EPPlus..
         private ExcelRange FormatObjRange(ExcelRange xlRange, ExcelWorksheet xlWsheet)
         {
             string keepInitialAddress = xlRange.Address;
@@ -506,6 +512,8 @@ namespace ObjectToExcelTable
             
             return xlRange[lastRow, firstCol, lastRow, lastCol];
         }
+
+        //Interop..
         private Range FormatObjRange(Range objRange, Worksheet xlSheet)
         {
             Range r1 = objRange.Cells[1, 1];
@@ -535,7 +543,7 @@ namespace ObjectToExcelTable
             }
         }
 
-        //Uses COM Object Excel
+        //Uses Interop Excel
         private void FormatTable(Worksheet xlWorksheet)
         {
             //Align and autofit the whole table
@@ -570,7 +578,7 @@ namespace ObjectToExcelTable
             return str;
         }
 
-        private void releaseObject(object obj)
+        private void releaseComObject(object obj)
         {
             try
             {
