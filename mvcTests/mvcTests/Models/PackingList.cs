@@ -80,6 +80,9 @@ namespace ObjectToExcelTable
         public int DocNo { get; set; }
         [DisplayName("Дата на Документ")]
         public DateTime DocDate { get; set; }
+        /*[DisplayName("Тестово пропърти")]
+        [DisplayFormat(DataFormatString = "0.00")]
+        public decimal zaTest { get; set; }//*/
 
         public List<PackingListItem> items { get; set; }
         public List<PackingListItem> items2 { get; set; }

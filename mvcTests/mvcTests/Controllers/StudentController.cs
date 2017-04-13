@@ -104,8 +104,7 @@ namespace mvcTests.Controllers
             ReportFromObj r = null;
             initializePackingList();
             try
-            {
-                
+            {                
                 //r = new ReportFromObj(StudentList);
                 r = new ReportFromObj(pl);
             }

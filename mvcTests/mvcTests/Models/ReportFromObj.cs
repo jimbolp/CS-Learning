@@ -90,7 +90,7 @@ namespace ObjectToExcelTable
         /// <summary>
         /// "Заглавните" пропъртита се вкарват в лист "_ObjItems"
         /// Колекциите като например позициите от документа се вкарват в "_ListItems"
-        /// Датите се проверяват за атрибут "DataFormat" връщащ валиден DateTime формат
+        /// Пропъртитата се проверяват за атрибут "DataFormat" връщащ валиден String формат
         /// </summary>
         /// <param name="pi"></param>
         /// <param name="o"></param>
@@ -98,7 +98,7 @@ namespace ObjectToExcelTable
         /// <param name="propDispName"></param>
         private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
-            String propValue = GetValueFromAttr(pi, o);
+            string propValue = GetValueFromAttr(pi, o);
             if (isCollectionProp)
             {
                 if (string.IsNullOrEmpty(propDispName.Trim()))
@@ -145,12 +145,11 @@ namespace ObjectToExcelTable
             IEnumerable<Attribute> attr = pi.GetCustomAttributes();
             foreach(Attribute obj in attr)
             {
-                if((obj is DisplayFormatAttribute) && pi.GetValue(o) is DateTime)
-                {
-                    //DateTime t = (DateTime);                    
+                if((obj is DisplayFormatAttribute))
+                {                 
                     try
-                    {
-                        return String.Format("{0:" + ((DisplayFormatAttribute)obj).DataFormatString + "}", (DateTime)pi.GetValue(o));
+                    {                        
+                        return String.Format("{0:" + ((DisplayFormatAttribute)obj).DataFormatString + "}", pi.GetValue(o));
                     }
                     catch (Exception)
                     {
