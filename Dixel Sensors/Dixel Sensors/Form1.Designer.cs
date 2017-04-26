@@ -52,7 +52,7 @@
             // 
             // startWorking
             // 
-            this.startWorking.Location = new System.Drawing.Point(45, 204);
+            this.startWorking.Location = new System.Drawing.Point(45, 159);
             this.startWorking.Name = "startWorking";
             this.startWorking.Size = new System.Drawing.Size(75, 23);
             this.startWorking.TabIndex = 1;
@@ -65,7 +65,7 @@
             this.resultLabel.AutoEllipsis = true;
             this.resultLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.resultLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.resultLabel.Location = new System.Drawing.Point(0, 250);
+            this.resultLabel.Location = new System.Drawing.Point(0, 212);
             this.resultLabel.Name = "resultLabel";
             this.resultLabel.Size = new System.Drawing.Size(348, 132);
             this.resultLabel.TabIndex = 2;
@@ -81,7 +81,7 @@
             // combineFiles
             // 
             this.combineFiles.Enabled = false;
-            this.combineFiles.Location = new System.Drawing.Point(180, 204);
+            this.combineFiles.Location = new System.Drawing.Point(180, 159);
             this.combineFiles.Name = "combineFiles";
             this.combineFiles.Size = new System.Drawing.Size(75, 23);
             this.combineFiles.TabIndex = 4;
@@ -128,6 +128,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(131, 20);
             this.dateTimePicker1.TabIndex = 8;
+            this.dateTimePicker1.Visible = false;
             // 
             // dateTimePicker2
             // 
@@ -135,12 +136,13 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(131, 20);
             this.dateTimePicker2.TabIndex = 9;
+            this.dateTimePicker2.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 382);
+            this.ClientSize = new System.Drawing.Size(348, 344);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.tempsCheckBox);
