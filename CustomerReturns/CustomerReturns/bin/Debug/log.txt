@@ -173,3 +173,20 @@ Invoice no. [3001577695] from [2/17/2016] for customer [4021631] in branch [26]
 Invoice no. [3001577247] from [2/17/2016] for customer [7020767] in branch [26]
 
 The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+27.04.2017
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoices:
+
+Invoice no. [4001325119] from [31.08.2015] for customer [5033748] in branch [25]
+
+Invoice no. [4001325250] from [31.08.2015] for customer [5024548] in branch [25]
+
+Invoice no. [4001324400] from [31.08.2015] for customer [5010888] in branch [25]
+
+Invoice no. [4001325043] from [31.08.2015] for customer [5027742] in branch [25]
+
+Invoice no. [4001325057] from [31.08.2015] for customer [5034392] in branch [25]
+
+The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
