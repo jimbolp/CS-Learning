@@ -15,9 +15,27 @@ namespace UserAccountsMVC.Controllers
         private UserDBContext db = new UserDBContext();
 
         // GET: UserMasterDatas
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.PosSortParam = sortOrder == "Position" ? "pos_desc" : "Position";
             var userMasterDatas = db.UserMasterDatas.Include(u => u.Branch).Include(u => u.Position);
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    userMasterDatas = userMasterDatas.OrderByDescending(u => u.UserName);
+                    break;
+                case "Position":
+                    userMasterDatas = userMasterDatas.OrderBy(u => u.Position.Position1);
+                    break;
+                case "pos_desc":
+                    userMasterDatas = userMasterDatas.OrderByDescending(u => u.Position.Position1);
+                    break;
+                default:
+                    userMasterDatas = userMasterDatas.OrderBy(u => u.UserName);
+                    break; ;
+            }
+            
             return View(userMasterDatas.ToList());
         }
 

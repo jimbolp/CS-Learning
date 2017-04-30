@@ -10,15 +10,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr>        
         <th>
             @Html.DisplayNameFor(model => model.Branch.BranchName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Position.Position1)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Position.Position1).ToHtmlString(), "Index", new { sortOrder = ViewBag.PosSortParam })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.ActionLink( @Html.DisplayNameFor(model => model.UserName).ToHtmlString(), "Index", new {sortOrder = ViewBag.NameSortParam})
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -47,14 +47,25 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th></th>
+        <th>
+            Опции
+        </th>
     </tr>
-
+    
 @foreach (var item in Model) {
     <tr>
+        @if (item.Active)
+        {
         <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
         </td>
+        }
+        else
+        {
+        <td class="inactive">
+            @Html.DisplayFor(modelItem => item.Branch.BranchName)
+        </td>
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Position.Position1)
         </td>
