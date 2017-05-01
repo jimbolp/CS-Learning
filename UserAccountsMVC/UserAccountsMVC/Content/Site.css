@@ -40,10 +40,11 @@ th {
 th a {
     color: #f7f7f7;
 }
-tr:nth-child(odd) {
+tr.active:nth-child(odd) {
     background-color: #f2f2f2
 }
-.inactive{
+tr.inactive{
     background-color: indianred;
 }
+
 

@@ -53,19 +53,59 @@
     </tr>
     
 @foreach (var item in Model) {
-    <tr>
-        @if (item.Active)
-        {
+   
+    if (item.Active)
+    {
+        <tr class="active">
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.Position1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PharmosUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UADMUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phibra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="inactive">
         <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
         </td>
-        }
-        else
-        {
-        <td class="inactive">
-            @Html.DisplayFor(modelItem => item.Branch.BranchName)
-        </td>
-        }
         <td>
             @Html.DisplayFor(modelItem => item.Position.Position1)
         </td>
@@ -100,11 +140,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
-    </tr>
+        </tr>
+    }
 }
 
 </table>
