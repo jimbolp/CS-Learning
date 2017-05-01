@@ -224,4 +224,22 @@ Unspecified error (Exception from HRESULT: 0x80004005 (E_FAIL))
    at Microsoft.Office.Interop.Excel.Axis.set_MinimumScale(Double )
    at Dixel_Sensors.Form1.CreateChart(ChartObject xlChartObject, Range xlChartRange, String worksheetName) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 68
    at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 143
-   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 343
+   at Dixel_Sensors.Form1.doStuff() in E:\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 343--------------------------------------------------------------------------------
+19.4.2017 г. 16:05:50 ч.
+Exception from HRESULT: 0x800A01A8
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.Range.get_Cells()
+   at Dixel_Sensors.Form1.createChartTemps(Worksheet xlWorksheet) in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 129
+   at Dixel_Sensors.Form1.doStuff() in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 352--------------------------------------------------------------------------------
+4/20/2017 10:14:00 AM
+Exception from HRESULT: 0x800AC472
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.ChartObjects.Add(Double Left, Double Top, Double Width, Double Height)
+   at Dixel_Sensors.Form1.createChartHumid(Worksheet xlWorksheet) in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 130
+   at Dixel_Sensors.Form1.doStuff() in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 413--------------------------------------------------------------------------------
+4/20/2017 10:25:48 AM
+Exception from HRESULT: 0x800AC472
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at Microsoft.Office.Interop.Excel.ChartObjects.Add(Double Left, Double Top, Double Width, Double Height)
+   at Dixel_Sensors.Form1.createChartHumid(Worksheet xlWorksheet) in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 130
+   at Dixel_Sensors.Form1.doStuff() in C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\Dixel Sensors\Dixel Sensors\Form1.cs:line 413

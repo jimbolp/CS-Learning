@@ -1,0 +1,107 @@
+﻿@model IEnumerable< PrintersDataWebMVC.Models.PrinterMasterData>
+
+@{
+    ViewBag.Title = "Принтери";
+}
+
+<h2>Принтери</h2>
+
+<p>
+    @Html.ActionLink("Създаване на нов принтер", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Търсене по име: @Html.TextBox("SearchString")
+        <input type="submit" value="Търсене" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("№", "Index", new { sortOrder = ViewBag.IDSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Склад", "Index", new { sortOrder = ViewBag.BranchSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.Branches.BranchName)-->
+        </th>
+        <th>
+            @Html.ActionLink("Име на принтер", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.PrinterName)-->
+        </th>
+        <th>
+            @Html.ActionLink("IP Адрес", "Index", new { sortOrder = ViewBag.IPAddSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.IPAddress)-->
+        </th>        
+        <th>
+            @Html.ActionLink("Модел", "Index", new { sortOrder = ViewBag.PrinterModelSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.PrinterModels.PrinterModel)-->
+        </th> 
+        <th>
+            @Html.ActionLink("PHARMOS Print ID", "Index", new { sortOrder = ViewBag.PrintIDSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.PrintID)-->
+        </th>       
+         <!--<th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>-->
+        <th>
+            @Html.ActionLink("DNS име", "Index", new { sortOrder = ViewBag.DNSSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.DNSName)-->
+        </th>
+        <th>
+            @Html.ActionLink("Описание", "Index", new { sortOrder = ViewBag.DescSortParm, currentFilter = ViewBag.CurrentFilter })
+            <!--@Html.DisplayNameFor(model => model.Description)-->
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branches.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterName)            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IPAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrinterModels.PrinterModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNSName)
+        </td>
+        <!--<td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>-->
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)            
+        </td>
+        <td>
+            @Html.ActionLink("Редакция", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Детайли", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Изтриване", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+</table>
+
+
+@helper buildLinks(int start, int end, string innerContent)
+    {
+        for (int i = start; i <= end; i++)
+        {
+            <a class="@(i==ViewBag.CurrentPage ? "btn btn-primary btn-sm" : "btn btn-default btn-sm")" href="@Url.Action("Index", "PrinterMasterDatas", new {page = i})">@(innerContent ?? i.ToString())</a>
+        }
+    }
+
+<div class="pagination">Страница: @buildLinks(1, (int)ViewBag.TotalPages, null)</div>

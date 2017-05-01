@@ -1,0 +1,151 @@
+﻿@model IEnumerable<UserAccountsMVC.Models.UserMasterData>
+
+@{
+    ViewBag.Title = "Потребители";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>        
+        <th>
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
+        </th>
+        <th>
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Position.Position1).ToHtmlString(), "Index", new { sortOrder = ViewBag.PosSortParam })
+        </th>
+        <th>
+            @Html.ActionLink( @Html.DisplayNameFor(model => model.UserName).ToHtmlString(), "Index", new {sortOrder = ViewBag.NameSortParam})
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PharmosUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UADMUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Purchase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phibra)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            Опции
+        </th>
+    </tr>
+    
+@foreach (var item in Model) {
+   
+    if (item.Active)
+    {
+        <tr class="active">
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch.BranchName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position.Position1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PharmosUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UADMUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purchase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phibra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr class="inactive">
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position.Position1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PharmosUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UADMUserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Purchase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phibra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+        </tr>
+    }
+}
+
+</table>

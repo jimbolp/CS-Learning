@@ -31,7 +31,10 @@ namespace Dixel_Sensors
         static readonly string[] TEMPS_FOR_CHARTS =
         {
             "002 TwhDF-XJP60D", "044 TwhMF-XJP60D", "071 TwhUF-XJP60D",
-            "074 TcdUF-XJP60D", "095 TcdSpediciaNew-XJP60D"
+            "074 TcdUF-XJP60D", "095 TcdSpediciaNew-XJP60D", "001_PSMI_1", "002_PSMI_2_1",
+            "003_PSMI_3", "004_PSMI_4", "005_PSMI_5", "006_PSMI_6", "007_PSMI_7",
+            "011_PSMI_11", "012_PSMI_12", "022_PSMI_2_2", "081_PSMI_8_1", "082_PSMI_8_2",
+            "091_PSMI_9_1", "092_PSMI_9_2", "101_PSMI_10_1", "102_PSMI_10_2"
         };
 
         static readonly string[] HUMID_FOR_CHARTS =
@@ -72,6 +75,7 @@ namespace Dixel_Sensors
 
             //xlChartPage.ApplyChartTemplate(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\For Tests\\ChartTemplate.crtx");
             xlChartPage.Legend.Delete();
+            //xlChartObject.
             //ListOfCharts.Add(xlChartPage);
             //xlApp.Visible = true;
             if(printCheckBox.Checked)
@@ -86,20 +90,77 @@ namespace Dixel_Sensors
         private void createChartHumid(Worksheet xlWorksheet)
         {
             resultLabel.Text = "Обработва се графика за -> " + xlWorksheet.Name;
-            
+            ChartObjects xlChartObjects = xlWorksheet.ChartObjects();
             const double heigth = 521.0134; //18.23cm * 28.58
             const double width = 867.9746; //30.37cm * 28.58
             int startPositionLeft = 100;
             int startPositionTop = 100;
 
-            //Range used for the current chart
             Range xlChartRange = xlWorksheet.UsedRange;
+            int tableRows = xlChartRange.Rows.Count;
+            int count = 1;
+            string topRange = "A" + count;
+            string bottomRange = "B" + count;
+            bool firstDateOfRange = true;
+            int tableCount = 1;
+            for (int i = 1; i <= tableRows; ++i)
+            {
+                string strDate = Convert.ToString((xlChartRange.Cells[i, 1] as Range).Value);
+                if (!string.IsNullOrEmpty(strDate))
+                {
+                    strDate = String.Format("{0:dd/MM/yyyy}", (strDate.Trim().Split(' ').ToArray()[0].Trim()));
+                    DateTime cellDate;
+
+                    if (DateTime.TryParseExact(strDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                        out cellDate))
+                    //if(DateTime.TryParse(strDate, out cellDate))
+                    {
+                        if (cellDate.Day == 1)
+                        {
+                            if (firstDateOfRange)
+                            {
+                                bottomRange = "B" + i;
+                                //firstDateOfRange = false;
+                            }
+                            else
+                            {
+                                resultLabel.Text = "Обработва се таблица - " + tableCount++;
+                                Range currentChartRange = xlWorksheet.Range[topRange, bottomRange];
+                                startPositionTop += 600;
+                                ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
+                                CreateChart(xlChartObject, currentChartRange, xlWorksheet.Name);
+                                topRange = "A" + i;
+                                bottomRange = "B" + i;
+                                firstDateOfRange = true;
+                                System.Windows.Forms.Application.DoEvents();
+                            }
+                        }
+                        else
+                        {
+                            bottomRange = "B" + i;
+                            firstDateOfRange = false;
+                            if (i == tableRows)
+                            {
+                                resultLabel.Text = "Обработва се таблица - " + tableCount++;
+                                Range currentChartRange = xlWorksheet.Range[topRange, bottomRange];
+                                startPositionTop += 600;
+                                ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
+                                CreateChart(xlChartObject, currentChartRange, xlWorksheet.Name);
+                                System.Windows.Forms.Application.DoEvents();
+                            }
+                        }
+                    }
+                }
+            }
+
+            //Range used for the current chart
+            /*Range xlChartRange = xlWorksheet.UsedRange;
             ChartObjects xlChartObjects = xlWorksheet.ChartObjects();
             ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
-            CreateChart(xlChartObject, xlChartRange, xlWorksheet.Name);
+            CreateChart(xlChartObject, xlChartRange, xlWorksheet.Name);//*/
 
         }
-
+        //private List<Range> 
         /// <summary>
         /// The temperature's chart has to be on a weekly basis
         /// </summary>
@@ -115,7 +176,7 @@ namespace Dixel_Sensors
             //Range used for the current chart
             Range xlChartRange = xlWorksheet.UsedRange;
             int tableRows = xlChartRange.Rows.Count;
-            int count = 2;
+            int count = 1;
             string topRange = "A" + count;
             string bottomRange = "B" + count;
             bool firstDateOfRange = true;
@@ -125,10 +186,12 @@ namespace Dixel_Sensors
                 string strDate = Convert.ToString((xlChartRange.Cells[i, 1] as Range).Value);
                 if (!string.IsNullOrEmpty(strDate))
                 {
-                    strDate = strDate.Trim().Split(' ').ToArray()[0].Trim();
+                    strDate = String.Format("{0:dd/MM/yyyy}",(strDate.Trim().Split(' ').ToArray()[0].Trim()));
                     DateTime cellDate;
-                    if (DateTime.TryParseExact(strDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                    
+                    if (DateTime.TryParseExact(strDate, "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
                         out cellDate))
+                        //if(DateTime.TryParse(strDate, out cellDate))
                     {
                         if (cellDate.DayOfWeek == DayOfWeek.Monday)
                         {
@@ -344,9 +407,9 @@ namespace Dixel_Sensors
                         loadTemps(sheet);
                     if (graphicsCheckBox.Checked)
                     {
-                        if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
-                            createChartTemps(sheet);
-                        else if (HUMID_FOR_CHARTS.Contains(sheet.Name))
+                        //if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
+                           // createChartTemps(sheet);
+                       // if (HUMID_FOR_CHARTS.Contains(sheet.Name))
                             createChartHumid(sheet);
                     }
 

@@ -12,3 +12,5 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\o
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Release\PrintersData.csproj.GenerateResource.Cache
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Release\PrintersData.exe
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\obj\Release\PrintersData.pdb
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\bin\Release\PrintersData.exe.CodeAnalysisLog.xml
+C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersData\PrintersData\bin\Release\PrintersData.exe.lastcodeanalysissucceeded
