@@ -190,3 +190,12 @@ Invoice no. [4001325043] from [31.08.2015] for customer [5027742] in branch [25]
 Invoice no. [4001325057] from [31.08.2015] for customer [5034392] in branch [25]
 
 The invoices are not available in the invoice history (DKHIS) and have to be reloaded!
+
+03.05.2017
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoice:
+
+Invoice no. [3001577007] from [17.02.2016] for customer [7001988] in branch [26]
+
+The invoice is not available in the invoice history (DKHIS) and has to be reloaded!

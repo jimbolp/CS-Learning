@@ -36,8 +36,6 @@
             this.printCheckBox = new System.Windows.Forms.CheckBox();
             this.graphicsCheckBox = new System.Windows.Forms.CheckBox();
             this.tempsCheckBox = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -73,7 +71,7 @@
             // sheetNameLabel
             // 
             this.sheetNameLabel.AutoSize = true;
-            this.sheetNameLabel.Location = new System.Drawing.Point(12, 159);
+            this.sheetNameLabel.Location = new System.Drawing.Point(12, 199);
             this.sheetNameLabel.Name = "sheetNameLabel";
             this.sheetNameLabel.Size = new System.Drawing.Size(0, 13);
             this.sheetNameLabel.TabIndex = 3;
@@ -122,29 +120,11 @@
             this.tempsCheckBox.Text = "Преработване на стойностите";
             this.tempsCheckBox.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(45, 130);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(131, 20);
-            this.dateTimePicker1.TabIndex = 8;
-            this.dateTimePicker1.Visible = false;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(185, 130);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(131, 20);
-            this.dateTimePicker2.TabIndex = 9;
-            this.dateTimePicker2.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 344);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.tempsCheckBox);
             this.Controls.Add(this.graphicsCheckBox);
             this.Controls.Add(this.printCheckBox);
@@ -171,8 +151,6 @@
         private System.Windows.Forms.CheckBox printCheckBox;
         private System.Windows.Forms.CheckBox graphicsCheckBox;
         private System.Windows.Forms.CheckBox tempsCheckBox;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }
 
