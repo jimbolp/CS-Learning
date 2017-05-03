@@ -9,6 +9,13 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Търси по Име: @Html.TextBox("SearchString")
+        <input type="submit" value="Търси" />
+    </p>
+}
 <table class="table">
     <tr>        
         <th>
@@ -18,16 +25,16 @@
             @Html.ActionLink(Html.DisplayNameFor(model => model.Position.Position1).ToHtmlString(), "Index", new { sortOrder = ViewBag.PosSortParam })
         </th>
         <th>
-            @Html.ActionLink( @Html.DisplayNameFor(model => model.UserName).ToHtmlString(), "Index", new {sortOrder = ViewBag.NameSortParam})
+            @Html.ActionLink(Html.DisplayNameFor(model => model.UserName).ToHtmlString(), "Index", new {sortOrder = ViewBag.NameSortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.Email).ToHtmlString(), "Index", new {sortOrder = ViewBag.EmailSortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PharmosUserName)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.PharmosUserName).ToHtmlString(), "Index", new {sortOrder = ViewBag.PharmNameSortParam})
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UADMUserName)
+            @Html.ActionLink(Html.DisplayNameFor(model => model.UADMUserName).ToHtmlString(), "Index", new { sortOrder = ViewBag.UadmSortParam })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.GI)
@@ -53,56 +60,9 @@
     </tr>
     
 @foreach (var item in Model) {
-   
     if (item.Active)
     {
-        <tr class="active">
-            <td>
-                @Html.DisplayFor(modelItem => item.Branch.BranchName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position.Position1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PharmosUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UADMUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Purchase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phibra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Active)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-    else
-    {
-        <tr class="inactive">
+    <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Branch.BranchName)
         </td>
@@ -144,7 +104,7 @@
             @Html.ActionLink("Details", "Details", new { id = item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
-        </tr>
+    </tr>
     }
 }
 

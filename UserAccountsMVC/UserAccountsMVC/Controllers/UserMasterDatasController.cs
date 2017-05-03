@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,11 +16,18 @@ namespace UserAccountsMVC.Controllers
         private UserDBContext db = new UserDBContext();
 
         // GET: UserMasterDatas
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PosSortParam = sortOrder == "Position" ? "pos_desc" : "Position";
+            ViewBag.EmailSortParam = sortOrder == "Email" ? "email_decs" : "Email";
+            ViewBag.PharmNameSortParam = sortOrder == "Pharmos" ? "pharm_decs" : "Pharmos";
+            ViewBag.UadmSortParam = sortOrder == "UadmName" ? "uadm_decs" : "UadmName";
             var userMasterDatas = db.UserMasterDatas.Include(u => u.Branch).Include(u => u.Position);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                userMasterDatas = userMasterDatas.Where(u => u.UserName.ToLower().Contains(searchString.ToLower()));
+            }
             switch (sortOrder)
             {
                 case "name_desc":
@@ -30,6 +38,24 @@ namespace UserAccountsMVC.Controllers
                     break;
                 case "pos_desc":
                     userMasterDatas = userMasterDatas.OrderByDescending(u => u.Position.Position1);
+                    break;
+                case "Email":
+                    userMasterDatas = userMasterDatas.OrderBy(u => u.Email);
+                    break;
+                case "email_decs":
+                    userMasterDatas = userMasterDatas.OrderByDescending(u => u.Email);
+                    break;
+                case "Pharmos":
+                    userMasterDatas = userMasterDatas.OrderBy(u => u.PharmosUserName);
+                    break;
+                case "pharm_desc":
+                    userMasterDatas = userMasterDatas.OrderByDescending(u => u.PharmosUserName);
+                    break;
+                case "UadmName":
+                    userMasterDatas = userMasterDatas.OrderBy(u => u.UADMUserName);
+                    break;
+                case "uadm_decs":
+                    userMasterDatas = userMasterDatas.OrderByDescending(u => u.UADMUserName);
                     break;
                 default:
                     userMasterDatas = userMasterDatas.OrderBy(u => u.UserName);
