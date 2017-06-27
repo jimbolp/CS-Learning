@@ -10,17 +10,41 @@ using Application = Microsoft.Office.Interop.Excel.Application;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using OfficeOpenXml;
 
 namespace ObjectToExcelTable
 {
     class Program
     {
-
-
         //public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         //public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
-        {
+        {            
+            if(args.Length > 1)
+            {
+                PosCodeItemsSql temp = new PosCodeItemsSql();
+                try
+                {
+                    temp = ObjFromXlFile(args[2]);
+                    Console.WriteLine(temp.Caption);
+                    foreach(var item in temp.items)
+                    {
+                        Type t = item.GetType();
+                        PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                        foreach(PropertyInfo pi in propInfos)
+                        {
+                            Console.Write(pi.Name + " -> ");
+                            Console.WriteLine(pi.GetValue(item));                            
+                        }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                    Console.ReadLine();
+                }
+                Console.ReadLine();
+            }
             PackingListItem pli = new PackingListItem()
             {
                 ArticleID = 6263,
@@ -31,7 +55,7 @@ namespace ObjectToExcelTable
                 PalletID = 4325,
                 PalletBarcode = 4324,
                 PosCodeID = 12,
-                PosCodeName = "posCodeName",
+                PosCodeName = "Нещо си :)",
                 StoreID = 22,
                 StoreName = "София"
             };
@@ -85,10 +109,15 @@ namespace ObjectToExcelTable
                 items2 = lPli2
             };
             ReportFromObj rfo = new ReportFromObj(pl);
-            //rfo.ExportToExcel();
+            FileStream fs = new FileStream("\\tempXML.xlsx", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            MemoryStream ms = new MemoryStream();
             try
             {
-                rfo.ExportByXml();
+                ms = rfo.ExportByXml();
+                if (ms != null)
+                {
+                    ms.WriteTo(fs);
+                }
             }
             catch(Exception e)
             {
@@ -96,11 +125,14 @@ namespace ObjectToExcelTable
                 Console.WriteLine(e.StackTrace);
                 Console.ReadLine();
             }
-            /*
-            GetPropertiesOneByOne(pl);
-            Print();
-            ExcelTable();
-            Console.ReadLine();//*/
+        }
+        public static PosCodeItemsSql ObjFromXlFile(string path)
+        {
+            PosCodeItemsSql Items = new PosCodeItemsSql();
+            FileInfo fi = new FileInfo(path);
+            ExcelPackage ep = new ExcelPackage(fi);
+            ExcelWorksheet xlSheet = ep.Workbook.Worksheets[1];
+            return Items;
         }
     }
 }
