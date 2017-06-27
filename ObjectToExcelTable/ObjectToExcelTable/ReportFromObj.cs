@@ -12,29 +12,21 @@ using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System.IO;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using XmlWorkbook = DocumentFormat.OpenXml.Spreadsheet.Workbook;
-using XmlWorksheet = DocumentFormat.OpenXml.Spreadsheet.Worksheet;
-using XmlSheet = DocumentFormat.OpenXml.Spreadsheet.Sheet;
-using XmlSheets = DocumentFormat.OpenXml.Spreadsheet.Sheets;
-using mvcTests.Models;
 using OfficeOpenXml;
 
 namespace ObjectToExcelTable
 {
     public class ReportFromObj
     {
-        private static Dictionary<string, List<string>> _ObjItems { get; set; } = new Dictionary<string, List<string>>();
-        private static List<Dictionary<string, List<string>>> _ListItems { get; set; } = new List<Dictionary<string, List<string>>>();
+        private Dictionary<string, List<string>> _ObjItems { get; set; } = new Dictionary<string, List<string>>();
+        private List<Dictionary<string, List<string>>> _ListItems { get; set; } = new List<Dictionary<string, List<string>>>();
         public ReportFromObj(object o)
         {
             try
             {
                 GetPropertiesOneByOne(o);
             }
-            catch (ParameterNotValidException e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -43,10 +35,10 @@ namespace ObjectToExcelTable
         private void GetPropertiesOneByOne(object o)
         {
             Type t = o.GetType();
-            
+
             if (typeof(IEnumerable).IsAssignableFrom(o.GetType()) && !(o is String))
             {
-                throw new ParameterNotValidException("The given parameter cannot be of type" + o.GetType());
+                throw new Exception("The given parameter cannot be of type" + o.GetType());
                 /*foreach (var item in (IEnumerable)o)
                 {
                     Type itemT = item.GetType();
@@ -70,7 +62,7 @@ namespace ObjectToExcelTable
         private void ProcessEachProp(PropertyInfo pi, object o)
         {
             //Ако пропъртито е от тип IEnumerable, извъртаме колекцията и подаваме всеки един обект от нея отново на нашия метод (изключваме String от сметките)
-            if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType)&& pi.GetValue(o)!= null && !(pi.GetValue(o) is String) && pi.CanRead)
+            if (typeof(IEnumerable).IsAssignableFrom(pi.PropertyType) && pi.GetValue(o) != null && !(pi.GetValue(o) is String) && pi.CanRead)
             {
                 _ListItems.Add(new Dictionary<string, List<string>>());
                 foreach (var enumPi in (IEnumerable)pi.GetValue(o))
@@ -79,13 +71,17 @@ namespace ObjectToExcelTable
                     PropertyInfo[] propInfos = propertyType.GetProperties(BindingFlags.Instance | BindingFlags.Public);
                     foreach (PropertyInfo propInfo in propInfos)
                     {
+                        var test = propInfo.GetValue(enumPi);
+                        var testType = typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType);
+
                         if (propInfo.GetValue(enumPi) is String || !(typeof(IEnumerable).IsAssignableFrom(propInfo.PropertyType)))
                         {
+                            string AttrName = propInfo.Name;
                             if (GetDispAttribute(propInfo.GetCustomAttributes()))
                             {
-                                string AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
-                                ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
+                                AttrName = propInfo.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
                             }
+                            ProcessSimpleTypeProperty(propInfo, enumPi, true, AttrName);
                         }
                     }
                     //GetPropertiesOneByOne(enumPi);
@@ -103,21 +99,25 @@ namespace ObjectToExcelTable
         }
         private void ProcessSimpleTypeProperty(PropertyInfo pi, object o, bool isCollectionProp, string propDispName)
         {
+            string PropValue = "";
+            if (pi.GetValue(o, null) != null)
+                PropValue = pi.GetValue(o, null).ToString();
+
             if (isCollectionProp)
             {
                 if (string.IsNullOrEmpty(propDispName))
                 {
                     if (!_ListItems.Last().ContainsKey(pi.Name))
-                        _ListItems.Last()[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ListItems.Last()[pi.Name] = new List<string>() { PropValue };
                     else
-                        _ListItems.Last()[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ListItems.Last()[pi.Name].Add(PropValue);
                 }
                 else
                 {
                     if (!_ListItems.Last().ContainsKey(propDispName))
-                        _ListItems.Last()[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ListItems.Last()[propDispName] = new List<string>() { PropValue };
                     else
-                        _ListItems.Last()[propDispName].Add(pi.GetValue(o, null).ToString());
+                        _ListItems.Last()[propDispName].Add(PropValue);
                 }
             }
             else
@@ -125,16 +125,16 @@ namespace ObjectToExcelTable
                 if (string.IsNullOrEmpty(propDispName))
                 {
                     if (!_ObjItems.ContainsKey(pi.Name))
-                        _ObjItems[pi.Name] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ObjItems[pi.Name] = new List<string>() { PropValue };
                     else
-                        _ObjItems[pi.Name].Add(pi.GetValue(o, null).ToString());
+                        _ObjItems[pi.Name].Add(PropValue);
                 }
                 else
                 {
                     if (!_ObjItems.ContainsKey(propDispName))
-                        _ObjItems[propDispName] = new List<string>() { pi.GetValue(o, null).ToString() };
+                        _ObjItems[propDispName] = new List<string>() { PropValue };
                     else
-                        _ObjItems[propDispName].Add(pi.GetValue(o, null).ToString());
+                        _ObjItems[propDispName].Add(PropValue);
                 }
             }
         }
@@ -148,16 +148,13 @@ namespace ObjectToExcelTable
             return false;
         }
 
-        public void ExportByXml()
+        public MemoryStream ExportByXml()
         {
-            ExcelPackage ep = new ExcelPackage();
+            MemoryStream ms = new MemoryStream();
+            ExcelPackage ep = new ExcelPackage(ms);
             ExcelWorkbook xlWBook = ep.Workbook;
-            xlWBook.Worksheets.Add("Test Sheet");
+            xlWBook.Worksheets.Add("Report");
             ExcelWorksheet xlWsheet = xlWBook.Worksheets.FirstOrDefault();
-
-            //File path... I have to do that with a Method.....
-            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\testXML.xlsx";
-            FileInfo fi = new FileInfo(str);
 
             //Initial row and column index
             int r = 1;
@@ -169,7 +166,7 @@ namespace ObjectToExcelTable
 
             int objStartRow = 1;
             int objStartCol = 1;
-            
+
             //Simple type properties...
             foreach (string key in _ObjItems.Keys)
             {
@@ -183,21 +180,16 @@ namespace ObjectToExcelTable
                 }
                 catch (Exception)
                 {
-                    ep.SaveAs(fi);
-                    return;
+                    return new MemoryStream(ep.GetAsByteArray()); ;
                 }
-                finally
-                {
-                    ep.Save();
-                }
-                
+
                 if (lastCol < c)
                     lastCol = c;
-                
+
                 lastRow = ++r;
                 c = 1;
             }
-                        
+
             //Lets Try to export the List of Items......
 
             int objEndRow = lastRow;
@@ -236,28 +228,22 @@ namespace ObjectToExcelTable
                             numberOfRows = item[key].Count;
                         }
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
-                        
-                        return;
+                        return new MemoryStream(ep.GetAsByteArray());
                     }
                 }
 
                 listStartRow += (numberOfRows + 1);
-                //Range tempListEndCell = xlSheet.Cells[listStartRow, listEndCol];
-                //Range tempListRange = xlSheet.Range[tempListStartCell, tempListEndCell];
                 ExcelRange tempListRange = xlWsheet.Cells[tempListStartRow, 1, listStartRow, listEndCol];
                 listRanges.Add(tempListRange);
             }
-            ep.SaveAs(fi);
+            //ep.SaveAs(fi);
 
             try
             {
                 FormatTable(xlWsheet);
 
-                //Range startObjRangeCell = xlSheet.Cells[objStartRow, objStartCol];
-                //Range endObjRangeCell = xlSheet.Cells[objEndRow, objEndCol];
-                //Range ObjRange = xlSheet.Range[startObjRangeCell, endObjRangeCell];
                 ExcelRange ObjRange = xlWsheet.Cells[objStartRow, objStartCol, objEndRow, objEndCol];
                 var tempStr = ObjRange.Address;
                 EmptyRows.Add(FormatObjRange(ObjRange, xlWsheet));
@@ -278,18 +264,18 @@ namespace ObjectToExcelTable
                 {
                     row.Merge = true;
                 }
-                ep.SaveAs(fi);
+                //ep.SaveAs(fi);
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                ms = new MemoryStream(ep.GetAsByteArray());
+                return ms;
                 //Console.WriteLine(e);
             }//*/
-            finally
-            {
-                ep.SaveAs(fi);
-            }
+
+            return new MemoryStream(ep.GetAsByteArray());
         }
-                
+
         public void ExportToExcel()
         {
             Application xlApp = new Application();
@@ -302,7 +288,7 @@ namespace ObjectToExcelTable
             int lastCol = 1;
             int objStartRow = 1;
             int objStartCol = 1;
-            
+
             foreach (string key in _ObjItems.Keys)
             {
                 try
@@ -310,7 +296,7 @@ namespace ObjectToExcelTable
                     (xlSheet.Cells[r, c++] as Range).Value = separateWords(key);
                     foreach (string value in _ObjItems[key])
                         (xlSheet.Cells[r, c++] as Range).Value = value;
-                    
+
                 }
                 catch (Exception e)
                 {
@@ -362,7 +348,7 @@ namespace ObjectToExcelTable
                         if (numberOfRows < item[key].Count)
                         {
                             numberOfRows = item[key].Count;
-                        }                            
+                        }
                     }
                     catch (Exception e)
                     {
@@ -374,9 +360,9 @@ namespace ObjectToExcelTable
                         releaseObject(xlWorkbook);
                         releaseObject(xlApp);
                         return;
-                    }                    
+                    }
                 }
-                
+
                 listStartRow += (numberOfRows + 1);
                 Range tempListEndCell = xlSheet.Cells[listStartRow, listEndCol];
                 Range tempListRange = xlSheet.Range[tempListStartCell, tempListEndCell];
@@ -393,7 +379,7 @@ namespace ObjectToExcelTable
 
                 foreach (Range row in listRanges)
                 {
-                    if(row != listRanges.Last())
+                    if (row != listRanges.Last())
                         EmptyRows.Add(FormatListRange(row, xlSheet));
                     else
                     {
@@ -405,7 +391,7 @@ namespace ObjectToExcelTable
                 {
                     row.Merge(true);
                 }
-                    
+
             }
             catch (Exception e)
             {
@@ -472,7 +458,7 @@ namespace ObjectToExcelTable
             xlRange.Address = keepInitialAddress;
             int lastRow = xlRange.End.Row;
             int lastCol = xlRange.End.Column;
-            
+
             return xlRange[lastRow, firstCol, lastRow, lastCol];
         }
         private Range FormatObjRange(Range objRange, Worksheet xlSheet)
@@ -483,7 +469,7 @@ namespace ObjectToExcelTable
             titleRow.HorizontalAlignment = XlHAlign.xlHAlignCenter;
             titleRow.VerticalAlignment = XlVAlign.xlVAlignCenter;
             titleRow.Font.Bold = true;
-            
+
             int lastRow = objRange.Rows.Count;
             int lastCol = objRange.Columns.Count;
             r1 = objRange.Cells[lastRow, 1];
@@ -498,7 +484,7 @@ namespace ObjectToExcelTable
             ExcelRange xlRange = xlWsheet.SelectedRange[xlWsheet.Dimension.Address];
             xlRange.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.CenterContinuous;
             xlRange.AutoFitColumns();
-            foreach(var cell in xlRange)
+            foreach (var cell in xlRange)
             {
                 cell.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
             }
@@ -512,7 +498,7 @@ namespace ObjectToExcelTable
             xlRange.HorizontalAlignment = XlHAlign.xlHAlignCenterAcrossSelection;
             xlRange.VerticalAlignment = XlVAlign.xlVAlignCenter;
             xlRange.Columns.AutoFit();
-            
+
             //Places border on each cell            
             foreach (Range c in xlRange.Cells)
             {
@@ -559,3 +545,4 @@ namespace ObjectToExcelTable
         }
     }
 }
+

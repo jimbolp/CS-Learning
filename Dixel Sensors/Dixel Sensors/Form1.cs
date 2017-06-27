@@ -704,8 +704,7 @@ namespace Dixel_Sensors
             return rangeToCopy;
         }
         private void loadAllExcelFiles(string folderPath)
-        {
-            
+        {            
             string[] allFilesInFolder = Directory.GetFiles(folderPath);
             IEnumerable<string> filesNames = from file in
                                     allFilesInFolder

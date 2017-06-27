@@ -189,14 +189,13 @@ namespace UserAccounts
             }
             int UID = Convert.ToInt32(textBoxUID.Text);
             string branch = Convert.ToString(listKSCBranches.SelectedItem);
-            if (db.KSCs.Any(k => k.UserName == textBoxKSCUserName.Text))
-                return 1; //KSC UserName Exists
-            if (db.KSCs.Any(k => k.TermID == textBoxTermID.Text))
+            /*if (db.KSCs.Any(k => k.UserName == textBoxKSCUserName.Text))
+                return 1; //KSC UserName Exists//*/
+            if (db.KSCs.Where(k => k.Branch.BranchName == branch).Any(k => k.TermID == textBoxTermID.Text))
                 return 2; //There is User with the same TermID (NOT possible)
-            if (db.KSCs.Any(k => k.UID == UID))
+            if (db.KSCs.Where(k => k.Branch.BranchName == branch).Any(k => k.UID == UID))
                 return 3; //There is User with the same UID (again.. NOT possible)
-            if (db.KSCs.Any(k => (k.Branch.BranchName == branch) 
-                                 && k.UserID == UserID))
+            if (db.KSCs.Where(k => k.Branch.BranchName == branch).Any(k => k.UserID == UserID))
                 return 4; //There is already KSC account for this User in the selected branch
             return 0;
         }
