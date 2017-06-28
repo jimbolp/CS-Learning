@@ -14,7 +14,7 @@ namespace ObjectToExcelTable
 
         public List<PosCodeItemSql> items { get; set; }
 
-        public PosCodeItemsSql()
+        public PosCodeItemsSql(bool emptyClass)
         {
             items = new List<PosCodeItemSql>();
             Caption = "Позиционни кодове с артикули"; 

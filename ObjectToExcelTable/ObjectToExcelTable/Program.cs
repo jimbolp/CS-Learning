@@ -19,14 +19,14 @@ namespace ObjectToExcelTable
         //public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         //public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
-        {            
-            if(args.Length > 1)
-            {
-                PosCodeItemsSql temp = new PosCodeItemsSql();
+        {
+                PosCodeItemsSql temp = new PosCodeItemsSql(true);
                 try
                 {
-                    temp = ObjFromXlFile(args[2]);
+                    temp = ObjFromXlFile.PosCodeFromFile(@"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ExcelFile.xlsx");
+                    string tempFilePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\temp.txt";
                     Console.WriteLine(temp.Caption);
+                    File.AppendAllText(tempFilePath, temp.Caption);
                     foreach(var item in temp.items)
                     {
                         Type t = item.GetType();
@@ -34,7 +34,8 @@ namespace ObjectToExcelTable
                         foreach(PropertyInfo pi in propInfos)
                         {
                             Console.Write(pi.Name + " -> ");
-                            Console.WriteLine(pi.GetValue(item));                            
+                            Console.WriteLine(pi.GetValue(item));
+                            File.AppendAllText(tempFilePath, pi.Name + " -> " + pi.GetValue(item) + Environment.NewLine);
                         }
                     }
                 }
@@ -44,8 +45,8 @@ namespace ObjectToExcelTable
                     Console.ReadLine();
                 }
                 Console.ReadLine();
-            }
-            PackingListItem pli = new PackingListItem()
+            
+            /*PackingListItem pli = new PackingListItem()
             {
                 ArticleID = 6263,
                 ArticleName = "Аналгин",
@@ -124,15 +125,8 @@ namespace ObjectToExcelTable
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
                 Console.ReadLine();
-            }
-        }
-        public static PosCodeItemsSql ObjFromXlFile(string path)
-        {
-            PosCodeItemsSql Items = new PosCodeItemsSql();
-            FileInfo fi = new FileInfo(path);
-            ExcelPackage ep = new ExcelPackage(fi);
-            ExcelWorksheet xlSheet = ep.Workbook.Worksheets[1];
-            return Items;
-        }
+            }//*/
+        }        
+        
     }
 }
