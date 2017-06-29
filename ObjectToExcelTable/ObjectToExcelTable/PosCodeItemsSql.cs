@@ -16,41 +16,50 @@ namespace ObjectToExcelTable
 
         public PosCodeItemsSql(bool emptyClass)
         {
-            items = new List<PosCodeItemSql>();
+            if (emptyClass)
+            {
+                items = new List<PosCodeItemSql>();
+            }
+            else
+            {
+                //SQL Query here
+            }
             Caption = "Позиционни кодове с артикули"; 
         }
     }
 
     public class PosCodeItemSql
     {
-
         [DisplayName("Склад")]
-        public string StoreName { get; set; }
+        public string StoreName { get; set; } = null;
 
         [DisplayName("Позиционен код")]
-        public string PosCodeName { get; set; }
+        public string PosCodeName { get; set; } = null;
 
         [DisplayName("PalletID")]
-        public int? PalletID { get; set; }
+        public int? PalletID { get; set; } = null;
 
         [DisplayName("ArticleID")]
-        public int? ArticleID { get; set; }
+        public int? ArticleID { get; set; } = null;
 
         [DisplayName("Производител")]
-        public string Producer { get; set; }
+        public string Producer { get; set; } = null;
 
         [DisplayName("Артикул")]
-        public string ArticleName { get; set; }
+        public string ArticleName { get; set; } = null;
 
         [DisplayName("Партида")]
-        public string ParcelNo { get; set; }
+        public string ParcelNo { get; set; } = null;
 
         [DisplayName("Срок на годност")]
         [DisplayFormat(DataFormatString = "MM.yyyy")]
-        public DateTime? ExpiryDate { get; set; }
+        public DateTime? ExpiryDate { get; set; } = null;
 
         [DisplayName("К-во")]
-        public int? Qty { get; set; }
+        public int? Qty { get; set; } = null;
+
+        [DisplayName("К-во Намерено")]
+        public int? QtyFound { get; set; } = null;
 
     }
 }

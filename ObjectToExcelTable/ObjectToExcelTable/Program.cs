@@ -16,35 +16,57 @@ namespace ObjectToExcelTable
 {
     class Program
     {
+        const string filePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ExcelFile.xlsx";
         //public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         //public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
         {
-                PosCodeItemsSql temp = new PosCodeItemsSql(true);
-                try
+            PosCodeItemsSql items = new PosCodeItemsSql(true);
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    temp = ObjFromXlFile.PosCodeFromFile(@"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ExcelFile.xlsx");
-                    string tempFilePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\temp.txt";
-                    Console.WriteLine(temp.Caption);
-                    File.AppendAllText(tempFilePath, temp.Caption);
-                    foreach(var item in temp.items)
+                    byte[] bytes = new byte[file.Length];
+                    unsafe
                     {
-                        Type t = item.GetType();
-                        PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                        foreach(PropertyInfo pi in propInfos)
+                        fixed(byte* p = bytes)
                         {
-                            Console.Write(pi.Name + " -> ");
-                            Console.WriteLine(pi.GetValue(item));
-                            File.AppendAllText(tempFilePath, pi.Name + " -> " + pi.GetValue(item) + Environment.NewLine);
+                            Console.WriteLine(*p);
                         }
                     }
+                    //IntPtr p = bytes;
+                    /*file.Read(bytes, 0, (int)file.Length);
+                    ms.Write(bytes, 0, (int)file.Length);//*/
+                    file.CopyTo(ms);
+                    items = ObjFromXlFile.PosCodeFromStream(ms);
+                    file.Close();
+                    ms.Close();
                 }
-                catch(Exception e)
+                    
+                string tempFilePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\temp.txt";
+                //Console.WriteLine(items.Caption);
+                
+                File.WriteAllText(tempFilePath, items.Caption);
+                /*foreach(var item in items.items)
                 {
-                    Console.WriteLine(e);
-                    Console.ReadLine();
-                }
+                    Type t = item.GetType();
+                    PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                    foreach(PropertyInfo pi in propInfos)
+                    {
+                        //Console.Write(pi.Name + " -> ");
+                        //Console.WriteLine(pi.GetValue(item));
+                        
+                        File.AppendAllText(tempFilePath, pi.Name + " -> " + pi.GetValue(item) + Environment.NewLine);
+                    }
+                }//*/
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
                 Console.ReadLine();
+            }
+            Console.ReadLine();
             
             /*PackingListItem pli = new PackingListItem()
             {
@@ -126,7 +148,7 @@ namespace ObjectToExcelTable
                 Console.WriteLine(e.StackTrace);
                 Console.ReadLine();
             }//*/
-        }        
+        }
         
     }
 }
