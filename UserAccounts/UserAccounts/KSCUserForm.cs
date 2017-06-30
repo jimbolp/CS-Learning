@@ -76,6 +76,7 @@ namespace UserAccounts
             {
                 kscUsers = db.KSCs.Select(k => new CustomKSCUser
                 {
+                    ID = k.ID,
                     UserID = db.UserMasterDatas.Where(u => u.ID == k.UserID).Select(u => u.ID).FirstOrDefault(),
                     UserName = db.UserMasterDatas.Where(u => u.ID == k.UserID).Select(u => u.UserName).FirstOrDefault(),
                     KSCUserName = k.UserName,
@@ -91,6 +92,7 @@ namespace UserAccounts
                 {
                     kscUsers = db.KSCs.Where(k => k.UserID == User.ID).Select(k => new CustomKSCUser
                     {
+                        ID = k.ID,
                         UserID = db.UserMasterDatas.Where(u => u.ID == k.UserID).Select(u => u.ID).FirstOrDefault(),
                         UserName = db.UserMasterDatas.Where(u => u.ID == k.UserID).Select(u => u.UserName).FirstOrDefault(),
                         KSCUserName = k.UserName,
@@ -121,7 +123,8 @@ namespace UserAccounts
             kscUserTable.Update();
             kscUserTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             kscUserTable.Columns[0].Visible = false;
-            
+            kscUserTable.Columns[1].Visible = false;
+
         }
         
         private void SelectRespectfulRow()
@@ -157,6 +160,8 @@ namespace UserAccounts
         private void OpenKSCUserToEdit(CustomKSCUser kscUser)
         {
             KSCAccount EditKSCUserForm = new KSCAccount(kscUser);
+            EditKSCUserForm.FormClosed += (o, args) => InitializeKSCDataGrid(false);
+            EditKSCUserForm.FormClosed += (o, args) => SelectRespectfulRow();
             EditKSCUserForm.Show();
         }
 

@@ -12,6 +12,7 @@ namespace UserAccounts
 {
     public partial class KSCAccount : Form
     {
+        public int KscID { get; set; }
         public int UserID { get; set; }
         public KSCAccount()
         {
@@ -29,6 +30,7 @@ namespace UserAccounts
         }
         public KSCAccount(CustomKSCUser userToEdit)
         {
+            KscID = userToEdit.ID;
             InitializeComponent();
             LoadBranches();
             LoadFields(userToEdit);
@@ -102,6 +104,7 @@ namespace UserAccounts
                 //TODO... Show Message..
                 return;
             }
+            SaveChanges(false);
             //UserExistsInSelectedBranch();
         }
 
@@ -115,7 +118,7 @@ namespace UserAccounts
             switch (KSCAccountExists())
             {
                 case 0:
-                    SaveNewAccount();
+                    SaveChanges(true);
                     break;
                 case 1:
                     MessageBox.Show("Акаунт \"" + textBoxKSCUserName.Text + "\" вече съществува!", "Дублирано Потр. Име!", MessageBoxButtons.OK);
@@ -134,8 +137,7 @@ namespace UserAccounts
                     break;
             }
         }
-
-        private void SaveNewAccount()
+        private void SaveChanges(bool addNew)
         {
             UsersDBContext db = null;
             try
@@ -148,18 +150,36 @@ namespace UserAccounts
                 return;
             }
             string branchName = Convert.ToString(listKSCBranches.SelectedItem);
-            var newUser = new KSC()
+            KSC user;
+            if (addNew)
             {
-                UserName = textBoxKSCUserName.Text,
-                TermID = textBoxTermID.Text,
-                UID = Convert.ToInt32(textBoxUID.Text),
-                UserID = UserID,
-                AllowFC = chckBoxFC.Checked,
-                BranchID = db.Branches.Where(b => b.BranchName == branchName)
-                                        .Select(b => b.ID)
-                                        .FirstOrDefault()
-            };
-            db.KSCs.Add(newUser);
+                var newUser = new KSC()
+                {
+                    UserName = textBoxKSCUserName.Text,
+                    TermID = textBoxTermID.Text,
+                    UID = Convert.ToInt32(textBoxUID.Text),
+                    UserID = UserID,
+                    AllowFC = chckBoxFC.Checked,
+                    BranchID = db.Branches.Where(b => b.BranchName == branchName)
+                                            .Select(b => b.ID)
+                                            .FirstOrDefault()
+                };
+                db.KSCs.Add(newUser);
+            }                
+            else
+            {
+                user = db.KSCs.Where(k => k.ID == KscID).FirstOrDefault();
+
+                user.UserName = textBoxKSCUserName.Text;
+                user.TermID = textBoxTermID.Text;
+                user.UID = Convert.ToInt32(textBoxUID.Text);
+                //user.UserID = UserID;
+                user.AllowFC = chckBoxFC.Checked;
+                user.BranchID = db.Branches.Where(b => b.BranchName == branchName)
+                                    .Select(b => b.ID)
+                                    .FirstOrDefault();
+                
+            }
             try
             {
                 db.SaveChanges();

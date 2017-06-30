@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using OfficeOpenXml;
@@ -36,9 +37,8 @@ namespace ObjectToExcelTable
             {
                 //fi = new FileInfo(path);
                 ep = new ExcelPackage(ms);
-                //xlWBook = ep.Workbook;
 
-                xlWsheet = ep.Workbook.Worksheets[1];
+                xlWsheet = ep.Workbook.Worksheets.FirstOrDefault();
             }
             catch (Exception)
             {
@@ -116,6 +116,16 @@ namespace ObjectToExcelTable
                 }
             }
             return Doc;
+        }
+        private static int? ColumnCheck(PosCodeItemSql item)
+        {
+            Type t = item.GetType();
+            PropertyInfo[] pInfs = t.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (PropertyInfo pi in pInfs)
+            {
+
+            }
+            return null;
         }
     }
 }
