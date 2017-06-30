@@ -31,7 +31,10 @@ namespace Dixel_Sensors
         static readonly string[] TEMPS_FOR_CHARTS =
         {
             "002 TwhDF-XJP60D", "044 TwhMF-XJP60D", "071 TwhUF-XJP60D",
-            "074 TcdUF-XJP60D", "095 TcdSpediciaNew-XJP60D"
+            "074 TcdUF-XJP60D", "095 TcdSpediciaNew-XJP60D", "001_PSMI_1", "002_PSMI_2_1",
+            "003_PSMI_3", "004_PSMI_4", "005_PSMI_5", "006_PSMI_6", "007_PSMI_7",
+            "011_PSMI_11", "012_PSMI_12", "022_PSMI_2_2", "081_PSMI_8_1", "082_PSMI_8_2",
+            "091_PSMI_9_1", "092_PSMI_9_2", "101_PSMI_10_1", "102_PSMI_10_2"
         };
 
         static readonly string[] HUMID_FOR_CHARTS =
@@ -58,20 +61,22 @@ namespace Dixel_Sensors
             }
         }
 
-        private void CreateChart(ChartObject xlChartObject, Range xlChartRange, string worksheetName)
+        private void CreateChart(ChartObject xlChartObject, Series xlChartSeries, string worksheetName)
         {
+            //Range xlChartRange,
             xlChartObject.Chart.ChartType = XlChartType.xlLine;
             xlChartObject.Chart.HasTitle = true;
             Chart xlChartPage = xlChartObject.Chart;
             xlChartPage.ChartTitle.Text = worksheetName;
             xlChartPage.ChartType = XlChartType.xlLine;
-            xlChartPage.SetSourceData(xlChartRange);
+            //xlChartPage.SetSourceData(xlChartRange);
             /*Axis a = (xlChartPage.Axes(Microsoft.Office.Interop.Excel.XlAxisType.xlValue,
                 XlAxisGroup.xlPrimary) as Microsoft.Office.Interop.Excel.Axis);
             a.MinimumScale = 16.5;//*/
 
             //xlChartPage.ApplyChartTemplate(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\For Tests\\ChartTemplate.crtx");
             xlChartPage.Legend.Delete();
+            //xlChartObject.
             //ListOfCharts.Add(xlChartPage);
             //xlApp.Visible = true;
             if(printCheckBox.Checked)
@@ -86,20 +91,115 @@ namespace Dixel_Sensors
         private void createChartHumid(Worksheet xlWorksheet)
         {
             resultLabel.Text = "Обработва се графика за -> " + xlWorksheet.Name;
-            
+            ChartObjects xlChartObjects = xlWorksheet.ChartObjects();
             const double heigth = 521.0134; //18.23cm * 28.58
             const double width = 867.9746; //30.37cm * 28.58
-            int startPositionLeft = 100;
-            int startPositionTop = 100;
+            int startPositionLeft = 50;
+            int startPositionTop = 50;
+
+            Range xlChartRange = xlWorksheet.UsedRange;
+            int tableRows = xlChartRange.Rows.Count;
+            int count = 2;
+            string topLeftRange = "A" + count;
+            string bottomLeftRange = "A" + count;
+            string topRightRange = "C" + count;
+            string bottomRightRange = "C" + count;
+
+            bool firstDateOfRange = true;
+            int tableCount = 1;
+            for (int i = 2; i <= tableRows; ++i)
+            {
+                string strDate = Convert.ToString((xlChartRange.Cells[i, 1] as Range).Value);
+                if (!strDate.Contains("/"))
+                {
+                    strDate = strDate.Replace('.', '/');
+                    strDate = strDate.Replace(':', '.');
+                }
+                if (!string.IsNullOrEmpty(strDate))
+                {
+                    string parseDate = String.Format("{0:dd/MM/yyyy}", (strDate.Trim().Split(' ').ToArray()[0].Trim()));
+                    DateTime cellDate;
+
+                    if (DateTime.TryParseExact(parseDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                        out cellDate))
+                    //if(DateTime.TryParse(strDate, out cellDate))
+                    {
+                        (xlChartRange.Cells[i, 1] as Range).Value = (xlChartRange.Cells[i, 1] as Range).ClearFormats();
+                        (xlChartRange.Cells[i, 1] as Range).Value = strDate;
+                        if (cellDate.Day == 1)
+                        {
+                            if (firstDateOfRange)
+                            {
+                                bottomLeftRange = "A" + i;
+                                bottomRightRange = "C" + i;
+                                //firstDateOfRange = false;
+                            }
+                            else
+                            {
+                                resultLabel.Text = "Обработва се таблица - " + tableCount++;
+                                bottomLeftRange = "A" + i;
+                                bottomRightRange = "C" + i;
+                                //Range currentChartRange = xlWorksheet.Range[topLeftRange, topRightRange];
+                                Range X_AxisRange = xlWorksheet.Range[topLeftRange, bottomLeftRange];
+                                Range Y_AxisRange = xlWorksheet.Range[topRightRange, bottomRightRange];                                startPositionTop += 600;
+                                ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
+                                Series xlChartSeries = xlChartObject.Chart.SeriesCollection().Add(Y_AxisRange);
+                                xlChartSeries.XValues = X_AxisRange;
+                                CreateChart(xlChartObject, xlChartSeries, xlWorksheet.Name + "_Humid");
+                                bottomLeftRange = "A" + i;
+                                bottomRightRange = "C" + i;
+                                firstDateOfRange = true;
+                                System.Windows.Forms.Application.DoEvents();
+                            }
+                        }
+                        else
+                        {
+                            bottomLeftRange = "A" + i;
+                            bottomRightRange = "C" + i;
+                            firstDateOfRange = false;
+                            if (i == tableRows ||
+                                isEndOfMonth(Convert.ToString((xlChartRange.Cells[i, 1] as Range).Value),
+                                                Convert.ToString((xlChartRange.Cells[i + 1, 1] as Range).Value)))
+                            {
+                                resultLabel.Text = "Обработва се таблица - " + tableCount++;
+                                Range currentChartRange = xlWorksheet.Range[topLeftRange, bottomRightRange];
+                                Range X_AxisRange = xlWorksheet.Range[topLeftRange, bottomLeftRange];
+                                Range Y_AxisRange = xlWorksheet.Range[topRightRange, bottomRightRange];
+                                startPositionTop += 600;
+                                ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
+                                Series xlChartSeries = xlChartObject.Chart.SeriesCollection().Add(Y_AxisRange);
+                                xlChartSeries.XValues = X_AxisRange;
+                                CreateChart(xlChartObject, xlChartSeries, xlWorksheet.Name + "_Humid");
+                                System.Windows.Forms.Application.DoEvents();
+                            }
+                        }
+                    }
+                }
+            }
 
             //Range used for the current chart
-            Range xlChartRange = xlWorksheet.UsedRange;
+            /*Range xlChartRange = xlWorksheet.UsedRange;
             ChartObjects xlChartObjects = xlWorksheet.ChartObjects();
             ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
-            CreateChart(xlChartObject, xlChartRange, xlWorksheet.Name);
+            CreateChart(xlChartObject, xlChartRange, xlWorksheet.Name);//*/
 
         }
-
+        private bool isEndOfMonth(string currDay, string nextDay)
+        {
+            DateTime date;
+            if (DateTime.TryParse(currDay.Trim().Split(' ').ToArray()[0].Trim(), out date))
+            {
+                int firstDate = date.Day;
+                if(DateTime.TryParse(nextDay.Trim().Split(' ').ToArray()[0].Trim(), out date))
+                {
+                    int secondDate = date.Day;
+                    if (firstDate > secondDate)
+                        return true;
+                }
+            }
+            return false;
+        }
+        //private List<Range> 
         /// <summary>
         /// The temperature's chart has to be on a weekly basis
         /// </summary>
@@ -115,7 +215,7 @@ namespace Dixel_Sensors
             //Range used for the current chart
             Range xlChartRange = xlWorksheet.UsedRange;
             int tableRows = xlChartRange.Rows.Count;
-            int count = 2;
+            int count = 1;
             string topRange = "A" + count;
             string bottomRange = "B" + count;
             bool firstDateOfRange = true;
@@ -123,13 +223,23 @@ namespace Dixel_Sensors
             for (int i = 1; i <= tableRows; ++i)
             {
                 string strDate = Convert.ToString((xlChartRange.Cells[i, 1] as Range).Value);
+                if (!strDate.Contains("/"))
+                {
+                    strDate = strDate.Replace('.', '/');
+                    strDate = strDate.Replace(':', '.');
+                }
+                
                 if (!string.IsNullOrEmpty(strDate))
                 {
-                    strDate = strDate.Trim().Split(' ').ToArray()[0].Trim();
+                    string parseDate = String.Format("{0:dd/MM/yyyy}",(strDate.Trim().Split(' ').ToArray()[0].Trim()));
                     DateTime cellDate;
-                    if (DateTime.TryParseExact(strDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
+                    
+                    if (DateTime.TryParseExact(parseDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None,
                         out cellDate))
+                        //if(DateTime.TryParse(strDate, out cellDate))
                     {
+                        (xlChartRange.Cells[i, 1] as Range).Value = (xlChartRange.Cells[i, 1] as Range).ClearFormats();
+                        (xlChartRange.Cells[i, 1] as Range).Value = strDate;
                         if (cellDate.DayOfWeek == DayOfWeek.Monday)
                         {
                             if (firstDateOfRange)
@@ -143,7 +253,9 @@ namespace Dixel_Sensors
                                 Range currentChartRange = xlWorksheet.Range[topRange, bottomRange];
                                 startPositionTop += 600;
                                 ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
-                                CreateChart(xlChartObject, currentChartRange, xlWorksheet.Name);
+                                Series xlChartSeries = xlChartObject.Chart.SeriesCollection().Add(currentChartRange);
+                                
+                                CreateChart(xlChartObject, xlChartSeries, xlWorksheet.Name + "_Temp");
                                 topRange = "A" + i;
                                 bottomRange = "B" + i;
                                 firstDateOfRange = true;
@@ -160,7 +272,8 @@ namespace Dixel_Sensors
                                 Range currentChartRange = xlWorksheet.Range[topRange, bottomRange];
                                 startPositionTop += 600;
                                 ChartObject xlChartObject = xlChartObjects.Add(startPositionLeft, startPositionTop, width, heigth);
-                                CreateChart(xlChartObject, currentChartRange, xlWorksheet.Name);
+                                Series xlChartSeries = xlChartObject.Chart.SeriesCollection().Add(currentChartRange);
+                                CreateChart(xlChartObject, xlChartSeries, xlWorksheet.Name + "_Temp");
                                 System.Windows.Forms.Application.DoEvents();
                             }
                         }
@@ -344,9 +457,9 @@ namespace Dixel_Sensors
                         loadTemps(sheet);
                     if (graphicsCheckBox.Checked)
                     {
-                        if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
+                        //if (TEMPS_FOR_CHARTS.Contains(sheet.Name))
                             createChartTemps(sheet);
-                        else if (HUMID_FOR_CHARTS.Contains(sheet.Name))
+                       // if (HUMID_FOR_CHARTS.Contains(sheet.Name))
                             createChartHumid(sheet);
                     }
 
@@ -591,8 +704,7 @@ namespace Dixel_Sensors
             return rangeToCopy;
         }
         private void loadAllExcelFiles(string folderPath)
-        {
-            
+        {            
             string[] allFilesInFolder = Directory.GetFiles(folderPath);
             IEnumerable<string> filesNames = from file in
                                     allFilesInFolder

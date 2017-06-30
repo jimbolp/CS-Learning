@@ -1,0 +1,10 @@
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\Templates\columnstemplate.xlsx
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\Templates\template.docx
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\Templates\template.xlsx
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\DocumentFormat.OpenXml.Extensions.Testing.dll
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\DocumentFormat.OpenXml.Extensions.Testing.pdb
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\DocumentFormat.OpenXml.Extensions.dll
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\bin\Debug\DocumentFormat.OpenXml.Extensions.pdb
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\obj\Debug\DocumentFormat.OpenXml.Extensions.Testing.dll
+C:\Development\Simple OOXML\DocumentFormat.OpenXml.Extensions.Testing\obj\Debug\DocumentFormat.OpenXml.Extensions.Testing.pdb

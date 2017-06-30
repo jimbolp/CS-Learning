@@ -67,7 +67,7 @@ namespace ObjectToExcelTable
         private const string sqlSaleItem = "";
 
         public int AppID { get; set; }
-        [DisplayName("")]
+        //[DisplayName("")]
         public string AppName { get; set; }
         [DisplayName("Клиент Номер")]
         public int CustomerID { get; set; }
