@@ -164,8 +164,7 @@
             this.Controls.Add(this.InvoiceDateLabel);
             this.Controls.Add(this.InvoiceNoLabel);
             this.Name = "CustomerReturns";
-            this.Text = "Form1";
-            //this.Load += new System.EventHandler(this.CustomerReturns_Load);
+            this.Text = "Generate Mail Format";
             this.ResumeLayout(false);
             this.PerformLayout();
 

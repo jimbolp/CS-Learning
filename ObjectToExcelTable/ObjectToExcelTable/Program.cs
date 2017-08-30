@@ -16,36 +16,59 @@ namespace ObjectToExcelTable
 {
     class Program
     {
+        const string filePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\ExcelFile.xlsx";
         //public static Dictionary<string, List<string> > LinkedObjHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         //public static Dictionary<string, List<string> > LinkedListHeaderAndContent { get; set; } = new Dictionary<string, List<string> >();
         public static void Main(string[] args)
-        {            
-            if(args.Length > 1)
+        {
+            PosCodeItemsSql items = new PosCodeItemsSql(true);
+            try
             {
-                PosCodeItemsSql temp = new PosCodeItemsSql();
-                try
+                using (MemoryStream ms = new MemoryStream())
+                using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    temp = ObjFromXlFile(args[2]);
-                    Console.WriteLine(temp.Caption);
-                    foreach(var item in temp.items)
+                    byte[] bytes = new byte[file.Length];
+                    unsafe
                     {
-                        Type t = item.GetType();
-                        PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
-                        foreach(PropertyInfo pi in propInfos)
+                        fixed(byte* p = bytes)
                         {
-                            Console.Write(pi.Name + " -> ");
-                            Console.WriteLine(pi.GetValue(item));                            
+                            Console.WriteLine(*p);
                         }
                     }
+                    //IntPtr p = bytes;
+                    /*file.Read(bytes, 0, (int)file.Length);
+                    ms.Write(bytes, 0, (int)file.Length);//*/
+                    file.CopyTo(ms);
+                    items = ObjFromXlFile.PosCodeFromStream(ms);
+                    file.Close();
+                    ms.Close();
                 }
-                catch(Exception e)
+                    
+                string tempFilePath = @"C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\ObjectToExcelTable\ObjectToExcelTable\bin\Debug\temp.txt";
+                //Console.WriteLine(items.Caption);
+                
+                File.WriteAllText(tempFilePath, items.Caption);
+                /*foreach(var item in items.items)
                 {
-                    Console.WriteLine(e);
-                    Console.ReadLine();
-                }
+                    Type t = item.GetType();
+                    PropertyInfo[] propInfos = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+                    foreach(PropertyInfo pi in propInfos)
+                    {
+                        //Console.Write(pi.Name + " -> ");
+                        //Console.WriteLine(pi.GetValue(item));
+                        
+                        File.AppendAllText(tempFilePath, pi.Name + " -> " + pi.GetValue(item) + Environment.NewLine);
+                    }
+                }//*/
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
                 Console.ReadLine();
             }
-            PackingListItem pli = new PackingListItem()
+            Console.ReadLine();
+            
+            /*PackingListItem pli = new PackingListItem()
             {
                 ArticleID = 6263,
                 ArticleName = "Аналгин",
@@ -124,15 +147,8 @@ namespace ObjectToExcelTable
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
                 Console.ReadLine();
-            }
+            }//*/
         }
-        public static PosCodeItemsSql ObjFromXlFile(string path)
-        {
-            PosCodeItemsSql Items = new PosCodeItemsSql();
-            FileInfo fi = new FileInfo(path);
-            ExcelPackage ep = new ExcelPackage(fi);
-            ExcelWorksheet xlSheet = ep.Workbook.Worksheets[1];
-            return Items;
-        }
+        
     }
 }

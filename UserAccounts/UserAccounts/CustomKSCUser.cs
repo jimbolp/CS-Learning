@@ -6,6 +6,7 @@ namespace UserAccounts
 {
     public class CustomKSCUser
     {
+        public int ID { get; set; }
         public int UserID { get; set; }
         [DisplayName("Име Фамилия")]
         public string UserName { get; set; }

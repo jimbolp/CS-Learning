@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace CustomerReturns
 {
     public partial class CustomerReturns : Form
     {
+        private string subject = "";
+        private string body = "";
         public CustomerReturns()
         {
             InitializeComponent();
+            subject = "";
+            body = "";
         }
         List<Invoice> invoices = new List<Invoice>();
         bool isBranchValid()
@@ -53,13 +58,15 @@ namespace CustomerReturns
                 {
                     if (invoices.Count == 1)
                     {
-                        WriteDateAndSubject();
+                        WriteDateAndSubject(false);
                         WriteBody(false);
+                        SendByEmail();
                     }
                     else
                     {
-                        WriteDateAndSubject();
+                        WriteDateAndSubject(true);
                         WriteBody(true);
+                        SendByEmail();
                     }
                 }
                 Process.Start("log.txt");           
@@ -80,46 +87,62 @@ namespace CustomerReturns
         {
             if (mult)
             {
-                labelResult.Text = "Please load the following invoices:";
+                labelResult.Text = body = "Please load the following invoices:" + Environment.NewLine + Environment.NewLine;
                 File.AppendAllText("log.txt", Environment.NewLine +
                 "Please load the following invoices:" +
                     Environment.NewLine);
                 foreach (var l in invoices)
                 {
-                    labelResult.Text += l;
+                    labelResult.Text = body += l;
                     File.AppendAllText("log.txt", l.ToString());
                 }
-                labelResult.Text += "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!";
+                labelResult.Text = body += Environment.NewLine + "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!";
                 File.AppendAllText("log.txt", Environment.NewLine +
                     "The invoices are not available in the invoice history (DKHIS) and have to be reloaded!" +
                     Environment.NewLine);
+                
             }
             else
             {
-                labelResult.Text += "Please load the following invoice:";
+                labelResult.Text = body = "Please load the following invoice:" + Environment.NewLine + Environment.NewLine;
                 File.AppendAllText("log.txt", Environment.NewLine +
                 "Please load the following invoice:" +
                     Environment.NewLine);
                 foreach (var l in invoices)
                 {
-                    labelResult.Text += l;
+                    labelResult.Text = body += l;
                     File.AppendAllText("log.txt", l.ToString());
                 }
-                labelResult.Text += "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!";
+                labelResult.Text = body += Environment.NewLine + "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!";
                 File.AppendAllText("log.txt", Environment.NewLine +
                     "The invoice is not available in the invoice history (DKHIS) and has to be reloaded!" +
                     Environment.NewLine);
             }
         }
-        private void WriteDateAndSubject()
+        private void WriteDateAndSubject(bool mult)
         {
-            labelResult.Text += "Subject: Customer Returns - load old invoice into invoice history"
-                            + Environment.NewLine;
-            File.AppendAllText("log.txt", Environment.NewLine +
-                            DateTime.Now.ToShortDateString() + 
-                            Environment.NewLine +
-                            "Subject: Customer Returns - load old invoice into invoice history" +
-                            Environment.NewLine);
+            if (!mult)
+            {
+                labelResult.Text += "Subject: Customer Returns - load old invoice into invoice history"
+                                + Environment.NewLine;
+                File.AppendAllText("log.txt", Environment.NewLine +
+                                DateTime.Now.ToShortDateString() +
+                                Environment.NewLine +
+                                "Subject: Customer Returns - load old invoice into invoice history" +
+                                Environment.NewLine);
+                subject = "Customer Returns - load old invoice into invoice history";
+            }
+            else
+            {
+                labelResult.Text += "Subject: Customer Returns - load old invoices into invoice history"
+                                + Environment.NewLine;
+                File.AppendAllText("log.txt", Environment.NewLine +
+                                DateTime.Now.ToShortDateString() +
+                                Environment.NewLine +
+                                "Subject: Customer Returns - load old invoices into invoice history" +
+                                Environment.NewLine);
+                subject = "Customer Returns - load old invoices into invoice history";
+            }
         }
         class Invoice
         {
@@ -136,7 +159,7 @@ namespace CustomerReturns
             }
             public override string ToString()
             {
-                return Environment.NewLine + "Invoice no. [" + InvoiceNo +
+                return  "Invoice no. [" + InvoiceNo +
                         "] from [" + InvoiceDate.ToShortDateString() +
                         "] for customer [" + CustomerNo +
                         "] in branch [" + BranchNo + "]" +
@@ -188,6 +211,39 @@ namespace CustomerReturns
             clearFields();
             invoices = new List<Invoice>();
             labelResult.Text = ""; 
+        }
+        private void SendByEmail()
+        {
+            try
+            {
+                int errCode = SendEmail.Send(subject, body);
+                if (errCode == 1)
+                {
+                    MessageBox.Show("An Error Occured while sending the email!", "Error");
+                }
+                else
+                {
+                    MessageBox.Show("Message Sent to ServiceDesk");
+                }
+                /*
+                if (string.IsNullOrEmpty(subject) || string.IsNullOrWhiteSpace(subject))
+                    return;
+                string toEmail = "servicedesk.it@phoenixpharma.bg";
+                Outlook.Application app = new Outlook.Application();
+                MailItem eMail = (MailItem)app.CreateItem(Outlook.OlItemType.olMailItem);
+                eMail.Subject = subject;
+                eMail.Body = body;
+                eMail.To = toEmail;
+                eMail.Send();
+                Marshal.FinalReleaseComObject(eMail);
+                Marshal.FinalReleaseComObject(app);
+                GC.Collect();
+                GC.Collect();//*/
+            }
+            catch (Exception e)
+            {
+                return;
+            }
         }
     }
 }

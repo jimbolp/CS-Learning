@@ -1,0 +1,7 @@
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.exe.config
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.exe
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.pdb
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\EPPlus.dll
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.exe
+D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.pdb
