@@ -372,3 +372,11 @@ Please load the following invoice:
 Invoice no. [4001435091] from [07.12.2015] for customer [5012551] in branch [25]
 
 The invoice is not available in the invoice history (DKHIS) and has to be reloaded!
+
+10.08.2017
+Subject: Customer Returns - load old invoice into invoice history
+
+Please load the following invoice:
+Invoice no. [1234556] from [10.10.2015] for customer [12555] in branch [15]
+
+The invoice is not available in the invoice history (DKHIS) and has to be reloaded!
