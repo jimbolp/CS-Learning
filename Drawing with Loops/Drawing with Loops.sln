@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Star Square", "Drawing with Loops\Star Square.csproj", "{2092FBA0-A71F-4F3A-96E9-F57C9D4CE0F2}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Butterfly", "Butterfly\Butterfly.csproj", "{A31CA881-7B66-43D5-946D-DE513CFB7B3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "STOP", "STOP\STOP.csproj", "{DBF70D29-FBAC-42F4-B03C-04067EAC3878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{DBF3059A-C10D-401A-8271-0A7BE4488D79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -153,6 +155,18 @@ Global
 		{DBF70D29-FBAC-42F4-B03C-04067EAC3878}.Release|x64.Build.0 = Release|Any CPU
 		{DBF70D29-FBAC-42F4-B03C-04067EAC3878}.Release|x86.ActiveCfg = Release|Any CPU
 		{DBF70D29-FBAC-42F4-B03C-04067EAC3878}.Release|x86.Build.0 = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|x64.Build.0 = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Debug|x86.Build.0 = Debug|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|x64.ActiveCfg = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|x64.Build.0 = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|x86.ActiveCfg = Release|Any CPU
+		{DBF3059A-C10D-401A-8271-0A7BE4488D79}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

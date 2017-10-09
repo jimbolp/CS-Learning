@@ -4,3 +4,9 @@ e:\documents\visual studio 2015\Projects\Drawing with Loops\Diamond\bin\Debug\Di
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Diamond\obj\Debug\Diamond.csprojResolveAssemblyReference.cache
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Diamond\obj\Debug\Diamond.exe
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Diamond\obj\Debug\Diamond.pdb
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\bin\Debug\Diamond.exe.config
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\bin\Debug\Diamond.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\bin\Debug\Diamond.pdb
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\obj\Debug\Diamond.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\obj\Debug\Diamond.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Diamond\obj\Debug\Diamond.pdb

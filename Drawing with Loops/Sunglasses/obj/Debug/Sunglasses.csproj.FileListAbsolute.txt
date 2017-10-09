@@ -4,3 +4,9 @@ e:\documents\visual studio 2015\Projects\Drawing with Loops\Sunglasses\bin\Debug
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.exe
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.pdb
 e:\documents\visual studio 2015\Projects\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\bin\Debug\Sunglasses.exe.config
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\bin\Debug\Sunglasses.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\bin\Debug\Sunglasses.pdb
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\Sunglasses\obj\Debug\Sunglasses.pdb
