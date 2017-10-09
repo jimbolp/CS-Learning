@@ -10,7 +10,8 @@ namespace Epplus_tests
     {
         static void Main(string[] args)
         {
-            string path = @"D:\Documents\Dixel Graphics\Sofia\tests.xlsx";
+            string path = @"D:\Documents\Dixel Graphics\Sofia\Book1.xlsx";
+            //string path = @"D:\Documents\Dixel Graphics\Sofia\tests.xlsx";
             UpdateExcelUsingEPPlus(path);
         }
     }

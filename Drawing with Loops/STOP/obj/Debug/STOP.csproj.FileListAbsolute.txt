@@ -4,3 +4,9 @@ e:\documents\visual studio 2015\Projects\Drawing with Loops\STOP\bin\Debug\STOP.
 e:\documents\visual studio 2015\Projects\Drawing with Loops\STOP\obj\Debug\STOP.exe
 e:\documents\visual studio 2015\Projects\Drawing with Loops\STOP\obj\Debug\STOP.pdb
 e:\documents\visual studio 2015\Projects\Drawing with Loops\STOP\obj\Debug\STOP.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\bin\Debug\STOP.exe.config
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\bin\Debug\STOP.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\bin\Debug\STOP.pdb
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\obj\Debug\STOP.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\obj\Debug\STOP.exe
+D:\Documents\GitHub\CS-Learning\Drawing with Loops\STOP\obj\Debug\STOP.pdb

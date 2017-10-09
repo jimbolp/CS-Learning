@@ -16,12 +16,12 @@ namespace Diamond
                 Console.Write("Input an integer: ");
                 try{
                     n = int.Parse(Console.ReadLine());
-                }catch(FormatException err)
+                }catch(FormatException)
                 {
                     Console.WriteLine("Input a number.");
                     continue;
                 }
-                catch(InvalidCastException err)
+                catch(InvalidCastException)
                 {
                     continue;
                 }
@@ -32,7 +32,7 @@ namespace Diamond
             
             int leftRight = (n-1)/2;
             int mid;
-            for(int i = 0; i < (n-1)/2; i++)
+            for(int i = 1; i < (n-1)/2; i++)
             {
                 mid = n - 2 * leftRight - 2;
                 try
@@ -48,18 +48,18 @@ namespace Diamond
                 }
                 catch(System.IO.IOException dd)
                 {
-                    //Console.WriteLine("An error occured -> " + dd);
+                    Console.WriteLine("An error occured -> " + dd.ToString());
                     continue;
                 }
                 
                 
-                leftRight -= 1;
+                leftRight --;
             }            
             for(int i = n; i > n/2; i--)
             {
                 mid = n - 2 * leftRight - 2;
                 Console.WriteLine(new string('-', leftRight) + "*" + (mid >= 0 ? (new string('-', mid) + "*") : "") + new string('-', leftRight));
-                leftRight += 1;
+                leftRight ++;
             }
             return 0;
         }

@@ -30,6 +30,8 @@ namespace UserAccounts
         [DisplayName("FC права")]
         public bool AllowFC { get; set; }
 
+        public bool isActive { get; set; }
+
         public virtual Branch Branch { get; set; }
 
         public virtual UserMasterData UserMasterData { get; set; }
