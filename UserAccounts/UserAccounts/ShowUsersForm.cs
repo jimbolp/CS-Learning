@@ -12,13 +12,31 @@ namespace UserAccounts
 {
     public partial class ShowUsersForm : Form
     {
+        private UsersDBContext db = null;
         public ShowUsersForm()
         {
             InitializeComponent();
+            if (db == null)
+            {
+                try
+                {
+                    db = new UsersDBContext();
+                }
+                catch (Exception e)
+                {
+                    if (e.InnerException == null)
+                        MessageBox.Show("Няма връзка с базата данни!" + e.Message, "Проблем", MessageBoxButtons.OK);
+                    else
+                        MessageBox.Show("Няма връзка с базата данни!" + e.Message + " " + e.InnerException.Message, "Проблем", MessageBoxButtons.OK);
+
+                }
+            }
+                
         }
 
         private void SearchUserForm_Load(object sender, EventArgs e)
         {
+            /*
             UsersDBContext db = null;
             try
             {
@@ -29,6 +47,8 @@ namespace UserAccounts
                 MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
                 return;
             }
+            */
+
             int i = 0;
             foreach (var b in db.Branches)
             {
@@ -42,16 +62,6 @@ namespace UserAccounts
         public int SelectedDataGridIdx { get; set; }
         private void loadListBoxPositions()
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
             int i = 0;
             listBoxPositions.Items.Clear();
             foreach(var p in db.Positions.OrderBy(p => p.Position1))
@@ -62,11 +72,13 @@ namespace UserAccounts
         }
         private void listBoxBranches_SelectedIndexChanged(object sender, EventArgs e)
         {
-            loadUserDBTable();
+            //loadUserDBTable();
+            
         }
 
         public void loadUserDBTable()
         {
+            /*
             UsersDBContext db = null;
             try
             {
@@ -77,20 +89,46 @@ namespace UserAccounts
                 MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
                 return;
             }
+            */
 
-            List<int> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
+            //List<int> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.ID).FirstOrDefault()).ToList();
+            List<string> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.BranchName).FirstOrDefault()).ToList();
 
-            List<int> checkedPositions = (from object item in listBoxPositions.SelectedItems select Convert.ToString(item) into itemName select db.Positions.Where(p => p.Position1 == itemName).Select(p => p.ID).FirstOrDefault()).ToList();
+            List<string> checkedPositions = (from object item in listBoxPositions.SelectedItems select Convert.ToString(item) into itemName select db.Positions.Where(p => p.Position1 == itemName).Select(p => p.Position1).FirstOrDefault()).ToList();
 
-            SortableBindingList < CustomUser > sbList = new SortableBindingList<CustomUser>();
-            var orderdUsers = db.UserMasterDatas.OrderBy(u => u.UserName).Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).Select(u => new CustomUser
+
+            string sql =
+                  "select umd.ID,umd.UserName,umd.Email,ActiveDirectory = adu.ADName,Position = p.Position,Depo = b.BranchName,     "
+                + "umd.PharmosUserName,umd.UADMUserName," +
+                "GoodsIn =  case when umd.GI = 1 then 'Да' else 'Не' end," +
+                "PurchaseAccount =  case when umd.Purchase = 1 then 'Да' else 'Не' end," +
+                "TenderAccount =  case when umd.Tender = 1 then 'Да' else 'Не' end, "
+                + "PhibraAccount = case when umd.Phibra = 1 then 'Да' else 'Не' end," +
+                "KSCAccount = case when ksc.UserName <> null then 'Да' else 'Не' end, "
+                + "[State] = case when umd.Active = 1 then 'Да' else 'Не' end,   "
+                + "[Description] = umd.Description                                                                                  "
+                + "from UserMasterData umd with (nolock)                                                                            "
+                + "left join ADUsers adu with (nolock) on adu.UserID = umd.ID                                                       "
+                + "left join Positions p with (nolock) on p.ID = umd.PositionID                                                     "
+                + "left join Branch b with (nolock) on b.ID = umd.BranchID                                                          "
+                + "left join (select distinct UserID, UserName from KSC with (nolock)) ksc on ksc.UserID = umd.id                   ";
+
+
+            List<CustomUser> res = db.Database.SqlQuery<CustomUser>(sql).Where(u => checkedBranches.Any(b => b == u.Depo) && checkedPositions.Any(p => p == u.Position)).ToList();
+             
+            SortableBindingList< CustomUser > sbList = new SortableBindingList<CustomUser>();
+            /*
+            var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).OrderBy(u => u.UserName).Select(u => new CustomUser
             {
                 ID = u.ID,
                 UserName = u.UserName,
                 Email = u.Email,
                 ActiveDirectory = db.ADUsers.Where(a => a.UserID == u.ID).Select(a => a.ADName).FirstOrDefault(),
+                //ActiveDirectory = db.ADUsers.Find(u.ID).ADName ,
                 Position = db.Positions.Where(p => p.ID == u.PositionID).Select(p => p.Position1).FirstOrDefault(),
+                //Position = db.Positions.Find(u.PositionID).Position1 ,
                 Depo = db.Branches.Where(b => b.ID == u.BranchID).Select(b => b.BranchName).FirstOrDefault(),
+                //Depo = db.Branches.Find(u.BranchID).BranchName,
                 PharmosUserName = u.PharmosUserName,
                 UADMUserName = u.UADMUserName,
                 GoodsIn = (u.GI == null) ? "Не" : (u.GI.Value) ? "Да" : "Не",
@@ -102,7 +140,7 @@ namespace UserAccounts
                 Description = u.Description
             }).ToList();//*/
 
-            foreach (var o in orderdUsers)
+            foreach (var o in res)
             {
                 sbList.Add(o);
             }
@@ -115,20 +153,19 @@ namespace UserAccounts
             };
             userDBTable.Columns[0].Visible = false;
 
-            ColorizeInactiveUsers(db);
+            ColorizeInactiveUsers();
             userDBTable.RowHeadersVisible = true;            
             userDBTable.Update();
             userDBTable.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
-        private void ColorizeInactiveUsers(UsersDBContext db)
+        private void ColorizeInactiveUsers()
         {
-
             for (int i = 0; i < userDBTable.Rows.Count; i++)
             {
                 CustomUser cu = (CustomUser)userDBTable.Rows[i].DataBoundItem;
-                UserMasterData umd = db.UserMasterDatas.FirstOrDefault(u => u.ID == cu.ID);
-                if (!umd.Active)
+                
+                if (cu.State == "Не")
                 {
                     userDBTable.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(255,25,25);
                 }
@@ -170,17 +207,17 @@ namespace UserAccounts
             if (userDBTable.SelectedRows.Count != 1)
                 return;
             int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
-            UserMasterData userToEdit = db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID);
+            //UsersDBContext db = null;
+            //try
+            //{
+            //    db = new UsersDBContext();
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+            //    return;
+            //}
+            UserMasterData userToEdit = db.UserMasterDatas.Find(selectedUserID);
             AddUserForm addUserForm = new AddUserForm(userToEdit);
 
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
@@ -190,7 +227,7 @@ namespace UserAccounts
 
         private void userDBTable_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ColorizeInactiveUsers(new UsersDBContext());
+            ColorizeInactiveUsers();
         }
 
         private void userDBTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -200,16 +237,16 @@ namespace UserAccounts
                 
         private void OpenKSCAccount()
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
+            //UsersDBContext db = null;
+            //try
+            //{
+            //    db = new UsersDBContext();
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+            //    return;
+            //}
             int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
             KSCUserForm kscForm = new KSCUserForm(db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID));
             //kscForm.FormClosed += (o, args) => loadUserDBTable();
@@ -253,6 +290,16 @@ namespace UserAccounts
                 chckBoxSelectAll.Checked = true;
             else
                 chckBoxSelectAll.Checked = false;
+        }
+
+        private void cellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            
+        }
+
+        private void rowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            
         }
     }
 }

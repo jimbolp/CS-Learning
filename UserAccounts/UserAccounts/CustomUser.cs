@@ -33,6 +33,5 @@ namespace UserAccounts
         public string State { get; set; }
         [DisplayName("Доп. Информация")]
         public string Description { get; set; }
-
     }
 }

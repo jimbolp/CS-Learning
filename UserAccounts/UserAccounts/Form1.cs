@@ -23,10 +23,13 @@ namespace UserAccounts
         /// Probably not the best idea!? :D
         /// </summary>
         private int? UserIDToEdit { get; set; }
+        private UsersDBContext db = null;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             initializeDropDownLists();
+            if (db == null)
+                db = new UsersDBContext();
         }
 
         /// <summary>
@@ -34,7 +37,7 @@ namespace UserAccounts
         /// </summary>
         private void initializeDropDownLists()
         {
-            var db = new UsersDBContext();
+            //var db = new UsersDBContext();
             var sortedUsers = db.UserMasterDatas.OrderBy(u => u.UserName);
             //Fill comboBox with Positions from the database
             listPositions.Items.Insert(0, "(Изберете Длъжност)");
