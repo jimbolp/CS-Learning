@@ -85,3 +85,23 @@ D:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts
 D:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
 D:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
 D:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csprojResolveAssemblyReference.cache
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.AddUserForm.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Form1.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCAccount.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.KSCUserForm.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.Properties.Resources.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.ShowUsersForm.resources
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.GenerateResource.Cache
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.exe
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.pdb
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe.config
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.exe
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\UserAccounts.pdb
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.dll
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.dll
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Collector.dll
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.Management.Sdk.Sfc.dll
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
+E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml

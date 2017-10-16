@@ -36,18 +36,23 @@ namespace UserAccounts
 
         private void SearchUserForm_Load(object sender, EventArgs e)
         {
-            /*
-            UsersDBContext db = null;
-            try
+            
+            if (db == null)
             {
-                db = new UsersDBContext();
+                try
+                {
+                    db = new UsersDBContext();
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException == null)
+                        MessageBox.Show("Няма връзка с базата данни!" + ex.Message, "Проблем", MessageBoxButtons.OK);
+                    else
+                        MessageBox.Show("Няма връзка с базата данни!" + ex.Message + " " + ex.InnerException.Message, "Проблем", MessageBoxButtons.OK);
+
+                }
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
-            */
+            //*/
 
             int i = 0;
             foreach (var b in db.Branches)
