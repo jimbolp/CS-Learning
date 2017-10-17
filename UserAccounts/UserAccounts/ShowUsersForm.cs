@@ -111,7 +111,8 @@ namespace UserAccounts
                 + "left join ADUsers adu with (nolock) on adu.UserID = umd.ID                                                       "
                 + "left join Positions p with (nolock) on p.ID = umd.PositionID                                                     "
                 + "left join Branch b with (nolock) on b.ID = umd.BranchID                                                          "
-                + "left join (select distinct UserID, UserName from KSC with (nolock)) ksc on ksc.UserID = umd.id                   ";
+                + "left join (select distinct UserID, UserName from KSC with (nolock)) ksc on ksc.UserID = umd.id                   "
+                + "order by umd.UserName";
 
 
             List<CustomUser> res = db.Database.SqlQuery<CustomUser>(sql).Where(u => checkedBranches.Any(b => b == u.Depo) && checkedPositions.Any(p => p == u.Position)).ToList();
