@@ -209,9 +209,7 @@
             this.userDBTable.Size = new System.Drawing.Size(804, 730);
             this.userDBTable.TabIndex = 1;
             this.userDBTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.userDBTable_CellDoubleClick);
-            this.userDBTable.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.cellPainting);
             this.userDBTable.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDBTable_ColumnHeaderMouseClick);
-            this.userDBTable.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.rowPrePaint);
             // 
             // ShowUsersForm
             // 
