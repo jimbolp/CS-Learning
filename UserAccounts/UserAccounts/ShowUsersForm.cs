@@ -100,8 +100,7 @@ namespace UserAccounts
             List<string> checkedBranches = (from object item in listBoxBranches.SelectedItems select Convert.ToString(item) into itemName select db.Branches.Where(b => b.BranchName == itemName).Select(b => b.BranchName).FirstOrDefault()).ToList();
 
             List<string> checkedPositions = (from object item in listBoxPositions.SelectedItems select Convert.ToString(item) into itemName select db.Positions.Where(p => p.Position1 == itemName).Select(p => p.Position1).FirstOrDefault()).ToList();
-
-
+            
             string sql =
                   "select umd.ID,umd.UserName,umd.Email,ActiveDirectory = adu.ADName,Position = p.Position,Depo = b.BranchName,     "
                 + "umd.PharmosUserName,umd.UADMUserName," +
@@ -119,12 +118,11 @@ namespace UserAccounts
                 + "left join (select distinct UserID, UserName from KSC with (nolock)) ksc on ksc.UserID = umd.id                   "
                 + "order by umd.UserName";
 
-
             List<CustomUser> res = db.Database.SqlQuery<CustomUser>(sql).Where(u => checkedBranches.Any(b => b == u.Depo) && checkedPositions.Any(p => p == u.Position)).ToList();
              
             SortableBindingList< CustomUser > sbList = new SortableBindingList<CustomUser>();
-            /*
-            var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).OrderBy(u => u.UserName).Select(u => new CustomUser
+            
+            /*var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).OrderBy(u => u.UserName).Select(u => new CustomUser
             {
                 ID = u.ID,
                 UserName = u.UserName,
@@ -194,10 +192,7 @@ namespace UserAccounts
         private void btn_AddUser_Click(object sender, EventArgs e)
         {
             AddUserForm addUserForm = new AddUserForm();
-            addUserForm.btn_EditUser.Enabled = false;
-            addUserForm.btn_EditUser.Visible = false;
-            addUserForm.btn_newUser.Visible = true;
-            addUserForm.btn_newUser.Enabled = true;
+            
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
 
             //Visible = false;
@@ -224,6 +219,10 @@ namespace UserAccounts
             //    return;
             //}
             UserMasterData userToEdit = db.UserMasterDatas.Find(selectedUserID);
+            if (userToEdit == null)
+            {
+                MessageBox.Show("Потребителя не беше намерен!", "Грешка!");
+            }
             AddUserForm addUserForm = new AddUserForm(userToEdit);
 
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
@@ -296,16 +295,6 @@ namespace UserAccounts
                 chckBoxSelectAll.Checked = true;
             else
                 chckBoxSelectAll.Checked = false;
-        }
-
-        private void cellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            
-        }
-
-        private void rowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            
         }
     }
 }
