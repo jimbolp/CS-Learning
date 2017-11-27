@@ -10,3 +10,10 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\Dynamic Array\o
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\Dynamic Array\bin\Debug\Dynamic Array.exe
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\Dynamic Array\bin\Debug\Dynamic Array.pdb
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\Dynamic Array\obj\Debug\Dynamic Array.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\bin\Debug\Dynamic Array.exe.config
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\bin\Debug\Dynamic Array.exe
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\bin\Debug\Dynamic Array.pdb
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\obj\Debug\Dynamic Array.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\obj\Debug\Dynamic Array.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\obj\Debug\Dynamic Array.exe
+D:\Documents\GitHub\CS-Learning\just a test\Dynamic Array\obj\Debug\Dynamic Array.pdb

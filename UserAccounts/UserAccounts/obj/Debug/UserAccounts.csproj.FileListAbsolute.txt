@@ -105,3 +105,4 @@ E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\
 E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll
 E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.xml
 E:\Documents\C# Projects\GitHub\CS-Learning\UserAccounts\UserAccounts\bin\Debug\EntityFramework.SqlServer.xml
+D:\Documents\GitHub\CS-Learning\UserAccounts\UserAccounts\obj\Debug\UserAccounts.csproj.CoreCompileInputs.cache

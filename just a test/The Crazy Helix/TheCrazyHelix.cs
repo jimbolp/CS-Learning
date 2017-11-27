@@ -87,14 +87,14 @@ namespace The_Crazy_Helix
                                 uArr[start + j] = uArr[end - j];
                                 uArr[end - j] = temp;
                             }//*/
-                            //reverse(uArr);
+                            reverse(uArr.ToArray());
                             break;
                         case 2:
                             //var a = arr.First(x => x == input[1]);
-                            //Console.WriteLine($"element {input[1]} is at position {uArr.IndexOf(input[1])}");
+                            Console.WriteLine($"element {input[1]} is at position {uArr.IndexOf(input[1])}");
                             break;
                         case 3:
-                            //Console.WriteLine($"element at position {input[1]} is {arr[input[1] - 1]}");
+                            Console.WriteLine($"element at position {input[1]} is {arr[input[1] - 1]}");
                             break;
                         default:
                             break;
@@ -102,6 +102,7 @@ namespace The_Crazy_Helix
                 }
                 
             }
+            Console.ReadLine();
         }
 
         static unsafe void reverse(int[] arr)
