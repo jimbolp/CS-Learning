@@ -12,9 +12,11 @@ namespace PrintersData
 {
     public partial class PrinterData : Form
     {
+        public PrintersDBContext db;
         public PrinterData()
         {
             InitializeComponent();
+            db = new PrintersDBContext();
         }
         private void ShowPrinters_Load(object sender, EventArgs e)
         {
@@ -23,7 +25,6 @@ namespace PrintersData
         }
         private void LoadPrintersDataGrid()
         {
-            var db = new PrintersDBContext();
             SortableBindingList<CustomPrintersTable> sbList = new SortableBindingList<CustomPrintersTable>();
             if (listBranches.SelectedIndex == 0)
             {
@@ -82,7 +83,6 @@ namespace PrintersData
         }
         private void FillListBranches()
         {
-            var db = new PrintersDBContext();
             listBranches.Items.Insert(0, "Всички");
             foreach (var b in db.Branches)
             {
@@ -92,7 +92,7 @@ namespace PrintersData
         }
         private void addPrinterButton_Click(object sender, EventArgs e)
         {
-            AddPrinter frm = new AddPrinter();
+            AddPrinter frm = new AddPrinter(db);
             frm.fillDropDownLists();
             frm.FormClosed += (o, args) => LoadPrintersDataGrid();
 
@@ -108,13 +108,13 @@ namespace PrintersData
         private void EditPrinter()
         {
             var selection = dataGridView1.SelectedRows;
-            if (selection.Count > 1)
+            if (selection.Count != 1)
                 return;
 
             CustomPrintersTable dbRow = (CustomPrintersTable)selection[0].DataBoundItem;
-            PrintersDBContext db = new PrintersDBContext();
-            PrinterMasterData printerToEdit = db.PrinterMasterData.Where(p => p.ID == dbRow.ID).FirstOrDefault();
-            AddPrinter addPrinter = new AddPrinter(printerToEdit);
+            PrinterMasterData printerToEdit = db.PrinterMasterData.Find(dbRow.ID);
+            //PrinterMasterData printerToEdit = db.PrinterMasterData.Where(p => p.ID == dbRow.ID).FirstOrDefault();
+            AddPrinter addPrinter = new AddPrinter(db, printerToEdit);
             addPrinter.FormClosed += AddPrinter_FormClosed;
             addPrinter.ShowDialog();
         }
@@ -126,7 +126,7 @@ namespace PrintersData
 
         private void addPrinterModelButton_Click(object sender, EventArgs e)
         {
-            AddPrinterModel frm = new AddPrinterModel();            
+            AddPrinterModel frm = new AddPrinterModel(db);            
             frm.Show();
             dataGridView1.Refresh();
         }

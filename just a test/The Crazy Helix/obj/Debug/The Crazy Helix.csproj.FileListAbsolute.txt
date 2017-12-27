@@ -10,3 +10,10 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\The Crazy Helix
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.csprojResolveAssemblyReference.cache
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.exe
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.pdb
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.exe.config
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.exe
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\bin\Debug\The Crazy Helix.pdb
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.exe
+D:\Documents\GitHub\CS-Learning\just a test\The Crazy Helix\obj\Debug\The Crazy Helix.pdb

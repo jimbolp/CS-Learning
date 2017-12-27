@@ -280,7 +280,7 @@ namespace UserAccounts
                 return;
             string selectedBranch = listBranches.SelectedItem.ToString();
             string selectedPosition = listPositions.SelectedItem.ToString();
-            int selectedPositionID = db.Positions.Find(selectedPosition).ID;
+            int selectedPositionID = db.Positions.Where(p => p.Position1 == selectedPosition).FirstOrDefault().ID;
             if (userToEdit.UserName != textBoxUserName.Text)
                 userToEdit.UserName = textBoxUserName.Text;
             if (userToEdit.Email != textBoxEmail.Text)
@@ -291,7 +291,7 @@ namespace UserAccounts
                 userToEdit.UADMUserName = textBoxUadmName.Text;
             if (userToEdit.PositionID != selectedPositionID)
             {
-                userToEdit.PositionID = db.Positions.Find(selectedPosition).ID;
+                userToEdit.PositionID = selectedPositionID;
             }
             if (userToEdit.Branch.BranchName != selectedBranch)
             {
