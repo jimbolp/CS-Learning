@@ -10,13 +10,12 @@ namespace RegularExpressions
     {
         static void Main(string[] args)
         {
-            string str = Console.ReadLine();
-            string pattern = @"\d+";
-            var regexNew = new Regex(pattern);
-            MatchCollection matches = regexNew.Matches(str);
-            foreach(Match m in matches)
+
+            int str = 1;
+            while (str != 0)
             {
-                Console.WriteLine(m.Value);
+                str = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(Calculate(str));
             }
 
             /*
@@ -79,6 +78,35 @@ namespace RegularExpressions
             //*/
             Console.WriteLine("\nPress Any Key to Exit.");
             Console.ReadKey();
+        }
+        private static int Calculate(int number)
+        {
+            int result =
+                6 * ((number / 1) % 10) +
+                5 * ((number / 10) % 10) +
+                4 * ((number / 100) % 10) +
+                3 * ((number / 1000) % 10) +
+                2 * ((number / 10000) % 10);
+                    //((number / 10000) % 10);
+            if ((result % 11) == 10)
+                number = number * 10 + 0;
+            else
+                number = number * 10 + (result % 11);
+            return number;
+
+            //int result =
+            //    //7 * ((number / 1) % 10) +
+            //    6 * ((number / 10) % 10) +
+            //    5 * ((number / 100) % 10) +
+            //    4 * ((number / 1000) % 10) +
+            //    3 * ((number / 10000) % 10) +
+            //    2 * ((number / 100000) % 10) +
+            //    ((number / 100000) % 10);
+            //if ((result % 11) == 10)
+            //    number = number * 10 + 0;
+            //else
+            //    number = number * 10 + (result % 11);
+            //return number;
         }
     }
 }

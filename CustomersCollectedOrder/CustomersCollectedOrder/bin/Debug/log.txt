@@ -108,4 +108,20 @@ Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\Cus
 Време: -60
 Sorry, we couldn't find C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
    at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91--------------------------------------------------------------------------------
+24.01.2018 17:18:00
+Клиент номер: 
+Маршрут: 183130
+Час: 2000
+Време: 690
+Sorry, we couldn't find D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
+   at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91--------------------------------------------------------------------------------
+24.01.2018 17:18:29
+Клиент номер: 
+Маршрут: 183130
+Час: 2030
+Време: 660
+Sorry, we couldn't find D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\sborni klienti.xlsx. Is it possible it was moved, renamed or deleted?
+   at Microsoft.Office.Interop.Excel.Workbooks.Open(String Filename, Object UpdateLinks, Object ReadOnly, Object Format, Object Password, Object WriteResPassword, Object IgnoreReadOnlyRecommended, Object Origin, Object Delimiter, Object Editable, Object Notify, Object Converter, Object AddToMru, Object Local, Object CorruptLoad)
    at CustomersCollectedOrder.CustomersCollectedOrders.buttonResult_Click(Object sender, EventArgs e) in C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\Form1.cs:line 91
