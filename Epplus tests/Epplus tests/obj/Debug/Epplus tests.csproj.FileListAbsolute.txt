@@ -5,3 +5,11 @@ D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\EPPlus.dll
 D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.csprojResolveAssemblyReference.cache
 D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.exe
 D:\Documents\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.pdb
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.exe.config
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.exe
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\bin\Debug\Epplus tests.pdb
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.csprojResolveAssemblyReference.cache
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.csproj.CoreCompileInputs.cache
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.csproj.CopyComplete
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.exe
+E:\Documents\C# Projects\GitHub\CS-Learning\Epplus tests\Epplus tests\obj\Debug\Epplus tests.pdb
