@@ -7,6 +7,7 @@ namespace NET_Core_Tests.Controllers
     {
         public IActionResult Albums()
         {
+            ViewData["Test"] = "test viewdata";
             return View();
         }
     }
