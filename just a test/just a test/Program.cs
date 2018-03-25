@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -15,23 +16,44 @@ namespace just_a_test
     {
         static void Main(string[] args)
         {
-            Thread t1 = new Thread(() =>
+            char str = 'a' < 'A' ? 'a' : 'A';
+
+            //str = (char)Console.ReadLine()[0];
+            using (FileStream fi = new FileStream(@"D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\test.txt", FileMode.OpenOrCreate))
             {
-                for (int i = 0; i < 1000; i++)
+                using (StreamWriter sw = new StreamWriter(fi, Encoding.Default))
                 {
-                    Console.WriteLine(i);
-                    Thread.Sleep(1);
+                    while (str <= ('а' > 'А' ? 'а' : 'А'))
+                    {
+                        if (str >= 'a' && str <= 'z')
+                        {
+                            sw.WriteLine(Environment.NewLine + "Lower case EN:");
+                            while (str <= 'z')
+                                sw.WriteLine(str + " => " + (int)str++);
+                        }
+                        else if (str >= 'A' && str <= 'Z')
+                        {
+                            sw.WriteLine(Environment.NewLine + "Upper case EN:");
+                            while (str <= 'Z')
+                                sw.WriteLine(str + " => " + (int)str++);
+                        }
+                        else if (str >= 'А' && str <= 'Я')
+                        {
+                            sw.WriteLine(Environment.NewLine + "Upper case BG/RU:");
+                            while (str <= 'Я')
+                                sw.WriteLine(str + " => " + (int)str++);
+                        }
+                        else if (str >= 'а' && str <= 'я')
+                        {
+                            sw.WriteLine(Environment.NewLine + "Lower case BG/RU:");
+                            while (str <= 'я')
+                                sw.WriteLine(str + " => " + (int)str++);
+                        }
+                        else
+                            str++;
+                    }
                 }
-            });
-            Thread t2 = new Thread(() =>
-            {
-                for (int i = 0; i < 1000; i++)
-                {
-                    Console.WriteLine("Another thread!!");
-                }
-            });
-            t1.Start();
-            t2.Start();
+            }
         }
     }
 }

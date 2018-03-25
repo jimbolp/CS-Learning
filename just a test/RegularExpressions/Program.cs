@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -11,12 +12,7 @@ namespace RegularExpressions
         static void Main(string[] args)
         {
 
-            int str = 1;
-            while (str != 0)
-            {
-                str = Int32.Parse(Console.ReadLine());
-                Console.WriteLine(Calculate(str));
-            }
+            
 
             /*
             string s1 = @"apple:green:3 banana:yellow:5";
