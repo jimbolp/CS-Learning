@@ -1,8 +1,19 @@
-﻿
+﻿@model Object
 @{
     ViewData["Title"] = "Albums";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Albums</h2>
+@{ 
+    Type t = Model.GetType();
 
+    var Properties = t.GetProperties();
+    foreach (var prop in Properties)
+    {
+        <div>@prop.PropertyType.ToString()</div>
+        <div>@prop.Name</div>
+    }
+
+
+}

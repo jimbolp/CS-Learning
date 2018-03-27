@@ -1,14 +1,17 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
 
-namespace NET_Core_Tests.Controllers
+namespace NETCoreTests.Controllers
 {
     public class MyController : Controller
     {
         public IActionResult Albums()
         {
             ViewData["Test"] = "test viewdata";
-            return View();
+            Models.TestModel testModel = new Models.TestModel();
+            testModel.ModelGuid = 124;
+            testModel.ModelName = "Testing the abstraction of the view!";
+            return View(testModel);
         }
     }
 }
