@@ -1,6 +1,6 @@
 using System;
 
-namespace NET_Core_Tests.Models
+namespace NETCoreTests.Models
 {
     public class ErrorViewModel
     {

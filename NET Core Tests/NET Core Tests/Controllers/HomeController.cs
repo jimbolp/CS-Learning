@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NET_Core_Tests.Models;
+using NETCoreTests.Models;
 
-namespace NET_Core_Tests.Controllers
+namespace NETCoreTests.Controllers
 {
     public class HomeController : Controller
     {
