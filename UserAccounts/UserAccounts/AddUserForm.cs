@@ -14,12 +14,12 @@ namespace UserAccounts
     public partial class AddUserForm : Form
     {
         UsersDBContext db = null;
-        public AddUserForm()
+        public AddUserForm(UsersDBContext db)
         {
             InitializeComponent();
             try
             {
-                db = new UsersDBContext();
+                this.db = db;
             }
             catch (Exception e)
             {
@@ -36,12 +36,12 @@ namespace UserAccounts
             btn_newUser.Enabled = true;
             groupBoxNewUser.Text = "Създаване на нов потребител";
         }
-        public AddUserForm(UserMasterData user)
+        public AddUserForm(UsersDBContext db, UserMasterData user)
         {
             InitializeComponent();
             try
             {
-                db = new UsersDBContext();
+                this.db = db;
             }
             catch (Exception e)
             {
@@ -190,7 +190,6 @@ namespace UserAccounts
                 db.ADUsers.Add(adUser);
                 try
                 {
-                    throw new Exception();
                     db.SaveChanges();
                 }catch(Exception e)
                 {
@@ -280,7 +279,7 @@ namespace UserAccounts
                 return;
             string selectedBranch = listBranches.SelectedItem.ToString();
             string selectedPosition = listPositions.SelectedItem.ToString();
-            int selectedPositionID = db.Positions.Find(selectedPosition).ID;
+            int selectedPositionID = db.Positions.Where(p => p.Position1 == selectedPosition).Select(p => p.ID).FirstOrDefault();
             if (userToEdit.UserName != textBoxUserName.Text)
                 userToEdit.UserName = textBoxUserName.Text;
             if (userToEdit.Email != textBoxEmail.Text)

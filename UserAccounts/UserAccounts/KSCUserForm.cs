@@ -13,12 +13,31 @@ namespace UserAccounts
 {
     public partial class KSCUserForm : Form
     {
-        public KSCUserForm()
+        UsersDBContext db = null;
+        public KSCUserForm(UsersDBContext db)
         {
             InitializeComponent();
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
         }
-        public KSCUserForm(UserMasterData user)
+        public KSCUserForm(UsersDBContext db, UserMasterData user)
         {
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             User = user;
             InitializeComponent();
         }
@@ -29,22 +48,13 @@ namespace UserAccounts
         }
         private void KSCUserForm_Shown(object sender, EventArgs e)
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
-            if (!db.KSCs.Any(k => k.UserID == User.ID))
+            
+            if (User != null && !db.KSCs.Any(k => k.UserID == User.ID))
             {
                 WindowState = FormWindowState.Minimized;
                 if (MessageBox.Show("Потребител \"" + User.UserName + "\" няма KSC акаунт. Искате ли да създадете нов?", "Несъществуващ акаунт", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    KSCAccount newAccount = new KSCAccount(User.ID);
+                    KSCAccount newAccount = new KSCAccount(db, User.ID);
                     newAccount.FormClosed += (o, args) => InitializeKSCDataGrid(true);
                     newAccount.Show();
                 }
@@ -60,16 +70,6 @@ namespace UserAccounts
         }
         private void InitializeKSCDataGrid(bool all)
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
             SortableBindingList<CustomKSCUser> sbList = new SortableBindingList<CustomKSCUser>();
             IQueryable<CustomKSCUser> kscUsers = null;
             if (all)
@@ -90,6 +90,8 @@ namespace UserAccounts
             {
                 try
                 {
+                    if (User == null)
+                        throw new ArgumentNullException();
                     kscUsers = db.KSCs.Where(k => k.UserID == User.ID).Select(k => new CustomKSCUser
                     {
                         ID = k.ID,
@@ -105,11 +107,17 @@ namespace UserAccounts
                 catch (ArgumentNullException)
                 {
                     InitializeKSCDataGrid(true);
+                    return;
+                }
+                catch (Exception)
+                {
+                    InitializeKSCDataGrid(true);
+                    return;
                 }
             }
-            foreach (var k in kscUsers.OrderBy(k => k.UserName))
+            foreach (CustomKSCUser kUser in kscUsers.OrderBy(k => k.UserName))
             {
-                sbList.Add(k);
+                sbList.Add(kUser);
             }
             BindingSource bs = new BindingSource()
             {
@@ -129,6 +137,8 @@ namespace UserAccounts
         
         private void SelectRespectfulRow()
         {
+            if (User == null)
+                return;
             int selectedIdx = -1;
             foreach (DataGridViewRow row in kscUserTable.Rows)
             {
@@ -159,7 +169,7 @@ namespace UserAccounts
         }
         private void OpenKSCUserToEdit(CustomKSCUser kscUser)
         {
-            KSCAccount EditKSCUserForm = new KSCAccount(kscUser);
+            KSCAccount EditKSCUserForm = new KSCAccount(db, kscUser);
             EditKSCUserForm.FormClosed += (o, args) => InitializeKSCDataGrid(false);
             EditKSCUserForm.FormClosed += (o, args) => SelectRespectfulRow();
             EditKSCUserForm.Show();
@@ -169,21 +179,13 @@ namespace UserAccounts
         {
             if (kscUserTable.SelectedRows.Count != 1)
                 return;
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            
             int selectedUserID = ((CustomKSCUser)kscUserTable.SelectedRows[0].DataBoundItem).UserID;
             int userID = db.UserMasterDatas
                 .Where(u => u.ID == selectedUserID)
                 .Select(u => u.ID)
                 .FirstOrDefault();
-            KSCAccount newKSCAcc = new KSCAccount(userID);
+            KSCAccount newKSCAcc = new KSCAccount(db, userID);
             newKSCAcc.FormClosed += (o, args) => InitializeKSCDataGrid(true);
             newKSCAcc.FormClosed += (o, args) => SelectRespectfulRow();
             newKSCAcc.Show();

@@ -12,14 +12,33 @@ namespace UserAccounts
 {
     public partial class KSCAccount : Form
     {
+        UsersDBContext db = null;
         public int KscID { get; set; }
         public int UserID { get; set; }
-        public KSCAccount()
+        public KSCAccount(UsersDBContext db)
         {
             InitializeComponent();
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
         }
-        public KSCAccount(int userID)
+        public KSCAccount(UsersDBContext db, int userID)
         {
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             UserID = userID;
             InitializeComponent();
             LoadBranches();
@@ -28,8 +47,17 @@ namespace UserAccounts
             btn_EditKSCAccount.Enabled = false;
             btn_EditKSCAccount.Visible = false;
         }
-        public KSCAccount(CustomKSCUser userToEdit)
+        public KSCAccount(UsersDBContext db, CustomKSCUser userToEdit)
         {
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
+                return;
+            }
             KscID = userToEdit.ID;
             InitializeComponent();
             LoadBranches();
@@ -55,16 +83,7 @@ namespace UserAccounts
         }
         private void LoadBranches()
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
+            
             //Fill comboBox with Depots from the database
             listKSCBranches.Items.Add(new ComboBoxItem("(Изберете Склад)", Color.Black, false));
             foreach (var b in db.Branches)
@@ -75,16 +94,6 @@ namespace UserAccounts
         }
         private void KSCAccount_Load(object sender, EventArgs e)
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
             labelUserName.Text = db.UserMasterDatas.Where(u => u.ID == UserID).Select(u => u.UserName).FirstOrDefault();
         }
         private bool EmptyField()
@@ -139,16 +148,6 @@ namespace UserAccounts
         }
         private void SaveChanges(bool addNew)
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
             string branchName = Convert.ToString(listKSCBranches.SelectedItem);
             KSC user;
             if (addNew)
@@ -197,16 +196,6 @@ namespace UserAccounts
 
         private int KSCAccountExists()
         {
-            UsersDBContext db = null;
-            try
-            {
-                db = new UsersDBContext();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return -1;
-            }
             int UID = Convert.ToInt32(textBoxUID.Text);
             string branch = Convert.ToString(listKSCBranches.SelectedItem);
             /*if (db.KSCs.Any(k => k.UserName == textBoxKSCUserName.Text))
