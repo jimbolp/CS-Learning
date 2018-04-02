@@ -1,0 +1,42 @@
+﻿<Window x:Class="CollectedOrders.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CollectedOrders"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" SizeToContent="WidthAndHeight"
+        MinHeight="450" MinWidth="800">
+    <Window.Resources>
+        <CollectionViewSource x:Key="ItemsCollectionViewSource" CollectionViewType="ListCollectionView"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock x:Name="txtBlock_CustomerNoLabel" Text="Клиент:" Margin="3"/>
+                <TextBox x:Name="txtBox_CustomerNo" Margin="3"/>
+                <Button x:Name="btn_Calculate" Content="Изчисли" Click="Btn_Calculate_Click" IsDefault="True"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1">
+            <ProgressBar x:Name="progressBar"/>
+            <TextBlock x:Name="txtBlock_Result" />
+            <DataGrid x:Name="table_Result" Margin="5" 
+                      DataContext="{StaticResource ItemsCollectionViewSource}"
+                      ItemsSource="{Binding}"
+                      AutoGenerateColumns="True"/>
+        </StackPanel>
+    </Grid>
+        
+        
+    
+</Window>

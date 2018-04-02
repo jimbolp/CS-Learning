@@ -13,9 +13,15 @@ namespace PrintersData
 {
     public partial class AddPrinterModel : Form
     {
-        public AddPrinterModel()
+        PrintersDBContext db;
+        public AddPrinterModel(PrintersDBContext db)
         {
             InitializeComponent();
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception) { }
         }
         private void addPrinterModelBtn_Click(object sender, EventArgs e)
         {
@@ -24,7 +30,6 @@ namespace PrintersData
                 labelResult.Text = "Попълнете модел принтер";
                 return;
             }
-            var db = new PrintersDBContext();
             DialogResult confirmAddPrinterModel = MessageBox.Show($"Сигурни ли сте, че искате да добавите модел принтер \"{printerModelTextBx.Text}\"?", "Confirm", MessageBoxButtons.YesNo);
             if(confirmAddPrinterModel == DialogResult.No)
             {

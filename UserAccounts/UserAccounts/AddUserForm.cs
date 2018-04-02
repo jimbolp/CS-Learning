@@ -14,12 +14,12 @@ namespace UserAccounts
     public partial class AddUserForm : Form
     {
         UsersDBContext db = null;
-        public AddUserForm(UsersDBContext db)
+        public AddUserForm()
         {
             InitializeComponent();
             try
             {
-                this.db = db;
+                db = new UsersDBContext();
             }
             catch (Exception e)
             {
@@ -36,12 +36,12 @@ namespace UserAccounts
             btn_newUser.Enabled = true;
             groupBoxNewUser.Text = "Създаване на нов потребител";
         }
-        public AddUserForm(UsersDBContext db, UserMasterData user)
+        public AddUserForm(UserMasterData user)
         {
             InitializeComponent();
             try
             {
-                this.db = db;
+                db = new UsersDBContext();
             }
             catch (Exception e)
             {
@@ -190,6 +190,7 @@ namespace UserAccounts
                 db.ADUsers.Add(adUser);
                 try
                 {
+                    throw new Exception();
                     db.SaveChanges();
                 }catch(Exception e)
                 {
@@ -279,7 +280,7 @@ namespace UserAccounts
                 return;
             string selectedBranch = listBranches.SelectedItem.ToString();
             string selectedPosition = listPositions.SelectedItem.ToString();
-            int selectedPositionID = db.Positions.Where(p => p.Position1 == selectedPosition).Select(p => p.ID).FirstOrDefault();
+            int selectedPositionID = db.Positions.Where(p => p.Position1 == selectedPosition).FirstOrDefault().ID;
             if (userToEdit.UserName != textBoxUserName.Text)
                 userToEdit.UserName = textBoxUserName.Text;
             if (userToEdit.Email != textBoxEmail.Text)
@@ -290,7 +291,7 @@ namespace UserAccounts
                 userToEdit.UADMUserName = textBoxUadmName.Text;
             if (userToEdit.PositionID != selectedPositionID)
             {
-                userToEdit.PositionID = db.Positions.Find(selectedPosition).ID;
+                userToEdit.PositionID = selectedPositionID;
             }
             if (userToEdit.Branch.BranchName != selectedBranch)
             {

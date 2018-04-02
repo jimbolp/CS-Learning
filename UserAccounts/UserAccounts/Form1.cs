@@ -32,7 +32,7 @@ namespace UserAccounts
         /// Probably not the best idea!? :D
         /// </summary>
         private int? UserIDToEdit { get; set; }
-        private UsersDBContext db = null;
+        private UsersDBContext db = new UsersDBContext();
 
         private void Form1_Load(object sender, EventArgs e)
         {

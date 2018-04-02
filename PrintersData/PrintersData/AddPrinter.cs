@@ -13,12 +13,23 @@ namespace PrintersData
 {
     public partial class AddPrinter : Form
     {
-        public AddPrinter()
+        PrintersDBContext db;
+        public AddPrinter(PrintersDBContext db)
         {
             InitializeComponent();
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception) { }
         }
-        public AddPrinter(PrinterMasterData printerToEdit)
+        public AddPrinter(PrintersDBContext db, PrinterMasterData printerToEdit)
         {
+            try
+            {
+                this.db = db;
+            }
+            catch (Exception) { }
             printerIDToEdit = printerToEdit.ID;
             InitializeComponent();
             InitializeFields(printerToEdit);
@@ -40,7 +51,6 @@ namespace PrintersData
         }
         public void fillDropDownLists()
         {
-            var db = new PrintersDBContext();
             var sortedPrinterModels = db.PrinterModels.OrderBy(p => p.PrinterModel);
             listPrinterModels.Items.Insert(0, "(Изберете модел принтер)");
             foreach (var p in sortedPrinterModels)
@@ -67,7 +77,6 @@ namespace PrintersData
                 labelResult.Text = "Някое от задължителните полета е празно";
                 return;
             }
-            var db = new PrintersDBContext();
 
             bool isPrinterModelSelected = db.PrinterModels.Any(p => p.PrinterModel == listPrinterModels.SelectedItem.ToString());
             bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
@@ -134,13 +143,11 @@ namespace PrintersData
 
         public int printerModelFromName(string printerModel)
         {
-            var db = new PrintersDBContext();
             return db.PrinterModels.Where(p => p.PrinterModel == printerModel).Select(i => i.ID).FirstOrDefault();
         }
 
         public int branchIDFromName(string branchName)
         {
-            var db = new PrintersDBContext();
             return db.Branches.Where(b => b.BranchName == branchName).Select(i => i.ID).FirstOrDefault();
         }
 
@@ -164,7 +171,6 @@ namespace PrintersData
      
         void UpdateDB()
         {          
-            var db = new PrintersDBContext();
             var printer = db.PrinterMasterData.FirstOrDefault(p => p.ID == printerIDToEdit);
             if (printer.PrinterName != printerNameTextBox.Text)
                 printer.PrinterName = printerNameTextBox.Text;

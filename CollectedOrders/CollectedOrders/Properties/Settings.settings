@@ -1,0 +1,78 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CollectedOrders.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SofiaWeekdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2200</Value>
+    </Setting>
+    <Setting Name="SofiaSaturdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1500</Value>
+    </Setting>
+    <Setting Name="SofiaSundayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
+    <Setting Name="BurgasWeekdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2045</Value>
+    </Setting>
+    <Setting Name="BurgasSaturdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1430</Value>
+    </Setting>
+    <Setting Name="BurgasSundayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1430</Value>
+    </Setting>
+    <Setting Name="PlovdivWeekdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2200</Value>
+    </Setting>
+    <Setting Name="PlovdivSaturdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1400</Value>
+    </Setting>
+    <Setting Name="PlovdivSundayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoWeekdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">2200</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoSaturdayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1500</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoSundayEnd" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
+    <Setting Name="SofiaWeekdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="SofiaSaturdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">905</Value>
+    </Setting>
+    <Setting Name="SofiaSundayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">905</Value>
+    </Setting>
+    <Setting Name="BurgasWeekdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">700</Value>
+    </Setting>
+    <Setting Name="BurgasSaturdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="BurgasSundayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="PlovdivWeekdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">805</Value>
+    </Setting>
+    <Setting Name="PlovdivSaturdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">830</Value>
+    </Setting>
+    <Setting Name="PlovdivSundayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">900</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoWeekdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">830</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoSaturdayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="VelikoTyrnovoSundayStart" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1200</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
