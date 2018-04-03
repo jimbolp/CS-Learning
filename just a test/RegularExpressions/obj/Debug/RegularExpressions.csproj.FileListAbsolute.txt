@@ -1,0 +1,10 @@
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\bin\Debug\RegularExpressions.exe.config
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\bin\Debug\RegularExpressions.exe
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\bin\Debug\RegularExpressions.pdb
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\obj\Debug\RegularExpressions.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\obj\Debug\RegularExpressions.csproj.CoreCompileInputs.cache
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\obj\Debug\RegularExpressions.exe
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\obj\Debug\RegularExpressions.pdb
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\bin\Debug\System.ValueTuple.dll
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\bin\Debug\System.ValueTuple.xml
+D:\Documents\GitHub\CS-Learning\just a test\RegularExpressions\obj\Debug\RegularExpressions.csproj.CopyComplete
