@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\bin\Debug\Numbers1to100.exe.config
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\bin\Debug\Numbers1to100.exe
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\bin\Debug\Numbers1to100.pdb
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\obj\Debug\Numbers1to100.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\obj\Debug\Numbers1to100.exe
-e:\documents\visual studio 2015\Projects\Loops\Numbers1to100\obj\Debug\Numbers1to100.pdb

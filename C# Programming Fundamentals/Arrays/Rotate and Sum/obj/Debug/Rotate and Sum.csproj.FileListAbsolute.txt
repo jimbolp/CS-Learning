@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\bin\Debug\Rotate and Sum.exe.config
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\bin\Debug\Rotate and Sum.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\bin\Debug\Rotate and Sum.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\obj\Debug\Rotate and Sum.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\obj\Debug\Rotate and Sum.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Rotate and Sum\obj\Debug\Rotate and Sum.pdb

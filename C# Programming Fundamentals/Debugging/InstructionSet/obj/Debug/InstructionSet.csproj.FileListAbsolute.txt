@@ -1,6 +1,0 @@
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\bin\Debug\InstructionSet.exe.config
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\bin\Debug\InstructionSet.exe
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\bin\Debug\InstructionSet.pdb
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\obj\Debug\InstructionSet.csprojResolveAssemblyReference.cache
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\obj\Debug\InstructionSet.exe
-E:\Documents\Visual Studio 2015\Projects\C# Programming Fundamentals\Debugging\InstructionSet\obj\Debug\InstructionSet.pdb

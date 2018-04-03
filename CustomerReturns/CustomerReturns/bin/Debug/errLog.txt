@@ -1,2 +1,0 @@
-09.08.17 15:55:55   Read message file
-Error: Illegal characters in path.

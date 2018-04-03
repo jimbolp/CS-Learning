@@ -1,9 +1,0 @@
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\bin\Debug\Control Digit.exe.config
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\bin\Debug\Control Digit.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\bin\Debug\Control Digit.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control Digit.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control_Digit.Form1.resources
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control_Digit.Properties.Resources.resources
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control Digit.csproj.GenerateResource.Cache
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control Digit.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Control Digit\obj\Debug\Control Digit.pdb

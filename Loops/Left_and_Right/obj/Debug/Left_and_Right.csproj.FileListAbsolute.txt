@@ -1,5 +1,0 @@
-e:\documents\visual studio 2015\Projects\Loops\Left_and_Right\bin\Debug\Left_and_Right.exe.config
-e:\documents\visual studio 2015\Projects\Loops\Left_and_Right\bin\Debug\Left_and_Right.exe
-e:\documents\visual studio 2015\Projects\Loops\Left_and_Right\bin\Debug\Left_and_Right.pdb
-e:\documents\visual studio 2015\Projects\Loops\Left_and_Right\obj\Debug\Left_and_Right.exe
-e:\documents\visual studio 2015\Projects\Loops\Left_and_Right\obj\Debug\Left_and_Right.pdb

@@ -1,6 +1,0 @@
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\bin\Debug\XMLExamples.exe.config
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\bin\Debug\XMLExamples.exe
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\bin\Debug\XMLExamples.pdb
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\obj\Debug\XMLExamples.csprojResolveAssemblyReference.cache
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\obj\Debug\XMLExamples.exe
-E:\Documents\GitHub\CS-Learning\XMLExamples\XMLExamples\obj\Debug\XMLExamples.pdb

@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\Loops\Devision\bin\Debug\Devision.exe.config
-e:\documents\visual studio 2015\Projects\Loops\Devision\bin\Debug\Devision.exe
-e:\documents\visual studio 2015\Projects\Loops\Devision\bin\Debug\Devision.pdb
-e:\documents\visual studio 2015\Projects\Loops\Devision\obj\Debug\Devision.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\Loops\Devision\obj\Debug\Devision.exe
-e:\documents\visual studio 2015\Projects\Loops\Devision\obj\Debug\Devision.pdb

@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\bin\Debug\Magic Numbers.exe.config
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\bin\Debug\Magic Numbers.exe
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\bin\Debug\Magic Numbers.pdb
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\obj\Debug\Magic Numbers.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\obj\Debug\Magic Numbers.exe
-e:\documents\visual studio 2015\Projects\Advanced Loops\Magic Numbers\obj\Debug\Magic Numbers.pdb

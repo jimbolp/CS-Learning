@@ -1,6 +1,0 @@
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\bin\Debug\BashSoft.exe.config
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\bin\Debug\BashSoft.exe
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\bin\Debug\BashSoft.pdb
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\obj\Debug\BashSoft.csprojResolveAssemblyReference.cache
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\obj\Debug\BashSoft.exe
-E:\Documents\Visual Studio 2015\Projects\C# Advanced\StoryMode\BashSoft\obj\Debug\BashSoft.pdb

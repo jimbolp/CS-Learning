@@ -1,7 +1,0 @@
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\obj\Debug\Sets and Dictionaries.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\obj\Debug\Sets and Dictionaries.csproj.CoreCompileInputs.cache
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\bin\Debug\Sets and Dictionaries.exe.config
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\bin\Debug\Sets and Dictionaries.exe
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\bin\Debug\Sets and Dictionaries.pdb
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\obj\Debug\Sets and Dictionaries.exe
-D:\Documents\GitHub\CS-Learning\just a test\Sets and Dictionaries\obj\Debug\Sets and Dictionaries.pdb

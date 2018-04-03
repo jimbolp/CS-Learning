@@ -1,5 +1,0 @@
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Matrix Generator\bin\Debug\Matrix Generator.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Matrix Generator\bin\Debug\Matrix Generator.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Matrix Generator\obj\Debug\Matrix Generator.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Matrix Generator\obj\Debug\Matrix Generator.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Lists and Matrices\Matrix Generator\obj\Debug\Matrix Generator.csprojResolveAssemblyReference.cache

@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\bin\Debug\Different Integers Size.exe.config
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\bin\Debug\Different Integers Size.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\bin\Debug\Different Integers Size.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\obj\Debug\Different Integers Size.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\obj\Debug\Different Integers Size.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Different Integers Size\obj\Debug\Different Integers Size.pdb

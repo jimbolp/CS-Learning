@@ -1,6 +1,0 @@
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\bin\Debug\Equal Pairs.exe.config
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\bin\Debug\Equal Pairs.exe
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\bin\Debug\Equal Pairs.pdb
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\obj\Debug\Equal Pairs.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\obj\Debug\Equal Pairs.exe
-e:\documents\visual studio 2015\Projects\Loops\Equal Pairs\obj\Debug\Equal Pairs.pdb

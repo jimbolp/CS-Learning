@@ -1,5 +1,0 @@
-e:\documents\visual studio 2015\Projects\Loops\Sum_numbers\bin\Debug\Sum_numbers.exe.config
-e:\documents\visual studio 2015\Projects\Loops\Sum_numbers\bin\Debug\Sum_numbers.exe
-e:\documents\visual studio 2015\Projects\Loops\Sum_numbers\bin\Debug\Sum_numbers.pdb
-e:\documents\visual studio 2015\Projects\Loops\Sum_numbers\obj\Debug\Sum_numbers.exe
-e:\documents\visual studio 2015\Projects\Loops\Sum_numbers\obj\Debug\Sum_numbers.pdb

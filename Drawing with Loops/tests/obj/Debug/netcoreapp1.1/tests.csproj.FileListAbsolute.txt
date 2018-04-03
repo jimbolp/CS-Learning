@@ -1,9 +1,0 @@
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\bin\Debug\netcoreapp1.1\tests.deps.json
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\bin\Debug\netcoreapp1.1\tests.runtimeconfig.json
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\bin\Debug\netcoreapp1.1\tests.runtimeconfig.dev.json
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\bin\Debug\netcoreapp1.1\tests.dll
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\bin\Debug\netcoreapp1.1\tests.pdb
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\obj\Debug\netcoreapp1.1\tests.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\obj\Debug\netcoreapp1.1\tests.AssemblyInfo.cs
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\obj\Debug\netcoreapp1.1\tests.dll
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\tests\obj\Debug\netcoreapp1.1\tests.pdb

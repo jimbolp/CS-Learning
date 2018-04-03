@@ -1,5 +1,0 @@
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Compare Char Arrays\bin\Debug\Compare Char Arrays.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Compare Char Arrays\bin\Debug\Compare Char Arrays.pdb
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Compare Char Arrays\obj\Debug\Compare Char Arrays.csprojResolveAssemblyReference.cache
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Compare Char Arrays\obj\Debug\Compare Char Arrays.exe
-e:\documents\visual studio 2015\Projects\C# Programming Fundamentals\Arrays\Compare Char Arrays\obj\Debug\Compare Char Arrays.pdb

@@ -1,7 +1,0 @@
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\bin\Debug\WorkingWithFiles.exe.config
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\bin\Debug\WorkingWithFiles.exe
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\bin\Debug\WorkingWithFiles.pdb
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\obj\Debug\WorkingWithFiles.csprojResolveAssemblyReference.cache
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\obj\Debug\WorkingWithFiles.exe
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\obj\Debug\WorkingWithFiles.pdb
-E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithFiles\bin\Debug\System.Linq.Dynamic.dll

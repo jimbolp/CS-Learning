@@ -1,6 +1,0 @@
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.exe.config
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.exe
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.pdb
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\obj\Debug\Star Square.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\obj\Debug\Drawing with Loops.exe
-D:\Documents\GitHub\CS-Learning\Drawing with Loops\Drawing with Loops\obj\Debug\Drawing with Loops.pdb
