@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.exe.config
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.exe
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\bin\Debug\Drawing with Loops.pdb
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\obj\Debug\Drawing with Loops.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\obj\Debug\Drawing with Loops.exe
+e:\documents\visual studio 2015\Projects\Drawing with Loops\Drawing with Loops\obj\Debug\Drawing with Loops.pdb

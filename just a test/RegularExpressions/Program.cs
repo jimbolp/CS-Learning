@@ -1,40 +1,22 @@
 ﻿using System;
-using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.CSharp;
 
 namespace RegularExpressions
 {
     class Program
     {
-        public class Tests
+        static void Main(string[] args)
         {
-            public int MyProperty { get; set; }
-            public int OtherProp { get; set; }
-            public override string ToString()
-            {
-                for (int i = 0; i< 100; ++i)
-                {
-                    Thread.Sleep(100);
-                    Console.WriteLine(i);
-                }
-                return "Done!";
-            }
-        }
-        static async void Main(string[] args)
-        {
-            BackgroundWorker bw = new BackgroundWorker();
-            bw.DoWork += Bw_DoWork;
-            bw.WorkerReportsProgress = true;
-            bw.ProgressChanged += Bw_ProgressChanged;
-            bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
 
+            int str = 1;
+            while (str != 0)
+            {
+                str = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(Calculate(str));
+            }
 
             /*
             string s1 = @"apple:green:3 banana:yellow:5";
@@ -96,31 +78,6 @@ namespace RegularExpressions
             //*/
             Console.WriteLine("\nPress Any Key to Exit.");
             Console.ReadKey();
-        }
-
-        private static void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void Bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void Bw_DoWork(object sender, DoWorkEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        static async Task<(int sum, int count)> Test(int[] values)
-        {
-            var result = (s: 0, c: 0);
-            foreach (int i in values)
-            {
-                result = (result.s + i, ++result.c);
-            }
-            return result;
         }
         private static int Calculate(int number)
         {

@@ -118,15 +118,8 @@ namespace UserAccounts
                 + "left join (select distinct UserID, UserName from KSC with (nolock)) ksc on ksc.UserID = umd.id                   "
                 + "order by umd.UserName";
 
-            List<CustomUser> res = null;
-            try
-            {
-                res = db.Database.SqlQuery<CustomUser>(sql).Where(u => checkedBranches.Any(b => b == u.Depo) && checkedPositions.Any(p => p == u.Position)).ToList();
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
+            List<CustomUser> res = db.Database.SqlQuery<CustomUser>(sql).Where(u => checkedBranches.Any(b => b == u.Depo) && checkedPositions.Any(p => p == u.Position)).ToList();
+             
             SortableBindingList< CustomUser > sbList = new SortableBindingList<CustomUser>();
             
             /*var orderdUsers = db.UserMasterDatas.Where(u => checkedBranches.Any(b => b == u.BranchID) && checkedPositions.Any(p => p == u.PositionID)).OrderBy(u => u.UserName).Select(u => new CustomUser
@@ -184,7 +177,7 @@ namespace UserAccounts
         }
         private void btn_Customize_Click(object sender, EventArgs e)
         {
-            Form1 editUser = new Form1(db);
+            Form1 editUser = new Form1();
             editUser.FormClosed += new FormClosedEventHandler((o, args) => Visible = true);
             Visible = false;
             editUser.Show();
@@ -198,7 +191,7 @@ namespace UserAccounts
 
         private void btn_AddUser_Click(object sender, EventArgs e)
         {
-            AddUserForm addUserForm = new AddUserForm(db);
+            AddUserForm addUserForm = new AddUserForm();
             
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
 
@@ -230,7 +223,7 @@ namespace UserAccounts
             {
                 MessageBox.Show("Потребителя не беше намерен!", "Грешка!");
             }
-            AddUserForm addUserForm = new AddUserForm(db, userToEdit);
+            AddUserForm addUserForm = new AddUserForm(userToEdit);
 
             addUserForm.FormClosed += (o, args) => loadUserDBTable();
 
@@ -260,7 +253,7 @@ namespace UserAccounts
             //    return;
             //}
             int selectedUserID = ((CustomUser)userDBTable.SelectedRows[0].DataBoundItem).ID;
-            KSCUserForm kscForm = new KSCUserForm(db, db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID));
+            KSCUserForm kscForm = new KSCUserForm(db.UserMasterDatas.FirstOrDefault(u => u.ID == selectedUserID));
             //kscForm.FormClosed += (o, args) => loadUserDBTable();
             if (!kscForm.Visible)
                 kscForm.Show();
@@ -269,7 +262,7 @@ namespace UserAccounts
         }
         private void NewKSCAccount(int userID)
         {
-            KSCAccount kscAccount = new KSCAccount(db, userID);
+            KSCAccount kscAccount = new KSCAccount(userID);
             kscAccount.Show();
         }
 

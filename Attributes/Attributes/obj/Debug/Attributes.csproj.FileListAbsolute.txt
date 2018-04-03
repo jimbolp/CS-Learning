@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\bin\Debug\Attributes.exe.config
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\bin\Debug\Attributes.exe
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\bin\Debug\Attributes.pdb
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\obj\Debug\Attributes.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\obj\Debug\Attributes.exe
+E:\Documents\GitHub\CS-Learning\Attributes\Attributes\obj\Debug\Attributes.pdb

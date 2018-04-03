@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/examples2.php" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/../../../Projects/SoftUni Software Technologies/08. Software-Technologies-MySQL-for-PHP-Devs-Exercises-Resources/posts.sql" dialect="MySQL" />
+    <file url="file://E:/Programs/xampp/mysql/data/world.sql" dialect="MySQL" />
+  </component>
+</project>

@@ -1,0 +1,5 @@
+e:\documents\visual studio 2015\Projects\Advanced Loops\Powers of Two\bin\Debug\Powers of Two.exe.config
+e:\documents\visual studio 2015\Projects\Advanced Loops\Powers of Two\bin\Debug\Powers of Two.exe
+e:\documents\visual studio 2015\Projects\Advanced Loops\Powers of Two\bin\Debug\Powers of Two.pdb
+e:\documents\visual studio 2015\Projects\Advanced Loops\Powers of Two\obj\Debug\Powers of Two.exe
+e:\documents\visual studio 2015\Projects\Advanced Loops\Powers of Two\obj\Debug\Powers of Two.pdb

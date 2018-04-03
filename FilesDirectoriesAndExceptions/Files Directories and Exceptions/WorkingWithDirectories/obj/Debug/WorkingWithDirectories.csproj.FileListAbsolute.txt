@@ -1,0 +1,6 @@
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\bin\Debug\WorkingWithDirectories.exe.config
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\bin\Debug\WorkingWithDirectories.exe
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\bin\Debug\WorkingWithDirectories.pdb
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\obj\Debug\WorkingWithDirectories.csprojResolveAssemblyReference.cache
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\obj\Debug\WorkingWithDirectories.exe
+E:\Documents\GitHub\CS-Learning\FilesDirectoriesAndExceptions\Files Directories and Exceptions\WorkingWithDirectories\obj\Debug\WorkingWithDirectories.pdb

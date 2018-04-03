@@ -1,0 +1,82 @@
+﻿@model PrintersDataWebMVC.Models.PrinterMasterData
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PrinterMasterData</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Branches.BranchName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Branches.BranchName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterModels.PrinterModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterModels.PrinterModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrinterName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrinterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrintID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrintID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DNSName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DNSName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

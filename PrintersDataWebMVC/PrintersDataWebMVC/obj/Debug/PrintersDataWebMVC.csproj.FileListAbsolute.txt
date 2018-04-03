@@ -192,4 +192,3 @@ C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersDataWebMVC\Printers
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersDataWebMVC\PrintersDataWebMVC\obj\Debug\PrintersDataWebMVC.csprojResolveAssemblyReference.cache
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersDataWebMVC\PrintersDataWebMVC\obj\Debug\PrintersDataWebMVC.dll
 C:\Users\yavor.georgiev\Documents\GitHub\CS-Learning\PrintersDataWebMVC\PrintersDataWebMVC\obj\Debug\PrintersDataWebMVC.pdb
-C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\PrintersDataWebMVC\PrintersDataWebMVC\obj\Debug\PrintersDataWebMVC.csproj.CoreCompileInputs.cache

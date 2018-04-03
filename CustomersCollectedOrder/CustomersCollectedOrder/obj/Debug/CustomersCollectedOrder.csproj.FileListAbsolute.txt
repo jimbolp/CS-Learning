@@ -18,14 +18,3 @@ C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\Cus
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.CustomersCollectedOrders.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.Properties.Resources.resources
 C:\Users\fina.meranzova\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.csproj.GenerateResource.Cache
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\CustomersCollectedOrder.exe.config
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\CustomersCollectedOrder.exe
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\bin\Debug\CustomersCollectedOrder.pdb
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.csprojResolveAssemblyReference.cache
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.csproj.ResolveComReference.cache
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.CustomersCollectedOrders.resources
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.Properties.Resources.resources
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.csproj.GenerateResource.cache
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.csproj.CoreCompileInputs.cache
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.exe
-D:\Documents\GitHub\CS-Learning\CustomersCollectedOrder\CustomersCollectedOrder\obj\Debug\CustomersCollectedOrder.pdb

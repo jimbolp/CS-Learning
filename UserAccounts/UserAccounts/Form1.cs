@@ -13,18 +13,9 @@ namespace UserAccounts
 {
     public partial class Form1 : Form
     {
-        public Form1(UsersDBContext db)
+        public Form1()
         {
-            InitializeComponent();
-            try
-            {
-                this.db = db;
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Няма връзка с базата данни!", "Проблем", MessageBoxButtons.OK);
-                return;
-            }
+            InitializeComponent();            
         }
 
         /// <summary>
@@ -37,6 +28,8 @@ namespace UserAccounts
         private void Form1_Load(object sender, EventArgs e)
         {
             initializeDropDownLists();
+            if (db == null)
+                db = new UsersDBContext();
         }
 
         /// <summary>
@@ -44,6 +37,7 @@ namespace UserAccounts
         /// </summary>
         private void initializeDropDownLists()
         {
+            //var db = new UsersDBContext();
             var sortedUsers = db.UserMasterDatas.OrderBy(u => u.UserName);
             //Fill comboBox with Positions from the database
             listPositions.Items.Insert(0, "(Изберете Длъжност)");
@@ -102,6 +96,9 @@ namespace UserAccounts
         {
             if(!isAllowedToAddUser())
                 return;
+
+            var db = new UsersDBContext();
+
             DialogResult confirmCreateUser = MessageBox.Show($"Сигурни ли сте, че искате да създадете потребител \"{textBoxUserName.Text}\"", "Confirm", MessageBoxButtons.YesNo);
 
             if (confirmCreateUser == DialogResult.No)
@@ -185,6 +182,7 @@ namespace UserAccounts
                 labelResult.Text = "Някое от задължителните полета е празно..";
                 return false;
             }
+            var db = new UsersDBContext();
 
             bool isPositionSelected = db.Positions.Any(p => p.Position1 == listPositions.SelectedItem.ToString());
             bool isBranchSelected = db.Branches.Any(b => b.BranchName == listBranches.SelectedItem.ToString());
@@ -227,10 +225,12 @@ namespace UserAccounts
 
         public int PositionIdFromName(string positionName)
         {
+            var db = new UsersDBContext();
             return db.Positions.Where(p => p.Position1 == positionName).Select(i => i.ID).First();
         }
         public int BranchIdFromName(string branchName)
         {
+            var db = new UsersDBContext();
             return db.Branches.Where(b => b.BranchName == branchName).Select(br => br.ID).First();
         }
 
@@ -242,6 +242,7 @@ namespace UserAccounts
         /// <param name="e"></param>
         private void btn_deactivateUser_Click(object sender, EventArgs e)
         {
+            var db = new UsersDBContext();
             string selectedUserName = listUsers.SelectedItem.ToString();
             bool isUserSelected = db.UserMasterDatas.Any(u => u.UserName == selectedUserName);
             
@@ -271,6 +272,7 @@ namespace UserAccounts
         /// <param name="id"></param>
         private void ActivateUser(int id)
         {
+            var db = new UsersDBContext();
             DialogResult confirmDeleteUser =
                     MessageBox.Show(
                         $"Сигурни ли сте, че искате да активирате потребител \"{listUsers.SelectedItem}\"", "Потвърди",
@@ -303,6 +305,7 @@ namespace UserAccounts
         /// <param name="id"></param>
         private void DeactivateUser(int id)
         {
+            var db = new UsersDBContext();
             DialogResult confirmDeleteUser =
                     MessageBox.Show(
                         $"Сигурни ли сте, че искате да деактивирате потребител \"{listUsers.SelectedItem}\"", "Потвърди",
@@ -334,6 +337,8 @@ namespace UserAccounts
         /// </summary>
         private void RefreshListUsers()
         {
+            var db = new UsersDBContext();
+
             //List with all users....
             listUsers.Items.Clear();
             listUsers.Items.Add(new ComboBoxItem("(Изберете Потребител)", 0, Color.Black, false));
@@ -374,6 +379,7 @@ namespace UserAccounts
         /// <param name="e"></param>
         private void listUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var db = new UsersDBContext();
             int selectedUserID = 0;
             string selectedUserName = listUsers.SelectedItem.ToString();
             bool isUserSelected = db.UserMasterDatas.Any(u => u.UserName == selectedUserName);
@@ -395,6 +401,7 @@ namespace UserAccounts
             ResetKSCGroupBoxItems();
             if (listActiveUsers.SelectedIndex == 0)
                 return;
+            var db = new UsersDBContext();
             int selectedUserID =
                 db.UserMasterDatas.Where(u => u.UserName == listActiveUsers.SelectedItem.ToString())
                     .Select(u => u.ID)
@@ -420,7 +427,8 @@ namespace UserAccounts
             //TODO..
             //Make btn_ksc Active
             btn_createKSCAccount.Enabled = true;
-            
+
+            var db = new UsersDBContext();
             string selectedBranch = listKSCBranches.SelectedItem.ToString();
             int selectedBranchID =
                 db.Branches.Where(b => b.BranchName == selectedBranch)
@@ -475,7 +483,7 @@ namespace UserAccounts
 
         private void btn_SearchKSC_Click(object sender, EventArgs e)
         {            
-            var srchKSCForm = new KSCUserForm(db);
+            var srchKSCForm = new KSCUserForm();
             srchKSCForm.FormClosed += srchKSCForm_Closed;
             Hide();
             srchKSCForm.Show();
@@ -498,7 +506,7 @@ namespace UserAccounts
             Application.DoEvents();
             btn_EditUser.Enabled = true;
             btn_newUser.Enabled = false;
-
+            var db = new UsersDBContext();
             string UserName = listUsersToEdit.SelectedItem.ToString();
             
             var user = db.UserMasterDatas.Where(u => u.UserName == UserName);
@@ -579,6 +587,7 @@ namespace UserAccounts
                 return;
             }
             
+            var db = new UsersDBContext();
             var user = db.UserMasterDatas.FirstOrDefault(u => u.ID == UserIDToEdit.Value);
             string tempOldName = user.UserName;
             if (user.UserName != textBoxUserName.Text)

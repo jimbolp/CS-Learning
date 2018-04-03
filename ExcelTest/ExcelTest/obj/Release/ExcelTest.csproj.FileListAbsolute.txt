@@ -1,0 +1,10 @@
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ExcelTest.exe.config
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.csproj.ResolveComReference.cache
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ExcelTest.exe
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\bin\Release\ExcelTest.pdb
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.Form1.resources
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.Properties.Resources.resources
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.csproj.GenerateResource.Cache
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.exe
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.pdb
+E:\Documents\GitHub\CS-Learning\ExcelTest\ExcelTest\obj\Release\ExcelTest.csprojResolveAssemblyReference.cache

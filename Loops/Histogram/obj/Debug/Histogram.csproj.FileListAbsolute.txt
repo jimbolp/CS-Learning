@@ -1,0 +1,6 @@
+e:\documents\visual studio 2015\Projects\Loops\Histogram\bin\Debug\Histogram.exe.config
+e:\documents\visual studio 2015\Projects\Loops\Histogram\bin\Debug\Histogram.exe
+e:\documents\visual studio 2015\Projects\Loops\Histogram\bin\Debug\Histogram.pdb
+e:\documents\visual studio 2015\Projects\Loops\Histogram\obj\Debug\Histogram.csprojResolveAssemblyReference.cache
+e:\documents\visual studio 2015\Projects\Loops\Histogram\obj\Debug\Histogram.exe
+e:\documents\visual studio 2015\Projects\Loops\Histogram\obj\Debug\Histogram.pdb
