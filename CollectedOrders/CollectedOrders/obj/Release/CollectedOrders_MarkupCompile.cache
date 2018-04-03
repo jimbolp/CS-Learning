@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-E:\Documents\C# Projects\GitHub\CS-Learning\CollectedOrders\CollectedOrders\obj\Debug\
+E:\Documents\C# Projects\GitHub\CS-Learning\CollectedOrders\CollectedOrders\obj\Release\
 CollectedOrders
 none
 false
-DEBUG;TRACE
+TRACE
 E:\Documents\C# Projects\GitHub\CS-Learning\CollectedOrders\CollectedOrders\App.xaml
 11151548125
 
