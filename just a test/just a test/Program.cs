@@ -7,35 +7,23 @@ namespace just_a_test
     {
         static void Main(string[] args)
         {
-            string[] inputNumbers = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
-            BigInteger baseN = BigInteger.Parse(inputNumbers[0]);
-            BigInteger input = BigInteger.Parse(inputNumbers[1]);
-            BigInteger result = 0;
-            BigInteger index = 0;
-            BigInteger multiplier = 0;
-            BigInteger res = 0;
-            BigInteger remainder = 0;
-            while (input > 0)
+            Thread t1 = new Thread(() =>
             {
-                result = input / 10;
-                remainder = input % 10;
-                multiplier = remainder * MathPow(baseN, index);
-                res += multiplier;
-                input /= 10;
-                index++;
-            }
-            Console.WriteLine(res);
-        }
-        static BigInteger MathPow(BigInteger baseN, BigInteger index)
-        {
-            BigInteger number = 1;
-
-            for (int i = 0; i < index; i++)
+                for (int i = 0; i < 1000; i++)
+                {
+                    Console.WriteLine(i);
+                    Thread.Sleep(1);
+                }
+            });
+            Thread t2 = new Thread(() =>
             {
-                number = number * baseN;
-            }
-            return number;
+                for (int i = 0; i < 1000; i++)
+                {
+                    Console.WriteLine("Another thread!!");
+                }
+            });
+            t1.Start();
+            t2.Start();
         }
     }
 }
