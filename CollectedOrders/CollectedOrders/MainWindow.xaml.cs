@@ -114,5 +114,60 @@ namespace CollectedOrders
                 txtBlock_Result.Text = "Task is already running";
             //503782;503779;208183;208177
         }
+
+        private void btn_CalculateManual_Click(object sender, RoutedEventArgs e)
+        {
+            txtBlock_ManualResult.Text = "";
+            if (int.TryParse(txtBox_CustomerMan.Text, out int customerID))
+            {
+                var toursAsStr = result.Where(r => r.CustomerNo == customerID).Select(r => r.TourIDs).FirstOrDefault();
+                string[] tours = toursAsStr.Split(new char[] { ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (txtBox_Tour.Text.Length >= 4)
+                {
+                    string tourTime = txtBox_Tour.Text.Substring(txtBox_Tour.Text.Length - 4);
+                    txtBlock_ManualResult.Text += "Избран маршрут: " + tourTime + " ->  ";
+                    Calc(tourTime);
+                }
+                else
+                {
+                    txtBox_Tour.Text += "Маршрути от базата: " + Environment.NewLine;
+                    foreach (var tour in tours)
+                    {
+                        Calc(tour);
+                    }
+                }
+            }
+        }
+
+        private void Calc(string tour)
+        {
+            int maxTimeInMinutes = 0;
+            int tourMinutes = 0;
+            if (tour.Length >= 6)
+            {
+                if (int.TryParse(tour.Substring(2, 4), out int tourTime))
+                {
+                    tourMinutes = (tourTime % 100) + (((tourTime % 10000) / 100) * 60);
+                    if (int.TryParse(txtBox_MaxTime.Text, out int maxTime))
+                    {
+                        maxTimeInMinutes = (maxTime % 100) + (((maxTime % 10000) / 100) * 60);
+                    }
+                }
+            }
+            else
+            {
+                if (int.TryParse(tour, out int tourTime))
+                {
+                    tourMinutes = (tourTime % 100) + (((tourTime % 10000) / 100) * 60);
+                    if (int.TryParse(txtBox_MaxTime.Text, out int maxTime))
+                    {
+                        maxTimeInMinutes = (maxTime % 100) + (((maxTime % 10000) / 100) * 60);
+                    }
+                }
+            }
+            if (tourMinutes > maxTimeInMinutes)
+                txtBlock_ManualResult.Text += tour + " => " + (tourMinutes - maxTimeInMinutes) + "; ";
+        }
     }
 }

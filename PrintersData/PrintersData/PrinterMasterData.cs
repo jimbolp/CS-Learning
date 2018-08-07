@@ -24,7 +24,7 @@ namespace PrintersData
         [StringLength(50)]
         public string PrintID { get; set; }
 
-        public int? PrinterModeID { get; set; }
+        public int? PrinterModelID { get; set; }
 
         public int BranchID { get; set; }
 

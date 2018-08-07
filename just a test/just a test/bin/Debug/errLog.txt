@@ -1,0 +1,10 @@
+23.04.18 15:04:08   Send message
+Error: The user account which was used to submit this request does not have the right to send mail on behalf of the specified sending account.
+23.04.18 15:14:01   Read Console Arguments
+Error: Unknown error (0x80005000)
+23.04.18 15:14:50   Read Console Arguments
+Error: Unknown error (0x80005000)
+23.04.18 16:01:13   Autodiscover URL
+Error: Credentials are required to make a service request.
+23.04.18 17:18:00   Send message
+Error: The user account which was used to submit this request does not have the right to send mail on behalf of the specified sending account.

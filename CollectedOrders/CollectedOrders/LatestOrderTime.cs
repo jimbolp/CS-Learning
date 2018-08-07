@@ -176,10 +176,16 @@ namespace CollectedOrders
                 _maxOrderTime = value;
             }
         }
-        private List<string> TourIDs {
+        public string TourIDs {
             get
             {
-                return Helper.GetToursFromDb(CustomerNo).Select(t => string.Format("{0:000000}", t)).ToList();
+                string tours = "";
+                List<string> tempList = Helper.GetToursFromDb(CustomerNo).Select(t => string.Format("{0:000000}", t)).ToList();
+                foreach (string t in tempList)
+                {
+                    tours += t + "; ";
+                }
+                return tours;
             }
         }
         public string MinutesBeforeTour {
@@ -188,7 +194,8 @@ namespace CollectedOrders
                 string val = "";
                 if (DateTime.TryParseExact(MaxWorkTime, "HHmm", CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime maxTime))
                 {
-                    foreach (var tour in TourIDs)
+                    string[] Tours = TourIDs.Split(new char[] { ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (var tour in Tours)
                     {
                         if (Int32.TryParse(tour.Substring(2, 4),  out int tourTime))
                         {

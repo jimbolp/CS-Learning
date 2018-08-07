@@ -18,3 +18,10 @@ D:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.cs
 D:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.csproj.CoreCompileInputs.cache
 D:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.exe
 D:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.pdb
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.Auth.dll
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.dll
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.pdb
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.xml
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.Auth.pdb
+D:\Documents\GitHub\CS-Learning\just a test\just a test\bin\Debug\Microsoft.Exchange.WebServices.Auth.xml
+D:\Documents\GitHub\CS-Learning\just a test\just a test\obj\Debug\just a test.csproj.CopyComplete

@@ -48,7 +48,7 @@ namespace PrintersData
             modelBuilder.Entity<PrinterModels>()
                 .HasMany(e => e.PrinterMasterData)
                 .WithOptional(e => e.PrinterModels)
-                .HasForeignKey(e => e.PrinterModeID);
+                .HasForeignKey(e => e.PrinterModelID);
         }
     }
 }

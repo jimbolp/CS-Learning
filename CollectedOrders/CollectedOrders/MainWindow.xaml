@@ -21,10 +21,33 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical">
+            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="5">
                 <TextBlock x:Name="txtBlock_CustomerNoLabel" Text="Клиент:" Margin="3"/>
                 <TextBox x:Name="txtBox_CustomerNo" Margin="3"/>
                 <Button x:Name="btn_Calculate" Content="Изчисли" Click="Btn_Calculate_Click" IsDefault="True"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" x:Name="txtBlock_CustomerManLabel" Text="Клиент:" Margin="3"/>
+                    <TextBox Grid.Column="0" Grid.Row="1" x:Name="txtBox_CustomerMan" Margin="3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" x:Name="txtBlock_MaxTimeLabel" Text="Краен час:" Margin="3"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtBox_MaxTime" Margin="3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" x:Name="txtBlock_TourLabel" Text="Маршрут:" Margin="3"/>
+                    <TextBox Grid.Column="2" Grid.Row="1" x:Name="txtBox_Tour" Margin="3"/>
+                                   
+                </Grid>
+                <Button Grid.Column="0" Grid.Row="2" x:Name="btn_CalculateManual" Content="Изчисли ръчно" Click="btn_CalculateManual_Click" IsDefault="True"/>
+                <TextBlock Grid.Row="1" x:Name="txtBlock_ManualResult"/>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1">

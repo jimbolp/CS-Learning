@@ -116,7 +116,7 @@ namespace PrintersData
                 Description = description.SqlValue.ToString(),
                 DNSName = dnsName.SqlValue.ToString(),
                 BranchID = branchIDFromName(listBranches.Text),
-                PrinterModeID = printerModelFromName(listPrinterModels.Text),
+                PrinterModelID = printerModelFromName(listPrinterModels.Text),
                 Active = activeCheckBox.Checked
             };
 
@@ -185,12 +185,12 @@ namespace PrintersData
             if ((printer.Active ?? false) != activeCheckBox.Checked)
                 printer.Active = activeCheckBox.Checked;
 
-            PrinterModels pm = db.PrinterModels.FirstOrDefault(p => p.ID == printer.PrinterModeID);
+            PrinterModels pm = db.PrinterModels.FirstOrDefault(p => p.ID == printer.PrinterModelID);
 
             if(listPrinterModels.SelectedItem.ToString() != pm.PrinterModel.ToString())
             {
                 pm = db.PrinterModels.FirstOrDefault(p => p.PrinterModel == listPrinterModels.SelectedItem.ToString());
-                printer.PrinterModeID = pm.ID;
+                printer.PrinterModelID = pm.ID;
             }
 
             Branches br = db.Branches.FirstOrDefault(b => b.ID == printer.BranchID);
